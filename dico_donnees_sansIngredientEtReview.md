@@ -16,6 +16,8 @@
 |duration | SMALLINT | NULL | preparation time on minute |
 |user_id | ENTITY | NOT NULL | the name of the author of the recipe |
 |category_id | ENTITY |NOT NULL | the category of the recipe |
+|ingredient| SET | NOT NULL | name and quantity of ingredients|
+<!-- voir affichage en liste des ingrédients -->
 
 ## Favorites
 
@@ -24,21 +26,6 @@
 | user_id | ENTITY | NOT NULL, FOREIGN KEY user as PRIMARY KEY id | the name of the user |
 | recipe_id| ENTITY | NOT NULL, FOREIGN KEY recipe as PRIMARY KEY id | recipe favorite |
 
-## Ingredient
-
-|field|type|specificities|description|
-|-|-|-|-|
-| id | INT | PRIMARY KEY NOT NULL, UNSIGNED, AUTO INCREMENT | ingredient identifier |
-| name | VARCHAR(64) | NOT NULL | ingredient Name |
-
-## Metrics
-
-|field|type|specificities|description|
-|-|-|-|-|
-| quantity | SMALLINT | NOT NULL, UNSIGNED | quantity of the ingredient|
-| unit | VARCHAR(64) | NOT NULL | choice of unit (grammes, ml, )|
-| recipe_id | INT | PRIMARY KEY NOT NULL, UNSIGNED, FOREIGN recipe as PRIMARY KEY id |  |
-| ingredient_id | INT | PRIMARY KEY NOT NULL, UNSIGNED, | FOREIGN ingredient as PRIMARY KEY id |
 
 ## Category
 
@@ -48,14 +35,6 @@
 | title  | VARCHAR(64) | NOT NULL  | Name of the category|
 | slug | VARCHAR(64) | NOT NULL | Name of the category|
 
-## Review
-
-|field|type|specificities|description|
-|-|-|-|-|
-| id | INT |PRIMARY KEY NOT NULL, UNSIGNED, AUTO INCREMENT |The ID of the review |
-| content | TEXT | NOT NULL |  content of the review |
-| rating | TINYINT | NULL | Rating of te review |
-| recipe_id| ENTITY | NOT NULL | recipe of the review |
 
 ## User
 

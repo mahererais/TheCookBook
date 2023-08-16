@@ -16,6 +16,18 @@
 |duration | SMALLINT | NULL | preparation time on minute |
 |user_id | ENTITY | NOT NULL | the name of the author of the recipe |
 |category_id | ENTITY |NOT NULL | the category of the recipe |
+<!-- ! voir liste ingrédients -->
+|ingredient1| SET | NOT NULL | name and quantity of ingredients|
+|ingredient2| SET | NOT NULL | name and quantity of ingredients|
+|ingredient3| SET | NOT NULL | name and quantity of ingredients|
+|ingredient4| SET | NOT NULL | name and quantity of ingredients|
+|ingredient5| SET | NOT NULL | name and quantity of ingredients|
+|ingredient6| SET | NOT NULL | name and quantity of ingredients|
+|ingredient7| SET | NOT NULL | name and quantity of ingredients|
+|ingredient8| SET | NOT NULL | name and quantity of ingredients|
+|ingredient9| SET | NOT NULL | name and quantity of ingredients|
+|ingredient10| SET | NOT NULL | name and quantity of ingredients|
+
 
 ## Favorites
 
@@ -24,21 +36,6 @@
 | user_id | ENTITY | NOT NULL, FOREIGN KEY user as PRIMARY KEY id | the name of the user |
 | recipe_id| ENTITY | NOT NULL, FOREIGN KEY recipe as PRIMARY KEY id | recipe favorite |
 
-## Ingredient
-
-|field|type|specificities|description|
-|-|-|-|-|
-| id | INT | PRIMARY KEY NOT NULL, UNSIGNED, AUTO INCREMENT | ingredient identifier |
-| name | VARCHAR(64) | NOT NULL | ingredient Name |
-
-## Metrics
-
-|field|type|specificities|description|
-|-|-|-|-|
-| quantity | SMALLINT | NOT NULL, UNSIGNED | quantity of the ingredient|
-| unit | VARCHAR(64) | NOT NULL | choice of unit (grammes, ml, )|
-| recipe_id | INT | PRIMARY KEY NOT NULL, UNSIGNED, FOREIGN recipe as PRIMARY KEY id |  |
-| ingredient_id | INT | PRIMARY KEY NOT NULL, UNSIGNED, | FOREIGN ingredient as PRIMARY KEY id |
 
 ## Category
 
