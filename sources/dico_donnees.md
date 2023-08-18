@@ -10,7 +10,6 @@
 |steps | TEXT | NOT NULL | Content of the recipe |
 |created_at| TIMESTAMP | NOT NULL, DEFAULT current-TIMESTAMP| Date of the recipe publication |
 |updated_at| TIMESTAMP | NULL | Date of the recipe updating |
-|average_rating | FLOAT | UNSIGNED, NULL | rating average of the linked reviews |
 |status | VARCHAR(64) | NOT NULL, DEFAULT public | status of the recipe to switch from public to private depending of the user wish |
 |slug | VARCHAR(128) | NOT NULL | URL-friendly slug from Recipe title | 
 |duration | SMALLINT | NULL | preparation time on minute |
