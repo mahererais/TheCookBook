@@ -92,6 +92,11 @@
 | `/admin/category/delete/{id}` | `POST` | `CategoryController` | `delete` | Suppression d'une catégorie | delete category by {id} | {id} is the id of the category, redirect to /admin/categories | tcb_admin_category_delete |
 
 
+## Api
+
+| URL | Méthode HTTP | Controller | Méthode | Titre | Contenu | Commentaire |
+|--|--|--|--|--|--|--|
+| `/api/users/....?`|||||||
 
 <br>
 <br>
