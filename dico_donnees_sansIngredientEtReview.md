@@ -16,7 +16,7 @@
 |duration | SMALLINT | NULL | preparation time on minute |
 |user_id | ENTITY | NOT NULL | the name of the author of the recipe |
 |category_id | ENTITY |NOT NULL | the category of the recipe |
-|ingredient| SET | NOT NULL | name and quantity of ingredients|
+|ingredient| longtext | NOT NULL | name and quantity of ingredients|
 <!-- voir affichage en liste des ingrédients -->
 
 ## Favorites
