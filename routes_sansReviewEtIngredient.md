@@ -94,9 +94,10 @@
 
 ## Api
 
-| URL | Méthode HTTP | Controller | Méthode | Titre | Contenu | Commentaire |
-|--|--|--|--|--|--|--|
-| `/api/users/....?`|||||||
+| URL | Méthode API | Controller | Méthode | Contenu | Commentaire |
+|--|--|--|--|--|--|
+| `/api/users/{page}/{count}`|`GET`|`ApiUserController`|`getUserForPageNumber`| get users from server | {page} is the page number, {count} means number of users we want |
+| `/api/recipes/{page}/{count}`|`GET`|`ApiRecipeController`|`getRecipeForPageNumber`| get recipes from server | {page} is the page number, {count} means number of recipe we want |
 
 <br>
 <br>
