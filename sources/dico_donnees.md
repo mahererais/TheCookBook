@@ -7,7 +7,7 @@
 |id |INT |PRIMARY KEY NOT NULL, UNSIGNED, AUTO INCREMENT |The ID of the recipe |
 |title | VARCHAR(128) | NOT NULL | Name of the recipe |
 |picture | VARCHAR(255) | NOT NULL | URL of the recipe picture |
-|steps | TEXT | NOT NULL | Content of the recipe |
+|steps | longtext | NOT NULL | Content of the recipe |
 |created_at| TIMESTAMP | NOT NULL, DEFAULT current-TIMESTAMP| Date of the recipe publication |
 |updated_at| TIMESTAMP | NULL | Date of the recipe updating |
 |status | VARCHAR(64) | NOT NULL, DEFAULT public | status of the recipe to switch from public to private depending of the user wish |
@@ -15,7 +15,7 @@
 |duration | SMALLINT | NULL | preparation time on minute |
 |user_id | ENTITY | NOT NULL | the name of the author of the recipe |
 |category_id | ENTITY |NOT NULL | the category of the recipe |
-|ingredient| longtext | NOT NULL | name and quantity of ingredients|
+|ingredients| longtext | NOT NULL | name and quantity of ingredients|
 
 ## Favorites
 
