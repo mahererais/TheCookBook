@@ -48,3 +48,4 @@
 | experience | TEXT | NULL | professionnal experience or personnal experience |
 | presentation | TEXT | NULL | presentation of the user|
 | status | VARCHAR(64) | DEFAULT PUBLIC | private or public |
+| roles | longtext | NOT NULL | user's role between admin & user |
