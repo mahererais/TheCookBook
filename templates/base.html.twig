@@ -1,19 +1,105 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>
+			{% block title %}Welcome!
+			{% endblock %}
+		</title>
+		<link
+		rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+		{# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+		{% block stylesheets %}
+			{{ encore_entry_link_tags('app') }}
+		{% endblock %}
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+		{% block javascripts %}
+			{{ encore_entry_script_tags('app') }}
+		{% endblock %}
+
+		<link
+		rel="stylesheet" href="{{asset('assets/css/style.css')}}">
+
+		<!-- https://tailwindcss.com/docs/installation/play-cdn -->
+		<script src="https://cdn.tailwindcss.com"></script>
+
+		<!-- https://fonts.google.com/ -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link
+		rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<!-- Poppins -->
+		<link
+		href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+		<!-- Roboto -->
+		<link
+		href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+
+		<!-- font-awesome -->
+		<link
+		rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"> -->
+	</head>
+
+
+	<body>
+
+		<header id="header_id">
+			<div class="tcb_container">
+				<a class="logo" href="#">
+					<img src="https://cdn.worldvectorlogo.com/logos/symfony.svg" alt="logo">
+				</a>
+
+				<nav>
+					<ul>
+						<li>
+							<a href="">Accueil</a>
+						</li>
+						<li>
+							<a href="">Recettes</a>
+						</li>
+						<li>
+							<a href="">Chefs</a>
+						</li>
+						<li>
+							<a href="">Catégories</a>
+						</li>
+						<li>
+							<a class="burger-icon">
+								<i class="fas fa-bars"></i>
+							</a>
+						</li>
+					</ul>
+
+					<div class="search_container">
+						<i class="fas fa-search"></i>
+						<input type="text" placeholder="recherche ...">
+					</div>
+				</nav>
+
+			</div>
+
+
+		</header>
+
+		{% block body %}{% endblock %}
+
+
+		<footer>
+
+			<div class="tcb_container">
+				<a class="tcb_btn_arrow" href="#header_id">
+					<i class="fas fa-arrow-up"></i>
+				</a>
+
+				<ul>
+					<li><a>Mentions Légales</a></li>
+				</ul>
+			</div>
+
+		</footer>
+
+	</body>
+
+
 </html>
