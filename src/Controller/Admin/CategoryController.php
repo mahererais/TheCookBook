@@ -41,4 +41,21 @@ class CategoryController extends AbstractController
             'controller_name' => 'CategoryController',
         ]);
     }
+
+     /**
+     * @Route("/admin/category/delete/{id}", name="tcb_admin_category_delete", requirements={"id" = "\d+"})
+     */
+    public function delete(Category $category, EntityManagerInterface $entityManager): Response
+    {
+        $entityManager->remove($category);
+        $entityManager->flush();
+
+        // ! flash message to add
+        $this->addFlash(
+            'warning',
+            "La catégorie ".$category->getTitle()." a bien été supprimée"
+        );
+
+        return $this->redirectToRoute("tcb_admin_category_getAll");
+    }
 }
