@@ -27,19 +27,28 @@
 
 <body>
 
-    <header>
-        <nav class="container">
+    <header id="header_id">
+        <div class="tcb_container">
             <img class="logo" src="https://cdn.worldvectorlogo.com/logos/symfony.svg" alt="logo">
             
-            <ul>
-                <li><a href="">Accueil</a></li>
-                <li><a href="">Recettes</a></li>
-                <li><a href="">Chefs</a></li>
-                <li><a href="">Categorie</a></li>
-                <li><a class="icon-burger"><i class="fas fa-bars"></i></a></li>
-            </ul>
-        </nav>
+            
+            <nav>
+                <ul>
+                    <li><a href="">Accueil</a></li>
+                    <li><a href="">Recettes</a></li>
+                    <li><a href="">Chefs</a></li>
+                    <li><a href="">Catégories</a></li>
+                    <li><a class="icon-burger"><i class="fas fa-bars"></i></a></li>
+                </ul>
+                
+                <div class="search_container">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="recherche ...">
+                </div>
+            </nav>
 
+        </div>
+        
 
 
     </header>
@@ -89,8 +98,10 @@
 
     <footer>
 
-        <div class="container">
-            <a><i class="fas fa-arrow-up"></i></a>
+        <div class="tcb_container">
+            <a class="tcb_btn_arrow" href="#header_id">
+                <i class="fas fa-arrow-up"></i>
+            </a>
     
             <ul>
                 <li><a>Mentions Légales</a></li>

@@ -13,6 +13,10 @@
     --main-text-color: #3F3735;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 header,
 footer {
     position: relative;
@@ -28,23 +32,55 @@ footer {
 header {
 
 
-    nav {
+    .tcb_container {
 
         width: var(--container-width);
 
         display: flex;
         justify-content: space-between;
         align-items: center;
+        gap: 1rem;
 
         padding: 20px;
 
-        &>.logo {
+        & > .logo {
             width: 60px;
         }
 
+        nav {
+            
+            display: flex;
 
+
+            .search_container {
+
+                display: flex;
+                align-items: center;
+
+                background-color: white;
+                border-radius: 999px;
+                padding: 5px 10px;
+
+                box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.8);
+
+                & > input[type=text] {
+                    margin-left: 5px;
+                    background-color: transparent;
+                    &:focus  {
+                        outline: none;
+                    }
+
+                    max-width: 150px;
+                }
+
+                i {
+                    color: var(--main-text-color)
+                }
+            }
+        }
 
     }
+
 }
 
 main {
@@ -85,7 +121,7 @@ main {
 footer {
 
 
-    .container {
+    .tcb_container {
 
         width: var(--container-width);
         padding: 2rem;
@@ -94,7 +130,8 @@ footer {
             justify-content: flex-end;
         }
 
-        & > a {
+        & > a.tcb_btn_arrow {
+            
             background-color: var(--main-color);
             padding: 15px;
             border-radius: 50%;
@@ -112,6 +149,10 @@ footer {
             &:hover {
                 background-color: limegreen;
             }
+
+            & > i {
+                color: white;
+            }
         }
     }
 
@@ -123,12 +164,12 @@ ul {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 1.5rem;
 
     & li {
         list-style: none;
 
-        &>a {
+        & > a {
             text-decoration: none;
             transition: 0.25s;
             font-weight: bold;
@@ -148,9 +189,10 @@ ul {
 }
 
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 700px) {
     .icon-burger {
         display: unset;
+        margin-left: 15px;
     }
 
     header {
@@ -159,6 +201,13 @@ ul {
                 li:not(:last-child) {
                     display: none;
                 }
+
+                order: 5;
+            }
+            
+            width: 100%;
+            .search_container {
+                width: 100%;
             }
         }
     }

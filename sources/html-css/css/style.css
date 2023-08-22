@@ -13,6 +13,10 @@
   --main-text-color: #3F3735;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 header,
 footer {
   position: relative;
@@ -23,15 +27,38 @@ footer {
   justify-content: center;
 }
 
-header nav {
+header .tcb_container {
   width: var(--container-width);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 1rem;
   padding: 20px;
 }
-header nav > .logo {
+header .tcb_container > .logo {
   width: 60px;
+}
+header .tcb_container nav {
+  display: flex;
+}
+header .tcb_container nav .search_container {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border-radius: 999px;
+  padding: 5px 10px;
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.8);
+}
+header .tcb_container nav .search_container > input[type=text] {
+  margin-left: 5px;
+  background-color: transparent;
+  max-width: 150px;
+}
+header .tcb_container nav .search_container > input[type=text]:focus {
+  outline: none;
+}
+header .tcb_container nav .search_container i {
+  color: var(--main-text-color);
 }
 
 main {
@@ -61,14 +88,14 @@ main .cards .cards_container .cards_content {
   row-gap: 20px;
 }
 
-footer .container {
+footer .tcb_container {
   width: var(--container-width);
   padding: 2rem;
 }
-footer .container > ul {
+footer .tcb_container > ul {
   justify-content: flex-end;
 }
-footer .container > a {
+footer .tcb_container > a.tcb_btn_arrow {
   background-color: var(--main-color);
   padding: 15px;
   border-radius: 50%;
@@ -80,15 +107,18 @@ footer .container > a {
   transition: 0.25s;
   box-shadow: 0 -4px 5px rgba(0, 0, 0, 0.2);
 }
-footer .container > a:hover {
+footer .tcb_container > a.tcb_btn_arrow:hover {
   background-color: limegreen;
+}
+footer .tcb_container > a.tcb_btn_arrow > i {
+  color: white;
 }
 
 ul {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 1.5rem;
 }
 ul li {
   list-style: none;
@@ -109,11 +139,21 @@ ul li > a:hover {
   display: none;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 700px) {
   .icon-burger {
     display: unset;
+    margin-left: 15px;
+  }
+  header nav {
+    width: 100%;
+  }
+  header nav ul {
+    order: 5;
   }
   header nav ul li:not(:last-child) {
     display: none;
+  }
+  header nav .search_container {
+    width: 100%;
   }
 }/*# sourceMappingURL=style.css.map */
