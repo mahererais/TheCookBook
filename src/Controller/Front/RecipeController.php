@@ -82,7 +82,7 @@ class RecipeController extends AbstractController
      */
     public function update(Request $request, EntityManagerInterface $entityManager, Recipe $recipe, int $id): Response
     {
-        $form = $this->createForm(CategoryType::class, $recipe);
+        $form = $this->createForm(RecipeType::class, $recipe);
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
