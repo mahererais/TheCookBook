@@ -77,6 +77,7 @@ class CategoryController extends AbstractController
             $entityManager->persist($category);
             $entityManager->flush();
 
+            // ! flash message to add
             $this->addFlash("success", "Catégorie correctement ajoutée en BDD.");
         
             return $this->redirectToRoute('tcb_admin_category_getAll');
@@ -86,4 +87,31 @@ class CategoryController extends AbstractController
             "form" => $form
         ]);
     }
+
+     /**
+     * 
+     * @Route("/admin/category/update/{id}", name="tcb_admin_category_update", requirements={"id" = "\d+"})
+     * 
+     */
+    public function update(Request $request, EntityManagerInterface $entityManager, Category $category, int $id): Response
+    {
+        $form = $this->createForm(CategoryType::class, $category);
+        $form->handleRequest($request);
+        
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($category);
+            $entityManager->flush();
+
+            // ! flash message to add
+            $this->addFlash("success", "Catégorie correctement modifiée en BDD.");
+        
+            return $this->redirectToRoute('tcb_admin_category_getAll');
+        }
+
+        return $this->renderForm("Admin/category/form.html.twig",[
+            "form" => $form,
+            "category" => $category,
+        ]);
+    }
+
 }
