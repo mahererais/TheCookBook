@@ -3,9 +3,12 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Category;
+use App\Form\CategoryType;
 use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use PhpParser\Node\Stmt\Catch_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -57,5 +60,30 @@ class CategoryController extends AbstractController
         );
 
         return $this->redirectToRoute("tcb_admin_category_getAll");
+    }
+
+      /**
+     * 
+     * @Route("/admin/category/add", name="tcb_admin_category_add")
+     * 
+     */
+    public function add(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $category = new Category();
+        $form = $this->createForm(CategoryType::class, $category);
+        $form->handleRequest($request);
+        
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($category);
+            $entityManager->flush();
+
+            $this->addFlash("success", "Catégorie correctement ajoutée en BDD.");
+        
+            return $this->redirectToRoute('tcb_admin_category_getAll');
+        }
+
+        return $this->renderForm("Admin/category/form.html.twig",[
+            "form" => $form
+        ]);
     }
 }
