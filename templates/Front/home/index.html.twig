@@ -3,18 +3,139 @@
 {% block title %}Hello HomeController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<main>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+        <div class="titles_container">
+            <h1 class="page_title">The Cook Book</h1>
+            <p class="page_subTitle">Phrase définissant le site</p>
+        </div>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/var/www/html/projet-03-the-cook-book/src/Controller/HomeController.php'|file_link(0) }}">src/Controller/HomeController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/var/www/html/projet-03-the-cook-book/templates/home/index.html.twig'|file_link(0) }}">templates/home/index.html.twig</a></code></li>
-    </ul>
-</div>
+        <div class="cards">
+            <a class="tcb_btn_caroussel tcb_btn_caroussel_left" >
+                <i class="fas fa-arrow-up"></i>
+            </a>
+            <a class="tcb_btn_caroussel tcb_btn_caroussel_right">
+                <i class="fas fa-arrow-up"></i>
+            </a>
+            <div class="card_title">
+                ENTREES
+            </div>
+            <div class="cards_container">
+                <img src="https://images.pexels.com/photos/36717/amazing-animal-beautiful-beautifull.jpg?cs=srgb&dl=pexels-pixabay-36717.jpg&fm=jpg" alt="">
+                <div class="cards_content">
+                    <h2>recette 1</h2>
+                    <h3>Ingredients: </h3>
+                    <ul>
+                        <li>Lorem, ipsum.</li>
+                        <li>Lorem ipsum dolor sit amet.</li>
+                        <li>Lorem, ipsum....</li>
+                    </ul>
+
+                    <h3>Préparation: </h3>
+                    <p class="card_presentation">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo eaque iusto odio deleniti quam obcaecati! Consequuntur aperiam enim molestiae autem dignissimos perferendis quis, atque, sint officiis adipisci quidem laboriosam soluta.</p>
+                    
+                    <div class="card_btn">
+                        <a class="heart_icon"><i class="fas fa-heart"></i></a>
+                        <a class="tcb_btn">voir la recette</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cards">
+            <a class="tcb_btn_caroussel tcb_btn_caroussel_left">
+                <i class="fas fa-arrow-up"></i>
+            </a>
+            <a class="tcb_btn_caroussel tcb_btn_caroussel_right">
+                <i class="fas fa-arrow-up"></i>
+            </a>
+            <div class="card_title">
+                PLATS
+            </div>
+            <div class="cards_container">
+                <img src="https://images.pexels.com/photos/36717/amazing-animal-beautiful-beautifull.jpg?cs=srgb&dl=pexels-pixabay-36717.jpg&fm=jpg" alt="">
+                <div class="cards_content">
+                    <h2>recette 2</h2>
+                    <h3>Ingredients: </h3>
+                    <ul>
+                        <li>Lorem, ipsum.</li>
+                        <li>Lorem ipsum dolor sit amet.</li>
+                        <li>Lorem, ipsum....</li>
+                    </ul>
+
+                    <h3>Préparation: </h3>
+                    <p class="card_presentation">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo eaque iusto odio deleniti quam obcaecati! Consequuntur aperiam enim molestiae autem dignissimos perferendis quis, atque, sint officiis adipisci quidem laboriosam soluta.</p>
+                    
+                    <div class="card_btn">
+                        <a class="heart_icon"><i class="far fa-heart"></i></a>
+                        <a class="tcb_btn">voir la recette</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cards">
+            <a class="tcb_btn_caroussel tcb_btn_caroussel_left">
+                <i class="fas fa-arrow-up"></i>
+            </a>
+            <a class="tcb_btn_caroussel tcb_btn_caroussel_right">
+                <i class="fas fa-arrow-up"></i>
+            </a>
+            <div class="card_title">
+                DESSERTS
+            </div>
+            <div class="cards_container">
+                <img src="https://images.pexels.com/photos/36717/amazing-animal-beautiful-beautifull.jpg?cs=srgb&dl=pexels-pixabay-36717.jpg&fm=jpg" alt="">
+                <div class="cards_content">
+                    <h2>recette 3</h2>
+                    <h3>Ingredients: </h3>
+                    <ul>
+                        <li>Lorem, ipsum.</li>
+                        <li>Lorem ipsum dolor sit amet.</li>
+                        <li>Lorem, ipsum....</li>
+                    </ul>
+
+                    <h3>Préparation: </h3>
+                    <p class="card_presentation">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo eaque iusto odio deleniti quam obcaecati! Consequuntur aperiam enim molestiae autem dignissimos perferendis quis, atque, sint officiis adipisci quidem laboriosam soluta.</p>
+                    
+                    <div class="card_btn">
+                        <a class="heart_icon"><i class="far fa-heart"></i></a>
+                        <a class="tcb_btn">voir la recette</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cards">
+            <a class="tcb_btn_caroussel tcb_btn_caroussel_left">
+                <i class="fas fa-arrow-up"></i>
+            </a>
+            <a class="tcb_btn_caroussel tcb_btn_caroussel_right">
+                <i class="fas fa-arrow-up"></i>
+            </a>
+            <div class="card_title">
+                APERITIF
+            </div>
+            <div class="cards_container">
+                <img src="https://images.pexels.com/photos/36717/amazing-animal-beautiful-beautifull.jpg?cs=srgb&dl=pexels-pixabay-36717.jpg&fm=jpg" alt="">
+                <div class="cards_content">
+                    <h2>recette 4</h2>
+                    <h3>Ingredients: </h3>
+                    <ul>
+                        <li>Lorem, ipsum.</li>
+                    </ul>
+
+                    <h3>Préparation: </h3>
+                    <p class="card_presentation">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo eaque iusto odio deleniti quam obcaecati! Consequuntur aperiam enim molestiae autem dignissimos perferendis quis, atque, sint officiis adipisci quidem laboriosam soluta.</p>
+                    
+                    <div class="card_btn">
+                        <a class="heart_icon"><i class="far fa-heart"></i></a>
+                        <a class="tcb_btn">voir la recette</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+    </main>
 {% endblock %}
