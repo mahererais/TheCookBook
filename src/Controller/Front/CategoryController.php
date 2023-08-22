@@ -11,21 +11,26 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CategoryController extends AbstractController
 {
+    private $entityManager;
+
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
+
     /**
      * @Route("/categories", name="tcb_front_category_getAll")
      */
-    public function getAll(CategoryRepository $categoryRepository, EntityManagerInterface $manager): Response
+    public function getAll(CategoryRepository $categoryRepository): Response
     {
-        $categories = $manager->getRepository(Category::class)->findAll();
+        $categories = $this->entityManager->getRepository(Category::class)->findAll();
 
         dd($categories);
-        
+
         return $this->render('Front/category/index.html.twig', [
             'categories' => $categories,
             'controller_name' => 'RecipeController',
         ]);
-
-        
     }
 
     /**
@@ -33,12 +38,14 @@ class CategoryController extends AbstractController
      * 
      * display one category by id
      */
-    public function show(Category $category): Response
+    public function show(Category $category, $slug): Response
     {
+        
+        $category = $this->entityManager->getRepository(Category::class)->findOneBy(['slug' => $slug]);
 
         dd($category);
 
-        return $this->render('Front/category/index.html.twig',[
+        return $this->render('Front/category/index.html.twig', [
             'controller_name' => 'CategoryController',
         ]);
     }
