@@ -19,12 +19,7 @@ class CategoryType extends AbstractType
                 "placeholder" => "Nom"
             ]
         ])
-        // ->add('slug', TextType::class, [
-        //     "label" => "Slug de la catégorie",
-        //     "attr" => [
-        //         "placeholder" => "Nom"
-        //     ]
-        // ])
+        
         ;
     }
 

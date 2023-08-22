@@ -1,0 +1,25 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+
+    <div class="container bg-light pt-5">
+	<div class="row mb-2">
+		<div class="col">
+			<div class="row g-0 border rounded overflow-hidden flex-md-row align-items-start mb-4 shadow-sm position-relative">
+				<div class="col-8 p-4 d-flex flex-column position-static bg-light">
+                    {% if app.request.attributes.get("_route") is same as "tcb_admin_recipe_add" %}
+					    <h2>Ajouter une recette</h2>
+                    {% else %}
+                        <h2>Modifier la recette</h2>
+                    {% endif %}
+                    {{form(form)}}
+						<button class="btn btn-primary" type="submit">Envoyer</button>
+						
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

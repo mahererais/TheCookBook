@@ -1,0 +1,84 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+
+    <div class="container bg-light pt-5">
+	<div class="row mb-2">
+		<div class="col">
+			<div class="row g-0 border rounded overflow-hidden flex-md-row align-items-start mb-4 shadow-sm position-relative">
+				<div class="col-8 p-4 d-flex flex-column position-static bg-light">
+                    {% if app.request.attributes.get("_route") is same as "tcb_front_recipe_add" %}
+					    <h2>Ajouter une recette</h2>
+                    {% else %}
+                        <h2>Modifier la recette</h2>
+                    {% endif %}
+                    {{form_start(form, {attr: {novalidate: 'novalidate'}})}}
+                    
+						<div class="col-3 mb-3">
+							{{form_label(form.title)}}
+							{{form_widget(form.title)}}
+							{{form_help(form.title)}}
+							{{form_errors(form.title)}}
+						</div>
+						<div class="col-3 mb-3">
+							{{form_label(form.picture)}}
+							{{form_widget(form.picture)}}
+							{{form_help(form.picture)}}
+							{{form_errors(form.picture)}}
+						</div>
+						{# ! voir affichage input saisie steps #}
+						<div class="col-3 mb-3">
+							{{form_label(form.steps)}}
+							{{form_widget(form.steps)}}
+							{{form_help(form.steps)}}
+							{{form_errors(form.steps)}}
+						</div> 
+						<div class="col-3 mb-3">
+							{{form_label(form.status)}}
+							{{form_widget(form.status)}}
+							{{form_help(form.status)}}
+							{{form_errors(form.status)}}
+						</div>
+						<div class="col-3 mb-3">
+							{{form_label(form.duration)}}
+							{{form_widget(form.duration)}}
+							{{form_help(form.duration)}}
+							{{form_errors(form.duration)}}
+						</div>
+						{# ! voir affichage input saisie ingredients #}
+						<div class="col-3 mb-3">
+							{{form_label(form.ingredients)}}
+							{{form_widget(form.ingredients)}}
+							{{form_help(form.ingredients)}}
+							{{form_errors(form.ingredients)}}
+						</div>
+						<div class="col-3 mb-3">
+							{{form_label(form.category)}}
+							{{form_widget(form.category)}}
+							{{form_help(form.category)}}
+							{{form_errors(form.category)}}
+						</div>
+						
+						
+						<button class="btn btn-primary" type="submit">Envoyer</button>
+						
+					{{form_end(form)}}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
+
+
+{% block javascripts %}
+    <script>
+        const recipe_steps = document.getElementById("recipe_steps");
+        console.log(recipe_steps);
+        recipe_steps.innerHTML = `<input type="text" placeHolder="ingredient numero 1" name="recipe[steps][]"/>
+        <input type="text" placeHolder="ingredient numero 2" name="recipe[steps][]"/>
+                                    <button>+</button>`;
+    </script>
+{% endblock %}
