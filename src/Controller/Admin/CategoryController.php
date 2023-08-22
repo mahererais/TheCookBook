@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Front;
+namespace App\Controller\Admin;
 
 use App\Entity\Category;
 use App\Repository\CategoryRepository;
@@ -12,24 +12,23 @@ use Symfony\Component\Routing\Annotation\Route;
 class CategoryController extends AbstractController
 {
     /**
-     * @Route("/categories", name="tcb_front_category_getAll")
+     * @Route("/admin/categories", name="tcb_admin_category_getAll")
      */
     public function getAll(CategoryRepository $categoryRepository, EntityManagerInterface $manager): Response
     {
         $categories = $manager->getRepository(Category::class)->findAll();
 
-        dd($categories);
-        
-        return $this->render('Front/category/index.html.twig', [
-            'categories' => $categories,
-            'controller_name' => 'RecipeController',
-        ]);
+        // dd($categories);
 
-        
+        return $this->render('Admin/category/index.html.twig', [
+            'controller_name' => 'CategoryController',
+        ]);
     }
 
     /**
-     * @Route("/category/{id}/{slug}", name="tcb_front_category_show", requirements={"id"="\d+"})
+     * pas de slug en backoffice
+     * 
+     * @Route("/admin/category/{id}", name="tcb_admin_category_show", requirements={"id"="\d+"})
      * 
      * display one category by id
      */
@@ -38,7 +37,7 @@ class CategoryController extends AbstractController
 
         dd($category);
 
-        return $this->render('Front/category/index.html.twig',[
+        return $this->render('Admin/category/index.html.twig',[
             'controller_name' => 'CategoryController',
         ]);
     }
