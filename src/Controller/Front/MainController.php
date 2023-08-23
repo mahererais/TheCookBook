@@ -23,7 +23,7 @@ class MainController extends AbstractController
 
         $categoryRecipes = [];
         foreach ($categories as $category) {
-            $randomRecipes = $recipeRepository->findRandomRecipesByCategory($category, 3); // Replace with your method to fetch random recipes
+            $randomRecipes = $recipeRepository->findRandomRecipesByCategory($category, 4); // Replace with your method to fetch random recipes
             $categoryRecipes[$category->getTitle()] = $randomRecipes;
         }
 
