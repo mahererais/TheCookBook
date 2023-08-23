@@ -27,23 +27,9 @@
 							{{form_help(form.picture)}}
 							{{form_errors(form.picture)}}
 						</div>
-
-
+						<div class="col-3 mb-3">
 						{{form_row(form.steps)}}
-						{# ! voir affichage input saisie steps #}
-						{# <div class="col-3 mb-3">
-							{{form_label(form.steps)}}
-							{{form_help(form.steps)}} #}
-
-							{# ! ul existe à l'inspecteur mais vide #}
-							{# the data-index attribute is required for the JavaScript code below #}
-								{# <ul class="steps"
-									data-index="{{ form.steps|length > 0 ? form.steps|last.vars.name + 1 : 0 }}"
-									data-prototype="{{ form_widget(form.steps.vars.prototype)|e('html_attr') }}"
-								></ul>
-							<button type="button" class="add_item_link" data-collection-holder-class="steps">Ajouter une étape</button>
-						</div>  #}
-
+						</div>
 						<div class="col-3 mb-3">
 							{{form_label(form.status)}}
 							{{form_widget(form.status)}}
@@ -58,10 +44,7 @@
 						</div>
 						{# ! voir affichage input saisie ingredients #}
 						<div class="col-3 mb-3">
-							{{form_label(form.ingredients)}}
-							{{form_widget(form.ingredients)}}
-							{{form_help(form.ingredients)}}
-							{{form_errors(form.ingredients)}}
+							{{form_row(form.ingredients)}}
 						</div>
 						<div class="col-3 mb-3">
 							{{form_label(form.category)}}
@@ -82,20 +65,24 @@
 
 {% endblock %}
 
-{# ! JS pour ajout d'une étape non fonctionnel #}
+
 {% block js %}
 	<script>
+		// ============== steps handler ============
+
 		const recipe_steps = document.getElementById("recipe_steps");
         console.log(recipe_steps);
         recipe_steps.innerHTML = `<ul style="display: unset">
-									<li><input type="text" placeHolder="ajouter votre étape..." name="recipe[steps][]"/><button style="color:red; font-size: 2rem">-</button></li>
+									<li>
+										<input type="text" placeHolder="ajouter votre étape..." name="recipe[steps][]"/>
+									</li>
 								  </ul>
                                   <button id="btn_add_steps" style="padding:0.5rem; border: 2px solid; border-radius: 999px">+</button>`;
 
-		const button = document.getElementById("btn_add_steps");
-		console.log(button);
+		const buttonSteps = document.getElementById("btn_add_steps");
+		console.log(buttonSteps);
 
-		button.addEventListener('click', function(e) {
+		buttonSteps.addEventListener('click', function(e) {
 			e.preventDefault();
 			console.log("btn_add_steps clicked");
 
@@ -107,36 +94,46 @@
 			input.setAttribute("type", "text");
 			li.append(input);
 
-			// <button style="color:red; font-size: 2rem">-</button>	
+
 
 			const ul = document.querySelector("#recipe_steps ul");
 			ul.append(li);
 
 		})
+		
+		
 
-		{# document
-			.querySelectorAll('.add_item_link')
-			.forEach(btn => {
-				btn.addEventListener("click", addFormToCollection)
-			});
+		// ============== ingredient handler ============
 
-		const addFormToCollection = (e) => {
-			const collectionHolder = document.querySelector('.' + e.currentTarget.dataset.collectionHolderClass);
+		const recipe_ingredients = document.getElementById("recipe_ingredients");
+        console.log(recipe_ingredients);
+        recipe_ingredients.innerHTML = `<ul style="display: unset">
+									<li>
+										<input type="text" placeHolder="ajouter votre ingrédient..." name="recipe[ingredients][]"/>
+									</li>
+								  </ul>
+                                  <button id="btn_add_ingredients" style="padding:0.5rem; border: 2px solid; border-radius: 999px">+</button>`;
 
-			const item = document.createElement('li');
+		const buttonIngredients = document.getElementById("btn_add_ingredients");
+		console.log(buttonIngredients);
 
-			item.innerHTML = collectionHolder
-				.dataset
-				.prototype
-				.replace(
-				/__name__/g,
-				collectionHolder.dataset.index
-				);
+		buttonIngredients.addEventListener('click', function(e) {
+			e.preventDefault();
+			console.log("btn_add_ingredients clicked");
 
-			collectionHolder.appendChild(item);
+			const li = document.createElement('li');
 
-			collectionHolder.dataset.index++;
-		}; #}
+			const input = document.createElement('input');
+			input.setAttribute("placeHolder", "ajouter votre ingrédient...");
+			input.setAttribute("placeHolder", "ajouter votre ingrédient...");
+			input.setAttribute("type", "text");
+			li.append(input);
+			
+
+			const ul = document.querySelector("#recipe_ingredients ul");
+			ul.append(li);
+
+		})
 
 	</script>
 {% endblock %}
