@@ -42,7 +42,7 @@ class AppFixtures extends Fixture
             $manager->persist($category);
         }
 
-        for ($i = 1; $i <= 10; $i++) {
+        for ($i = 1; $i <= 20; $i++) {
             $recipe = new Recipe();
 
             $recipe->setTitle($faker->text(100));

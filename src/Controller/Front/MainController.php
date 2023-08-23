@@ -2,6 +2,9 @@
 
 namespace App\Controller\Front;
 
+use App\Entity\Category;
+use App\Repository\CategoryRepository;
+use App\Repository\RecipeRepository;
 use Knp\Snappy\Pdf;
 use Twig\Environment;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,10 +17,15 @@ class MainController extends AbstractController
     /**
      * @Route("/", name="tcb_front_main_home")
      */
-    public function index(): Response
+    public function index(RecipeRepository $recipeRepository, CategoryRepository $categoryRepository): Response
     {
+        $recipes = $recipeRepository->findAll();
+        $categories = $categoryRepository->findAll();
+        
         return $this->render('Front/home/index.html.twig', [
-            'controller_name' => 'MainController',
+            
+            "recipes" => $recipes,
+            "categories" => $categories
         ]);
     }
 

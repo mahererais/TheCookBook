@@ -16,7 +16,7 @@ class RecipeListener
 
     public function slugifyTitle(Recipe $recipe){
 
-        $recipe->setSlug($this->slugger->slug($recipe->getTitle()));
+        $recipe->setSlug($this->slugger->slug($recipe->getTitle())); // !concaténation avec un élément unique
 
     }
 
