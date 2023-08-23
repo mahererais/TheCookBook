@@ -47,12 +47,16 @@ class MainController extends AbstractController
 
     public function pdfAction(Pdf $knpSnappyPdf)
     {
-        $html = $this->renderView('Front/TestsWK/home.html.twig', array());
-        $knpSnappyPdf->setOption('enable-local-file-access', true);
+        # $html = $this->renderView('Front/TestsWK/home.html.twig', array());
+        # $knpSnappyPdf->setOption('enable-local-file-access', true);
 
-        return new PdfResponse(
-            $knpSnappyPdf->getOutputFromHtml($html),
-            'file.pdf'
-        );
+        # return new PdfResponse(
+        #   $knpSnappyPdf->getOutputFromHtml($html),
+         #  'file.pdf'
+        #);
+
+        return $this->render('Front/TestsWK/home.html.twig', [
+           'controller_name' => 'MainController',
+        ]);
     }
 }
