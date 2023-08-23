@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TagType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -32,14 +33,10 @@ class RecipeType extends AbstractType
                     "placeholder" => "http::// ...."
                 ]
             ])
-            // ! voir affichage des steps
+           
             ->add('steps', CollectionType::class, [
-                'prototype' => true,
-                "label" => "Etapes de la recette",
-                "attr" => [
-                    "placeholder" => "....."
-                ],
                 'entry_type' => TextType::class,
+                "label" => "Etapes de la recette",
                 'entry_options' => ['label' => false],
                 'allow_add' => true,
                 'allow_delete' => true,

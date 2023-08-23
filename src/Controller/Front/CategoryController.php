@@ -25,7 +25,7 @@ class CategoryController extends AbstractController
     {
         $categories = $this->entityManager->getRepository(Category::class)->findAll();
 
-        dd($categories);
+        // dd($categories);
 
         return $this->render('Front/category/index.html.twig', [
             'categories' => $categories,
@@ -43,7 +43,7 @@ class CategoryController extends AbstractController
         
         $category = $this->entityManager->getRepository(Category::class)->findOneBy(['slug' => $slug]);
 
-        dd($category);
+        // dd($category);
 
         return $this->render('Front/category/index.html.twig', [
             'controller_name' => 'CategoryController',

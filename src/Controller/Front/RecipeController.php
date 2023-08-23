@@ -59,6 +59,8 @@ class RecipeController extends AbstractController
         $recipe = new Recipe();
         $form = $this->createForm(RecipeType::class, $recipe);
         $form->handleRequest($request);
+
+        //dd($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($recipe);
