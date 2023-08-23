@@ -27,8 +27,6 @@ class CategoryController extends AbstractController
             'controller_name' => 'CategoryController',
         ]);
     }
-    
-
 
     /**
      * pas de slug en backoffice

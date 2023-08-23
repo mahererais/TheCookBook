@@ -24,10 +24,18 @@
 
 			<nav>
 				<ul>
-					<li><a href="">Accueil</a></li>
-					<li><a href="">Recettes</a></li>
-					<li><a href="">Chefs</a></li>
-					<li><a href="">Catégories</a></li>
+					<li>
+						<a href="">Back office</ahref="{{path('tcb_admin_recipe_home')}}">
+					</li>
+					<li>
+						<a href="">Liste recettes</ahref="{{path('tcb_admin_recipe_getAll')}}">
+					</li>
+					<li>
+						<a href="">Liste utilisateurs</a href="#">
+					</li>
+					<li>
+						<a href="">Liste catégories</ahref="{{path('tcb_admin_category_getAll')}}">
+					</li>
 				</ul>
 
 			</nav>
@@ -43,7 +51,17 @@
 	</header>
 {% endblock %}
 
-{% block body %}{% endblock %}
+{% block body %}
+
+	<div style="text-align: center; margin-top: 50px; margin-bottom: 50px;">
+        <h1 style="font-weight: bold; font-size: 36px;">Bienvenue dans le back office !</h1>
+        <div style="margin: 20px auto;">
+            <img src="https://www.letribunaldunet.fr/wp-content/uploads/2021/12/philippe-etchebest-instagram-million-abonnes-762x439.jpg" alt="Philippe Etchebest heureux" style="max-width: 300px;">
+        </div>
+    </div>
+
+
+{% endblock %}
 
 {% block footer %}
 	<footer style="background-color: #F55E51;">
