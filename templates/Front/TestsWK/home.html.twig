@@ -3,109 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Cook Book</title>
+    <title>The Cook Book - votre recette</title>
 
-    <link rel="stylesheet" href="css/style.css">
-
-    <!-- https://tailwindcss.com/docs/installation/play-cdn -->
-    <script src="https://cdn.tailwindcss.com"></script>
+        <!-- Bootstrap icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <!-- Our custom CSS -->
+    <link rel="stylesheet" href="{{ asset('css/pdf.css')}}">
+    <!-- favicon -->
+    <link rel="shortcut icon" href="{{ asset('images/logo_marmite.jpg')}}" type="image/x-icon">
 
     <!-- https://fonts.google.com/ -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Poppins -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
-    <!-- Roboto -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
-        rel="stylesheet">
-
-    <!-- font-awesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"> -->
+ 
 </head>
 
 <body>
 
-    <header id="header_id">
-        <div class="tcb_container">
-            <img class="logo" src="https://cdn.worldvectorlogo.com/logos/symfony.svg" alt="logo">
-            
-            
-            <nav>
-                <ul>
-                    <li><a href="">Accueil</a></li>
-                    <li><a href="">Recettes</a></li>
-                    <li><a href="">Chefs</a></li>
-                    <li><a href="">Catégories</a></li>
-                    <li><a class="icon-burger"><i class="fas fa-bars"></i></a></li>
-                </ul>
-                
-                <div class="search_container">
-                    <i class="fas fa-search"></i>
-                    <input type="text" placeholder="recherche ...">
-                </div>
-            </nav>
-
+    <header id="header_id" class="container my-4">
+        <div class="container row">
+            <div class="col">
+                <img class="logo" img src="{{asset('images/logo_cookbook_vert.jpg')}}" width="200" alt="logo CookBook">
+            </div>
+            <div class="col">
+                <i class="bi bi-person-circle"></i> Les recette de Prénom Nom</i>
         </div>
         
-
-
     </header>
 
-    <main>
-
-        <div class="cards">
-            <div class="cards_container">
-                <img src="https://images.pexels.com/photos/36717/amazing-animal-beautiful-beautifull.jpg?cs=srgb&dl=pexels-pixabay-36717.jpg&fm=jpg" alt="">
-                <div class="cards_content">
-                    <h2>recette 1</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo eaque iusto odio deleniti quam obcaecati! Consequuntur aperiam enim molestiae autem dignissimos perferendis quis, atque, sint officiis adipisci quidem laboriosam soluta.</p>
+    <main class="container">
+       <div class="row">
+            <div class="flex-row w-50">
+                <div>
+                    <img src="https://www.papillesetpupilles.fr/wp-content/uploads/2018/01/Plats-mijote%CC%81s-%C2%A9Meal-Makeover-Moms-CC-BY-ND-2.0.jpg" class="mw-100" alt="">
                 </div>
             </div>
-        </div>
-
-        <div class="cards">
-            <div class="cards_container">
-                <img src="https://images.pexels.com/photos/36717/amazing-animal-beautiful-beautifull.jpg?cs=srgb&dl=pexels-pixabay-36717.jpg&fm=jpg" alt="">
-                <div class="cards_content">
-                    <h2>recette 1</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo eaque iusto odio deleniti quam obcaecati! Consequuntur aperiam enim molestiae autem dignissimos perferendis quis, atque, sint officiis adipisci quidem laboriosam soluta.</p>
+            <div class="flex-row w-50">
+                <h1 class="my-4">Ceci est le titre de la recette en H1</h1>
+                <div>
+                    <div class="row my-4">
+                        <div class="col">
+                            <i class="bi bi-tag"> Catégorie</i>
+                        </div>
+                        <div class="col">
+                            <i class="bi bi-alarm"> Duration</i>
+                        </div>
+                        <div class="col">
+                            <i class="bi bi-bar-chart-line"> Difficulté</i>
+                        </div>
+                         <div class="col">
+                            <i class="bi bi-calendar3">Publié le jj/mm/aaaa</i>
+                        </div>
+                        <div class="list-group my-4">
+                            <h3>Les ingrédients</h3>
+                            <ul>
+                                <li>Ingrédient 1</li>
+                                <li>Ingrédient 2</li>
+                                <li>Ingrédient 3</li>
+                                <li>Ingrédient 4</li>
+                                <li>Ingrédient 5</li>
+                                <li>Ingrédient 6</li>
+                                <li>Ingrédient 7</li>
+                                <li>Ingrédient 8</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="cards">
-            <div class="cards_container">
-                <img src="https://images.pexels.com/photos/36717/amazing-animal-beautiful-beautifull.jpg?cs=srgb&dl=pexels-pixabay-36717.jpg&fm=jpg" alt="">
-                <div class="cards_content">
-                    <h2>recette 1</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo eaque iusto odio deleniti quam obcaecati! Consequuntur aperiam enim molestiae autem dignissimos perferendis quis, atque, sint officiis adipisci quidem laboriosam soluta.</p>
-                </div>
+            <div>
+                <h3>Etapes de préparation</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
             </div>
         </div>
-
-        <div class="cards">
-            <div class="cards_container">
-                <img src="https://images.pexels.com/photos/36717/amazing-animal-beautiful-beautifull.jpg?cs=srgb&dl=pexels-pixabay-36717.jpg&fm=jpg" alt="">
-                <div class="cards_content">
-                    <h2>recette 1</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo eaque iusto odio deleniti quam obcaecati! Consequuntur aperiam enim molestiae autem dignissimos perferendis quis, atque, sint officiis adipisci quidem laboriosam soluta.</p>
-                </div>
-            </div>
-        </div>
-        
     </main>
 
-    <footer>
-
-        <div class="tcb_container">
-            <a class="tcb_btn_arrow" href="#header_id">
-                <i class="fas fa-arrow-up"></i>
-            </a>
-    
-            <ul>
-                <li><a>Mentions Légales</a></li>
-            </ul>
+    <footer class="container">
+        <div class="alert alert-dismissible alert-success">
+            Toutes mes recettes sont disponibles sur <a href="#" class="alert-link">The Cook Book</a>.
         </div>
 
     </footer>
