@@ -3,97 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Cook Book</title>
+    <title>The Cook Book - votre recette</title>
 
-    <link rel="stylesheet" href="css/style.css">
-
-    <!-- https://tailwindcss.com/docs/installation/play-cdn -->
-    <script src="https://cdn.tailwindcss.com"></script>
+        <!-- Bootstrap icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <!-- Our custom CSS -->
+    <link rel="stylesheet" href="{{ asset('css/pdf.css')}}">
+    <!-- favicon -->
+    <link rel="shortcut icon" href="{{ asset('images/logo_marmite.jpg')}}" type="image/x-icon">
 
     <!-- https://fonts.google.com/ -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Poppins -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
-    <!-- Roboto -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
-        rel="stylesheet">
-
-    <!-- font-awesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"> -->
+ 
 </head>
 
 <body>
 
     <header id="header_id">
         <div class="tcb_container">
-            <img class="logo" src="https://cdn.worldvectorlogo.com/logos/symfony.svg" alt="logo">
-            
-            
-            <nav>
-                <ul>
-                    <li><a href="">Accueil</a></li>
-                    <li><a href="">Recettes</a></li>
-                    <li><a href="">Chefs</a></li>
-                    <li><a href="">Catégories</a></li>
-                    <li><a class="icon-burger"><i class="fas fa-bars"></i></a></li>
-                </ul>
-                
-                <div class="search_container">
-                    <i class="fas fa-search"></i>
-                    <input type="text" placeholder="recherche ...">
-                </div>
-            </nav>
-
+            <img class="logo" img src="{{asset('images/logo_cookbook_vert.jpg')}}" width="200" alt="logo CookBook">
         </div>
         
-
-
     </header>
 
     <main>
+       
+       <table class="table table-hover">
 
-        <div class="cards">
-            <div class="cards_container">
-                <img src="https://images.pexels.com/photos/36717/amazing-animal-beautiful-beautifull.jpg?cs=srgb&dl=pexels-pixabay-36717.jpg&fm=jpg" alt="">
-                <div class="cards_content">
-                    <h2>recette 1</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo eaque iusto odio deleniti quam obcaecati! Consequuntur aperiam enim molestiae autem dignissimos perferendis quis, atque, sint officiis adipisci quidem laboriosam soluta.</p>
+  <tbody>
+    <tr class="table-active">
+      
+      <td height=100%>
+            <div style="text-align:left" class="cards">
+                <div class="cards_container">
+                    <img src="https://images.pexels.com/photos/36717/amazing-animal-beautiful-beautifull.jpg?cs=srgb&dl=pexels-pixabay-36717.jpg&fm=jpg" width=30% alt="">
                 </div>
             </div>
-        </div>
-
-        <div class="cards">
-            <div class="cards_container">
-                <img src="https://images.pexels.com/photos/36717/amazing-animal-beautiful-beautifull.jpg?cs=srgb&dl=pexels-pixabay-36717.jpg&fm=jpg" alt="">
-                <div class="cards_content">
-                    <h2>recette 1</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo eaque iusto odio deleniti quam obcaecati! Consequuntur aperiam enim molestiae autem dignissimos perferendis quis, atque, sint officiis adipisci quidem laboriosam soluta.</p>
-                </div>
-            </div>
-        </div>
-        <div class="cards">
-            <div class="cards_container">
-                <img src="https://images.pexels.com/photos/36717/amazing-animal-beautiful-beautifull.jpg?cs=srgb&dl=pexels-pixabay-36717.jpg&fm=jpg" alt="">
-                <div class="cards_content">
-                    <h2>recette 1</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo eaque iusto odio deleniti quam obcaecati! Consequuntur aperiam enim molestiae autem dignissimos perferendis quis, atque, sint officiis adipisci quidem laboriosam soluta.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="cards">
-            <div class="cards_container">
-                <img src="https://images.pexels.com/photos/36717/amazing-animal-beautiful-beautifull.jpg?cs=srgb&dl=pexels-pixabay-36717.jpg&fm=jpg" alt="">
-                <div class="cards_content">
-                    <h2>recette 1</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo eaque iusto odio deleniti quam obcaecati! Consequuntur aperiam enim molestiae autem dignissimos perferendis quis, atque, sint officiis adipisci quidem laboriosam soluta.</p>
-                </div>
-            </div>
-        </div>
+        </td>
         
+        <td>
+            <div style="text-align:left" class="cards">
+                 <h1>Ceci est le titre de la recette en H1</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo eaque iusto odio deleniti quam obcaecati! Consequuntur aperiam enim molestiae autem dignissimos perferendis quis, atque, sint officiis adipisci quidem laboriosam soluta.</p>
+            </div>
+        </td>
+
+    </tr>
+  </tbody>
+</table>
     </main>
 
     <footer>
