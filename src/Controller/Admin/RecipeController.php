@@ -30,9 +30,6 @@ class RecipeController extends AbstractController
      */
     public function show(int $id, RecipeRepository $recipeRepository): Response
     {
-        $recipes = $recipeRepository->find($id);
-        // dd($recipes);
-
         return $this->render('Admin/recipe/index.html.twig', [
             'controller_name' => 'RecipeController',
         ]);

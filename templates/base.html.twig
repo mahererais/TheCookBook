@@ -43,7 +43,7 @@
 
 
 	<body>
-
+		{% block nav %}
 		<header id="header_id">
         <div class="tcb_container">
 
@@ -82,6 +82,7 @@
 
 
         </div>
+		{% endblock %}
 
 
 
@@ -89,7 +90,7 @@
 
 		{% block body %}{% endblock %}
 
-
+		{% block footer %}
 		<footer>
 
 			<div class="tcb_container">
@@ -103,6 +104,7 @@
 			</div>
 
 		</footer>
+		{% endblock %}
 
 	</body>
 
