@@ -60,7 +60,15 @@ class RecipeType extends AbstractType
                 "help" => "* temps en minutes"
             ])
             // ! voir affichage des ingredients
-            ->add('ingredients')
+            ->add('ingredients', CollectionType::class, [
+                'entry_type' => TextType::class,
+                "label" => "Ingrédients de la recette",
+                'entry_options' => ['label' => false],
+                'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false,
+            ])
+            
             ->add('category', EntityType::class, [
                 'class'=> Category::class,
                 "choice_label" => "title",
