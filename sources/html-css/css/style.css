@@ -18,6 +18,7 @@
 html {
   scroll-behavior: smooth;
   color: var(--main-text-color);
+  font-family: "Poppins", sans-serif;
 }
 
 header,
@@ -52,9 +53,9 @@ header .tcb_container nav li {
   position: relative;
   padding: 0.5rem 0;
 }
-header .tcb_container nav li:not(:last-child):hover {
+header .tcb_container nav li:hover {
   font-size: 1em;
-  transform: translateY(-10px);
+  transform: translateY(-5px);
 }
 header .tcb_container nav li:after {
   content: "";
@@ -72,7 +73,16 @@ header .tcb_container nav li:hover:after {
   width: 100%;
   left: 0;
 }
-header .tcb_container .search_container {
+header .tcb_container .right_bar_container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+header .tcb_container .right_bar_container .fa-user {
+  color: white;
+  font-size: 1.5rem;
+}
+header .tcb_container .right_bar_container .search_container {
   display: flex;
   align-items: center;
   background-color: white;
@@ -80,15 +90,15 @@ header .tcb_container .search_container {
   padding: 5px 10px;
   box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.8);
 }
-header .tcb_container .search_container > input[type=text] {
+header .tcb_container .right_bar_container .search_container > input[type=text] {
   margin-left: 5px;
   background-color: transparent;
   max-width: 150px;
 }
-header .tcb_container .search_container > input[type=text]:focus {
+header .tcb_container .right_bar_container .search_container > input[type=text]:focus {
   outline: none;
 }
-header .tcb_container .search_container i {
+header .tcb_container .right_bar_container .search_container i {
   color: var(--main-text-color);
 }
 
@@ -127,6 +137,7 @@ main .cards .card_title {
   top: 0;
   left: 50%;
   transform: translate(-50%, -80%);
+  text-align: center;
   padding: 0.3rem 1rem;
   font-size: 1.4rem;
   font-weight: bold;
@@ -144,12 +155,14 @@ main .cards .cards_container {
 main .cards .cards_container img {
   border-radius: 0.5rem;
   width: 50%;
+  border: 2px solid white;
   aspect-ratio: 16/9;
   -o-object-fit: cover;
      object-fit: cover;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
 }
 main .cards .cards_container .cards_content {
-  padding: 0 20px;
+  padding: 0 1rem;
   width: 50%;
 }
 main .cards .cards_container .cards_content h2:first-child {
@@ -186,6 +199,9 @@ main .cards .cards_container .cards_content .card_btn {
   gap: 1rem;
   margin-top: 1rem;
 }
+main button.tcb_btn {
+  margin: auto;
+}
 
 footer .tcb_container {
   width: var(--container-width);
@@ -214,15 +230,15 @@ ul li > a {
 }
 
 .tcb_btn {
-  padding: 0.1rem 10px 0.3rem;
-  background-color: var(--main-color);
+  padding: 0.3rem 1rem;
+  background-color: var(--main-color) !important;
   border: 2px solid var(--main-color);
   border-radius: 5px;
   color: white;
   transition: 0.2s;
 }
 .tcb_btn:hover {
-  background-color: white;
+  background-color: white !important;
   color: var(--main-text-color);
 }
 
@@ -238,7 +254,7 @@ a.tcb_btn_arrow {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--main-color);
+  background-color: var(--main-color) !important;
   border-radius: 50%;
   border: 3px solid white;
   cursor: pointer;
@@ -305,6 +321,12 @@ a.tcb_btn_caroussel_right {
   }
 }
 @media screen and (max-width: 700px) {
+  html {
+    font-size: 87.5%;
+  }
+  html:has(#checkbox:checked) {
+    overflow: hidden;
+  }
   :root {
     --container-padding: 1rem 0.5rem;
   }
@@ -329,7 +351,7 @@ a.tcb_btn_caroussel_right {
   }
   header .tcb_container #menuToggle:has(#checkbox:checked) ~ nav > ul {
     background-color: var(--main-color);
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     display: flex;
@@ -348,6 +370,7 @@ a.tcb_btn_caroussel_right {
   }
   main .cards .cards_container .cards_content {
     width: 100%;
+    padding: 1rem;
   }
   a.tcb_btn_arrow {
     padding: 0.8rem;
@@ -422,4 +445,32 @@ a.tcb_btn_caroussel_right {
   top: calc(50% - 2px);
   transform: rotate(-45deg);
   transition-delay: 0.455s, 0.455s;
+}
+
+main .user_container {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--container-padding);
+  box-shadow: 0 0 10px -3px rgba(0, 0, 0, 0.2);
+}
+main .user_container > a {
+  flex-shrink: 0;
+  width: max(5rem, min(20%, 8rem));
+  aspect-ratio: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid white;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+}
+main .user_container > a > img {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+main .user_container > .user_descriptions {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 6rem 1fr;
+}
+main .user_container > .user_descriptions > label {
+  font-weight: bold;
 }/*# sourceMappingURL=style.css.map */

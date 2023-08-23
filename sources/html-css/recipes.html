@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Cook Book</title>
 
-    <link rel="stylesheet" href="css/style.css">
-
+    
     <!-- https://tailwindcss.com/docs/installation/play-cdn -->
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="./css/style.css">
 
     <!-- https://fonts.google.com/ -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -57,9 +58,10 @@
                     <li><a href="">Chefs</a></li>
                     <li><a href="">Catégories</a></li>
                 </ul>
-                
+
             </nav>
 
+            
             <a class="logo" href="#">
                 <img src="https://cdn.worldvectorlogo.com/logos/symfony.svg" alt="logo">
             </a>
@@ -81,6 +83,22 @@
             <p class="page_subTitle">Phrase définissant le site</p>
         </div>
 
+        <div class="user_container tcb_container">
+
+            <a href="#profil_chef">
+                <img src="https://images.unsplash.com/photo-1593085512500-5d55148d6f0d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80" alt="avatare chef">
+            </a>
+            <div class="user_descriptions">
+                <label>Nom: </label>
+                <p>nom de famille</p>
+                <label>Prénom: </label>
+                <p>nom de famille</p>
+                <label>Spécialité: </label>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorum provident sapiente vero. Itaque, veritatis repellat.</p>
+            </div>
+
+        </div>
+
         <div class="cards">
             <a class="tcb_btn_caroussel tcb_btn_caroussel_left">
                 <i class="fas fa-arrow-up"></i>
@@ -88,14 +106,12 @@
             <a class="tcb_btn_caroussel tcb_btn_caroussel_right">
                 <i class="fas fa-arrow-up"></i>
             </a>
-            <div class="card_title">
-                ENTREES
-            </div>
+
             <div class="cards_container">
                 <img src="https://img.freepik.com/vecteurs-libre/concept-recette-empanada_52683-39138.jpg?w=996&t=st=1692723678~exp=1692724278~hmac=af83f1351d7eca29def8b3dcf1498933eb21ec4edb3cb1dfbb84f94343647ea1"
-                    alt="">
+                alt="">
                 <div class="cards_content">
-                    <h2>recette 1</h2>
+                    <h2>nom de la recette Lorem ipsum dolor sit amet.</h2>
                     <h3>Ingredients: </h3>
                     <ul>
                         <li>Lorem, ipsum.</li>
@@ -123,14 +139,12 @@
             <a class="tcb_btn_caroussel tcb_btn_caroussel_right">
                 <i class="fas fa-arrow-up"></i>
             </a>
-            <div class="card_title">
-                PLATS
-            </div>
+
             <div class="cards_container">
-                <img src="https://img.freepik.com/photos-gratuite/mise-plat-ingredients-alimentaires-legumes_23-2148834702.jpg?w=1060&t=st=1692723903~exp=1692724503~hmac=97eeaa2f0b70a5cf903b8eafeef0212c8b9e515294371302aa8ceb1e29cac60e"
-                    alt="">
+                <img src="https://img.freepik.com/vecteurs-libre/concept-recette-empanada_52683-39138.jpg?w=996&t=st=1692723678~exp=1692724278~hmac=af83f1351d7eca29def8b3dcf1498933eb21ec4edb3cb1dfbb84f94343647ea1"
+                alt="">
                 <div class="cards_content">
-                    <h2>recette 2</h2>
+                    <h2>nom de la recette Lorem ipsum dolor sit amet.</h2>
                     <h3>Ingredients: </h3>
                     <ul>
                         <li>Lorem, ipsum.</li>
@@ -144,7 +158,7 @@
                         perferendis quis, atque, sint officiis adipisci quidem laboriosam soluta.</p>
 
                     <div class="card_btn">
-                        <a class="heart_icon"><i class="far fa-heart"></i></a>
+                        <a class="heart_icon"><i class="fas fa-heart"></i></a>
                         <a class="tcb_btn">voir la recette</a>
                     </div>
                 </div>
@@ -158,14 +172,12 @@
             <a class="tcb_btn_caroussel tcb_btn_caroussel_right">
                 <i class="fas fa-arrow-up"></i>
             </a>
-            <div class="card_title">
-                DESSERTS
-            </div>
+
             <div class="cards_container">
-                <img src="https://img.freepik.com/photos-gratuite/vue-dessus-delicieux-poulet-frit-assaisonnements-legumes-espace-sombre_140725-75665.jpg?w=996&t=st=1692724002~exp=1692724602~hmac=339ce2f0e38b44b00ecae1db0faf0cb1dc94e2b2f5ae0285c949ccc6d8a90546"
-                    alt="">
+                <img src="https://img.freepik.com/vecteurs-libre/concept-recette-empanada_52683-39138.jpg?w=996&t=st=1692723678~exp=1692724278~hmac=af83f1351d7eca29def8b3dcf1498933eb21ec4edb3cb1dfbb84f94343647ea1"
+                alt="">
                 <div class="cards_content">
-                    <h2>recette 3</h2>
+                    <h2>nom de la recette Lorem ipsum dolor sit amet.</h2>
                     <h3>Ingredients: </h3>
                     <ul>
                         <li>Lorem, ipsum.</li>
@@ -179,45 +191,15 @@
                         perferendis quis, atque, sint officiis adipisci quidem laboriosam soluta.</p>
 
                     <div class="card_btn">
-                        <a class="heart_icon"><i class="far fa-heart"></i></a>
+                        <a class="heart_icon"><i class="fas fa-heart"></i></a>
                         <a class="tcb_btn">voir la recette</a>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="cards">
-            <a class="tcb_btn_caroussel tcb_btn_caroussel_left">
-                <i class="fas fa-arrow-up"></i>
-            </a>
-            <a class="tcb_btn_caroussel tcb_btn_caroussel_right">
-                <i class="fas fa-arrow-up"></i>
-            </a>
-            <div class="card_title">
-                APERITIF
-            </div>
-            <div class="cards_container">
-                <img src="https://img.freepik.com/photos-premium/mariner-mettre-du-poivre-conserve_75924-11719.jpg"
-                    alt="">
-                <div class="cards_content">
-                    <h2>recette 4</h2>
-                    <h3>Ingredients: </h3>
-                    <ul>
-                        <li>Lorem, ipsum.</li>
-                    </ul>
+        <button type="button" class="tcb_btn">Voir plus</button>
 
-                    <h3>Préparation: </h3>
-                    <p class="card_presentation">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo eaque
-                        iusto odio deleniti quam obcaecati! Consequuntur aperiam enim molestiae autem dignissimos
-                        perferendis quis, atque, sint officiis adipisci quidem laboriosam soluta.</p>
-
-                    <div class="card_btn">
-                        <a class="heart_icon"><i class="far fa-heart"></i></a>
-                        <a class="tcb_btn">voir la recette</a>
-                    </div>
-                </div>
-            </div>
-        </div>
 
 
     </main>
@@ -240,53 +222,3 @@
 
 </html>
 
-
-
-<!-- composant tailwind -->
-<!-- https://tailwindcomponents.com/components -->
-<!-- <header class="w-full p-4 flex justify-center">
-        <div class="w-[1024px] flex justify-between">
-            <a href="/">
-                <img src="" alt="logo">
-            </a>
-
-            <nav>
-                <div class="hidden space-x-8 sm:flex">
-                    <a href="#">Accueil</a>
-                    <a href="#">Recettes</a>
-                    <a href="#">Catégories</a>
-                    <a href="#">Les chefs</a>
-                </div>
-                <div class="flex sm:hidden">
-                    <div class="space-y-2">
-                        <span class="block w-8 h-0.5 bg-gray-900"></span>
-                        <span class="block w-8 h-0.5 bg-gray-900"></span>
-                        <span class="block w-8 h-0.5 bg-gray-900"></span>
-                    </div>
-                </div>
-            </nav>
-
-        </div>
-
-    </header>
-
-
-
-    <main>
-
-        <h1>coucou</h1>
-
-    </main>
-
-    <footer class="w-full p-8 flex justify-center">
-
-        <div class="w-[1024px] flex justify-between relative">
-            
-            <div class="tcb-top-arrow absolute rounded-full p-2 border-4 border-white border-solid w-10 aspect-square flex justify-center items-center left-1/2 -top-1/2">
-                <i class="text-white fa-solid fa-arrow-up"></i>
-            </div>
-           
-
-        </div>
-
-    </footer> -->

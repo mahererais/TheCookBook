@@ -3,18 +3,129 @@
 {% block title %}Hello RecipeController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<main>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <div class="titles_container">
+            <h1 class="page_title">The Cook Book</h1>
+            <p class="page_subTitle">Phrase définissant le site</p>
+        </div>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/var/www/html/projet-03-the-cook-book/src/Controller/RecipeController.php'|file_link(0) }}">src/Controller/RecipeController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/var/www/html/projet-03-the-cook-book/templates/recipe/index.html.twig'|file_link(0) }}">templates/recipe/index.html.twig</a></code></li>
-    </ul>
-</div>
+        <div class="user_container tcb_container">
+
+            <a href="#profil_chef">
+                <img src="https://images.unsplash.com/photo-1593085512500-5d55148d6f0d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80" alt="avatare chef">
+            </a>
+            <div class="user_descriptions">
+                <label>Nom: </label>
+                <p>nom de famille</p>
+                <label>Prénom: </label>
+                <p>nom de famille</p>
+                <label>Spécialité: </label>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorum provident sapiente vero. Itaque, veritatis repellat.</p>
+            </div>
+
+        </div>
+
+        <div class="cards">
+            <a class="tcb_btn_caroussel tcb_btn_caroussel_left">
+                <i class="fas fa-arrow-up"></i>
+            </a>
+            <a class="tcb_btn_caroussel tcb_btn_caroussel_right">
+                <i class="fas fa-arrow-up"></i>
+            </a>
+
+            <div class="cards_container">
+                <img src="https://img.freepik.com/vecteurs-libre/concept-recette-empanada_52683-39138.jpg?w=996&t=st=1692723678~exp=1692724278~hmac=af83f1351d7eca29def8b3dcf1498933eb21ec4edb3cb1dfbb84f94343647ea1"
+                alt="">
+                <div class="cards_content">
+                    <h2>nom de la recette Lorem ipsum dolor sit amet.</h2>
+                    <h3>Ingredients: </h3>
+                    <ul>
+                        <li>Lorem, ipsum.</li>
+                        <li>Lorem ipsum dolor sit amet.</li>
+                        <li>Lorem, ipsum....</li>
+                    </ul>
+
+                    <h3>Préparation: </h3>
+                    <p class="card_presentation">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo eaque
+                        iusto odio deleniti quam obcaecati! Consequuntur aperiam enim molestiae autem dignissimos
+                        perferendis quis, atque, sint officiis adipisci quidem laboriosam soluta.</p>
+
+                    <div class="card_btn">
+                        <a class="heart_icon"><i class="fas fa-heart"></i></a>
+                        <a class="tcb_btn">voir la recette</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cards">
+            <a class="tcb_btn_caroussel tcb_btn_caroussel_left">
+                <i class="fas fa-arrow-up"></i>
+            </a>
+            <a class="tcb_btn_caroussel tcb_btn_caroussel_right">
+                <i class="fas fa-arrow-up"></i>
+            </a>
+
+            <div class="cards_container">
+                <img src="https://img.freepik.com/vecteurs-libre/concept-recette-empanada_52683-39138.jpg?w=996&t=st=1692723678~exp=1692724278~hmac=af83f1351d7eca29def8b3dcf1498933eb21ec4edb3cb1dfbb84f94343647ea1"
+                alt="">
+                <div class="cards_content">
+                    <h2>nom de la recette Lorem ipsum dolor sit amet.</h2>
+                    <h3>Ingredients: </h3>
+                    <ul>
+                        <li>Lorem, ipsum.</li>
+                        <li>Lorem ipsum dolor sit amet.</li>
+                        <li>Lorem, ipsum....</li>
+                    </ul>
+
+                    <h3>Préparation: </h3>
+                    <p class="card_presentation">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo eaque
+                        iusto odio deleniti quam obcaecati! Consequuntur aperiam enim molestiae autem dignissimos
+                        perferendis quis, atque, sint officiis adipisci quidem laboriosam soluta.</p>
+
+                    <div class="card_btn">
+                        <a class="heart_icon"><i class="fas fa-heart"></i></a>
+                        <a class="tcb_btn">voir la recette</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cards">
+            <a class="tcb_btn_caroussel tcb_btn_caroussel_left">
+                <i class="fas fa-arrow-up"></i>
+            </a>
+            <a class="tcb_btn_caroussel tcb_btn_caroussel_right">
+                <i class="fas fa-arrow-up"></i>
+            </a>
+
+            <div class="cards_container">
+                <img src="https://img.freepik.com/vecteurs-libre/concept-recette-empanada_52683-39138.jpg?w=996&t=st=1692723678~exp=1692724278~hmac=af83f1351d7eca29def8b3dcf1498933eb21ec4edb3cb1dfbb84f94343647ea1"
+                alt="">
+                <div class="cards_content">
+                    <h2>nom de la recette Lorem ipsum dolor sit amet.</h2>
+                    <h3>Ingredients: </h3>
+                    <ul>
+                        <li>Lorem, ipsum.</li>
+                        <li>Lorem ipsum dolor sit amet.</li>
+                        <li>Lorem, ipsum....</li>
+                    </ul>
+
+                    <h3>Préparation: </h3>
+                    <p class="card_presentation">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo eaque
+                        iusto odio deleniti quam obcaecati! Consequuntur aperiam enim molestiae autem dignissimos
+                        perferendis quis, atque, sint officiis adipisci quidem laboriosam soluta.</p>
+
+                    <div class="card_btn">
+                        <a class="heart_icon"><i class="fas fa-heart"></i></a>
+                        <a class="tcb_btn">voir la recette</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button type="button" class="tcb_btn">Voir plus</button>
+</main>
+
 {% endblock %}
