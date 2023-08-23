@@ -45,42 +45,47 @@
 	<body>
 
 		<header id="header_id">
-			<div class="tcb_container">
-				<a class="logo" href="#">
-					<img src="https://cdn.worldvectorlogo.com/logos/symfony.svg" alt="logo">
-				</a>
+        <div class="tcb_container">
 
-				<nav>
-					<ul>
-						<li>
-							<a href="">Accueil</a>
-						</li>
-						<li>
-							<a href="">Recettes</a>
-						</li>
-						<li>
-							<a href="">Chefs</a>
-						</li>
-						<li>
-							<a href="">Catégories</a>
-						</li>
-						<li>
-							<a class="burger-icon">
-								<i class="fas fa-bars"></i>
-							</a>
-						</li>
-					</ul>
+            <div id="menuToggle">
+                <input id="checkbox" type="checkbox">
+                <label class="toggle" for="checkbox">
+                    <div class="bar bar--top"></div>
+                    <div class="bar bar--middle"></div>
+                    <div class="bar bar--bottom"></div>
+                </label>
+            </div>
 
-					<div class="search_container">
-						<i class="fas fa-search"></i>
-						<input type="text" placeholder="recherche ...">
-					</div>
-				</nav>
+            <div class="search_container">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="recherche ...">
+            </div>
 
-			</div>
+            
 
 
-		</header>
+            <nav>
+                <ul>
+                    <li><a href="">Accueil</a></li>
+                    <li><a href="">Recettes</a></li>
+                    <li><a href="">Chefs</a></li>
+                    <li><a href="">Catégories</a></li>
+                </ul>
+
+            </nav>
+
+            
+            <a class="logo" href="#">
+                <img src="https://cdn.worldvectorlogo.com/logos/symfony.svg" alt="logo">
+            </a>
+            
+
+
+        </div>
+
+
+
+    </header>
 
 		{% block body %}{% endblock %}
 
