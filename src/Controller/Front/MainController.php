@@ -19,14 +19,26 @@ class MainController extends AbstractController
      */
     public function index(RecipeRepository $recipeRepository, CategoryRepository $categoryRepository): Response
     {
-        $recipes = $recipeRepository->findAll();
         $categories = $categoryRepository->findAll();
-        
+
+        $categoryRecipes = [];
+        foreach ($categories as $category) {
+            $randomRecipes = $recipeRepository->findRandomRecipesByCategory($category, 3); // Replace with your method to fetch random recipes
+            $categoryRecipes[$category->getTitle()] = $randomRecipes;
+        }
+
         return $this->render('Front/home/index.html.twig', [
-            
-            "recipes" => $recipes,
-            "categories" => $categories
+            "categoryRecipes" => $categoryRecipes
         ]);
+
+        // $recipes = $recipeRepository->findAll();
+        // $categories = $categoryRepository->findAll();
+
+        // return $this->render('Front/home/index.html.twig', [
+
+        //    "recipes" => $recipes,
+        //    "categories" => $categories
+        //]);
     }
 
     /**
