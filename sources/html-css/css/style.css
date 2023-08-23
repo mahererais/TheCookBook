@@ -53,9 +53,9 @@ header .tcb_container nav li {
   position: relative;
   padding: 0.5rem 0;
 }
-header .tcb_container nav li:not(:last-child):hover {
+header .tcb_container nav li:hover {
   font-size: 1em;
-  transform: translateY(-10px);
+  transform: translateY(-5px);
 }
 header .tcb_container nav li:after {
   content: "";
@@ -73,7 +73,16 @@ header .tcb_container nav li:hover:after {
   width: 100%;
   left: 0;
 }
-header .tcb_container .search_container {
+header .tcb_container .right_bar_container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+header .tcb_container .right_bar_container .fa-user {
+  color: white;
+  font-size: 1.5rem;
+}
+header .tcb_container .right_bar_container .search_container {
   display: flex;
   align-items: center;
   background-color: white;
@@ -81,15 +90,15 @@ header .tcb_container .search_container {
   padding: 5px 10px;
   box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.8);
 }
-header .tcb_container .search_container > input[type=text] {
+header .tcb_container .right_bar_container .search_container > input[type=text] {
   margin-left: 5px;
   background-color: transparent;
   max-width: 150px;
 }
-header .tcb_container .search_container > input[type=text]:focus {
+header .tcb_container .right_bar_container .search_container > input[type=text]:focus {
   outline: none;
 }
-header .tcb_container .search_container i {
+header .tcb_container .right_bar_container .search_container i {
   color: var(--main-text-color);
 }
 

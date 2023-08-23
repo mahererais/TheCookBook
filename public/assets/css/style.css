@@ -53,7 +53,7 @@ header .tcb_container nav li {
   position: relative;
   padding: 0.5rem 0;
 }
-header .tcb_container nav li:not(:last-child):hover {
+header .tcb_container nav li:hover {
   font-size: 1em;
   transform: translateY(-10px);
 }
