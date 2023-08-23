@@ -17,7 +17,7 @@ class RecipeController extends AbstractController
     public function getAll(RecipeRepository $recipeRepository): Response
     {
         $recipes = $recipeRepository->findAll();
-        dd($recipes);
+        // dd($recipes);
 
         return $this->render('Admin/recipe/index.html.twig', [
             'controller_name' => 'RecipeController',
@@ -31,7 +31,7 @@ class RecipeController extends AbstractController
     public function show(int $id, RecipeRepository $recipeRepository): Response
     {
         $recipes = $recipeRepository->find($id);
-        dd($recipes);
+        // dd($recipes);
 
         return $this->render('Admin/recipe/index.html.twig', [
             'controller_name' => 'RecipeController',
