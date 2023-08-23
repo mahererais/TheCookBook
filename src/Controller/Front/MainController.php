@@ -31,12 +31,12 @@ class MainController extends AbstractController
         # $knpSnappyPdf->setOption('enable-local-file-access', true);
 
         # return new PdfResponse(
-        #    $knpSnappyPdf->getOutputFromHtml($html),
-        #    'file.pdf'
+        #   $knpSnappyPdf->getOutputFromHtml($html),
+         #  'file.pdf'
         #);
 
         return $this->render('Front/TestsWK/home.html.twig', [
-            'controller_name' => 'MainController',
+           'controller_name' => 'MainController',
         ]);
     }
 }
