@@ -37,9 +37,6 @@ class CategoryController extends AbstractController
      */
     public function show(Category $category): Response
     {
-
-        // dd($category);
-
         return $this->render('Admin/category/index.html.twig',[
             'controller_name' => 'CategoryController',
         ]);
