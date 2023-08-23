@@ -11,13 +11,24 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class RecipeController extends AbstractController
 {
+    /**
+     * @Route("/admin", name="tcb_admin_recipe_home")
+     */
+    public function home(RecipeRepository $recipeRepository): Response
+    {
+        $recipes = $recipeRepository->findAll();
+
+        return $this->render('Admin/admin_base.html.twig', [
+            'controller_name' => 'RecipeController',
+        ]);
+    }
+
      /**
      * @Route("/admin/recipes", name="tcb_admin_recipe_getAll")
      */
     public function getAll(RecipeRepository $recipeRepository): Response
     {
         $recipes = $recipeRepository->findAll();
-        dd($recipes);
 
         return $this->render('Admin/recipe/index.html.twig', [
             'controller_name' => 'RecipeController',

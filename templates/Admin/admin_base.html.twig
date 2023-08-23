@@ -1,0 +1,63 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Back office
+{% endblock %}
+
+{% block nav %}
+	<header id="header_id" style="background-color: #F55E51;">
+		<div class="tcb_container">
+
+			<div id="menuToggle">
+				<input id="checkbox" type="checkbox">
+				<label class="toggle" for="checkbox">
+					<div class="bar bar--top"></div>
+					<div class="bar bar--middle"></div>
+					<div class="bar bar--bottom"></div>
+				</label>
+			</div>
+
+			<div class="search_container">
+				<i class="fas fa-search"></i>
+				<input type="text" placeholder="recherche ...">
+			</div>
+
+
+			<nav>
+				<ul>
+					<li><a href="">Accueil</a></li>
+					<li><a href="">Recettes</a></li>
+					<li><a href="">Chefs</a></li>
+					<li><a href="">Catégories</a></li>
+				</ul>
+
+			</nav>
+
+
+			<a class="logo" href="#">
+				<img src="https://cdn.worldvectorlogo.com/logos/symfony.svg" alt="logo">
+			</a>
+
+
+		</div>
+
+	</header>
+{% endblock %}
+
+{% block body %}{% endblock %}
+
+{% block footer %}
+	<footer style="background-color: #F55E51;">
+
+		<div class="tcb_container">
+			<a class="tcb_btn_arrow" href="#header_id">
+				<i class="fas fa-arrow-up"></i>
+			</a>
+
+			<ul>
+				<li><a>Mentions Légales</a></li>
+			</ul>
+		</div>
+
+	</footer>
+{% endblock %}
+

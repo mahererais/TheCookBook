@@ -27,7 +27,7 @@ class AppFixtures extends Fixture
 
 
 
-        $categoryList = ["Apéritif", "Entrées", "Plats", "Desserts"];
+        $categoryList = ["Apéritifs", "Entrées", "Plats", "Desserts"];
 
         $categories = [];
 
