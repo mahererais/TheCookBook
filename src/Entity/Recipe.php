@@ -110,7 +110,7 @@ class Recipe
         return $this;
     }
 
-    public function getCreated_At(): ?\DateTimeImmutable
+    public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->created_at;
     }
@@ -118,19 +118,19 @@ class Recipe
      /**
      * @ORM\PrePersist
      */
-    public function setCreated_At(): self
+    public function setCreatedAt(): self
     {
         $this->created_at = new \DateTimeImmutable();
 
         return $this;
     }
 
-    public function getUpdated_At(): ?\DateTimeImmutable
+    public function getUpdatedAt(): ?\DateTimeImmutable
     {
         return $this->updated_at;
     }
 
-    public function setUpdated_At(?\DateTimeImmutable $updated_at): self
+    public function setUpdatedAt(?\DateTimeImmutable $updated_at): self
     {
         $this->updated_at = $updated_at;
 

@@ -45,8 +45,8 @@
 							{% endfor %}
 						</ul>
 					</td>
-					<td>{{ recipe.created_at|date("d/m/Y")}}</td> 
-					<td>{{ recipe.updated_at|date("d/m/Y")}}</td>
+					<td>{{ recipe.createdAt|date("d/m/Y")}}</td> 
+					<td>{{ recipe.updatedAt|date("d/m/Y")}}</td>
 
 					<td>
 						<a href="{{path('tcb_admin_recipe_show',{id:recipe.id})}}">
