@@ -1,20 +1,34 @@
 {% extends 'Admin/admin_base.html.twig' %}
 
-{% block title %}Liste ou une catégorie{% endblock %}
+{% block title %}Liste des catégories{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <h1>Liste des catégories</h1>
 
-<div class="example-wrapper">
-    <h1>{{ controller_name }}! ✅</h1>
+    <a href="{{ path('tcb_admin_category_add') }}">Ajouter une catégorie</a>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Title</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for category in categories %}
+                <tr>
+                    <td>{{ category.id }}</td>
+                    <td>{{ category.title }}</td>
+                    <td>
+                        <a href="{{ path('tcb_admin_category_show', {'id': category.id}) }}">show</a>
+                        <a href="{{ path('tcb_admin_category_update', {'id': category.id}) }}">edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="10">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/var/www/html/The_Cook_Book/projet-03-the-cook-book/src/Controller/BackCategoryController.php'|file_link(0) }}">src/Controller/BackCategoryController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/var/www/html/The_Cook_Book/projet-03-the-cook-book/templates/back_category/index.html.twig'|file_link(0) }}">templates/back_category/index.html.twig</a></code></li>
-    </ul>
-</div>
 {% endblock %}

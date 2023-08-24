@@ -24,7 +24,7 @@ class CategoryController extends AbstractController
         // dd($categories);
 
         return $this->render('Admin/category/index.html.twig', [
-            'controller_name' => 'CategoryController',
+            'categories' => $categories,
         ]);
     }
 
