@@ -31,9 +31,7 @@
 					{# <td>{{ recipe.steps|slice(0,30)}}</td> #}
 					<td>
 						<ul>
-							{% for step in recipe.steps %}
-								<li>{{ step }}</li>
-							{% endfor %}
+							<li>{{ recipe.steps|first|slice(0, 50) }}</li>
 						</ul>
 					</td>
 					<td>{{ recipe.status }}</td>
@@ -42,7 +40,7 @@
 					<td>{{ recipe.category }}</td>
 					<td>
 						<ul>
-							{% for ingredient in recipe.ingredients %}
+							{% for ingredient in recipe.ingredients|slice(0, 3) %}
 								<li>{{ ingredient }}</li>
 							{% endfor %}
 						</ul>
