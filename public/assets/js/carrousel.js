@@ -2,27 +2,52 @@ export const carrousel = {
     cardsContainer: document.querySelectorAll(".cards"),
 
     // Méthode d'initialisation de l'application
-    init: function() {
+    init: function () {
 
         console.log('carrousel module initalisation => ok');
 
         console.log(carrousel.cardsContainer);
 
         for (const cards of carrousel.cardsContainer) {
-            carrousel.initiateCardsContainerSize(cards);
+            carrousel.initiateCardsCategory(cards);
 
         }
 
-        
+
     },
 
-    initiateCardsContainerSize: function(cards) {
+    initiateCardsCategory: function (cards) {
 
-        
-        const cards_container = cards.querySelectorAll(".cards_container");
-        const size = cards_container.length;
-        console.log("nombre de recette dans la card : " + size);
+        const leftButton = cards.querySelector(".tcb_btn_caroussel_left");
+        const rightButton = cards.querySelector(".tcb_btn_caroussel_right");
 
-        cards.querySelector(".cards_carrousel").style.width = `calc(100% *  ${size} + ${size - 1} * 1rem)`;  // 1rem c'est le gap dans la class .cards_carrousel
+        const subCardsList = cards.querySelectorAll('.cards_container');
+
+        const nbrCards = subCardsList.length;
+        let currentSelectedIndex = 0;
+
+        subCardsList[currentSelectedIndex].classList.add("card_selected");
+
+
+        leftButton.addEventListener("click", function (e) {
+            subCardsList[currentSelectedIndex].classList.remove("card_selected");
+            console.log("left button clicked from " + currentSelectedIndex + " to " + (currentSelectedIndex - 1));
+            currentSelectedIndex--;
+            if (currentSelectedIndex < 0) {
+                currentSelectedIndex = nbrCards-1;
+            }
+            subCardsList[currentSelectedIndex].classList.add("card_selected");
+        });
+
+        rightButton.addEventListener("click", function (e) {
+            subCardsList[currentSelectedIndex].classList.remove("card_selected");
+            console.log("right button clicked from " + currentSelectedIndex + " to " + (currentSelectedIndex + 1));
+            currentSelectedIndex++;
+            if (currentSelectedIndex >= nbrCards) {
+                currentSelectedIndex = 0;
+            }
+            subCardsList[currentSelectedIndex].classList.add("card_selected");
+        });
+
     }
 }

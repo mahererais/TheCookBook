@@ -9,7 +9,7 @@ const app = {
 
         console.log('App module initalisation => ok');
 
-        return ;
+        //return ;
         // On va initialiser tous les modules qui doivent être lancés au chargement de la page
         carrousel.init();
 

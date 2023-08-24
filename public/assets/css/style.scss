@@ -198,17 +198,26 @@ main {
             height: 405px;
 
             .cards_carrousel {
+                position: relative;
                 display: flex;
-                width: calc(100% * 4);
+                //width: calc(100%);
+                height: 100%;
                 gap: calc(1rem);
 
                 .cards_container {
                     display: flex;
+                    display: none;
                     --margin-top: 1rem;
                     flex-wrap: wrap;
-                    position: relative;
                     z-index: 10;
                     width: 100%;
+                    height: 100%;
+                    position: absolute;
+                    background-color: var(--secondary-color);
+
+                    &.card_selected {
+                        display: flex;
+                    }
 
                     img {
                         border-radius: 0.5rem;
