@@ -44,6 +44,8 @@ class RegistrationFormType extends AbstractType
                 ],
             ])
         ;
+
+        $options['style'] = "display:flex; gap: 2rem; flex-direction: column; max-width: 700px";
     }
 
     public function configureOptions(OptionsResolver $resolver): void

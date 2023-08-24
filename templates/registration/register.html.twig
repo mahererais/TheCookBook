@@ -5,7 +5,7 @@
 {% block body %}
     <h1>Register</h1>
 
-    {{ form_start(registrationForm) }}
+    {{ form_start(registrationForm, {'style': 'display:flex; gap: 2rem; flex-direction: column; max-width: 700px;'}) }}
         {{ form_row(registrationForm.email) }}
         {{ form_row(registrationForm.plainPassword, {
             label: 'Password'
