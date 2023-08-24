@@ -18,8 +18,8 @@
 				<th>Duration</th>
 				<th>Category</th>
 				<th>Ingredients</th>
-				{#<th>Created_at</th>
-								<th>Updated_at</th>#}
+				<th>Created_at</th>
+				<th>Updated_at</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -47,8 +47,8 @@
 							{% endfor %}
 						</ul>
 					</td>
-					{#<td>{{ recipe.created_at|date("d/m/Y")}}</td> 
-										<td>{{ recipe.updated_at|date("d/m/Y")}}</td>#}
+					<td>{{ recipe.created_at|date("d/m/Y")}}</td> 
+					<td>{{ recipe.updated_at|date("d/m/Y")}}</td>
 
 					<td>
 						<a href="{{path('tcb_admin_recipe_show',{id:recipe.id})}}">
