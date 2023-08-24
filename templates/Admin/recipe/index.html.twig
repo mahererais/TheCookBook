@@ -12,13 +12,14 @@
 				<th>Id</th>
 				<th>Title</th>
 				<th>Picture</th>
-				<th>Steps</th>
+				{# <th>Steps</th> #}
 				<th>Status</th>
 				<th>Slug</th>
 				<th>Duration</th>
-				<th>Ingredients</th>
+                <th>Category</th>
+				{#<th>Ingredients</th>
 				<th>Created_at</th>
-				<th>Updated_at</th>
+				<th>Updated_at</th>"#}
 			</tr>
 		</thead>
 		<tbody>
@@ -27,29 +28,30 @@
 					<td>{{ recipe.id }}</td>
 					<td>{{ recipe.title }}</td>
 					<td><img class="col-2 movie__poster rounded border" src="{{recipe.picture}}"></td>
-					<td>{{ recipe.steps|slice(0,30)}}</td>
+					{# <td>{{ recipe.steps|slice(0,30)}}</td> #}
 					<td>{{ recipe.status }}</td>
 					<td>{{ recipe.slug }}</td>
 					<td>{{ recipe.duration }}</td>
-					<td>{{ recipe.ingredients|slice(0,10)}}</td>
-					<td>{{ recipe.created_at|date("d/m/Y")}}</td>
-					<td>{{ recipe.updated_at|date("d/m/Y")}}</td>
+                    <td>{{ recipe.category }}</td>
+					{# <td>{{ recipe.ingredients|slice(0,10)}}</td>
+                    <td>{{ recipe.created_at|date("d/m/Y")}}</td> 
+					<td>{{ recipe.updated_at|date("d/m/Y")}}</td>#}
 
 					<td>
-						<a href="{{path('app_back_movie_show',{id:movie.id, slug:movie.slug})}}">
+						<a href="{{path('tcb_admin_recipe_show',{id:recipe.id})}}">
 							<i class="bi bi-eye btn btn-warning"></i>
 						</a>
-						<a href="{{path('app_back_movie_edit',{id:movie.id, slug:movie.slug})}}">
+						<a href="{{path('tcb_admin_recipe_update',{id:recipe.id})}}">
 							<i class="bi bi-pencil btn btn-secondary"></i>
 						</a>
-						<a onclick="return confirm('Voulez vous supprimer ?')" href="{{path('app_back_movie_delete',{id:movie.id, slug:movie.slug})}}">
+						<a onclick="return confirm('Voulez vous supprimer ?')" href="{{path('tcb_admin_recipe_delete',{id:recipe.id})}}">
 							<i class="bi bi-trash btn btn-danger"></i>
 						</a>
 					</td>
 					<td>
-						<a href="{{ path('tcb_admin_recipe_show', {'id': movie.id}) }}">voir</a>
-						<a href="{{ path('tcb_admin_recipe_update', {'id': movie.id}) }}">modifier</a>
-						<a href="{{ path('tcb_admin_recipe_delete', {'id': movie.id}) }}">supprimer</a>
+						<a href="{{ path('tcb_admin_recipe_show', {'id': recipe.id}) }}">voir</a>
+						<a href="{{ path('tcb_admin_recipe_update', {'id': recipe.id}) }}">modifier</a>
+						<a href="{{ path('tcb_admin_recipe_delete', {'id': recipe.id}) }}">supprimer</a>
 					</td>
 				</tr>
 			{% else %}
