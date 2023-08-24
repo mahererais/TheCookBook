@@ -49,10 +49,9 @@ class MainController extends AbstractController
 
     public function pdfAction(Pdf $knpSnappyPdf, Recipe $recipe, RecipeRepository $recipeRepository): Response
     {
-        $recipes = $recipeRepository->findAll($recipe);
+        $recipe = $recipeRepository->findAll();
 
         $html = $this->renderView('Front/TestsWK/home.html.twig', [
-            "recipes" => $recipes,
             "recipe" => $recipe
         ]);
         $knpSnappyPdf->setOption('enable-local-file-access', true);
