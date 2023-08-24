@@ -656,3 +656,9 @@ main {
 img {
     max-width: 100%;
 }
+
+/* Réduction de la largeur totale du tableau de la liste de recettes dans admin */
+.table {
+    max-width: 80%;
+    margin: 0 auto;
+  }
