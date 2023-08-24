@@ -1,4 +1,4 @@
-{% extends "base.html.twig" %}
+{% extends 'Front/front_base.html.twig' %}
 
 {% block body %}
 
@@ -42,7 +42,7 @@
 							{{form_help(form.duration)}}
 							{{form_errors(form.duration)}}
 						</div>
-						{# ! voir affichage input saisie ingredients #}
+						
 						<div class="col-3 mb-3">
 							{{form_row(form.ingredients)}}
 						</div>
@@ -90,7 +90,6 @@
 
 			const input = document.createElement('input');
 			input.setAttribute("placeHolder", "ajouter votre étape...");
-			input.setAttribute("placeHolder", "ajouter votre étape...");
 			input.setAttribute("type", "text");
 			li.append(input);
 
@@ -124,7 +123,6 @@
 			const li = document.createElement('li');
 
 			const input = document.createElement('input');
-			input.setAttribute("placeHolder", "ajouter votre ingrédient...");
 			input.setAttribute("placeHolder", "ajouter votre ingrédient...");
 			input.setAttribute("type", "text");
 			li.append(input);
