@@ -91,6 +91,7 @@
 			const input = document.createElement('input');
 			input.setAttribute("placeHolder", "ajouter votre étape...");
 			input.setAttribute("type", "text");
+			input.setAttribute("name", "recipe[steps][]");
 			li.append(input);
 
 
@@ -125,6 +126,7 @@
 			const input = document.createElement('input');
 			input.setAttribute("placeHolder", "ajouter votre ingrédient...");
 			input.setAttribute("type", "text");
+			input.setAttribute("name", "recipe[ingredients][]");
 			li.append(input);
 			
 

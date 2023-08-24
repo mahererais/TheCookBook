@@ -1,3 +1,4 @@
+@charset "UTF-8";
 *,
 *::before,
 *::after {
@@ -495,4 +496,14 @@ main .user_container > .user_descriptions {
 }
 main .user_container > .user_descriptions > label {
   font-weight: bold;
+}
+
+img {
+  max-width: 100%;
+}
+
+/* Réduction de la largeur totale du tableau de la liste de recettes dans admin */
+.table {
+  max-width: 80%;
+  margin: 0 auto;
 }/*# sourceMappingURL=style.css.map */
