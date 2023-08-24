@@ -150,6 +150,9 @@ main .cards .card_title {
   box-shadow: 0 -2px 2px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
 }
+main .cards .cards_container_list {
+  display: flex;
+}
 main .cards .cards_carrousel_container {
   overflow: hidden;
   height: 405px;

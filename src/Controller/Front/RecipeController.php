@@ -30,7 +30,7 @@ class RecipeController extends AbstractController
         // dd($recipes);
 
         return $this->render('Front/recipe/index.html.twig', [
-            'controller_name' => 'RecipeController',
+            'recipes' => $recipes,
         ]);
     }
 
