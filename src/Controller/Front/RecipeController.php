@@ -41,11 +41,9 @@ class RecipeController extends AbstractController
     {
         $recipe = $this->entityManager->getRepository(Recipe::class)->findOneBy(['slug' => $slug]);
 
-        // $recipes = $recipeRepository->find($id);
-        dd($recipe);
-
-        return $this->render('Front/recipe/index.html.twig', [
-            'controller_name' => 'RecipeController',
+        // dd($recipe);
+        return $this->render('Front/recipe/show.html.twig', [
+            'recipe' => $recipe,
         ]);
     }
 
