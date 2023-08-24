@@ -24,23 +24,10 @@ class CategoryController extends AbstractController
         // dd($categories);
 
         return $this->render('Admin/category/index.html.twig', [
-            'controller_name' => 'CategoryController',
+            'categories' => $categories,
         ]);
     }
 
-    /**
-     * pas de slug en backoffice
-     * 
-     * @Route("/admin/category/{id}", name="tcb_admin_category_show", requirements={"id"="\d+"})
-     * 
-     * display one category by id
-     */
-    public function show(Category $category): Response
-    {
-        return $this->render('Admin/category/index.html.twig',[
-            'controller_name' => 'CategoryController',
-        ]);
-    }
 
      /**
      * @Route("/admin/category/delete/{id}", name="tcb_admin_category_delete", requirements={"id" = "\d+"})
@@ -50,7 +37,7 @@ class CategoryController extends AbstractController
         $entityManager->remove($category);
         $entityManager->flush();
 
-        // ! flash message to add
+        
         $this->addFlash(
             'warning',
             "La catégorie ".$category->getTitle()." a bien été supprimée"
@@ -74,7 +61,7 @@ class CategoryController extends AbstractController
             $entityManager->persist($category);
             $entityManager->flush();
 
-            // ! flash message to add
+            
             $this->addFlash("success", "Catégorie correctement ajoutée en BDD.");
         
             return $this->redirectToRoute('tcb_admin_category_getAll');
@@ -99,7 +86,7 @@ class CategoryController extends AbstractController
             $entityManager->persist($category);
             $entityManager->flush();
 
-            // ! flash message to add
+        
             $this->addFlash("success", "Catégorie correctement modifiée en BDD.");
         
             return $this->redirectToRoute('tcb_admin_category_getAll');
