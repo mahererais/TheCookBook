@@ -28,7 +28,7 @@
 
 			{% block connexion %}
             <div class="right_bar_container">
-				<a href="#"><i class="fas fa-user"></i></a>
+				<a href="{{path('tcb_front_security_login')}}"><i class="fas fa-user"></i></a>
                 <div class="search_container">
                     <i class="fas fa-search"></i>
                     <input type="text" placeholder="recherche ...">
@@ -81,7 +81,7 @@
 {% endblock %}
 
 {% block footer %}
-	    <footer style="background-color: #F55E51; position: fixed; bottom: 0; left: 0; width: 100%;">
+	    <footer style="background-color: #F55E51">
 
 		<div class="tcb_container">
 			<a class="tcb_btn_arrow" href="#header_id">

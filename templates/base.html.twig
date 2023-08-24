@@ -89,8 +89,10 @@
 		</header>
 		{% block main %}
 		<main>
-			{% include "Front/fragments/_flash_message.html.twig" %}
-			{% block body %}{% endblock %}
+			<div class="main_container">
+				{% include "Front/fragments/_flash_message.html.twig" %}
+				{% block body %}{% endblock %}
+			</div>
 		</main>
 		{% endblock %}
 
