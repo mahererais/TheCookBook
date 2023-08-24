@@ -44,7 +44,7 @@ header .tcb_container {
   gap: 1rem;
 }
 header .tcb_container > .logo {
-  width: 250px;
+  width: 60px;
 }
 header .tcb_container > .logo img {
   max-width: 100%;
@@ -495,4 +495,8 @@ main .user_container > .user_descriptions {
 }
 main .user_container > .user_descriptions > label {
   font-weight: bold;
+}
+
+img {
+  max-width: 100%;
 }/*# sourceMappingURL=style.css.map */
