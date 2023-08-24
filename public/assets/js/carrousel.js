@@ -10,8 +10,10 @@ export const carrousel = {
 
         for (const cards of carrousel.cardsContainer) {
             carrousel.initiateCardsContainerSize(cards);
+
         }
 
+        
     },
 
     initiateCardsContainerSize: function(cards) {
@@ -21,6 +23,6 @@ export const carrousel = {
         const size = cards_container.length;
         console.log("nombre de recette dans la card : " + size);
 
-        cards.querySelector(".cards_carrousel").style.width = `calc(100% *  ${size})`; 
+        cards.querySelector(".cards_carrousel").style.width = `calc(100% *  ${size} + ${size - 1} * 1rem)`;  // 1rem c'est le gap dans la class .cards_carrousel
     }
 }

@@ -5,7 +5,6 @@
 
 {% block body %}
 
-	<main>
 		<div class="titles_container">
 			<h1 class="page_title">The Cook Book</h1>
 			<p class="page_subTitle">Partage de recettes et éditions de portfolio</p>
@@ -15,15 +14,7 @@
 		{% for category, recipes in categoryRecipes %}
 
 			<div class="cards">
-				<a class="tcb_btn_caroussel tcb_btn_caroussel_left">
-					<i class="fas fa-arrow-up"></i>
-				</a>
-				<a class="tcb_btn_caroussel tcb_btn_caroussel_right">
-					<i class="fas fa-arrow-up"></i>
-				</a>
-				<div class="card_title">
-					{{ category }}
-				</div>
+				
 				<div class="cards_carrousel_container">
 				<div class="cards_carrousel">
 					{% for recipe in recipes %}
@@ -54,8 +45,17 @@
 					{% endfor %}
 				</div>
 				</div>
+
+				<a class="tcb_btn_caroussel tcb_btn_caroussel_left">
+					<i class="fas fa-arrow-up"></i>
+				</a>
+				<a class="tcb_btn_caroussel tcb_btn_caroussel_right">
+					<i class="fas fa-arrow-up"></i>
+				</a>
+				<div class="card_title">
+					{{ category }}
+				</div>
 			</div>
 		{% endfor %}
 
-	</main>
 {% endblock %}
