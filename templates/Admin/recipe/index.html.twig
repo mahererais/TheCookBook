@@ -1,76 +1,80 @@
 {% extends 'Admin/admin_base.html.twig' %}
 
-{% block title %}Hello RecipeController!
+{% block title %}Liste des recettes
 {% endblock %}
 
 {% block body %}
 	<h1>Liste des recettes</h1>
 
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Id</th>
-				<th>Title</th>
-				<th>Picture</th>
-				<th>Steps</th>
-				<th>Status</th>
-				<th>Slug</th>
-				<th>Duration</th>
-				<th>Category</th>
-				<th>Ingredients</th>
-				<th>Created_at</th>
-				<th>Updated_at</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for recipe in recipes %}
-				<tr>
-					<td>{{ recipe.id }}</td>
-					<td>{{ recipe.title }}</td>
-					<td><img class="col-2 movie__poster rounded border" src="{{recipe.picture}}"></td>
-					{# <td>{{ recipe.steps|slice(0,30)}}</td> #}
-					<td>
-						<ul>
-							<li>{{ recipe.steps|first|slice(0, 50) }}</li>
-						</ul>
-					</td>
-					<td>{{ recipe.status }}</td>
-					<td>{{ recipe.slug }}</td>
-					<td>{{ recipe.duration }}</td>
-					<td>{{ recipe.category }}</td>
-					<td>
-						<ul>
-							{% for ingredient in recipe.ingredients|slice(0, 3) %}
-								<li>{{ ingredient }}</li>
-							{% endfor %}
-						</ul>
-					</td>
-					<td>{{ recipe.createdAt|date("d/m/Y")}}</td> 
-					<td>{{ recipe.updatedAt|date("d/m/Y")}}</td>
+	<div class="container">
+		<div class="table-responsive mx-auto">
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Title</th>
+						<th>Picture</th>
+						<th>Steps</th>
+						<th>Status</th>
+						<th>Slug</th>
+						<th>Duration</th>
+						<th>Category</th>
+						<th>Ingredients</th>
+						<th>Created_at</th>
+						<th>Updated_at</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for recipe in recipes %}
+						<tr>
+							<td>{{ recipe.id }}</td>
+							<td>{{ recipe.title }}</td>
+							<td><img class="col-2 movie__poster rounded border" src="{{recipe.picture}}"></td>
+							{# <td>{{ recipe.steps|slice(0,30)}}</td> #}
+							<td>
+								<ul>
+									<li>{{ recipe.steps|first|slice(0, 50) }}</li>
+								</ul>
+							</td>
+							<td>{{ recipe.status }}</td>
+							<td>{{ recipe.slug }}</td>
+							<td>{{ recipe.duration }}</td>
+							<td>{{ recipe.category }}</td>
+							<td>
+								<ul>
+									{% for ingredient in recipe.ingredients|slice(0, 3) %}
+										<li>{{ ingredient }}</li>
+									{% endfor %}
+								</ul>
+							</td>
+							<td>{{ recipe.createdAt|date("d/m/Y")}}</td>
+							<td>{{ recipe.updatedAt|date("d/m/Y")}}</td>
 
-					<td>
-						<a href="{{path('tcb_admin_recipe_show',{id:recipe.id})}}">
-							<i class="bi bi-eye btn btn-warning"></i>
-						</a>
-						<a href="{{path('tcb_admin_recipe_update',{id:recipe.id})}}">
-							<i class="bi bi-pencil btn btn-secondary"></i>
-						</a>
-						<a onclick="return confirm('Voulez vous supprimer ?')" href="{{path('tcb_admin_recipe_delete',{id:recipe.id})}}">
-							<i class="bi bi-trash btn btn-danger"></i>
-						</a>
-					</td>
-					<td>
-						<a href="{{ path('tcb_admin_recipe_show', {'id': recipe.id}) }}">voir</a>
-						<a href="{{ path('tcb_admin_recipe_update', {'id': recipe.id}) }}">modifier</a>
-						<a href="{{ path('tcb_admin_recipe_delete', {'id': recipe.id}) }}">supprimer</a>
-					</td>
-				</tr>
-			{% else %}
-				<tr>
-					<td colspan="10">no records found</td>
-				</tr>
-			{% endfor %}
-		</tbody>
-	</table>
+							<td>
+								<a href="{{path('tcb_admin_recipe_show',{id:recipe.id})}}">
+									<i class="bi bi-eye btn btn-warning"></i>
+								</a>
+								<a href="{{path('tcb_admin_recipe_update',{id:recipe.id})}}">
+									<i class="bi bi-pencil btn btn-secondary"></i>
+								</a>
+								<a onclick="return confirm('Voulez vous supprimer ?')" href="{{path('tcb_admin_recipe_delete',{id:recipe.id})}}">
+									<i class="bi bi-trash btn btn-danger"></i>
+								</a>
+							</td>
+							<td>
+								<a href="{{ path('tcb_admin_recipe_show', {'id': recipe.id}) }}">voir</a>
+								<a href="{{ path('tcb_admin_recipe_update', {'id': recipe.id}) }}">modifier</a>
+								<a href="{{ path('tcb_admin_recipe_delete', {'id': recipe.id}) }}">supprimer</a>
+							</td>
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="10">no records found</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
 {% endblock %}
 
