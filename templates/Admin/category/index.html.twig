@@ -19,8 +19,8 @@
                     <td>{{ category.id }}</td>
                     <td>{{ category.title }}</td>
                     <td>
-                        <a href="{{ path('tcb_admin_category_show', {'id': category.id}) }}">show</a>
-                        <a href="{{ path('tcb_admin_category_update', {'id': category.id}) }}">edit</a>
+                        <a href="{{ path('tcb_admin_category_update', {'id': category.id}) }}"><i class="bi bi-pencil btn btn-secondary"></i></a>
+                        <a onclick="return confirm('Voulez vous supprimer ?')" href="{{ path('tcb_admin_category_delete', {'id': category.id}) }}"><i class="bi bi-trash btn btn-danger"></i></a>
                     </td>
                 </tr>
             {% else %}

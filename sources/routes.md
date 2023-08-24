@@ -85,7 +85,6 @@
 | URL | Méthode HTTP | Controller | Méthode | Titre | Contenu | Commentaire | Name|
 |--|--|--|--|--|--|--|--|
 | `/admin/categories` | `GET` | `CategoryController` | `getAll` | Liste des Catégories | list of categories |  | tcb_admin_category_getAll | 
-| `/admin/category/{id}` | `GET` | `CategoryController` | `show` | Categorie {id} | display categorie {id}  | {id} is the id of the category | tcb_admin_category_show |
 | `/admin/category/add` | `GET` | `CategoryController` | `add` | Ajout d'une catégorie | form add categorie  |  | tcb_admin_category_add |
 | `/admin/category/add` | `POST` | `CategoryController` | `add` | # | add new category |  redirect to /admin/categories | tcb_admin_category_add |
 | `/admin/category/update/{id}` | `GET` | `CategoryController` | `update` | Modification d'une catégorie | update a category| {id} is the id of the category | tcb_admin_category_update |
