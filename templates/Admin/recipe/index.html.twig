@@ -6,7 +6,9 @@
 {% block main %}
     <main style="max-width:unset">
 {% block body %}
+<div class="text-center">
 	<h1>Liste des recettes</h1>
+</div>
 
 	<div class="container-fluid">
 		<div class="table-responsive mx-auto">
@@ -14,11 +16,11 @@
 				<thead>
 					<tr>
 						<th>Id</th>
-						<th>Title</th>
+						<th class="col-2">Title</th>
 						<th>Picture</th>
 						<th>Steps</th>
 						<th>Status</th>
-						<th>Slug</th>
+						<th class="col-1">Slug</th>
 						<th>Duration</th>
 						<th>Category</th>
 						<th>Ingredients</th>
@@ -43,11 +45,10 @@
 							<td>{{ recipe.duration }}</td>
 							<td>{{ recipe.category }}</td>
 							<td>
-								<ul>
 									{% for ingredient in recipe.ingredients|slice(0, 3) %}
 										<li>{{ ingredient }}</li>
 									{% endfor %}
-								</ul>
+
 							</td>
 							<td>{{ recipe.createdAt|date("d/m/Y")}}</td>
 							<td>{{ recipe.updatedAt|date("d/m/Y")}}</td>
@@ -56,17 +57,10 @@
 								<a href="{{path('tcb_admin_recipe_show',{id:recipe.id})}}">
 									<i class="bi bi-eye btn btn-warning"></i>
 								</a>
-								<a href="{{path('tcb_admin_recipe_update',{id:recipe.id})}}">
-									<i class="bi bi-pencil btn btn-secondary"></i>
-								</a>
+								
 								<a onclick="return confirm('Voulez vous supprimer ?')" href="{{path('tcb_admin_recipe_delete',{id:recipe.id})}}">
 									<i class="bi bi-trash btn btn-danger"></i>
 								</a>
-							</td>
-							<td>
-								<a href="{{ path('tcb_admin_recipe_show', {'id': recipe.id}) }}">voir</a>
-								<a href="{{ path('tcb_admin_recipe_update', {'id': recipe.id}) }}">modifier</a>
-								<a href="{{ path('tcb_admin_recipe_delete', {'id': recipe.id}) }}">supprimer</a>
 							</td>
 						</tr>
 					{% else %}
