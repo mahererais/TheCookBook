@@ -20,56 +20,47 @@
 
 <body>
 
-    <header id="header_id" class="container my-4">
-        <div class="container row">
-            <div class="col">
-                <img class="logo" img src="{{ asset('images/logo_cookbook_blanc.png')}}" width="200" alt="logo CookBook">
-            </div>
-            <div class="col">
-                <i class="bi bi-person-circle"></i> Les recette de Prénom Nom</i>
-        </div>
-        
-    </header>
+<nav class="container navbar navbar-expand-lg bg-primary my-4" data-bs-theme="dark">
+  <div class="container-fluid">
+    <a class="logo" href="#">
+		<img src="https://zupimages.net/viewer.php?id=23/34/jt5z.png" alt="logo cookbook" width=250>
+	</a>    
+    
+    <div>
+        <img src="https://images.unsplash.com/photo-1593085512500-5d55148d6f0d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80" class="rounded-circle shadow-4-strong" width=100> 
+        <p class="lead">Les recette de Prénom Nom</p>
+    </div>
+  </div>
+</nav>
 
+{% for recipe in recipes %}
     <main class="container">
        <div class="row">
-            <div class="flex-row w-50">
+            <div class="flex-row w-25">
                 <div>
                     <img src="https://www.papillesetpupilles.fr/wp-content/uploads/2018/01/Plats-mijote%CC%81s-%C2%A9Meal-Makeover-Moms-CC-BY-ND-2.0.jpg" class="mw-100" alt="">
                 </div>
             </div>
-            <div class="flex-row w-50">
-                <h1 class="my-4">Ceci est le titre de la recette en H1</h1>
+            <div class="flex-row w-75">
+                <h1 class="my-4">{{recipe.title}}</h1>
                 <div>
                     <div class="row my-4">
                         <div class="col">
                             <i class="bi bi-tag"> Catégorie</i>
                         </div>
                         <div class="col">
-                            <i class="bi bi-alarm"> Duration</i>
-                        </div>
-                        <div class="col">
-                            <i class="bi bi-bar-chart-line"> Difficulté</i>
+                            <i class="bi bi-alarm"> {{recipe.duration}}</i>
                         </div>
                          <div class="col">
-                            <i class="bi bi-calendar3">Publié le jj/mm/aaaa</i>
-                        </div>
-                        <div class="list-group my-4">
-                            <h3>Les ingrédients</h3>
-                            <ul>
-                                <li>Ingrédient 1</li>
-                                <li>Ingrédient 2</li>
-                                <li>Ingrédient 3</li>
-                                <li>Ingrédient 4</li>
-                                <li>Ingrédient 5</li>
-                                <li>Ingrédient 6</li>
-                                <li>Ingrédient 7</li>
-                                <li>Ingrédient 8</li>
-                            </ul>
+                            <i class="bi bi-calendar3">date de création</i>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="my-4">
+                            <h3>Les ingrédients</h3>
+                                <p>{{recipe.ingredients}}</p>
+                        </div>
             <div>
                 <h3>Etapes de préparation</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
@@ -77,10 +68,12 @@
             </div>
         </div>
     </main>
+{% endfor %}
+
 
     <footer class="container">
         <div class="alert alert-dismissible alert-success">
-            Toutes mes recettes sont disponibles sur <a href="#" class="alert-link">The Cook Book</a>.
+            Toutes mes recettes sont disponibles sur <a href="{{path('tcb_front_main_home')}} class="alert-link">The Cook Book</a>.
         </div>
 
     </footer>
