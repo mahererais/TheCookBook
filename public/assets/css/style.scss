@@ -7,7 +7,7 @@
 }
 
 :root {
-    --container-width: 1024px;
+    --container-width: 1124px;
     --main-color: #078975;
     --secondary-color: #f9f9f9;
     --main-text-color: #3F3735;
@@ -17,6 +17,7 @@
 
 @import url("login.css");
 //@import './login.scss';
+@import url("recipes.css");
 
 html {
     scroll-behavior: smooth;
@@ -182,7 +183,7 @@ main {
         }
         
         .cards_container_list{
-            display: flex;
+            display: flex!important;
         }
 
         .page_subTitle {

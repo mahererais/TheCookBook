@@ -1,0 +1,53 @@
+.r_cards_container {
+  --margin-top: 1rem;
+}
+.r_cards_container img {
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  aspect-ratio: 16/10;
+}
+.r_cards_container .r_cards_content {
+  padding: 0;
+  width: 100%;
+}
+.r_cards_container .r_cards_content h2:first-child {
+  margin-top: 0;
+}
+.r_cards_container .r_cards_content h2,
+.r_cards_container .r_cards_content h3 {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-top: var(--margin-top);
+}
+.r_cards_container .r_cards_content h3 {
+  font-size: 1.2rem;
+}
+.r_cards_container .r_cards_content ul {
+  display: unset;
+  flex-direction: column;
+}
+.r_cards_container .r_cards_content ul li {
+  margin-left: 2rem;
+  list-style: disc;
+}
+.r_cards_container .r_cards_content .r_card_presentation {
+  width: 100%;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.r_cards_container .r_cards_content .r_card_btn {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+@media screen and (min-width: 700px) {
+  .r_cards_container img {
+    aspect-ratio: 16/4;
+  }
+}/*# sourceMappingURL=recipes.css.map */

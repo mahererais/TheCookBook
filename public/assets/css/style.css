@@ -1,5 +1,6 @@
 @charset "UTF-8";
 @import url("login.css");
+@import url("recipes.css");
 *,
 *::before,
 *::after {
@@ -9,7 +10,7 @@
 }
 
 :root {
-  --container-width: 1024px;
+  --container-width: 1124px;
   --main-color: #078975;
   --secondary-color: #f9f9f9;
   --main-text-color: #3F3735;
@@ -139,7 +140,7 @@ main .main_container .page_title {
   text-align: center;
 }
 main .main_container .cards_container_list {
-  display: flex;
+  display: flex !important;
 }
 main .main_container .page_subTitle {
   text-align: center;
@@ -167,10 +168,7 @@ main .main_container .cards .card_title {
   box-shadow: 0 -2px 2px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
 }
-main .cards .cards_container_list {
-  display: flex;
-}
-main .cards .cards_carrousel_container {
+main .main_container .cards .cards_carrousel_container {
   overflow: hidden;
   height: 405px;
 }

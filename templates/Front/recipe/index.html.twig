@@ -1,65 +1,66 @@
 {% extends 'Front/front_base.html.twig' %}
 
-{% block title %}Liste des recettes{% endblock %}
-
+{% block title %}Liste des recettes
+{% endblock %}
 
 
 {% block body %}
 
-    <div class="titles_container">
-            <h1 class="page_title">The Cook Book</h1>
-            <p class="page_subTitle">Phrase définissant le site</p>
-        </div>
+	<div class="titles_container">
+		<h1 class="page_title">The Cook Book</h1>
+		<p class="page_subTitle">Phrase définissant le site</p>
+	</div>
 
-        {# <div class="user_container tcb_container">
+	{# <div class="user_container tcb_container">
+		
+		            <a href="#profil_chef">
+		                <img src="https://images.unsplash.com/photo-1593085512500-5d55148d6f0d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80" alt="avatare chef">
+		            </a>
+		            <div class="user_descriptions">
+		                <label>Nom: </label>
+		                <p>nom de famille</p>
+		                <label>Prénom: </label>
+		                <p>nom de famille</p>
+		                <label>Spécialité: </label>
+		                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorum provident sapiente vero. Itaque, veritatis repellat.</p>
+		            </div>
+		
+		        </div> #}
+	{% for recipe in recipes %}
 
-            <a href="#profil_chef">
-                <img src="https://images.unsplash.com/photo-1593085512500-5d55148d6f0d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80" alt="avatare chef">
-            </a>
-            <div class="user_descriptions">
-                <label>Nom: </label>
-                <p>nom de famille</p>
-                <label>Prénom: </label>
-                <p>nom de famille</p>
-                <label>Spécialité: </label>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorum provident sapiente vero. Itaque, veritatis repellat.</p>
-            </div>
+		<div class="cards">
 
-        </div> #}
-    {% for recipe in recipes %}
-    
-        <div class="cards">
+			<div class="r_cards_container">
 
-            <div class="cards_container_list">
-                <img src="{{recipe.picture}}"
-                alt="{{recipe.title}}" class = "img_list">
-                <div class="cards_content">
-                    <h2>{{recipe.title}}</h2>
-                    <h3>{{recipe.category.title}}</h3>
-                    {# ! to be dynamized with user entity addition #}
-                    {# <p>Proposée par {{user.firstname}}</p> #}
-                    <p>Proposée par Nicolas</p>
-                </div>
-                <div>
-                    <h3>Préparation: </h3>
-                    {% for step in recipe.steps %}
-                        <ul>
-                            <li>{{step}}</li>
-                        </ul>
-                    {% endfor %}
-                    <p class="card_presentation">{{recipe.title}}</p>
-                </div>
-                <div class="card_btn">
-                    <a class="heart_icon"><i class="fas fa-heart"></i></a>
-                    <a class="tcb_btn" href = "{{ path('tcb_front_recipe_show', { 'slug' : recipe.slug}) }}" >Voir la recette</a>
-                </div>
-                
-            </div>
-        </div>
+				<img src="{{recipe.picture}}" alt="{{recipe.title}}">
 
-    {% endfor %}
-       
-        <button type="button" class="tcb_btn">Voir plus</button>
+				<div class="r_cards_content">
+					<h2>{{recipe.title}}</h2>
+					<h3>{{recipe.category.title}}</h3>
+					{# ! to be dynamized with user entity addition #}
+					{# <p>Proposée par {{user.firstname}}</p> #}
+					<p>Proposée par Nicolas</p>
+					<h3>Préparation:</h3>
+					{% for step in recipe.steps %}
+						<ul>
+							<li>{{step}}</li>
+						</ul>
+					{% endfor %}
+					<p class="r_card_presentation">{{recipe.title}}</p>
+				
+                    <div class="r_card_btn">
+                        <a class="tcb_btn" href="{{ path('tcb_front_recipe_show', { 'slug' : recipe.slug}) }}">Voir la recette</a>
+                        <a class="heart_icon">
+                            <i class="fas fa-heart"></i>
+                        </a>
+                    </div>
+				</div>
+
+			</div>
+		</div>
+
+	{% endfor %}
+
+	<button type="button" class="tcb_btn">Voir plus</button>
 
 {% endblock %}
-
