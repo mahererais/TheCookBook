@@ -48,7 +48,7 @@ class MainController extends AbstractController
     public function __construct(EntityManagerInterface $entityManager)
     {
         $this->entityManager = $entityManager;
-    }
+    } 
 
     /**
      * @Route("/pdf/{id}", name="tcb_front_main_pdf", requirements={"id"="\d+"})
@@ -65,11 +65,12 @@ class MainController extends AbstractController
 
         return new PdfResponse(
             $knpSnappyPdf->getOutputFromHtml($html),
-            'recette.pdf',
+           'recette.pdf',
         );
 
         //return $this->render('Front/TestsWK/home.html.twig', [
         //  'controller_name' => 'MainController',
+        //  "recipe" => $recipe
         //]);
     }
 }
