@@ -59,7 +59,7 @@ class MainController extends AbstractController
         $recipe = $this->entityManager->getRepository(Recipe::class)->findOneBy(['id' => $id]);
         //dd($recipe);
         $html = $this->renderView('Front/TestsWK/home.html.twig', [
-            "recipe" => $recipe
+           "recipe" => $recipe
         ]);
         $knpSnappyPdf->setOption('enable-local-file-access', true);
 
