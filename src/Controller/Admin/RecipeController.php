@@ -32,7 +32,6 @@ class RecipeController extends AbstractController
         // dd($recipes);
 
         return $this->render('Admin/recipe/index.html.twig', [
-            'controller_name' => 'RecipeController',
             'recipes' => $recipes
         ]);
     }
@@ -43,8 +42,13 @@ class RecipeController extends AbstractController
      */
     public function show(int $id, RecipeRepository $recipeRepository): Response
     {
+        $recipe = $recipeRepository->find($id);
+
+        if (!$recipe) {
+            throw $this->createNotFoundException('Recipe not found');
+        }
         return $this->render('Admin/recipe/show.html.twig', [
-            'controller_name' => 'RecipeController',
+            'recipe' => $recipe
         ]);
     }
 
