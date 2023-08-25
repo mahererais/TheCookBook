@@ -37,7 +37,7 @@
        <div class="row">
             <div class="flex-row w-25">
                 <div>
-                    <img src="https://www.papillesetpupilles.fr/wp-content/uploads/2018/01/Plats-mijote%CC%81s-%C2%A9Meal-Makeover-Moms-CC-BY-ND-2.0.jpg" class="mw-100" alt="">
+                    <img src="{{asset(recipe.picture)}}" class="mw-100" alt="">
                 </div>
             </div>
             <div class="flex-row w-75">
@@ -56,18 +56,16 @@
                     </div>
                 </div>
             </div>
-            <div class="my-4">
+           <!-- <div class="my-4">
                             <h3>Les ingrédients</h3>
-                                <p>{{recipe.ingredients}}</p>
-                        </div>
+                                <p>recipe.ingredients</p>
+                        </div>-->
             <div>
                 <h3>Etapes de préparation</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+                {{recipe.steps}}
             </div>
         </div>
     </main>
-
 
     <footer class="container">
         <div class="alert alert-dismissible alert-success">
