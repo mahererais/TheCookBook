@@ -52,7 +52,7 @@
 | URL | Méthode HTTP | Controller | Méthode | Titre | Contenu | Commentaire | Name|
 |--|--|--|--|--|--|--|--|
 | `/recipes` | `GET` | `RecipeController` | `getAll` | #Name of recipe# | Recettes | list of all recipes | tcb_front_recipe_getAll
-| `/recipe/{slug}` | `GET` | `RecipeController` | `show` | #Name of recipe# | Recettes | {slug} the recipe name  | tcb_front_recipe_show
+| `/recipe/{id}/{slug}` | `GET` | `RecipeController` | `show` | #Name of recipe# | Recettes | {id} is the id of the category, {slug} the recipe name  | tcb_front_recipe_show
 | `/recipe/add` | `POST` | `RecipeController` | `add` | #Name of recipe# | - | create new recipe | tcb_front_recipe_add
 | `/recipe/add` | `GET` | `RecipeController` | `add` | # | Ajout d'une recette | form add recipe | tcb_front_recipe_add
 | `/recipe/update/{id}` | `POST` | `RecipeController` | `update` | #Name of recipe# | - | update new recipe | tcb_front_recipe_update

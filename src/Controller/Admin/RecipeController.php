@@ -32,6 +32,7 @@ class RecipeController extends AbstractController
         // dd($recipes);
 
         return $this->render('Admin/recipe/index.html.twig', [
+            'controller_name' => 'RecipeController',
             'recipes' => $recipes
         ]);
     }
@@ -42,13 +43,8 @@ class RecipeController extends AbstractController
      */
     public function show(int $id, RecipeRepository $recipeRepository): Response
     {
-        $recipe = $recipeRepository->find($id);
-
-        if (!$recipe) {
-            throw $this->createNotFoundException('Recipe not found');
-        }
         return $this->render('Admin/recipe/show.html.twig', [
-            'recipe' => $recipe
+            'controller_name' => 'RecipeController',
         ]);
     }
 
@@ -67,6 +63,32 @@ class RecipeController extends AbstractController
         );
 
         return $this->redirectToRoute("tcb_admin_recipe_getAll");
+    }
+    
+    /**
+     * 
+     * @Route("/recipe/update/{id}", name="tcb_admin_recipe_update", requirements={"id" = "\d+"})
+     * 
+     */
+    public function update(Request $request, EntityManagerInterface $entityManager, Recipe $recipe, int $id): Response
+    {
+        $form = $this->createForm(RecipeType::class, $recipe);
+        $form->handleRequest($request);
+        
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($recipe);
+            $entityManager->flush();
+
+            // ! flash message to add
+            $this->addFlash("success", "La recette a été modifiée.");
+        
+            return $this->redirectToRoute('tcb_admin_recipe_getAll');
+        }
+
+        return $this->renderForm("Admin/recipe/form.html.twig",[
+            "form" => $form,
+            "recipe" => $recipe,
+        ]);
     }
 
     
