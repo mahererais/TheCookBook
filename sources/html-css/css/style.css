@@ -521,6 +521,8 @@ main .user_container > .user_descriptions {
 }
 main .user_container > .user_descriptions > label {
   font-weight: bold;
+<<<<<<<<< Temporary merge branch 1
+=========
 }
 
 img {
@@ -531,4 +533,5 @@ img {
 .table {
   max-width: 80%;
   margin: 0 auto;
+>>>>>>>>> Temporary merge branch 2
 }/*# sourceMappingURL=style.css.map */
