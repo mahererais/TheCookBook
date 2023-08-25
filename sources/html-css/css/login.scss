@@ -1,0 +1,60 @@
+
+
+
+form[action="/login"] {
+
+    max-width: 700px;
+    margin: auto;
+    font-size: 1.3em;
+
+
+    label, input {
+        display: block;
+    }
+
+    label, button {
+        width: 100%;
+    }
+
+    label {
+        font-size: 1em;
+        font-weight: bold;
+        margin-top: 1.5em;
+    }
+
+    input {
+
+        border: none;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 0.3em;
+        font-size: 0.9em;
+        margin-top: 1em;
+        width: 100%;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    button {
+        
+        background-color: var(--main-color);
+        color: white;
+        padding: 0.5em;
+        border: 2px solid var(--main-color);
+        font-size: 1.2em;
+
+        margin-top: 1.5em;
+
+        border-radius: 0.5em;
+
+        cursor: pointer;
+
+        transition: 0.2s ;
+
+        &:hover {
+            background-color: var(--secondary-color);
+            color: var(--main-color);
+        }
+    }
+}

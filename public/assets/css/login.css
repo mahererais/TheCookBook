@@ -1,0 +1,77 @@
+form[action="/login"] {
+  width: 100%;
+  max-width: 480px;
+  margin: auto;
+  font-size: 1.3em;
+  color: var(--main-text-color);
+}
+form[action="/login"] .info {
+  color: var(#555);
+  font-size: 0.7em;
+}
+form[action="/login"] .page_title_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 2rem;
+}
+form[action="/login"] .page_title_container > a {
+  width: 50%;
+  text-align: center;
+  color: var(--main-text-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.2s;
+}
+form[action="/login"] .page_title_container > a:visited {
+  color: var(--main-text-color);
+}
+form[action="/login"] .page_title_container > a.isDisabled {
+  color: currentColor;
+  opacity: 0.5;
+  font-weight: normal;
+}
+form[action="/login"] .page_title_container > a:hover {
+  opacity: initial;
+  color: var(--main-text-color);
+  font-weight: 600;
+}
+form[action="/login"] label,
+form[action="/login"] input {
+  display: block;
+}
+form[action="/login"] label,
+form[action="/login"] button,
+form[action="/login"] .page_title_container {
+  width: 100%;
+  margin-top: 1.5em;
+}
+form[action="/login"] label {
+  font-size: 1em;
+  font-weight: bold;
+}
+form[action="/login"] input {
+  border: none;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 0.3em;
+  font-size: 0.9em;
+  margin-top: 1em;
+  width: 100%;
+}
+form[action="/login"] input:focus {
+  outline: none;
+}
+form[action="/login"] button {
+  background-color: var(--main-color);
+  color: white;
+  padding: 0.5em;
+  border: 2px solid var(--main-color);
+  font-size: 1.2em;
+  border-radius: 0.5em;
+  cursor: pointer;
+  transition: 0.2s;
+}
+form[action="/login"] button:hover {
+  background-color: var(--secondary-color);
+  color: var(--main-color);
+}/*# sourceMappingURL=login.css.map */
