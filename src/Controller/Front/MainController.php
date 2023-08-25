@@ -3,16 +3,16 @@
 namespace App\Controller\Front;
 
 use Knp\Snappy\Pdf;
-use Twig\Environment;
 use App\Entity\Recipe;
 use App\Entity\Category;
 use App\Repository\RecipeRepository;
 use App\Repository\CategoryRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Console\Output\Output;
 
 class MainController extends AbstractController
 {
@@ -43,26 +43,34 @@ class MainController extends AbstractController
         //]);
     }
 
+    private $entityManager;
+
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    } 
+
     /**
      * @Route("/pdf/{id}", name="tcb_front_main_pdf", requirements={"id"="\d+"})
      */
 
-    public function pdfAction(Pdf $knpSnappyPdf, Recipe $recipe, RecipeRepository $recipeRepository): Response
+    public function pdfAction(Pdf $knpSnappyPdf, Recipe $recipe, $id): Response
     {
-        $recipe = $recipeRepository->findAll();
-
+        $recipe = $this->entityManager->getRepository(Recipe::class)->findOneBy(['id' => $id]);
+        //dd($recipe);
         $html = $this->renderView('Front/TestsWK/home.html.twig', [
-            "recipe" => $recipe
+           "recipe" => $recipe
         ]);
         $knpSnappyPdf->setOption('enable-local-file-access', true);
 
         return new PdfResponse(
             $knpSnappyPdf->getOutputFromHtml($html),
-            'recette.pdf'
+           'recette.pdf',
         );
 
         //return $this->render('Front/TestsWK/home.html.twig', [
         //  'controller_name' => 'MainController',
+        //  "recipe" => $recipe
         //]);
     }
 }
