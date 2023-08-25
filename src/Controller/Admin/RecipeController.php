@@ -68,32 +68,6 @@ class RecipeController extends AbstractController
 
         return $this->redirectToRoute("tcb_admin_recipe_getAll");
     }
-    
-    /**
-     * 
-     * @Route("/recipe/update/{id}", name="tcb_admin_recipe_update", requirements={"id" = "\d+"})
-     * 
-     */
-    public function update(Request $request, EntityManagerInterface $entityManager, Recipe $recipe, int $id): Response
-    {
-        $form = $this->createForm(RecipeType::class, $recipe);
-        $form->handleRequest($request);
-        
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($recipe);
-            $entityManager->flush();
-
-            // ! flash message to add
-            $this->addFlash("success", "La recette a été modifiée.");
-        
-            return $this->redirectToRoute('tcb_admin_recipe_getAll');
-        }
-
-        return $this->renderForm("Admin/recipe/form.html.twig",[
-            "form" => $form,
-            "recipe" => $recipe,
-        ]);
-    }
 
     
 }

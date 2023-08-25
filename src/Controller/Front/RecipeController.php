@@ -20,7 +20,7 @@ class RecipeController extends AbstractController
     {
         $this->entityManager = $entityManager;
     }
-    
+
     /**
      * @Route("/recipes", name="tcb_front_recipe_getAll")
      */
@@ -31,6 +31,32 @@ class RecipeController extends AbstractController
 
         return $this->render('Front/recipe/index.html.twig', [
             'recipes' => $recipes,
+        ]);
+    }
+
+    /**
+     * @Route("/recipe/add", name="tcb_front_recipe_add")
+     */
+    public function add(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $recipe = new Recipe();
+        $form = $this->createForm(RecipeType::class, $recipe);
+        $form->handleRequest($request);
+
+        // dd($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($recipe);
+            $entityManager->flush();
+
+            // ! flash message to add
+            $this->addFlash("success", "Recette bien ajoutée !");
+
+            return $this->redirectToRoute('tcb_front_recipe_getAll');
+        }
+
+        return $this->renderForm("Front/recipe/form.html.twig", [
+            "form" => $form
         ]);
     }
 
@@ -47,35 +73,7 @@ class RecipeController extends AbstractController
         ]);
     }
 
-      /**
-     * 
-     * @Route("/recipe/add", name="tcb_front_recipe_add")
-     * 
-     */
-    public function add(Request $request, EntityManagerInterface $entityManager): Response
-    {
-        $recipe = new Recipe();
-        $form = $this->createForm(RecipeType::class, $recipe);
-        $form->handleRequest($request);
-
-        //dd($request);
-        
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($recipe);
-            $entityManager->flush();
-
-            // ! flash message to add
-            $this->addFlash("success", "Recette bien ajoutée !");
-        
-            return $this->redirectToRoute('tcb_front_recipe_getAll');
-        }
-
-        return $this->renderForm("Front/recipe/form.html.twig",[
-            "form" => $form
-        ]);
-    }
-
-     /**
+    /**
      * 
      * @Route("/recipe/update/{id}", name="tcb_front_recipe_update", requirements={"id" = "\d+"})
      * 
@@ -84,18 +82,18 @@ class RecipeController extends AbstractController
     {
         $form = $this->createForm(RecipeType::class, $recipe);
         $form->handleRequest($request);
-        
+
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($recipe);
             $entityManager->flush();
 
             // ! flash message to add
             $this->addFlash("success", "La recette a été modifiée.");
-        
+
             return $this->redirectToRoute('tcb_front_recipe_getAll');
         }
 
-        return $this->renderForm("Front/recipe/form.html.twig",[
+        return $this->renderForm("Front/recipe/form.html.twig", [
             "form" => $form,
             "recipe" => $recipe,
         ]);
