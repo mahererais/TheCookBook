@@ -74,7 +74,7 @@ class AppFixtures extends Fixture
             $recipe = new Recipe();
 
             $recipe->setTitle($faker->text(100));
-            $recipe->setPicture($faker->imageUrl(150, 300, "", true));
+            $recipe->setPicture($faker->imageUrl(450, 300, "", true));
             $recipe->setSteps($faker->paragraphs(4));
             $recipe->setCreatedAt(new \DateTimeImmutable($faker->date()));
             $recipe->setDuration($faker->randomNumber(2));
