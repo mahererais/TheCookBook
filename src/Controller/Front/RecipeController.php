@@ -35,7 +35,7 @@ class RecipeController extends AbstractController
     }
 
     /**
-     * @Route("/recipe/{id}/{slug}", name="tcb_front_recipe_show", requirements={"id"="\d+"})
+     * @Route("/recipe/{slug}", name="tcb_front_recipe_show")
      */
     public function show(Recipe $recipe, $slug): Response
     {
