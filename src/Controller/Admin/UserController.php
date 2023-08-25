@@ -10,9 +10,9 @@ use Symfony\Component\Routing\Annotation\Route;
 class UserController extends AbstractController
 {
     /**
-     * @Route("/admin/user", name="app_admin_user_list")
+     * @Route("/admin/user", name="tcb_admin_user_getAll")
      */
-    public function list(UserRepository $userRepository): Response
+    public function getAll(UserRepository $userRepository): Response
     {
         $users = $userRepository->findAll();
 
