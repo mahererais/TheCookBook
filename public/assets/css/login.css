@@ -20,6 +20,7 @@ form[action="/login"] .page_title_container > a {
   text-align: center;
   color: var(--main-text-color);
   text-decoration: none;
+  font-weight: 500;
   transition: 0.2s;
 }
 form[action="/login"] .page_title_container > a:visited {
@@ -28,12 +29,12 @@ form[action="/login"] .page_title_container > a:visited {
 form[action="/login"] .page_title_container > a.isDisabled {
   color: currentColor;
   opacity: 0.5;
-  font-size: 0.8em;
+  font-weight: normal;
 }
 form[action="/login"] .page_title_container > a:hover {
   opacity: initial;
   color: var(--main-text-color);
-  font-size: unset;
+  font-weight: 600;
 }
 form[action="/login"] label,
 form[action="/login"] input {
