@@ -59,18 +59,18 @@ class MainController extends AbstractController
         $recipe = $this->entityManager->getRepository(Recipe::class)->findOneBy(['id' => $id]);
         //dd($recipe);
         $html = $this->renderView('Front/TestsWK/home.html.twig', [
-            "recipe" => $recipe
+           "recipe" => $recipe
         ]);
         $knpSnappyPdf->setOption('enable-local-file-access', true);
 
         return new PdfResponse(
-            $knpSnappyPdf->getOutputFromHtml($html),
-           'recette.pdf',
+           $knpSnappyPdf->getOutputFromHtml($html),
+          'recette.pdf',
         );
 
-        //return $this->render('Front/TestsWK/home.html.twig', [
-        //  'controller_name' => 'MainController',
-        //  "recipe" => $recipe
-        //]);
+        // return $this->render('Front/TestsWK/home.html.twig', [
+        //   'controller_name' => 'MainController',
+        //   "recipe" => $recipe
+        // ]);
     }
 }
