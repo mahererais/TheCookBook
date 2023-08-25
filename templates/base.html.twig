@@ -55,7 +55,7 @@
 					</div>
 					{% block connexion %}
 						<div class="right_bar_container">
-							<a href="#">
+							<a href="{{path('tcb_front_security_login')}}">
 								<i class="fas fa-user"></i>
 							</a>
 							<div class="search_container">
@@ -89,8 +89,10 @@
 		</header>
 		{% block main %}
 		<main>
-			{% include "Front/fragments/_flash_message.html.twig" %}
-			{% block body %}{% endblock %}
+			<div class="main_container">
+				{% include "Front/fragments/_flash_message.html.twig" %}
+				{% block body %}{% endblock %}
+			</div>
 		</main>
 		{% endblock %}
 
