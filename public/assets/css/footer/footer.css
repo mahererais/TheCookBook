@@ -1,0 +1,15 @@
+footer {
+  margin-top: auto !important;
+  position: relative;
+  background-color: var(--main-color);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+}
+footer .tcb_container {
+  width: var(--container-width);
+}
+footer .tcb_container > ul {
+  justify-content: flex-end;
+}/*# sourceMappingURL=footer.css.map */

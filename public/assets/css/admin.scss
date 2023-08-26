@@ -1,5 +1,3 @@
-@import "./reset.css";
-
 *,
 *::before,
 *::after {
@@ -31,15 +29,13 @@ body {
     min-height: 100vh;
 }
 
-img {
-    max-width: 100%;
-}
-
-//@import './login.scss';
-@import "./login/login.css";
-@import "./header/header.css";
-@import "./footer/footer.css";
+@import url("./reset.css");
+@import url("./header/header.css");
+@import url("./footer/footer.css");
 @import "./components/components.scss";
-@import "./register/register.css";
-@import "./recipes/recipes.css";
-@import "./general/general.css";
+
+/* Réduction de la largeur totale du tableau de la liste de recettes dans admin */
+.table {
+    max-width: 80%;
+    margin: 0 auto;
+}

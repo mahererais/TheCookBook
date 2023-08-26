@@ -52,7 +52,6 @@ form[action="/login"] {
     }
 
     label,
-    button,
     .page_title_container {
         width: 100%;
         margin-top: 1.5em;
@@ -68,10 +67,11 @@ form[action="/login"] {
 
         border: none;
         border-bottom: 1px solid #ddd;
-        padding-bottom: 0.3em;
+        padding: 0.3em 0 ;
         font-size: 0.9em;
         margin-top: 1em;
         width: 100%;
+        background-color: var(--secondary-color);
 
         &:focus {
             outline: none;
@@ -86,7 +86,8 @@ form[action="/login"] {
         border: 2px solid var(--main-color);
         font-size: 1.2em;
 
-
+        width: 100%;
+        margin-top: 2em;
 
         border-radius: 0.5em;
 

@@ -3,9 +3,12 @@
 namespace App\Form;
 
 use App\Entity\User;
+use Doctrine\DBAL\Types\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\TextType as TypeTextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
@@ -17,23 +20,39 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email')
+            ->add('firstname', TypeTextType::class, [
+                "label" => "Prénom",
+                "attr" => [
+                    "placeholder" => "Entrez votre prenom"
+                ]
+            ])
+            ->add('email', EmailType::class, [
+                "label" => "Email",
+                "attr" => [
+                    "placeholder" => "Entrez votre mail"
+                ]
+            ])
             ->add('agreeTerms', CheckboxType::class, [
+                "label" => "Veuillez accepter les conditions générales d'utilisation",
                 'mapped' => false,
                 'constraints' => [
                     new IsTrue([
-                        'message' => 'You should agree to our terms.',
+                        'message' => "You should agree to our terms.",
                     ]),
                 ],
             ])
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
+                'label' => "Mot de passe",
                 'mapped' => false,
-                'attr' => ['autocomplete' => 'new-password'],
+                'attr' => [
+                    'autocomplete' => 'new-password',
+                    "placeholder" => "Entrez votre mot de passe"
+                ],
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Please enter a password',
+                        'message' => 'Veuillez entrer un mot de passe',
                     ]),
                     new Length([
                         'min' => 6,
@@ -42,10 +61,8 @@ class RegistrationFormType extends AbstractType
                         'max' => 4096,
                     ]),
                 ],
-            ])
-        ;
+            ]);
 
-        $options['style'] = "display:flex; gap: 2rem; flex-direction: column; max-width: 700px";
     }
 
     public function configureOptions(OptionsResolver $resolver): void

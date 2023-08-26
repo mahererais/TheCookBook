@@ -1,0 +1,48 @@
+a.tcb_btn_arrow {
+    width: 3rem;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--main-color) ;
+
+
+    border-radius: 50%;
+    border: 3px solid white;
+    cursor: pointer;
+
+    position: absolute;
+
+    left: 50%;
+    transform: translate(-50%, calc(-50%));
+    transition: 0.25s;
+
+    box-shadow: 0 -4px 5px rgba(0, 0, 0, 0.2);
+
+    &>i {
+        color: white;
+    }
+
+    &:hover {
+        background-color: var(--secondary-color);
+        border-color: var(--main-color);
+
+        i {
+            color: var(--main-color);
+        }
+    }
+
+}
+
+
+
+
+@media screen and (max-width: 700px) {
+
+
+    a.tcb_btn_arrow {
+
+        padding: 0.8rem;
+    }
+
+}
