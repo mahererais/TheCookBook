@@ -34,8 +34,13 @@ main {
         }
 
         .cards {
+
+            --padding: 1.5rem;
+            &.homepage {
+                padding-inline: 0!important;
+            }
+
             position: relative;
-            --padding: 1.5rem 0;
             padding: var(--padding);
             background-color: var(--secondary-color);
             border-radius: 0.5rem;

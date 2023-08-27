@@ -21,13 +21,16 @@ main .main_container .page_subTitle {
   font-size: 0.9rem;
 }
 main .main_container .cards {
+  --padding: 1.5rem;
   position: relative;
-  --padding: 1.5rem 0;
   padding: var(--padding);
   background-color: var(--secondary-color);
   border-radius: 0.5rem;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
   margin: 3rem 0;
+}
+main .main_container .cards.homepage {
+  padding-inline: 0 !important;
 }
 main .main_container .cards .card_title {
   position: absolute;
