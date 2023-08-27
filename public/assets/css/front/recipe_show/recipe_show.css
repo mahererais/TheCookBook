@@ -1,0 +1,31 @@
+main .user_container {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--container-padding);
+  margin-top: 1rem;
+  box-shadow: 0 0 10px -3px rgba(0, 0, 0, 0.2);
+}
+main .user_container > a {
+  flex-shrink: 0;
+  width: max(5rem, min(20%, 8rem));
+  aspect-ratio: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid white;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+}
+main .user_container > a > img {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+main .user_container > .user_descriptions {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+main .user_container > .user_descriptions label {
+  font-weight: bold;
+}
+main .user_container > .user_descriptions p {
+  margin-bottom: 0.5rem;
+}/*# sourceMappingURL=recipe_show.css.map */

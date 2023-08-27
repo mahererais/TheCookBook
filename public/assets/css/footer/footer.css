@@ -7,9 +7,10 @@ footer {
   display: flex;
   justify-content: center;
 }
-footer .tcb_container {
+footer .footer_container {
+  padding: var(--container-padding);
   width: var(--container-width);
 }
-footer .tcb_container > ul {
+footer .footer_container > ul {
   justify-content: flex-end;
 }/*# sourceMappingURL=footer.css.map */

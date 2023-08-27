@@ -1,85 +1,94 @@
 {% extends 'Front/front_base.html.twig' %}
 
-{% block title %}Recette {{recipe.title}}{% endblock %}
+{% block title %}Recette
+	{{recipe.title}}
+{% endblock %}
 
 {% block body %}
 
 
-    <main class="container">
-       <div class="row">
-            <div class="flex-row w-50">
-                
-            </div>
-            <div class="flex-row w-50">
-                <h1 class="my-4">{{recipe.title}}</h1>
-                <div class="col">
-                    <i class="bi bi-tag">{{recipe.category.title}}</i>
-                </div>
-                <div>
-                    <img src="{{recipe.picture}}" class="mw-100" alt="{{recipe.title}}">
-                </div>
-                <div>
-                    <div class="row my-4">
-                        
-                        <div class="col">
-                            <i class="bi bi-alarm">Temps de préparation : {{recipe.duration}} mn</i>
-                        </div>
-                         
-                        <div class="list-group my-4 ">
-                            <h3>Ingrédients : </h3>
-                            
-                            {% for ingredient in recipe.ingredients %}
-                                <p>-{{ingredient}}</p>
-                            {% endfor %}
+	<main class="container">
+		<div class="row">
+			<div class="flex-row w-50"></div>
+			<div class="flex-row w-50">
+				<h1 class="my-4">{{recipe.title}}</h1>
+				<div class="col">
+					<i class="bi bi-tag">{{recipe.category.title}}</i>
+				</div>
+				<div>
+					<img src="{{recipe.picture}}" class="mw-100" alt="{{recipe.title}}">
+				</div>
+				<div>
+					<div class="row my-4">
 
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <h3>Etapes de préparation :</h3>
-               
-                {% for step in recipe.steps %}
-                    <p>{{step}}</p>
-                {% endfor %}
-            
-            </div>
-            <div class="col">
-                <i class="bi bi-calendar3">Publiée le {{recipe.createdAt|date("d/m/Y")}}</i>
-            </div>
-        </div>
-                <div class="user_container tcb_container">
+						<div class="col">
+							<i class="bi bi-alarm">Temps de préparation :
+								{{recipe.duration}}
+								mn</i>
+						</div>
 
-            <a href="#profil_chef">
-                <img src="https://images.unsplash.com/photo-1593085512500-5d55148d6f0d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80" alt="avatare chef">
-            </a>
+						<div class="list-group my-4 ">
+							<h3>Ingrédients :
+							</h3>
 
-            <div class="user_container tcb_container">
-                <div>
-                    <label>Nom : </label>
-                    <p>Cosnard</p>
-                    {# ! à dynamiser avec user #}
-                    {# <p>{{user.name}}</p> #}
-                
-                    <label>Prénom : </label>
-                    <p>Nicolas</p>
-                    {# ! à dynamiser avec user #}
-                    {# <p>{{user.firstname}}</p> #}
-                </div>
-                <div>
-                    <label>Spécialité : </label>
-                    <p>Cuisine en tous genres</p>
-                    {# ! à dynamiser avec user #}
-                    {# <p>{{user.speciality}}</p> #}
-               
-                    <label>Experience : </label>
-                    <p>Professionnel</p>
-                    {# ! à dynamiser avec user #}
-                    {# <p>{{user.experience}}</p> #}  
-                </div>
-            </div>
+							{% for ingredient in recipe.ingredients %}
+								<p>-{{ingredient}}</p>
+							{% endfor %}
 
-        </div>
-    </main>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div>
+				<h3>Etapes de préparation :</h3>
+
+				{% for step in recipe.steps %}
+					<p>{{step}}</p>
+				{% endfor %}
+
+			</div>
+			<div class="col">
+				<i class="bi bi-calendar3">Publiée le
+					{{recipe.createdAt|date("d/m/Y")}}</i>
+			</div>
+		</div>
+
+		<div class="user_container tcb_padding">
+
+			<a href="#profil_chef">
+				<img src="https://images.unsplash.com/photo-1593085512500-5d55148d6f0d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80" alt="avatare chef">
+			</a>
+
+			<div class="user_descriptions">
+				<div>
+					<label>Nom :
+					</label>
+					<p>Cosnard</p>
+					{# ! à dynamiser avec user #}
+					{# <p>{{user.name}}</p> #}
+
+					<label>Prénom :
+					</label>
+					<p>Nicolas</p>
+					{# ! à dynamiser avec user #}
+					{# <p>{{user.firstname}}</p> #}
+				</div>
+				<div>
+					<label>Spécialité :
+					</label>
+					<p>Cuisine en tous genres</p>
+					{# ! à dynamiser avec user #}
+					{# <p>{{user.speciality}}</p> #}
+
+					<label>Experience :
+					</label>
+					<p>Professionnel</p>
+					{# ! à dynamiser avec user #}
+					{# <p>{{user.experience}}</p> #}
+				</div>
+			</div>
+
+		</div>
+	</main>
 
 {% endblock %}

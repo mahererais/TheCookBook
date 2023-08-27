@@ -1,0 +1,56 @@
+@import '../reset.css';
+// ! pas besoin d'importer le reset.css, sinon ça va casser le boostrap
+// ! ps: boostrap a son propre reboot.css
+
+:root {
+    --container-width: 100%;
+    --main-color: #F55E51;
+    --secondary-color: #f9f9f9;
+    --main-text-color: #3F3735;
+    --container-padding: 1rem 1.5rem;
+
+    // ! variable global Boostrap
+    .btn-primary {
+        --bs-btn-bg : #F55E51;
+        --bs-btn-border-color: #F55E51;
+
+        --bs-btn-hover-bg: white;
+        --bs-btn-hover-color: #F55E51;
+        --bs-btn-hover-border-color: #F55E51;
+        
+        --bs-btn-active-bg: rgb(124, 32, 32);
+        --bs-btn-active-color: white;
+        --bs-btn-active-border-color: rgb(124, 32, 32);
+    }
+}
+
+
+html {
+    scroll-behavior: smooth;
+    color: var(--main-text-color);
+    font-family: 'Poppins', sans-serif;
+}
+
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+
+// @import url("./reset.css");
+// @import url("./header/header.css");
+// @import url("./footer/footer.css");
+
+@import '../header/header.scss';
+@import '../footer/footer.scss';
+@import '../components/components.scss';
+
+@import '../front/recipe_show/recipe_show.scss';
+
+/* Réduction de la largeur totale du tableau de la liste de recettes dans admin */
+.table {
+    max-width: 75%;
+    margin: 0 auto;
+}

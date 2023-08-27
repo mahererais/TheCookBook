@@ -1,3 +1,35 @@
+@charset "UTF-8";
+@import '../reset.css';
+:root {
+  --container-width: 100%;
+  --main-color: #F55E51;
+  --secondary-color: #f9f9f9;
+  --main-text-color: #3F3735;
+  --container-padding: 1rem 1.5rem;
+}
+:root .btn-primary {
+  --bs-btn-bg: #F55E51;
+  --bs-btn-border-color: #F55E51;
+  --bs-btn-hover-bg: white;
+  --bs-btn-hover-color: #F55E51;
+  --bs-btn-hover-border-color: #F55E51;
+  --bs-btn-active-bg: rgb(124, 32, 32);
+  --bs-btn-active-color: white;
+  --bs-btn-active-border-color: rgb(124, 32, 32);
+}
+
+html {
+  scroll-behavior: smooth;
+  color: var(--main-text-color);
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 header {
   margin-bottom: auto !important;
   position: relative;
@@ -200,4 +232,134 @@ ul li > a:hover {
   top: calc(50% - 2px);
   transform: rotate(-45deg);
   transition-delay: 0.455s, 0.455s;
-}/*# sourceMappingURL=header.css.map */
+}
+
+footer {
+  margin-top: auto !important;
+  position: relative;
+  background-color: var(--main-color);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+}
+footer .footer_container {
+  padding: var(--container-padding);
+  width: var(--container-width);
+}
+footer .footer_container > ul {
+  justify-content: flex-end;
+}
+
+a.tcb_btn_arrow_top {
+  width: 3rem;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--main-color);
+  border-radius: 50%;
+  border: 3px solid white;
+  cursor: pointer;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.25s;
+  box-shadow: 0 -4px 5px rgba(0, 0, 0, 0.2);
+}
+a.tcb_btn_arrow_top > i {
+  color: white;
+}
+a.tcb_btn_arrow_top:hover {
+  background-color: var(--secondary-color);
+  border-color: var(--main-color);
+}
+a.tcb_btn_arrow_top:hover i {
+  color: var(--main-color);
+}
+
+.tcb_padding {
+  padding: var(--container-padding);
+}
+
+a {
+  text-decoration: none;
+}
+
+.tcb_btn {
+  padding: 0.3rem 1rem;
+  background-color: var(--main-color) !important;
+  border: 2px solid var(--main-color);
+  border-radius: 5px;
+  color: white;
+  transition: 0.2s;
+}
+.tcb_btn:hover {
+  background-color: white !important;
+  color: var(--main-text-color);
+}
+
+.heart_icon {
+  cursor: pointer;
+  color: var(--corail-color);
+  font-size: 1.5rem;
+}
+
+@media screen and (max-width: 700px) {
+  html {
+    font-size: 87.5%;
+  }
+  html:has(#checkbox:checked) {
+    overflow: hidden;
+  }
+  :root {
+    --container-padding: 1rem 0.5rem;
+  }
+  a.tcb_btn_arrow_top {
+    padding: 0.8rem;
+  }
+}
+main .main_container {
+  background-color: white;
+  margin: 1rem auto;
+  padding: var(--container-padding);
+  max-width: var(--container-width);
+}
+
+main .user_container {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--container-padding);
+  margin-top: 1rem;
+  box-shadow: 0 0 10px -3px rgba(0, 0, 0, 0.2);
+}
+main .user_container > a {
+  flex-shrink: 0;
+  width: max(5rem, min(20%, 8rem));
+  aspect-ratio: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid white;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+}
+main .user_container > a > img {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+main .user_container > .user_descriptions {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+main .user_container > .user_descriptions label {
+  font-weight: bold;
+}
+main .user_container > .user_descriptions p {
+  margin-bottom: 0.5rem;
+}
+
+/* Réduction de la largeur totale du tableau de la liste de recettes dans admin */
+.table {
+  max-width: 75%;
+  margin: 0 auto;
+}/*# sourceMappingURL=admin.css.map */

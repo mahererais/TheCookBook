@@ -43,14 +43,14 @@ footer {
     justify-content: center;
 }
 
-.tcb_container {
+.tcb_padding {
     padding: var(--container-padding)
 }
 
 header {
     margin-bottom: auto !important;
 
-    .tcb_container {
+    .tcb_padding {
 
         width: var(--container-width);
 
@@ -307,7 +307,7 @@ main {
 footer {
     margin-top: auto !important;
 
-    .tcb_container {
+    .tcb_padding {
 
         width: var(--container-width);
 
@@ -373,41 +373,41 @@ a {
     font-size: 1.5rem;
 }
 
-a.tcb_btn_arrow {
-    width: 3rem;
-    aspect-ratio: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--main-color) ;
+// a.tcb_btn_arrow_top {
+//     width: 3rem;
+//     aspect-ratio: 1;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     background-color: var(--main-color) ;
 
 
-    border-radius: 50%;
-    border: 3px solid white;
-    cursor: pointer;
+//     border-radius: 50%;
+//     border: 3px solid white;
+//     cursor: pointer;
 
-    position: absolute;
+//     position: absolute;
 
-    left: 50%;
-    transform: translate(-50%, calc(-50%));
-    transition: 0.25s;
+//     left: 50%;
+//     transform: translate(-50%, calc(-50%));
+//     transition: 0.25s;
 
-    box-shadow: 0 -4px 5px rgba(0, 0, 0, 0.2);
+//     box-shadow: 0 -4px 5px rgba(0, 0, 0, 0.2);
 
-    &>i {
-        color: white;
-    }
+//     &>i {
+//         color: white;
+//     }
 
-    &:hover {
-        background-color: var(--secondary-color);
-        border-color: var(--main-color);
+//     &:hover {
+//         background-color: var(--secondary-color);
+//         border-color: var(--main-color);
 
-        i {
-            color: var(--main-color);
-        }
-    }
+//         i {
+//             color: var(--main-color);
+//         }
+//     }
 
-}
+// }
 
 
 a.tcb_btn_caroussel {
@@ -492,7 +492,7 @@ a.tcb_btn_caroussel_right {
     header {
         z-index: 15;
 
-        .tcb_container {
+        .tcb_padding {
             nav {
                 width: 0px;
                 overflow: hidden;
@@ -554,7 +554,7 @@ a.tcb_btn_caroussel_right {
     }
 
 
-    a.tcb_btn_arrow {
+    a.tcb_btn_arrow_top {
 
         padding: 0.8rem;
     }

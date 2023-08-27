@@ -1,10 +1,5 @@
-*,
-*::before,
-*::after {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
+@import '../reset.css';
+
 
 :root {
     --container-width: 1124px;
@@ -29,13 +24,16 @@ body {
     min-height: 100vh;
 }
 
-@import url("./reset.css");
-@import url("./header/header.css");
-@import url("./footer/footer.css");
-@import "./components/components.scss";
 
-/* Réduction de la largeur totale du tableau de la liste de recettes dans admin */
-.table {
-    max-width: 80%;
-    margin: 0 auto;
-}
+
+//@import './login.scss';
+@import './login/login.scss';
+@import './register/register.scss';
+@import './recipes/recipes.scss';
+@import './recipe_show/recipe_show.scss';
+@import './homePage/homePage.scss';
+
+@import '../header/header.scss';
+@import '../footer/footer.scss';
+@import '../components/components.scss';
+//@import '../general/general.scss';

@@ -1,4 +1,4 @@
-a.tcb_btn_arrow {
+a.tcb_btn_arrow_top {
   width: 3rem;
   aspect-ratio: 1;
   display: flex;
@@ -14,19 +14,61 @@ a.tcb_btn_arrow {
   transition: 0.25s;
   box-shadow: 0 -4px 5px rgba(0, 0, 0, 0.2);
 }
-a.tcb_btn_arrow > i {
+a.tcb_btn_arrow_top > i {
   color: white;
 }
-a.tcb_btn_arrow:hover {
+a.tcb_btn_arrow_top:hover {
   background-color: var(--secondary-color);
   border-color: var(--main-color);
 }
-a.tcb_btn_arrow:hover i {
+a.tcb_btn_arrow_top:hover i {
   color: var(--main-color);
 }
 
+.tcb_padding {
+  padding: var(--container-padding);
+}
+
+a {
+  text-decoration: none;
+}
+
+.tcb_btn {
+  padding: 0.3rem 1rem;
+  background-color: var(--main-color) !important;
+  border: 2px solid var(--main-color);
+  border-radius: 5px;
+  color: white;
+  transition: 0.2s;
+}
+.tcb_btn:hover {
+  background-color: white !important;
+  color: var(--main-text-color);
+}
+
+.heart_icon {
+  cursor: pointer;
+  color: var(--corail-color);
+  font-size: 1.5rem;
+}
+
 @media screen and (max-width: 700px) {
-  a.tcb_btn_arrow {
+  html {
+    font-size: 87.5%;
+  }
+  html:has(#checkbox:checked) {
+    overflow: hidden;
+  }
+  :root {
+    --container-padding: 1rem 0.5rem;
+  }
+  a.tcb_btn_arrow_top {
     padding: 0.8rem;
   }
+}
+main .main_container {
+  background-color: white;
+  margin: 1rem auto;
+  padding: var(--container-padding);
+  max-width: var(--container-width);
 }/*# sourceMappingURL=components.css.map */

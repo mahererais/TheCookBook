@@ -4,17 +4,19 @@
 {% endblock %}
 
 {% block stylesheets %}
-	<link rel="stylesheet" href="{{asset('assets/css/admin.css')}}">
 	<!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-    <!-- Bootstrap icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+	<!-- Bootstrap icons -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+	
+	<link rel="stylesheet" href="{{asset('assets/css/admin/admin.css')}}">
+	
+ 
 {% endblock %}
 
 {% block nav %}
-	<header id="header_id" style="background-color: #F55E51;">
-		<div class="tcb_container">
+	<header id="header_id" >
+		<div class="header_container">
 
 			<div id="menuToggle">
 				<input id="checkbox" type="checkbox">
@@ -27,37 +29,32 @@
 
 
 			{% block connexion %}
-            <div class="right_bar_container">
-				<a href="{{path('tcb_front_security_login')}}"><i class="fas fa-user"></i></a>
-                <div class="search_container">
-                    <i class="fas fa-search"></i>
-                    <input type="text" placeholder="recherche ...">
-                </div>
-            </div>
+				<div class="right_bar_container">
+					<a href="{{path('tcb_front_security_login')}}">
+						<i class="fas fa-user"></i>
+					</a>
+					<div class="search_container">
+						<i class="fas fa-search"></i>
+						<input type="text" placeholder="recherche ...">
+					</div>
+				</div>
 			{% endblock %}
 
 
 			<nav>
 				<ul>
-					<li>
-						<a href="{{path('tcb_admin_recipe_home')}}">Back office</a>
-					</li>
-					<li>
-						<a href="{{path('tcb_admin_recipe_getAll')}}">Liste recettes</a>
-					</li>
-					<li>
-						<a href="{{path('tcb_admin_user_getAll')}}">Liste utilisateurs</a>
-					</li>
-					<li>
-						<a href="{{path('tcb_admin_category_getAll')}}">Liste catégories</a>
-					</li>
+					<li><a href="{{path('tcb_admin_recipe_home')}}">Back office</a></li>
+					<li><a href="{{path('tcb_admin_recipe_getAll')}}">Liste recettes</a></li>
+					<li><a href="{{path('tcb_admin_user_getAll')}}">Liste utilisateurs</a></li>
+					<li><a href="{{path('tcb_admin_category_getAll')}}">Liste catégories</a></li>
 				</ul>
 
 			</nav>
 
 
-			<a class="logo" href="{{path('tcb_admin_recipe_home')}}">
-				<img src="https://cdn.worldvectorlogo.com/logos/symfony.svg" alt="logo">
+			<a class="logo" href="{{path('tcb_front_main_home')}}">
+				{# <img src="https://cdn.worldvectorlogo.com/logos/symfony.svg" alt="logo"> #}
+				<img src="{{ asset('images/logo_marmite_cookbook.png')}}" alt="logo">
 			</a>
 
 
@@ -67,32 +64,29 @@
 {% endblock %}
 
 
-
-
 {% block body %}
 
 	<div style="text-align: center; margin-top: 50px; margin-bottom: 50px;">
-        <h1 style="font-weight: bold; font-size: 36px;">Bienvenue dans le back office !</h1>
-        <div style="display: flex; flex-direction: column; align-items: center; margin-top: 20px;">
-            <img src="https://www.letribunaldunet.fr/wp-content/uploads/2021/12/philippe-etchebest-instagram-million-abonnes-762x439.jpg" alt="Philippe Etchebest heureux" style="max-width: 300px;">
-        </div>
-    </div>
+		<h1 style="font-weight: bold; font-size: 36px;">Bienvenue dans le back office !</h1>
+		<div style="display: flex; flex-direction: column; align-items: center; margin-top: 20px;">
+			<img src="https://www.letribunaldunet.fr/wp-content/uploads/2021/12/philippe-etchebest-instagram-million-abonnes-762x439.jpg" alt="Philippe Etchebest heureux" style="max-width: 300px;">
+		</div>
+	</div>
 
 {% endblock %}
 
 {% block footer %}
-	    <footer style="background-color: #F55E51">
+	<footer >
 
-		<div class="tcb_container">
-			<a class="tcb_btn_arrow" href="#header_id">
+		<div class="footer_container">
+			<a class="tcb_btn_arrow_top" href="#header_id">
 				<i class="fas fa-arrow-up"></i>
 			</a>
 
 			<ul>
-				<li><a>Mentions Légales</a></li>
+				<li><a href="#">Mentions Légales</a></li>
 			</ul>
 		</div>
 
 	</footer>
 {% endblock %}
-

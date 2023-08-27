@@ -3,18 +3,18 @@
 {% block body %}
 
 
-    <div class="container bg-light pt-5">
-	<div class="row mb-2">
-		<div class="col">
-			<div class="row g-0 border rounded overflow-hidden flex-md-row align-items-start mb-4 shadow-sm position-relative">
-				<div class="col-8 p-4 d-flex flex-column position-static bg-light">
-                    {% if app.request.attributes.get("_route") is same as "tcb_front_recipe_add" %}
-					    <h2>Ajouter une recette</h2>
-                    {% else %}
-                        <h2>Modifier la recette</h2>
-                    {% endif %}
-                    {{form_start(form, {attr: {novalidate: 'novalidate'}})}}
-                    
+	<div class="container bg-light pt-5">
+		<div class="row mb-2">
+			<div class="col">
+				<div class="row g-0 border rounded overflow-hidden flex-md-row align-items-start mb-4 shadow-sm position-relative">
+					<div class="col-8 p-4 d-flex flex-column position-static bg-light">
+						{% if app.request.attributes.get("_route") is same as "tcb_front_recipe_add" %}
+							<h2>Ajouter une recette</h2>
+						{% else %}
+							<h2>Modifier la recette</h2>
+						{% endif %}
+						{{form_start(form, {attr: {novalidate: 'novalidate'}})}}
+
 						<div class="col-3 mb-3">
 							{{form_label(form.title)}}
 							{{form_widget(form.title)}}
@@ -28,7 +28,7 @@
 							{{form_errors(form.picture)}}
 						</div>
 						<div class="col-3 mb-3">
-						{{form_row(form.steps)}}
+							{{form_row(form.steps)}}
 						</div>
 						<div class="col-3 mb-3">
 							{{form_label(form.status)}}
@@ -42,7 +42,7 @@
 							{{form_help(form.duration)}}
 							{{form_errors(form.duration)}}
 						</div>
-						
+
 						<div class="col-3 mb-3">
 							{{form_row(form.ingredients)}}
 						</div>
@@ -52,16 +52,16 @@
 							{{form_help(form.category)}}
 							{{form_errors(form.category)}}
 						</div>
-						
-						
+
+
 						<button class="btn btn-primary" type="submit">Envoyer</button>
-						
-					{{form_end(form)}}
+
+						{{form_end(form)}}
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
 
 {% endblock %}
 
@@ -70,70 +70,68 @@
 	<script>
 		// ============== steps handler ============
 
-		const recipe_steps = document.getElementById("recipe_steps");
-        console.log(recipe_steps);
-        recipe_steps.innerHTML = `<ul style="display: unset">
+const recipe_steps = document.getElementById("recipe_steps");
+console.log(recipe_steps);
+recipe_steps.innerHTML = `<ul style="display: unset">
 									<li>
 										<input type="text" placeHolder="ajouter votre étape..." name="recipe[steps][]"/>
 									</li>
 								  </ul>
                                   <button id="btn_add_steps" style="padding:0.5rem; border: 2px solid; border-radius: 999px">+</button>`;
 
-		const buttonSteps = document.getElementById("btn_add_steps");
-		console.log(buttonSteps);
+const buttonSteps = document.getElementById("btn_add_steps");
+console.log(buttonSteps);
 
-		buttonSteps.addEventListener('click', function(e) {
-			e.preventDefault();
-			console.log("btn_add_steps clicked");
+buttonSteps.addEventListener('click', function (e) {
+e.preventDefault();
+console.log("btn_add_steps clicked");
 
-			const li = document.createElement('li');
+const li = document.createElement('li');
 
-			const input = document.createElement('input');
-			input.setAttribute("placeHolder", "ajouter votre étape...");
-			input.setAttribute("type", "text");
-			input.setAttribute("name", "recipe[steps][]");
-			li.append(input);
+const input = document.createElement('input');
+input.setAttribute("placeHolder", "ajouter votre étape...");
+input.setAttribute("type", "text");
+input.setAttribute("name", "recipe[steps][]");
+li.append(input);
 
 
+const ul = document.querySelector("#recipe_steps ul");
+ul.append(li);
 
-			const ul = document.querySelector("#recipe_steps ul");
-			ul.append(li);
+})
 
-		})
-		
-		
 
-		// ============== ingredient handler ============
+// ============== ingredient handler ============
 
-		const recipe_ingredients = document.getElementById("recipe_ingredients");
-        console.log(recipe_ingredients);
-        recipe_ingredients.innerHTML = `<ul style="display: unset">
+const recipe_ingredients = document.getElementById("recipe_ingredients");
+console.log(recipe_ingredients);
+recipe_ingredients.innerHTML = `<ul style="display: unset">
 									<li>
 										<input type="text" placeHolder="ajouter votre ingrédient..." name="recipe[ingredients][]"/>
 									</li>
 								  </ul>
                                   <button id="btn_add_ingredients" style="padding:0.5rem; border: 2px solid; border-radius: 999px">+</button>`;
 
-		const buttonIngredients = document.getElementById("btn_add_ingredients");
-		console.log(buttonIngredients);
+const buttonIngredients = document.getElementById("btn_add_ingredients");
+console.log(buttonIngredients);
 
-		buttonIngredients.addEventListener('click', function(e) {
-			e.preventDefault();
-			console.log("btn_add_ingredients clicked");
+buttonIngredients.addEventListener('click', function (e) {
+e.preventDefault();
+console.log("btn_add_ingredients clicked");
 
-			const li = document.createElement('li');
+const li = document.createElement('li');
 
-			const input = document.createElement('input');
-			input.setAttribute("placeHolder", "ajouter votre ingrédient...");
-			input.setAttribute("type", "text");
-			input.setAttribute("name", "recipe[ingredients][]");
-			li.append(input);
-			
+const input = document.createElement('input');
+input.setAttribute("placeHolder", "ajouter votre ingrédient...");
+input.setAttribute("type", "text");
+input.setAttribute("name", "recipe[ingredients][]");
+li.append(input);
 
-			const ul = document.querySelector("#recipe_ingredients ul");
-			ul.append(li);
 
-		})
+const ul = document.querySelector("#recipe_ingredients ul");
+ul.append(li);
+
+})
 
 	</script>
 {% endblock %}

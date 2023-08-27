@@ -7,16 +7,13 @@
 			{% block title %}Welcome!
 			{% endblock %}
 		</title>
-		<link
-		rel="icon" href="{{ asset('images/favicon_cookbook.png')}}">
+		<link rel="icon" href="{{ asset('images/favicon_cookbook.png')}}">
 		{# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+
 		{% block stylesheets %}
-			{{ encore_entry_link_tags('app') }}
 		{% endblock %}
 
 		{% block javascripts %}
-			{{ encore_entry_script_tags('app') }}
-			<script type="module" src="{{asset('assets/js/app.js')}}" defer></script>
 		{% endblock %}
 
 		<!-- https://tailwindcss.com/docs/installation/play-cdn -->
@@ -24,26 +21,20 @@
 
 		<!-- https://fonts.google.com/ -->
 		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link
-		rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<!-- Poppins -->
-		<link
-		href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-		<!-- Roboto -->
-		<link
-		href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 
 		<!-- font-awesome -->
-		<link
-		rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
-	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"> -->
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+		<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"> -->
 	</head>
 
 
 	<body>
 		{% block nav %}
 			<header id="header_id">
-				<div class="tcb_container">
+				<div class="header_container">
 
 					<div id="menuToggle">
 						<input id="checkbox" type="checkbox">
@@ -87,20 +78,25 @@
 
 
 		</header>
+
+
+
 		{% block main %}
-		<main>
-			<div class="main_container">
-				{% include "Front/fragments/_flash_message.html.twig" %}
-				{% block body %}{% endblock %}
-			</div>
-		</main>
+			<main>
+				<div class="main_container">
+					{% include "Front/fragments/_flash_message.html.twig" %}
+					{% block body %}{% endblock %}
+				</div>
+			</main>
 		{% endblock %}
+
+
 
 		{% block footer %}
 			<footer>
 
-				<div class="tcb_container">
-					<a class="tcb_btn_arrow" href="#header_id">
+				<div class="footer_container">
+					<a class="tcb_btn_arrow_top" href="#header_id">
 						<i class="fas fa-arrow-up"></i>
 					</a>
 

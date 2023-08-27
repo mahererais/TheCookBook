@@ -74,7 +74,7 @@ class AppFixtures extends Fixture
         for ($i = 1; $i <= 20; $i++) {
             $recipe = new Recipe();
 
-            $recipe->setTitle($faker->text(100));
+            $recipe->setTitle($faker->text(20));
             $recipe->setPicture($faker->imageUrl(450, 300, "", true));
             $recipe->setSteps($faker->paragraphs(4));
             $recipe->setCreatedAt(new \DateTimeImmutable($faker->date()));

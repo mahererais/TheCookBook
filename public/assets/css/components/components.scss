@@ -1,10 +1,10 @@
-a.tcb_btn_arrow {
+a.tcb_btn_arrow_top {
     width: 3rem;
     aspect-ratio: 1;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--main-color) ;
+    background-color: var(--main-color);
 
 
     border-radius: 50%;
@@ -34,15 +34,74 @@ a.tcb_btn_arrow {
 
 }
 
+.tcb_padding {
+    padding: var(--container-padding)
+}
 
+a {
+    text-decoration: none;
+}
+
+.tcb_btn {
+    padding: 0.3rem 1rem;
+    background-color: var(--main-color) !important;
+    border: 2px solid var(--main-color);
+    border-radius: 5px;
+    color: white;
+    transition: 0.2s;
+
+    &:hover {
+        background-color: white !important;
+        color: var(--main-text-color);
+    }
+}
+
+.heart_icon {
+    cursor: pointer;
+    color: var(--corail-color);
+    font-size: 1.5rem;
+}
 
 
 @media screen and (max-width: 700px) {
 
 
-    a.tcb_btn_arrow {
+
+    html {
+        font-size: 100% * calc(14/16);
+    }
+
+    html:has(#checkbox:checked) {
+        overflow: hidden;
+
+    }
+
+    :root {
+        --container-padding: 1rem 0.5rem;
+    }
+
+
+    a.tcb_btn_arrow_top {
 
         padding: 0.8rem;
     }
 
+}
+
+
+main {
+
+    .main_container {
+
+
+        background-color: white;
+
+
+        margin: 1rem auto;
+
+        padding: var(--container-padding);
+
+        max-width: var(--container-width);
+
+    }
 }

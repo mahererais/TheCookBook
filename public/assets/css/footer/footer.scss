@@ -10,8 +10,8 @@ footer {
     display: flex;
     justify-content: center;
 
-    .tcb_container {
-
+    .footer_container {
+        padding: var(--container-padding);
         width: var(--container-width);
 
         &>ul {
