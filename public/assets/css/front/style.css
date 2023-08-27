@@ -295,7 +295,7 @@ main .main_container .page_subTitle {
 }
 main .main_container .cards {
   position: relative;
-  --padding: 1.5rem;
+  --padding: 1.5rem 0;
   padding: var(--padding);
   background-color: var(--secondary-color);
   border-radius: 0.5rem;
@@ -317,25 +317,22 @@ main .main_container .cards .card_title {
 }
 main .main_container .cards .cards_carrousel_container {
   overflow: hidden;
-  height: 405px;
 }
 main .main_container .cards .cards_carrousel_container .cards_carrousel {
   position: relative;
   display: flex;
   height: 100%;
-  gap: 1rem;
+  transition: transform 0.5s ease-out;
 }
 main .main_container .cards .cards_carrousel_container .cards_carrousel .cards_container {
   display: flex;
-  opacity: 0;
+  padding-inline: 1.5rem;
   --margin-top: 1rem;
   flex-wrap: wrap;
   z-index: 10;
-  width: 100%;
+  min-width: 100%;
   height: 100%;
-  position: absolute;
   background-color: var(--secondary-color);
-  transition: 0.2s;
 }
 main .main_container .cards .cards_carrousel_container .cards_carrousel .cards_container.card_selected {
   transition: 0.2s;
@@ -349,6 +346,11 @@ main .main_container .cards .cards_carrousel_container .cards_carrousel .cards_c
   -o-object-fit: cover;
      object-fit: cover;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+  filter: brightness(0.9);
+  transition: filter 0.3s ease-out;
+}
+main .main_container .cards .cards_carrousel_container .cards_carrousel .cards_container img:hover {
+  filter: initial;
 }
 main .main_container .cards .cards_carrousel_container .cards_carrousel .cards_container .cards_content {
   padding: 0 1rem;
@@ -436,13 +438,14 @@ a.tcb_btn_caroussel_right {
   a.tcb_btn_caroussel_right {
     transform: translate(0%, -50%) rotate(90deg);
   }
-  main .cards .cards_container {
+  main .main_container .cards .cards_carrousel_container .cards_carrousel .cards_container {
     flex-direction: column;
   }
-  main .cards .cards_container img {
+  main .main_container .cards .cards_carrousel_container .cards_carrousel .cards_container img {
     width: 100%;
+    aspect-ratio: 16/8;
   }
-  main .cards .cards_container .cards_content {
+  main .main_container .cards .cards_carrousel_container .cards_carrousel .cards_container .cards_content {
     width: 100%;
     padding: 1rem;
   }

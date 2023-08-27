@@ -1,5 +1,7 @@
 @import '../reset.css';
 
+// ! source : Mieux organiser ses fichiers CSS avec SASS
+// ! https://front-back.com/mieux-organiser-ses-fichiers-css-avec-sass/
 
 :root {
     --container-width: 1124px;
@@ -25,8 +27,6 @@ body {
 }
 
 
-
-//@import './login.scss';
 @import './login/login.scss';
 @import './register/register.scss';
 @import './recipes/recipes.scss';
