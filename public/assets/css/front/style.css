@@ -20,24 +20,24 @@ body {
   min-height: 100vh;
 }
 
-form[action="/login"], form[action^="/user/show/"] {
+form[name=login_form], form[name=user_show_form] {
   width: 100%;
   max-width: 480px;
   margin: auto;
   font-size: 1.3em;
   color: var(--main-text-color);
 }
-form[action="/login"] .info, form[action^="/user/show/"] .info {
+form[name=login_form] .info, form[name=user_show_form] .info {
   color: var(#555);
   font-size: 0.7em;
 }
-form[action="/login"] .page_title_container, form[action^="/user/show/"] .page_title_container {
+form[name=login_form] .page_title_container, form[name=user_show_form] .page_title_container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 2rem;
 }
-form[action="/login"] .page_title_container > a, form[action^="/user/show/"] .page_title_container > a {
+form[name=login_form] .page_title_container > a, form[name=user_show_form] .page_title_container > a {
   width: 50%;
   text-align: center;
   color: var(--main-text-color);
@@ -45,35 +45,35 @@ form[action="/login"] .page_title_container > a, form[action^="/user/show/"] .pa
   font-weight: 500;
   transition: 0.2s;
 }
-form[action="/login"] .page_title_container > a:visited, form[action^="/user/show/"] .page_title_container > a:visited {
+form[name=login_form] .page_title_container > a:visited, form[name=user_show_form] .page_title_container > a:visited {
   color: var(--main-text-color);
 }
-form[action="/login"] .page_title_container > a.isDisabled, form[action^="/user/show/"] .page_title_container > a.isDisabled {
+form[name=login_form] .page_title_container > a.isDisabled, form[name=user_show_form] .page_title_container > a.isDisabled {
   color: currentColor;
   opacity: 0.5;
   font-weight: normal;
 }
-form[action="/login"] .page_title_container > a:hover, form[action^="/user/show/"] .page_title_container > a:hover {
+form[name=login_form] .page_title_container > a:hover, form[name=user_show_form] .page_title_container > a:hover {
   opacity: initial;
   color: var(--main-text-color);
   font-weight: 600;
 }
-form[action="/login"] label,
-form[action="/login"] input, form[action^="/user/show/"] label,
-form[action^="/user/show/"] input {
+form[name=login_form] label,
+form[name=login_form] input, form[name=user_show_form] label,
+form[name=user_show_form] input {
   display: block;
 }
-form[action="/login"] label,
-form[action="/login"] .page_title_container, form[action^="/user/show/"] label,
-form[action^="/user/show/"] .page_title_container {
+form[name=login_form] label,
+form[name=login_form] .page_title_container, form[name=user_show_form] label,
+form[name=user_show_form] .page_title_container {
   width: 100%;
   margin-top: 1.5em;
 }
-form[action="/login"] label, form[action^="/user/show/"] label {
+form[name=login_form] label, form[name=user_show_form] label {
   font-size: 1em;
   font-weight: bold;
 }
-form[action="/login"] input, form[action^="/user/show/"] input {
+form[name=login_form] input, form[name=user_show_form] input {
   border: none;
   border-bottom: 1px solid #ddd;
   padding: 0.3em 0;
@@ -82,10 +82,10 @@ form[action="/login"] input, form[action^="/user/show/"] input {
   width: 100%;
   background-color: var(--secondary-color);
 }
-form[action="/login"] input:focus, form[action^="/user/show/"] input:focus {
+form[name=login_form] input:focus, form[name=user_show_form] input:focus {
   outline: none;
 }
-form[action="/login"] button, form[action^="/user/show/"] button {
+form[name=login_form] button, form[name=user_show_form] button {
   background-color: var(--main-color);
   color: white;
   padding: 0.5em;
@@ -97,7 +97,7 @@ form[action="/login"] button, form[action^="/user/show/"] button {
   cursor: pointer;
   transition: 0.2s;
 }
-form[action="/login"] button:hover, form[action^="/user/show/"] button:hover {
+form[name=login_form] button:hover, form[name=user_show_form] button:hover {
   background-color: var(--secondary-color);
   color: var(--main-color);
 }
@@ -502,8 +502,8 @@ header .header_container .right_bar_container a.login_btn {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-shrink: 0;
   position: relative;
-  font-size: 1.5rem;
   color: white;
   width: 2.5rem;
   height: 2.5rem;
@@ -525,6 +525,8 @@ header .header_container .right_bar_container a.login_btn::after {
 header .header_container .right_bar_container a.login_btn img {
   -o-object-fit: cover;
      object-fit: cover;
+  width: 100%;
+  height: 100%;
 }
 header .header_container .right_bar_container .search_container {
   display: flex;
