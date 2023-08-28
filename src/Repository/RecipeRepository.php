@@ -56,18 +56,21 @@ class RecipeRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    // /**
-    //  * @Route("/recipes/{userId}", name="tcb_front_user_recipes")
-    //  */
-    // public function getUserRecipes(RecipeRepository $recipeRepository, User $user): Response
-    // {
-    //     $recipes = $recipeRepository->findBy(['user' => $user]);
+    /**
+    * @return array[] Returns an array of recipe objects
+    * @param string|null $string to find in recipes
+    */
 
-    // return $this->render('Front/recipe/user_recipes.html.twig', [
-    //     'recipes' => $recipes,
-    // ]);
-    // }
-
+   public function searchRecipe(?string $search = null): ?array
+   {
+       return $this->createQueryBuilder('m')
+            ->orderBy("m.title","ASC")
+            ->where("m.title LIKE :search")
+            ->setParameter("search", "%$search%")
+            ->getQuery()
+            ->getResult()
+       ;
+   }
 
 
     //    /**
