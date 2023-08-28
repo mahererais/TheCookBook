@@ -68,7 +68,8 @@
 
 | URL | Méthode HTTP | Controller | Méthode | Titre | Contenu | Commentaire | Name|
 |--|--|--|--|--|--|--|--|
-| `/admin/users` | `GET` | `UserController` | `getAll` | Liste des utilisateurs | list of users | | tcb_admin_user_getAll
+| `/admin/users` | `GET` | `UserController` | `getAll` | Liste des utilisateurs | the profil of the user | | tcb_admin_user_show
+| `/admin/user/{id}` | `GET` | `UserController` | `show` | Voir un utilisateur | list of users | | tcb_admin_user_getAll
 | `/admin/user/delete/{id}` | `POST` | `UserController` | `delete` | # | suppression of one user |  | tcb_admin_user_delete
 
 
