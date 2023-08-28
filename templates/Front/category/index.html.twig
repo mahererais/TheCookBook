@@ -1,171 +1,37 @@
 {% extends 'Front/front_base.html.twig' %}
 
-
-{% block title %}Categories!{% endblock %}
+{% block title %}categorie
+{% endblock %}
 
 {% block body %}
 <main>
-
- <div class="main_container">
-
-
-            
+    <div class="main_container">
 
 
+    <div class="titles_container">
+		<h1 class="page_title">The Cook Book</h1>
+		<p class="page_subTitle">Phrase définissant le site</p>
+	</div>
+        
 
+        <div class="carousel-container">
+            {% for category in categories %}
+            <div class="cards">
+            <img src="http://img.freepik.com/photos-premium/mariner-mettre-du-poivre-conserve_75924-11719.jpg">
 
-<main>
-
- <div class="main_container">
-
-
-              <div class="titles_container">
-                <h1 class="page_title">The Cook Book</h1>
-                <p class="page_subTitle">Phrase définissant le site</p>
-            </div>
-
-
-            
-              <div class="titles_container">
-                <h1 class="page_title">Categories</h1>
+                <h2>{{ category.title }}</h2>
+                
 
                 
+                <div class="centered-container">
+									<a class="tcb_btn" href="{{ path('tcb_front_category_show', { 'slug' : category.slug}) }}">Voir la recette</a>
+
+                </div>
             </div>
-
-
-
-     <style>
-    .centered-container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-</style>
-
- <div class="carousel-container">
-        <div class="cards">
-                    <img src="https://img.freepik.com/vecteurs-libre/concept-recette-empanada_52683-39138.jpg?w=996&t=st=1692723678~exp=1692724278~hmac=af83f1351d7eca29def8b3dcf1498933eb21ec4edb3cb1dfbb84f94343647ea1"
-             alt="">
-            <h2>Categorie 1</h2>
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo eaque
-                            iusto odio deleniti quam obcaecati! Consequuntur aperiam enim molestiae autem dignissimos
-                            perferendis quis, atque, sint officiis adipisci quidem laboriosam soluta.</p>                 <div class="centered-container">
-   
-    <a href="/recipes" class="tcb_btn">Selectionner</a>
-</div>
+            {% endfor %}
         </div>
-
-
-     <style>
-    .centered-container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-</style>
-
-        <div class="cards">
-                    <img src="https://img.freepik.com/photos-gratuite/mise-plat-ingredients-alimentaires-legumes_23-2148834702.jpg?w=1060&t=st=1692723903~exp=1692724503~hmac=97eeaa2f0b70a5cf903b8eafeef0212c8b9e515294371302aa8ceb1e29cac60e"
-             alt="">
-            <h2>Categorie 2</h2>
-<a>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo eaque
-                            iusto odio deleniti quam obcaecati! Consequuntur aperiam enim molestiae autem dignissimos
-                            perferendis quis, atque, sint officiis adipisci quidem laboriosam soluta.</p>                   <div class="centered-container">
-    <a href="/recipes" class="tcb_btn">Selectionner</a>
-</div>
-        </div>
-
-        
-     <style>
-    .centered-container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-</style>
-
-        <div class="cards">
-                    <img src="https://img.freepik.com/vecteurs-libre/concept-recette-empanada_52683-39138.jpg?w=996&t=st=1692723678~exp=1692724278~hmac=af83f1351d7eca29def8b3dcf1498933eb21ec4edb3cb1dfbb84f94343647ea1"
-             alt="">
-            <h2>Categorie 3</h2>
-<a>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo eaque
-                            iusto odio deleniti quam obcaecati! Consequuntur aperiam enim molestiae autem dignissimos
-                            perferendis quis, atque, sint officiis adipisci quidem laboriosam soluta.</p>
-
-
-                    <div class="centered-container">
-    <div class="centered-block">
-            <a href="/recipes" class="tcb_btn">Selectionner</a>
-</div>
-        </div>
-
 
       
-</div>
-        </div>
-<style>
-   
-    .centered-container {
-        text-align: center;
-    }
-
-    .heart_icon i {
-        color: red;
-    }
-
-    .tcb_btn {
-        display: inline-block;
-        padding: 10px 20px;
-        background-color: #007bff;
-        color: #ffffff;
-        border: none;
-        border-radius: 5px;
-        text-decoration: none;
-        transition: background-color 0.3s;
-    }
-
-    .tcb_btn:hover {
-        background-color: #0056b3;
-    }
-</style>
-
-
-        <div class="cards">
-                    <img src="https://img.freepik.com/photos-gratuite/mise-plat-ingredients-alimentaires-legumes_23-2148834702.jpg?w=1060&t=st=1692723903~exp=1692724503~hmac=97eeaa2f0b70a5cf903b8eafeef0212c8b9e515294371302aa8ceb1e29cac60e"
-             alt="">
-            <h2>Categorie 4</h2>
-<a>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo eaque
-                            iusto odio deleniti quam obcaecati! Consequuntur aperiam enim molestiae autem dignissimos
-                            perferendis quis, atque, sint officiis adipisci quidem laboriosam soluta.</p>           
-
-        <div class="centered-container">
-    
-    <a href="/recipes" class="tcb_btn">Selectionner</a>
-</div>
     </div>
-
-
-
-        </div>
-    </div>
-
-
-
-
-
-
-
-</div>
-
-</main>
-
-
-
-
-
-
-
-</div>
-
 </main>
 {% endblock %}
