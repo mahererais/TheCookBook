@@ -36,9 +36,6 @@ main {
         .cards {
 
             --padding: 1.5rem;
-            &.homepage {
-                padding-inline: 0!important;
-            }
 
             position: relative;
             padding: var(--padding);
@@ -78,7 +75,7 @@ main {
 
                     .cards_container {
                         display: flex;
-                        padding-inline: 1.5rem;
+                        //padding-inline: 1.5rem;
                         //opacity: 0;
                         --margin-top: 1rem;
                         flex-wrap: wrap;
@@ -101,7 +98,7 @@ main {
                             border: 2px solid white;
                             aspect-ratio: 16/9;
                             object-fit: cover;
-                            box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+                            //box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
 
                             filter: brightness(0.9);
                             transition: filter 0.3s ease-out;
