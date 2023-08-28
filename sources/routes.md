@@ -37,6 +37,7 @@
 | `/user/{id}/{slug}` | `GET` | `UserController` | `show` | Profil de <user_name> | Profile | {slug} Username of a professionnal user who allows people to see his profile | tcb_front_user_show |
 | `/user/update/{id}` | `GET` | `UserController` | `update` | Profil de <user_name> | Profile |  {id} user id, {slug} Username | tcb_front_user_show |
 | `/user/update/{id}` | `POST` | `UserController` | `update` | Profil de <user_name> | Profile | {slug} Username | tcb_front_user_show |
+| `/user/pdf/{id}` | `GET` | `MainController` | `PdfAction` | créer un PDF | PDF of a given recipe |  | tcb_front_main_pdf |
 
 - ### Favorites
 
