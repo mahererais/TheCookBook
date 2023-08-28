@@ -48,13 +48,26 @@ class RecipeRepository extends ServiceEntityRepository
     public function findRandomRecipesByCategory(Category $category, int $limit)
     {
         return $this->createQueryBuilder('r')
-        ->andWhere('r.category = :category')
-        ->setParameter('category', $category)
-        ->orderBy('r.id', 'ASC') // Change the order to 'ASC' to ensure cross-database compatibility
-        ->setMaxResults($limit)
-        ->getQuery()
-        ->getResult();
+            ->andWhere('r.category = :category')
+            ->setParameter('category', $category)
+            ->orderBy('r.id', 'ASC') // Change the order to 'ASC' to ensure cross-database compatibility
+            ->setMaxResults($limit)
+            ->getQuery()
+            ->getResult();
     }
+
+    // /**
+    //  * @Route("/recipes/{userId}", name="tcb_front_user_recipes")
+    //  */
+    // public function getUserRecipes(RecipeRepository $recipeRepository, User $user): Response
+    // {
+    //     $recipes = $recipeRepository->findBy(['user' => $user]);
+
+    // return $this->render('Front/recipe/user_recipes.html.twig', [
+    //     'recipes' => $recipes,
+    // ]);
+    // }
+
 
 
     //    /**

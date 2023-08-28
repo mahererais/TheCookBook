@@ -52,10 +52,10 @@ class Cards {
     // ! source:  https://www.youtube.com/watch?v=M2c37drnnOA
     observeCarrouselContainerResize(elementToObseve) {
         const observer = new ResizeObserver(entries => {
-            console.log("coucou");
             const element = entries[0];
             this.cardWidth = element.contentRect.width;
             this.showCurrentRecipe();
+            this.disableCardCarrouselTransition();
         })
 
         observer.observe(elementToObseve);
@@ -97,7 +97,23 @@ class Cards {
      * display on screen current recipe choose
      */
     showCurrentRecipe() {
-        this.cardsList[this.currentSelectedCardIndex].parentElement.style.transform = `translateX(-${this.currentSelectedCardIndex * this.cardWidth}px)`;
+        const currentCardCarrousel = this.cardsList[this.currentSelectedCardIndex].parentElement;     
+        currentCardCarrousel.style.transform = `translateX(-${this.currentSelectedCardIndex * this.cardWidth}px)`;
+    }
+    
+    /**
+     * disable card carrousel transition
+     * function called when user resize screen (chrome/firefox window) 
+     */
+    disableCardCarrouselTransition() {
+        const currentCardCarrousel = this.cardsList[this.currentSelectedCardIndex].parentElement; 
+        currentCardCarrousel.style.transitionDuration = '0.0s';
+        setTimeout(() => {
+            // remove transitionDuration from style 
+            // i.e: transitionDuration property from .css get the priority 
+            currentCardCarrousel.style.transitionDuration = '';
+        }, 350);
+        
     }
 
     /**
