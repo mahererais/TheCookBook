@@ -1,6 +1,6 @@
 // ! source:  https://writecode.fr/tutoriel/sass-limportation
 
-form[action="/login"] {
+form[action="/login"], form[action^="/user/show/"] {
 
     width: 100%;
     max-width: 480px;

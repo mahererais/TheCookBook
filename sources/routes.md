@@ -14,7 +14,7 @@
 | URL | Méthode HTTP | Controller | Méthode | Titre | Contenu | Commentaire | Name |
 |--|--|--|--|--|--|--|--|
 | `/categories` | `GET` | `CategoryController` | `getAll` | Categories | show all categories | - | tcb_front_category_getAll |
-| `/category/{id}/{slug}` | `GET` | `CategoryController` | `show` | Recette - "category-name" | show all recipes by category id | - | tcb_front_category_show |
+| `/category/{slug}` | `GET` | `CategoryController` | `show` | Recette - "category-name" | show all recipes by category id | - | tcb_front_category_show |
 
 - ### Security
 
@@ -34,10 +34,10 @@
 | URL | Méthode HTTP | Controller | Méthode | Titre | Contenu | Commentaire | Name|
 |--|--|--|--|--|--|--|--|
 | `/users` | `GET` | `UserController` | `getAll` | Liste des chefs | List of the professionnal user who allow people to see their profile |  | tcb_front_user_getAll |
-| `/user/{id}/{slug}` | `GET` | `UserController` | `show` | Profil de <user_name> | Profile | {slug} Username of a professionnal user who allows people to see his profile | tcb_front_user_show |
-| `/user/update/{id}` | `GET` | `UserController` | `update` | Profil de <user_name> | Profile |  {id} user id, {slug} Username | tcb_front_user_show |
-| `/user/update/{id}` | `POST` | `UserController` | `update` | Profil de <user_name> | Profile | {slug} Username | tcb_front_user_show |
+| `/user/{slug}` | `GET` | `UserController` | `show` | Profil de <user_name> | Profile | {slug} Username of a professionnal user who allows people to see his profile | tcb_front_user_show |
+| `/user/update/{id}` | `GET` | `UserController` | `update` | Profil de <user_name> | Profile |  {id} user id, {slug} Username | tcb_front_user_update |
 | `/user/pdf/{id}` | `GET` | `MainController` | `PdfAction` | créer un PDF | PDF of a given recipe |  | tcb_front_main_pdf |
+
 
 - ### Favorites
 

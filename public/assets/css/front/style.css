@@ -20,24 +20,24 @@ body {
   min-height: 100vh;
 }
 
-form[action="/login"] {
+form[action="/login"], form[action^="/user/show/"] {
   width: 100%;
   max-width: 480px;
   margin: auto;
   font-size: 1.3em;
   color: var(--main-text-color);
 }
-form[action="/login"] .info {
+form[action="/login"] .info, form[action^="/user/show/"] .info {
   color: var(#555);
   font-size: 0.7em;
 }
-form[action="/login"] .page_title_container {
+form[action="/login"] .page_title_container, form[action^="/user/show/"] .page_title_container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 2rem;
 }
-form[action="/login"] .page_title_container > a {
+form[action="/login"] .page_title_container > a, form[action^="/user/show/"] .page_title_container > a {
   width: 50%;
   text-align: center;
   color: var(--main-text-color);
@@ -45,33 +45,35 @@ form[action="/login"] .page_title_container > a {
   font-weight: 500;
   transition: 0.2s;
 }
-form[action="/login"] .page_title_container > a:visited {
+form[action="/login"] .page_title_container > a:visited, form[action^="/user/show/"] .page_title_container > a:visited {
   color: var(--main-text-color);
 }
-form[action="/login"] .page_title_container > a.isDisabled {
+form[action="/login"] .page_title_container > a.isDisabled, form[action^="/user/show/"] .page_title_container > a.isDisabled {
   color: currentColor;
   opacity: 0.5;
   font-weight: normal;
 }
-form[action="/login"] .page_title_container > a:hover {
+form[action="/login"] .page_title_container > a:hover, form[action^="/user/show/"] .page_title_container > a:hover {
   opacity: initial;
   color: var(--main-text-color);
   font-weight: 600;
 }
 form[action="/login"] label,
-form[action="/login"] input {
+form[action="/login"] input, form[action^="/user/show/"] label,
+form[action^="/user/show/"] input {
   display: block;
 }
 form[action="/login"] label,
-form[action="/login"] .page_title_container {
+form[action="/login"] .page_title_container, form[action^="/user/show/"] label,
+form[action^="/user/show/"] .page_title_container {
   width: 100%;
   margin-top: 1.5em;
 }
-form[action="/login"] label {
+form[action="/login"] label, form[action^="/user/show/"] label {
   font-size: 1em;
   font-weight: bold;
 }
-form[action="/login"] input {
+form[action="/login"] input, form[action^="/user/show/"] input {
   border: none;
   border-bottom: 1px solid #ddd;
   padding: 0.3em 0;
@@ -80,10 +82,10 @@ form[action="/login"] input {
   width: 100%;
   background-color: var(--secondary-color);
 }
-form[action="/login"] input:focus {
+form[action="/login"] input:focus, form[action^="/user/show/"] input:focus {
   outline: none;
 }
-form[action="/login"] button {
+form[action="/login"] button, form[action^="/user/show/"] button {
   background-color: var(--main-color);
   color: white;
   padding: 0.5em;
@@ -95,7 +97,7 @@ form[action="/login"] button {
   cursor: pointer;
   transition: 0.2s;
 }
-form[action="/login"] button:hover {
+form[action="/login"] button:hover, form[action^="/user/show/"] button:hover {
   background-color: var(--secondary-color);
   color: var(--main-color);
 }
@@ -495,6 +497,34 @@ header .header_container .right_bar_container {
 header .header_container .right_bar_container .fa-user {
   color: white;
   font-size: 1.5rem;
+}
+header .header_container .right_bar_container a.login_btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  font-size: 1.5rem;
+  color: white;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 999px;
+  overflow: hidden;
+  transition: 0.2s;
+}
+header .header_container .right_bar_container a.login_btn:hover {
+  color: var(--main-text-color);
+}
+header .header_container .right_bar_container a.login_btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 3px black;
+  border: 2px solid white;
+  border-radius: 999px;
+}
+header .header_container .right_bar_container a.login_btn img {
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 header .header_container .right_bar_container .search_container {
   display: flex;

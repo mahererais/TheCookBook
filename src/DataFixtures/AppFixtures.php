@@ -30,6 +30,28 @@ class AppFixtures extends Fixture
         $faker = Factory::create('fr_FR');
 
 
+        // = ============ USER handler
+        
+        $userList = [
+            "admin" => "ROLE_ADMIN",
+            "maher" => "ROLE_USER", 
+            "manuella" => "ROLE_USER", 
+            "marie" => "ROLE_USER", 
+            "oumar" => "", 
+            "simon" => "ROLE_USER"];
+        foreach ($userList as $userName => $userRole) {
+            
+            $user = new User();
+            $user->setEmail("$userName@gmail.com");
+            $user->setPassword($this->passwordHasher->hashPassword($user, 123456));
+            $user->setRoles([$userRole]);
+            $user->setFirstname($userName);
+            $user->setSlug($this->slugger->slug($user->getFirstname()));
+
+            $manager->persist($user);
+        }
+
+
         // = ============ CATEGORY handler
 
         $categoryList = ["Apéritifs", "Entrées", "Plats", "Desserts"];
