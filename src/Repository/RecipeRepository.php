@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Category;
 use App\Entity\Recipe;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -48,12 +49,36 @@ class RecipeRepository extends ServiceEntityRepository
     public function findRandomRecipesByCategory(Category $category, int $limit)
     {
         return $this->createQueryBuilder('r')
-        ->andWhere('r.category = :category')
-        ->setParameter('category', $category)
-        ->orderBy('r.id', 'ASC') // Change the order to 'ASC' to ensure cross-database compatibility
-        ->setMaxResults($limit)
-        ->getQuery()
-        ->getResult();
+            ->andWhere('r.category = :category')
+            ->setParameter('category', $category)
+            ->orderBy('r.id', 'ASC') // Change the order to 'ASC' to ensure cross-database compatibility
+            ->setMaxResults($limit)
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+    * @return array[] Returns an array of recipe objects
+    * @param string|null $string to find in recipes
+    */
+
+   public function searchRecipe(?string $search = null): ?array
+   {
+       return $this->createQueryBuilder('m')
+            ->orderBy("m.title","ASC")
+            ->where("m.title LIKE :search")
+            ->setParameter("search", "%$search%")
+            ->getQuery()
+            ->getResult()
+       ;
+   }
+    public function findByUser(User $user)
+    {
+        return $this->createQueryBuilder('r')
+            ->andWhere('r.user = :user')
+            ->setParameter('user', $user)
+            ->getQuery()
+            ->getResult();
     }
 
 

@@ -30,27 +30,6 @@ class AppFixtures extends Fixture
         $faker = Factory::create('fr_FR');
 
 
-        // = ============ USER handler
-        
-        $userList = [
-            "admin" => "ROLE_ADMIN",
-            "maher" => "ROLE_USER", 
-            "manuella" => "ROLE_USER", 
-            "marie" => "ROLE_USER", 
-            "oumar" => "", 
-            "simon" => "ROLE_USER"];
-        foreach ($userList as $userName => $userRole) {
-            
-            $user = new User();
-            $user->setEmail("$userName@gmail.com");
-            $user->setPassword($this->passwordHasher->hashPassword($user, 123456));
-            $user->setRoles([$userRole]);
-            $user->setFirstname($userName);
-
-            $manager->persist($user);
-        }
-
-
         // = ============ CATEGORY handler
 
         $categoryList = ["Apéritifs", "Entrées", "Plats", "Desserts"];
@@ -68,33 +47,104 @@ class AppFixtures extends Fixture
             $manager->persist($category);
         }
 
+        // = ============ USER handler
 
-        // = ============ RECIPE handler
+        $userList = [
+            "admin" => "ROLE_ADMIN",
+            "maher" => "ROLE_USER",
+            "manuella" => "ROLE_USER",
+            "marie" => "ROLE_USER",
+            "oumar" => "",
+            "simon" => "ROLE_USER"
+        ];
+        foreach ($userList as $userName => $userRole) {
 
-        for ($i = 1; $i <= 20; $i++) {
-            $recipe = new Recipe();
+            $user = new User();
+            $user->setEmail("$userName@gmail.com");
+            $user->setPassword($this->passwordHasher->hashPassword($user, 123456));
+            $user->setRoles([$userRole]);
+            $user->setFirstname($userName);
+            $user->setLastname($faker->lastName);
+            $user->setPicture($faker->imageUrl(450, 300, "", true));
+            $user->setSpeciality($faker->sentence());
 
-            $recipe->setTitle($faker->text(20));
-            $recipe->setPicture($faker->imageUrl(450, 300, "", true));
-            $recipe->setSteps($faker->paragraphs(4));
-            $recipe->setCreatedAt(new \DateTimeImmutable($faker->date()));
-            $recipe->setDuration($faker->randomNumber(2));
-            $recipe->setIngredients($faker->words(5));
+            // randomize either professional or amateur cooker
+            $randomExperience = mt_rand(0, 1);
+            if ($randomExperience) {
+                $user->setExperience("professional");
+            } else {
+                $user->setExperience("amateur");
+            };
 
+            $user->setPresentation($faker->realText($maxNbChars = 200));
 
             // randomize either public or private status
-            $random = mt_rand(0, 1);
-            if ($random) {
-                $recipe->setStatus("public");
+            $randomStatusUser = mt_rand(0, 1);
+            if ($randomStatusUser) {
+                $user->setStatus("public");
             } else {
-                $recipe->setStatus("privé");
+                $user->setStatus("privé");
             }
 
-            $recipe->setSlug($this->slugger->slug($recipe->getTitle()));
-            $recipe->setCategory($categories[array_rand($categories)]);
+            // = ============ RECIPE handler
 
-            $manager->persist($recipe);
+            for ($i = 1; $i <= 20; $i++) {
+                $recipe = new Recipe();
+
+                $recipe->setTitle($faker->text(20));
+                $recipe->setPicture($faker->imageUrl(450, 300, "", true));
+                $recipe->setSteps($faker->paragraphs(4));
+                $recipe->setCreatedAt(new \DateTimeImmutable($faker->date()));
+                $recipe->setDuration($faker->randomNumber(2));
+                $recipe->setIngredients($faker->words(5));
+
+                // randomize either true or false of the Ebook boolean
+                $randomEbook = mt_rand(0, 1);
+                if ($randomEbook) {
+                    $recipe->setEbook("true");
+                } else {
+                    $recipe->setEbook("false");
+                }
+
+                // randomize either public or private status
+                $randomStatus = mt_rand(0, 1);
+                if ($randomStatus) {
+                    $recipe->setStatus("public");
+                } else {
+                    $recipe->setStatus("privé");
+                }
+
+                $recipe->setSlug($this->slugger->slug($recipe->getTitle()));
+                $recipe->setCategory($categories[array_rand($categories)]);
+                
+
+                // I link the user to the recipe
+                $recipe->setUser($user);
+
+                $manager->persist($recipe);
+            }
+
+            $manager->persist($user);
         }
+
+        // $users = [];
+
+        // foreach ($userList as $userName => $userRole) {
+        //     // ...
+        //     $users[$userName] = $user;
+        //     $manager->persist($user);
+        // }
+
+        // // ...
+
+        // foreach ($users as $userName => $user) {
+        //     for ($i = 1; $i <= 5; $i++) {
+        //         $recipe = new Recipe();
+        //         $recipe->setUser($user);
+        //         // ...
+        //         $manager->persist($recipe);
+        //     }
+        // }
 
         $manager->flush();
     }
