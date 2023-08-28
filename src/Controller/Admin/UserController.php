@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\User;
+use App\Repository\RecipeRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -26,12 +27,14 @@ class UserController extends AbstractController
     /**
      * @Route("/user/{id}", name="tcb_admin_user_show")
      */
-    public function show(int $id, UserRepository $userRepository): Response
+    public function show(int $id, UserRepository $userRepository, RecipeRepository $recipeRepository): Response
     {
         $user = $userRepository->find($id);
+        $recipes = $recipeRepository->findByUser($user);
 
         return $this->render('Admin/user/show.html.twig', [
             'user' => $user,
+            'recipes' => $recipes,
         ]);
     }
 
