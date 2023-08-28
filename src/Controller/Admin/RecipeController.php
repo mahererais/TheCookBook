@@ -71,7 +71,7 @@ class RecipeController extends AbstractController
     
     /**
      * 
-     * @Route("/recipe/update/{id}", name="tcb_admin_recipe_update", requirements={"id" = "\d+"})
+     * @Route("/admin/recipe/update/{id}", name="tcb_admin_recipe_update", requirements={"id" = "\d+"})
      * 
      */
     public function update(Request $request, EntityManagerInterface $entityManager, Recipe $recipe, int $id): Response
