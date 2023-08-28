@@ -1,21 +1,21 @@
-form[action="/login"] {
+form[action="/login"], form[action^="/user/show/"] {
   width: 100%;
   max-width: 480px;
   margin: auto;
   font-size: 1.3em;
   color: var(--main-text-color);
 }
-form[action="/login"] .info {
+form[action="/login"] .info, form[action^="/user/show/"] .info {
   color: var(#555);
   font-size: 0.7em;
 }
-form[action="/login"] .page_title_container {
+form[action="/login"] .page_title_container, form[action^="/user/show/"] .page_title_container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 2rem;
 }
-form[action="/login"] .page_title_container > a {
+form[action="/login"] .page_title_container > a, form[action^="/user/show/"] .page_title_container > a {
   width: 50%;
   text-align: center;
   color: var(--main-text-color);
@@ -23,33 +23,35 @@ form[action="/login"] .page_title_container > a {
   font-weight: 500;
   transition: 0.2s;
 }
-form[action="/login"] .page_title_container > a:visited {
+form[action="/login"] .page_title_container > a:visited, form[action^="/user/show/"] .page_title_container > a:visited {
   color: var(--main-text-color);
 }
-form[action="/login"] .page_title_container > a.isDisabled {
+form[action="/login"] .page_title_container > a.isDisabled, form[action^="/user/show/"] .page_title_container > a.isDisabled {
   color: currentColor;
   opacity: 0.5;
   font-weight: normal;
 }
-form[action="/login"] .page_title_container > a:hover {
+form[action="/login"] .page_title_container > a:hover, form[action^="/user/show/"] .page_title_container > a:hover {
   opacity: initial;
   color: var(--main-text-color);
   font-weight: 600;
 }
 form[action="/login"] label,
-form[action="/login"] input {
+form[action="/login"] input, form[action^="/user/show/"] label,
+form[action^="/user/show/"] input {
   display: block;
 }
 form[action="/login"] label,
-form[action="/login"] .page_title_container {
+form[action="/login"] .page_title_container, form[action^="/user/show/"] label,
+form[action^="/user/show/"] .page_title_container {
   width: 100%;
   margin-top: 1.5em;
 }
-form[action="/login"] label {
+form[action="/login"] label, form[action^="/user/show/"] label {
   font-size: 1em;
   font-weight: bold;
 }
-form[action="/login"] input {
+form[action="/login"] input, form[action^="/user/show/"] input {
   border: none;
   border-bottom: 1px solid #ddd;
   padding: 0.3em 0;
@@ -58,10 +60,10 @@ form[action="/login"] input {
   width: 100%;
   background-color: var(--secondary-color);
 }
-form[action="/login"] input:focus {
+form[action="/login"] input:focus, form[action^="/user/show/"] input:focus {
   outline: none;
 }
-form[action="/login"] button {
+form[action="/login"] button, form[action^="/user/show/"] button {
   background-color: var(--main-color);
   color: white;
   padding: 0.5em;
@@ -73,7 +75,7 @@ form[action="/login"] button {
   cursor: pointer;
   transition: 0.2s;
 }
-form[action="/login"] button:hover {
+form[action="/login"] button:hover, form[action^="/user/show/"] button:hover {
   background-color: var(--secondary-color);
   color: var(--main-color);
 }/*# sourceMappingURL=login.css.map */

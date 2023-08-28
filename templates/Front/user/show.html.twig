@@ -1,0 +1,91 @@
+{% extends 'Front/front_base.html.twig' %}
+
+{% block title %}profil de
+	{{user.lastname}}
+{% endblock %}
+
+{% block body %}
+
+
+    <h1>Mon Profil</h1>
+	<div class="user_picture_container">
+		<img src="{{user.picture}}" alt="profil avatar">
+		<a href="#" class="user_picture_update tcb_btn">Modifier</a>
+		<div>
+			<label for="lastname">Nom</label>
+            <p>{{user.lastname}}</p>
+			<label for="firstname">Prénom</label>
+			<p>{{user.firstname}}</p>
+		</div>
+	</div>
+
+	<label for="email">Email</label>
+    <p>{{user.email}}</p>
+	
+
+	<label for="lastname">Nom</label>
+	<input type="text" id="lastname" placeholder="Entrez votre nom" value="{{user.lastname}}" name="lastname">
+
+	<label for="firstname">Email</label>
+	<input type="text" id="firstname" placeholder="Entrez votre prénom" value="{{user.firstname}}" name="firstname">
+
+	<label for="speciality">Spécialité</label>
+	<input type="text" id="speciality" placeholder="Entrez votre spécialité" value="{{user.speciality}}" name="speciality">
+
+
+	<label for="experience">Expérience</label>
+	<select name="experience" id="experience">
+		<option value="Professionnel">Professionnel</option>
+		<option value="Amateur">Amateur</option>
+	</select>
+
+	<label for="password">Spécialité</label>
+	<input type="password" id="password" placeholder="Entrez votre spécialité" value="{# je laisse une valeur vide, je ne peux afficher le mot de passe hasher #}" name="password">
+
+	<label for="status">Status</label>
+	<input type="radio" value="Privé" name="status">
+	<input type="radio" value="Public" name="status">
+
+	<button class="tcb_btn" type="submit">Valider</button>
+
+
+
+
+    {# <form action="/user/show/" class="tcb_padding">
+        <h1>Mon Profil</h1>
+        <div class="user_picture_container">
+            <img src="{{user.picture}}" alt="profil avatar">
+            <a href="#" class="user_picture_update tcb_btn">Modifier</a>
+        </div>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="Entrez votre email" value="{{user.email}}" name="email">
+
+        <label for="lastname">Nom</label>
+        <input type="text" id="lastname" placeholder="Entrez votre nom" value="{{user.lastname}}" name="lastname">
+
+        <label for="firstname">Email</label>
+        <input type="text" id="firstname" placeholder="Entrez votre prénom" value="{{user.firstname}}" name="firstname">
+
+        <label for="speciality">Spécialité</label>
+        <input type="text" id="speciality" placeholder="Entrez votre spécialité" value="{{user.speciality}}" name="speciality">
+
+
+        <label for="experience">Expérience</label>  
+        <select name="experience" id="experience">
+            <option value="Professionnel">Professionnel</option>
+            <option value="Amateur">Amateur</option>
+        </select>  
+
+        <label for="password">Spécialité</label>
+        <input type="password" id="password" placeholder="Entrez votre spécialité" value="{# je laisse une valeur vide, je ne peux afficher le mot de passe hasher #}" name="password">
+
+        <label for="status">Status</label>
+        <input type="radio" value="Privé" name="status">
+        <input type="radio" value="Public" name="status">
+
+        <button class="tcb_btn" type="submit">Valider</button>
+    </form> #}
+
+
+{% endblock %}

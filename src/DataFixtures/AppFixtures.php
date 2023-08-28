@@ -46,6 +46,7 @@ class AppFixtures extends Fixture
             $user->setPassword($this->passwordHasher->hashPassword($user, 123456));
             $user->setRoles([$userRole]);
             $user->setFirstname($userName);
+            $user->setSlug($this->slugger->slug($user->getFirstname()));
 
             $manager->persist($user);
         }

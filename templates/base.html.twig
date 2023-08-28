@@ -48,7 +48,7 @@
 						<div class="right_bar_container">
 
 							{% if is_granted('IS_AUTHENTICATED_FULLY') %}
-								<a class="login_btn" href="#route_page_profile">
+								<a class="login_btn" href="{{path('tcb_front_user_show', {slug: app.user.slug})}}">
 									<img src="{{app.user.picture ?: "https://cdn-icons-png.flaticon.com/512/190/190674.png" }}" alt="avatar du profile utilisateur">
 								</a>
 							{% else %}
