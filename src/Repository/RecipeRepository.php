@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Category;
 use App\Entity\Recipe;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -56,18 +57,14 @@ class RecipeRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    // /**
-    //  * @Route("/recipes/{userId}", name="tcb_front_user_recipes")
-    //  */
-    // public function getUserRecipes(RecipeRepository $recipeRepository, User $user): Response
-    // {
-    //     $recipes = $recipeRepository->findBy(['user' => $user]);
-
-    // return $this->render('Front/recipe/user_recipes.html.twig', [
-    //     'recipes' => $recipes,
-    // ]);
-    // }
-
+    public function findByUser(User $user)
+    {
+        return $this->createQueryBuilder('r')
+            ->andWhere('r.user = :user')
+            ->setParameter('user', $user)
+            ->getQuery()
+            ->getResult();
+    }
 
 
     //    /**

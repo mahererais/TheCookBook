@@ -3,84 +3,106 @@
 {% block body %}
 
 
-		<div class="container">
+	<div class="container">
+		<div>
+			<h1>{{user.firstname}}
+				{{user.lastname}}</h1>
+			<h2>Id :
+				{{user.id}}</h2>
+			<div class="col">
+				<i class="bi ">Email :{{user.email}}</i>
+			</div>
+			<div class="col">
+				<i class="bi ">Statut :{{user.status}}</i>
+			</div>
 			<div>
-				<h1>{{recipe.title}}</h1>
-				<div class="col">
-					<i class="bi bi-tag">{{recipe.category.title}}</i>
-				</div>
-				<div>
-					<img src="{{recipe.picture}}" class="img-fluid rounded border" alt="{{recipe.title}}">
-				</div>
-				<div>
-					<div class="row my-4">
+				<img src="{{user.picture}}" class="img-fluid rounded border" alt="{{user.firstname}}">
+			</div>
+			<div>
+				<div class="row my-4">
 
-						<div class="col">
-							<i class="bi bi-alarm">Temps de préparation :
-								{{recipe.duration}}
-								mn</i>
-						</div>
+					<div class="col">
+						<i class="bi bi-alarm">Mot de passe :
+							{{user.password}}
+							mn</i>
+					</div>
 
-						<div class="list-group my-4">
-							<h3>Ingrédients :
-							</h3>
-							<ul class="list-group-flush">
-								{% for ingredient in recipe.ingredients %}
-									<li class="list-group-item">{{ ingredient }}</li>
-								{% endfor %}
-							</ul>
-						</div>
+					<div class="list-group my-4">
+						<h3>Rôle :
+						</h3>
+						<ul class="list-group-flush">
+							{% for role in user.roles %}
+								<li class="list-group-item">{{ role }}</li>
+							{% endfor %}
+						</ul>
 					</div>
 				</div>
 			</div>
-			<div>
-				<h3>Etapes de préparation :</h3>
+		</div>
+		<div>
+			<h4>
+				Spécialité :{{user.speciality}}</h4>
+			<h4>
+				Expérience :{{user.experience}}</h4>
+		</div>
 
-				{% for step in recipe.steps %}
-					<p>{{step}}</p>
-				{% endfor %}
 
-			</div>
-			<div class="col">
-				<i class="bi bi-calendar3">Publiée le
-					{{recipe.createdAt|date("d/m/Y")}}</i>
+	</div>
+	<div class="user_container tcb_padding container ">
+
+		<div class="text-center">
+			<h1>Les recettes de
+				{{user.firstname}}
+				{{user.lastname}}
+				:</h1>
+		</div>
+
+		<div class="container-fluid">
+			<div class="table-responsive mx-auto">
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th class="col-2">Titre</th>
+							<th>Categorie</th>
+							<th>Ingrédients</th>
+
+						</tr>
+					</thead>
+					<tbody>
+						{% for recipe in recipes %}
+							<tr>
+								<td>{{ recipe.id }}</td>
+								<td>{{ recipe.title }}</td>
+								<td>{{ recipe.category.title }}</td>
+								<!-- Assuming category has a 'title' property -->
+								<td>
+									<ul>
+										{% for ingredient in recipe.ingredients %}
+											<li>{{ ingredient }}</li>
+										{% endfor %}
+									</ul>
+								</td>
+								<td>
+									<a href="{{ path('tcb_admin_recipe_show', {id: recipe.id}) }}">
+										<i class="bi bi-eye btn btn-warning"></i>
+									</a>
+									<a onclick="return confirm('Voulez-vous supprimer ?')" href="{{ path('tcb_admin_recipe_delete', {id: recipe.id}) }}">
+										<i class="bi bi-trash btn btn-danger"></i>
+									</a>
+								</td>
+							</tr>
+						{% else %}
+							<tr>
+								<td colspan="6">Aucune recette trouvée</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
 			</div>
 		</div>
-		<div class="user_container tcb_padding container ">
 
-			<a href="#profil_chef">
-				<img src="https://images.unsplash.com/photo-1593085512500-5d55148d6f0d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80" alt="avatare chef">
-			</a>
-
-			<div class="user_descriptions">
-				<div>
-					<label>Nom :
-					</label>
-					<p>Cosnard</p>
-					{# ! à dynamiser avec user #}
-					{# <p>{{user.name}}</p> #}
-
-					<label>Prénom :
-					</label>
-					<p>Nicolas</p>
-					{# ! à dynamiser avec user #}
-					{# <p>{{user.firstname}}</p> #}
-				</div>
-				<div>
-					<label>Spécialité :
-					</label>
-					<p>Cuisine en tous genres</p>
-					{# ! à dynamiser avec user #}
-					{# <p>{{user.speciality}}</p> #}
-
-					<label>Experience :
-					</label>
-					<p>Professionnel</p>
-					{# ! à dynamiser avec user #}
-					{# <p>{{user.experience}}</p> #}
-				</div>
-			</div>
-
-		</div>
+	</div>
 
 {% endblock %}
+
