@@ -1,34 +1,46 @@
 {% extends 'Admin/admin_base.html.twig' %}
 
-{% block title %}Liste des catégories{% endblock %}
+{% block title %}Liste des catégories
+{% endblock %}
 
 {% block body %}
-    <h1>Liste des catégories</h1>
 
-    <a href="{{ path('tcb_admin_category_add') }}">Ajouter une catégorie</a>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Title</th>
-                </tr>
-            </thead>
-            <tbody>
-            {% for category in categories %}
-                <tr>
-                    <td>{{ category.id }}</td>
-                    <td>{{ category.title }}</td>
-                    <td>
-                        <a href="{{ path('tcb_admin_category_update', {'id': category.id}) }}"><i class="bi bi-pencil btn btn-secondary"></i></a>
-                        <a onclick="return confirm('Voulez vous supprimer ?')" href="{{ path('tcb_admin_category_delete', {'id': category.id}) }}"><i class="bi bi-trash btn btn-danger"></i></a>
-                    </td>
-                </tr>
-            {% else %}
-                <tr>
-                    <td colspan="10">no records found</td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+	<div class="container">
 
+		<div class="w-75 mx-auto mb-4 row align-items-center">
+			<h1 class="w-50 fs-2">Liste des catégories</h1>
+			<a class="w-50 fs-4 btn btn-primary" href="{{ path('tcb_admin_category_add') }}">Ajouter une catégorie</a>
+		</div>
+
+
+		<table class="table mx-auto">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Title</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for category in categories %}
+					<tr>
+						<td>{{ category.id }}</td>
+						<td>{{ category.title }}</td>
+						<td>
+							<a href="{{ path('tcb_admin_category_update', {'id': category.id}) }}">
+								<i class="bi bi-pencil btn btn-secondary"></i>
+							</a>
+							<a onclick="return confirm('Voulez vous supprimer ?')" href="{{ path('tcb_admin_category_delete', {'id': category.id}) }}">
+								<i class="bi bi-trash btn btn-danger"></i>
+							</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="10">no records found</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
 {% endblock %}

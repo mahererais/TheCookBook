@@ -39,14 +39,14 @@ footer {
   justify-content: center;
 }
 
-.tcb_container {
+.tcb_padding {
   padding: var(--container-padding);
 }
 
 header {
   margin-bottom: auto !important;
 }
-header .tcb_container {
+header .tcb_padding {
   width: var(--container-width);
   display: flex;
   flex-direction: row-reverse;
@@ -54,24 +54,24 @@ header .tcb_container {
   align-items: center;
   gap: 1rem;
 }
-header .tcb_container > .logo {
+header .tcb_padding > .logo {
   width: 60px;
 }
-header .tcb_container > .logo img {
+header .tcb_padding > .logo img {
   max-width: 100%;
 }
-header .tcb_container nav {
+header .tcb_padding nav {
   display: flex;
 }
-header .tcb_container nav li {
+header .tcb_padding nav li {
   position: relative;
   padding: 0.5rem 0;
 }
-header .tcb_container nav li:hover {
+header .tcb_padding nav li:hover {
   font-size: 1em;
   transform: translateY(-5px);
 }
-header .tcb_container nav li:after {
+header .tcb_padding nav li:after {
   content: "";
   position: absolute;
   width: 0%;
@@ -83,21 +83,21 @@ header .tcb_container nav li:after {
   background: white;
   transition: 0.2s;
 }
-header .tcb_container nav li:hover:after {
+header .tcb_padding nav li:hover:after {
   width: 100%;
   left: 0;
 }
-header .tcb_container .right_bar_container {
+header .tcb_padding .right_bar_container {
   display: flex;
   align-items: center;
   gap: 1rem;
   margin-left: auto;
 }
-header .tcb_container .right_bar_container .fa-user {
+header .tcb_padding .right_bar_container .fa-user {
   color: white;
   font-size: 1.5rem;
 }
-header .tcb_container .right_bar_container .search_container {
+header .tcb_padding .right_bar_container .search_container {
   display: flex;
   align-items: center;
   background-color: white;
@@ -105,17 +105,17 @@ header .tcb_container .right_bar_container .search_container {
   padding: 8px 10px;
   box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.8);
 }
-header .tcb_container .right_bar_container .search_container > input[type=text] {
+header .tcb_padding .right_bar_container .search_container > input[type=text] {
   margin-left: 5px;
   background-color: transparent;
   border: none;
   font-family: "Poppins", sans-serif;
   max-width: 150px;
 }
-header .tcb_container .right_bar_container .search_container > input[type=text]:focus {
+header .tcb_padding .right_bar_container .search_container > input[type=text]:focus {
   outline: none;
 }
-header .tcb_container .right_bar_container .search_container i {
+header .tcb_padding .right_bar_container .search_container i {
   color: var(--main-text-color);
 }
 
@@ -242,10 +242,10 @@ main .main_container button.tcb_btn {
 footer {
   margin-top: auto !important;
 }
-footer .tcb_container {
+footer .tcb_padding {
   width: var(--container-width);
 }
-footer .tcb_container > ul {
+footer .tcb_padding > ul {
   justify-content: flex-end;
 }
 
@@ -289,33 +289,6 @@ a {
   cursor: pointer;
   color: var(--corail-color);
   font-size: 1.5rem;
-}
-
-a.tcb_btn_arrow {
-  width: 3rem;
-  aspect-ratio: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--main-color);
-  border-radius: 50%;
-  border: 3px solid white;
-  cursor: pointer;
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  transition: 0.25s;
-  box-shadow: 0 -4px 5px rgba(0, 0, 0, 0.2);
-}
-a.tcb_btn_arrow > i {
-  color: white;
-}
-a.tcb_btn_arrow:hover {
-  background-color: var(--secondary-color);
-  border-color: var(--main-color);
-}
-a.tcb_btn_arrow:hover i {
-  color: var(--main-color);
 }
 
 a.tcb_btn_caroussel {
@@ -382,21 +355,21 @@ a.tcb_btn_caroussel_right {
   header {
     z-index: 15;
   }
-  header .tcb_container nav {
+  header .tcb_padding nav {
     width: 0px;
     overflow: hidden;
   }
-  header .tcb_container .search_container {
+  header .tcb_padding .search_container {
     width: 100%;
   }
-  header .tcb_container #menuToggle {
+  header .tcb_padding #menuToggle {
     display: block !important;
     margin-left: 15px;
   }
-  header .tcb_container #menuToggle:has(#checkbox:checked) ~ nav {
+  header .tcb_padding #menuToggle:has(#checkbox:checked) ~ nav {
     display: flex;
   }
-  header .tcb_container #menuToggle:has(#checkbox:checked) ~ nav > ul {
+  header .tcb_padding #menuToggle:has(#checkbox:checked) ~ nav > ul {
     background-color: var(--main-color);
     position: fixed;
     z-index: 8888;
@@ -420,7 +393,7 @@ a.tcb_btn_caroussel_right {
     width: 100%;
     padding: 1rem;
   }
-  a.tcb_btn_arrow {
+  a.tcb_btn_arrow_top {
     padding: 0.8rem;
   }
 }

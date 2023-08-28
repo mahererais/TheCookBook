@@ -1,9 +1,12 @@
 {% extends "base.html.twig" %}
 
-			{% block title %}The Cook Book
-			{% endblock %}
-		
-		{% block stylesheets %}
-			<link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
-			{{ encore_entry_link_tags('app') }}
-		{% endblock %}
+{% block title %}The Cook Book
+{% endblock %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{asset('assets/css/front/style.css')}}">
+{% endblock %}
+
+{% block javascripts %}
+	<script type="module" src="{{asset('assets/js/app.js')}}" defer></script>
+{% endblock %}

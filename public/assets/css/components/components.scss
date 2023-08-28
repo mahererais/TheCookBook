@@ -1,0 +1,114 @@
+a.tcb_btn_arrow_top {
+    width: 3rem;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--main-color);
+
+
+    border-radius: 50%;
+    border: 3px solid white;
+    cursor: pointer;
+
+    position: absolute;
+
+    left: 50%;
+    transform: translate(-50%, calc(-50%));
+    transition: 0.25s;
+
+    box-shadow: 0 -4px 5px rgba(0, 0, 0, 0.2);
+
+    &>i {
+        color: white;
+    }
+
+    &:hover {
+        background-color: var(--secondary-color);
+        border-color: var(--main-color);
+
+        i {
+            color: var(--main-color);
+        }
+    }
+
+}
+
+.tcb_padding {
+    padding: var(--container-padding)
+}
+
+a {
+    text-decoration: none;
+}
+
+.tcb_btn {
+    padding: 0.3rem 1rem;
+    background-color: var(--main-color) !important;
+    border: 2px solid var(--main-color);
+    border-radius: 5px;
+    color: white;
+    transition: 0.2s;
+
+    &:hover {
+        background-color: white !important;
+        color: var(--main-text-color);
+    }
+}
+
+.heart_icon {
+    cursor: pointer;
+    color: var(--corail-color);
+    font-size: 1.5rem;
+}
+
+h1 {font-size: 2em; font-weight: bold;}
+h2 {font-size: 1.5em; font-weight: bold;}
+h3 {font-size: 1.17em; font-weight: bold;}
+h4 {font-size: 1em; font-weight: bold;}
+h5 {font-size: 0.83em; font-weight: bold;}
+h6 {font-size: 0.67em; font-weight: bold;}
+
+
+@media screen and (max-width: 700px) {
+
+
+
+    html {
+        font-size: 100% * calc(14/16);
+    }
+
+    html:has(#checkbox:checked) {
+        overflow: hidden;
+
+    }
+
+    :root {
+        --container-padding: 1rem 0.5rem;
+    }
+
+
+    a.tcb_btn_arrow_top {
+
+        padding: 0.8rem;
+    }
+
+}
+
+
+main {
+
+    .main_container {
+
+
+        background-color: white;
+
+
+        margin: 1rem auto;
+
+        padding: var(--container-padding);
+
+        max-width: var(--container-width);
+
+    }
+}

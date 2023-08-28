@@ -1,0 +1,110 @@
+
+.register_container {
+    width: 100%;
+    max-width: 480px;
+
+    margin: auto;
+    font-size: 1.3em;
+    color: var(--main-text-color);
+
+
+    .page_title_container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 2rem;
+        
+        &>a {
+            width: 50%;
+            text-align: center;
+            color: var(--main-text-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.2s;
+            
+            &:visited {
+                color: var(--main-text-color)
+            }
+
+            &.isDisabled {
+                color: currentColor;
+                opacity: 0.5;
+                font-weight: normal;
+            }
+            
+            &:hover {
+                opacity: initial;
+                color: var(--main-text-color);
+                font-weight: 600;
+            }
+        }
+    }
+
+    label,
+    input {
+        display: block;
+    }
+
+    label,
+    .page_title_container {
+        width: 100%;
+        margin-top: 1.5em;
+    }
+
+
+    label {
+        font-size: 1em;
+        font-weight: bold;
+    }
+
+    input {
+
+        border: none;
+        border-bottom: 1px solid #ddd;
+        padding: 0.3em 0;
+        font-size: 0.9em;
+        margin-top: 1em;
+        width: 100%;
+        background-color: var(--secondary-color);
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    label[for='registration_form_agreeTerms'] {
+        display: inline;
+        font-size: 0.6em;
+    }
+
+    input[type='checkbox'] {
+        display: inline;
+        width: unset;
+        margin-left: 1em;
+        accent-color: var(--main-color);
+    }
+
+    button {
+
+        background-color: var(--main-color);
+        color: white;
+        padding: 0.5em;
+        border: 2px solid var(--main-color);
+        font-size: 1.2em;
+
+        width: 100%;
+        margin-top: 2em;
+
+        border-radius: 0.5em;
+
+        cursor: pointer;
+
+        transition: 0.2s;
+
+        &:hover {
+            background-color: var(--secondary-color);
+            color: var(--main-color);
+        }
+    }
+
+}
