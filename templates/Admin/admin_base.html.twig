@@ -30,9 +30,15 @@
 
 			{% block connexion %}
 				<div class="right_bar_container">
-					<a href="{{path('tcb_front_security_login')}}">
-						<i class="fas fa-user"></i>
-					</a>
+					{% if is_granted('IS_AUTHENTICATED_FULLY') and "ROLE_ADMIN" in app.user.roles %}
+								<a class="login_btn" href="#route_page_profile">
+									<img src="{{app.user.picture ?: "https://c8.alamy.com/zoomsfr/9/d08ded34f26b4368843097d19c025b0e/2gwexg2.jpg" }}" alt="avatar du profile utilisateur">
+								</a>
+							{% else %}
+								<a href="{{path('tcb_front_security_login')}}">
+									<i class="fas fa-user"></i>
+								</a>
+							{% endif %}
 					<div class="search_container">
 						<i class="fas fa-search"></i>
 						<input type="text" placeholder="recherche ...">
