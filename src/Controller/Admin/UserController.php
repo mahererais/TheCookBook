@@ -25,7 +25,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/user/{id}", name="tcb_admin_user_show")
+     * @Route("/admin/user/{id}", name="tcb_admin_user_show")
      */
     public function show(int $id, UserRepository $userRepository, RecipeRepository $recipeRepository): Response
     {

@@ -30,27 +30,6 @@ class AppFixtures extends Fixture
         $faker = Factory::create('fr_FR');
 
 
-        // = ============ USER handler
-        
-        $userList = [
-            "admin" => "ROLE_ADMIN",
-            "maher" => "ROLE_USER", 
-            "manuella" => "ROLE_USER", 
-            "marie" => "ROLE_USER", 
-            "oumar" => "", 
-            "simon" => "ROLE_USER"];
-        foreach ($userList as $userName => $userRole) {
-            
-            $user = new User();
-            $user->setEmail("$userName@gmail.com");
-            $user->setPassword($this->passwordHasher->hashPassword($user, 123456));
-            $user->setRoles([$userRole]);
-            $user->setFirstname($userName);
-            $user->setSlug($this->slugger->slug($user->getFirstname()));
-
-            $manager->persist($user);
-        }
-
 
         // = ============ CATEGORY handler
 
@@ -89,6 +68,7 @@ class AppFixtures extends Fixture
             $user->setLastname($faker->lastName);
             $user->setPicture($faker->imageUrl(450, 300, "", true));
             $user->setSpeciality($faker->sentence());
+            $user->setSlug($this->slugger->slug($user->getFirstname()));
 
             // randomize either professional or amateur cooker
             $randomExperience = mt_rand(0, 1);
@@ -149,24 +129,6 @@ class AppFixtures extends Fixture
             $manager->persist($user);
         }
 
-        // $users = [];
-
-        // foreach ($userList as $userName => $userRole) {
-        //     // ...
-        //     $users[$userName] = $user;
-        //     $manager->persist($user);
-        // }
-
-        // // ...
-
-        // foreach ($users as $userName => $user) {
-        //     for ($i = 1; $i <= 5; $i++) {
-        //         $recipe = new Recipe();
-        //         $recipe->setUser($user);
-        //         // ...
-        //         $manager->persist($recipe);
-        //     }
-        // }
 
         $manager->flush();
     }
