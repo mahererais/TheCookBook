@@ -61,7 +61,11 @@ class RecipeRepository extends ServiceEntityRepository
     //  */
     // public function getUserRecipes(RecipeRepository $recipeRepository, User $user): Response
     // {
+    //     $recipes = $recipeRepository->findBy(['user' => $user]);
 
+    // return $this->render('Front/recipe/user_recipes.html.twig', [
+    //     'recipes' => $recipes,
+    // ]);
     // }
 
 
