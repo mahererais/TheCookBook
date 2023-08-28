@@ -1,0 +1,39 @@
+@import '../reset.css';
+
+// ! source : Mieux organiser ses fichiers CSS avec SASS
+// ! https://front-back.com/mieux-organiser-ses-fichiers-css-avec-sass/
+
+:root {
+    --container-width: 1124px;
+    --main-color: #078975;
+    --secondary-color: #f9f9f9;
+    --main-text-color: #3F3735;
+    --corail-color: #F55E51;
+    --container-padding: 1rem 1.5rem;
+}
+
+
+html {
+    scroll-behavior: smooth;
+    color: var(--main-text-color);
+    font-family: 'Poppins', sans-serif;
+}
+
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+
+@import './login/login.scss';
+@import './register/register.scss';
+@import './recipes/recipes.scss';
+@import './recipe_show/recipe_show.scss';
+@import './homePage/homePage.scss';
+
+@import '../header/header.scss';
+@import '../footer/footer.scss';
+@import '../components/components.scss';
+//@import '../general/general.scss';

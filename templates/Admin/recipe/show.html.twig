@@ -2,8 +2,8 @@
 
 {% block body %}
 
-	<main class="container">
-		<div class="row">
+
+		<div class="container">
 			<div>
 				<h1>{{recipe.title}}</h1>
 				<div class="col">
@@ -46,13 +46,13 @@
 					{{recipe.createdAt|date("d/m/Y")}}</i>
 			</div>
 		</div>
-		<div class="user_container tcb_container">
+		<div class="user_container tcb_padding container ">
 
 			<a href="#profil_chef">
 				<img src="https://images.unsplash.com/photo-1593085512500-5d55148d6f0d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80" alt="avatare chef">
 			</a>
 
-			<div class="user_container tcb_container">
+			<div class="user_descriptions">
 				<div>
 					<label>Nom :
 					</label>
@@ -82,6 +82,5 @@
 			</div>
 
 		</div>
-	</main>
 
 {% endblock %}

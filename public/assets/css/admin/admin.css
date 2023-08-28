@@ -1,0 +1,395 @@
+@charset "UTF-8";
+@import '../reset.css';
+:root {
+  --container-width: 100%;
+  --main-color: #F55E51;
+  --secondary-color: #f9f9f9;
+  --main-text-color: #3F3735;
+  --container-padding: 1rem 1.5rem;
+}
+:root .btn-primary {
+  --bs-btn-bg: #F55E51;
+  --bs-btn-border-color: #F55E51;
+  --bs-btn-hover-bg: white;
+  --bs-btn-hover-color: #F55E51;
+  --bs-btn-hover-border-color: #F55E51;
+  --bs-btn-active-bg: rgb(124, 32, 32);
+  --bs-btn-active-color: white;
+  --bs-btn-active-border-color: rgb(124, 32, 32);
+}
+
+html {
+  scroll-behavior: smooth;
+  color: var(--main-text-color);
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+header {
+  margin-bottom: auto !important;
+  position: relative;
+  background-color: var(--main-color);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+}
+header .header_container {
+  padding: var(--container-padding);
+  width: var(--container-width);
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+header .header_container > .logo {
+  width: 60px;
+}
+header .header_container > .logo img {
+  max-width: 100%;
+}
+header .header_container nav {
+  display: flex;
+  margin: 0 0 0 auto;
+}
+header .header_container nav li {
+  position: relative;
+  padding: 0.5rem 0;
+}
+header .header_container nav li:hover {
+  font-size: 1em;
+}
+header .header_container nav li:hover > * {
+  display: block;
+  transform: translateY(-5px);
+}
+header .header_container .right_bar_container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+header .header_container .right_bar_container .fa-user {
+  color: white;
+  font-size: 1.5rem;
+}
+header .header_container .right_bar_container .search_container {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border-radius: 999px;
+  padding: 8px 10px;
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.8);
+}
+header .header_container .right_bar_container .search_container > input[type=text] {
+  margin-left: 5px;
+  background-color: transparent;
+  border: none;
+  font-family: "Poppins", sans-serif;
+  max-width: 150px;
+}
+header .header_container .right_bar_container .search_container > input[type=text]:focus {
+  outline: none;
+}
+header .header_container .right_bar_container .search_container i {
+  color: var(--main-text-color);
+}
+
+@media screen and (max-width: 700px) {
+  header {
+    z-index: 15;
+  }
+  header .header_container nav {
+    width: 0px;
+    overflow: hidden;
+  }
+  header .header_container .search_container {
+    width: 100%;
+  }
+  #menuToggle {
+    display: block !important;
+    margin-left: 15px;
+  }
+  #menuToggle:has(#checkbox:checked) ~ nav {
+    display: flex;
+  }
+  #menuToggle:has(#checkbox:checked) ~ nav > ul {
+    background-color: var(--main-color);
+    position: fixed;
+    z-index: 8888;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    opacity: 0;
+    animation: nav-opacity 0.2s ease-in-out forwards;
+    animation-delay: 0.7s;
+  }
+}
+ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
+ul li {
+  list-style: none;
+  position: relative;
+  transition: 0.2s;
+}
+ul li > a {
+  text-decoration: none;
+  transition: 0.2s;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+}
+ul li > a:hover {
+  color: var(--main-text-color);
+}
+
+@keyframes nav-opacity {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+#menuToggle {
+  font-size: 2em;
+  display: none;
+  z-index: 10000;
+}
+
+#checkbox {
+  display: none;
+}
+
+.toggle {
+  position: relative;
+  width: 2rem;
+  cursor: pointer;
+  margin: auto;
+  display: block;
+  height: 2.5rem;
+}
+
+.bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 4px;
+  border-radius: 2px;
+  background: white;
+  color: inherit;
+  opacity: 1;
+  transition: none 0.35s cubic-bezier(0.5, -0.35, 0.35, 1.5) 0s;
+}
+
+/***** Collapse Animation *****/
+.bar--top {
+  bottom: calc(50% + 11px + 2px);
+  transition-property: bottom, margin, transform;
+  transition-delay: 0.35s, 0s, 0s;
+}
+
+.bar--middle {
+  top: calc(50% - 2px);
+  transition-property: top, opacity;
+  transition-duration: 0.35s, 0s;
+  transition-delay: 0.455s, 0.455s;
+}
+
+.bar--bottom {
+  top: calc(50% + 11px + 2px);
+  transition-property: top, transform;
+  transition-delay: 0s;
+}
+
+#checkbox:checked + .toggle .bar--top {
+  bottom: calc(50% - 11px - 4px);
+  margin-bottom: 13px;
+  transform: rotate(45deg);
+  transition-delay: 0.105s, 0.455s, 0.455s;
+}
+
+#checkbox:checked + .toggle .bar--middle {
+  top: calc(50% + 11px);
+  opacity: 0;
+  transition-duration: 0.35s, 0s;
+  transition-delay: 0s, 0.35s;
+}
+
+#checkbox:checked + .toggle .bar--bottom {
+  top: calc(50% - 2px);
+  transform: rotate(-45deg);
+  transition-delay: 0.455s, 0.455s;
+}
+
+footer {
+  margin-top: auto !important;
+  position: relative;
+  background-color: var(--main-color);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+}
+footer .footer_container {
+  padding: var(--container-padding);
+  width: var(--container-width);
+}
+footer .footer_container > ul {
+  justify-content: flex-end;
+}
+
+a.tcb_btn_arrow_top {
+  width: 3rem;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--main-color);
+  border-radius: 50%;
+  border: 3px solid white;
+  cursor: pointer;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.25s;
+  box-shadow: 0 -4px 5px rgba(0, 0, 0, 0.2);
+}
+a.tcb_btn_arrow_top > i {
+  color: white;
+}
+a.tcb_btn_arrow_top:hover {
+  background-color: var(--secondary-color);
+  border-color: var(--main-color);
+}
+a.tcb_btn_arrow_top:hover i {
+  color: var(--main-color);
+}
+
+.tcb_padding {
+  padding: var(--container-padding);
+}
+
+a {
+  text-decoration: none;
+}
+
+.tcb_btn {
+  padding: 0.3rem 1rem;
+  background-color: var(--main-color) !important;
+  border: 2px solid var(--main-color);
+  border-radius: 5px;
+  color: white;
+  transition: 0.2s;
+}
+.tcb_btn:hover {
+  background-color: white !important;
+  color: var(--main-text-color);
+}
+
+.heart_icon {
+  cursor: pointer;
+  color: var(--corail-color);
+  font-size: 1.5rem;
+}
+
+h1 {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+h3 {
+  font-size: 1.17em;
+  font-weight: bold;
+}
+
+h4 {
+  font-size: 1em;
+  font-weight: bold;
+}
+
+h5 {
+  font-size: 0.83em;
+  font-weight: bold;
+}
+
+h6 {
+  font-size: 0.67em;
+  font-weight: bold;
+}
+
+@media screen and (max-width: 700px) {
+  html {
+    font-size: 87.5%;
+  }
+  html:has(#checkbox:checked) {
+    overflow: hidden;
+  }
+  :root {
+    --container-padding: 1rem 0.5rem;
+  }
+  a.tcb_btn_arrow_top {
+    padding: 0.8rem;
+  }
+}
+main .main_container {
+  background-color: white;
+  margin: 1rem auto;
+  padding: var(--container-padding);
+  max-width: var(--container-width);
+}
+
+main .user_container {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--container-padding);
+  margin-top: 1rem;
+  box-shadow: 0 0 10px -3px rgba(0, 0, 0, 0.2);
+}
+main .user_container > a {
+  flex-shrink: 0;
+  width: max(5rem, min(20%, 8rem));
+  aspect-ratio: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid white;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+}
+main .user_container > a > img {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+main .user_container > .user_descriptions {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+main .user_container > .user_descriptions label {
+  font-weight: bold;
+}
+main .user_container > .user_descriptions p {
+  margin-bottom: 0.5rem;
+}
+
+/* Réduction de la largeur totale du tableau de la liste de recettes dans admin */
+.table {
+  max-width: 75%;
+  margin: 0 auto;
+}/*# sourceMappingURL=admin.css.map */

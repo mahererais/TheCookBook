@@ -1,53 +1,135 @@
-export const carrousel = {
+export const Carrousel = {
     cardsContainer: document.querySelectorAll(".cards"),
 
     // Méthode d'initialisation de l'application
     init: function () {
 
-        console.log('carrousel module initalisation => ok');
-
-        console.log(carrousel.cardsContainer);
-
-        for (const cards of carrousel.cardsContainer) {
-            carrousel.initiateCardsCategory(cards);
-
+        for (const cards of Carrousel.cardsContainer) {
+            new Cards(cards);
         }
 
 
     },
 
-    initiateCardsCategory: function (cards) {
 
-        const leftButton = cards.querySelector(".tcb_btn_caroussel_left");
-        const rightButton = cards.querySelector(".tcb_btn_caroussel_right");
-
-        const subCardsList = cards.querySelectorAll('.cards_container');
-
-        const nbrCards = subCardsList.length;
-        let currentSelectedIndex = 0;
-
-        subCardsList[currentSelectedIndex].classList.add("card_selected");
+}
 
 
-        leftButton.addEventListener("click", function (e) {
-            subCardsList[currentSelectedIndex].classList.remove("card_selected");
-            console.log("left button clicked from " + currentSelectedIndex + " to " + (currentSelectedIndex - 1));
-            currentSelectedIndex--;
-            if (currentSelectedIndex < 0) {
-                currentSelectedIndex = nbrCards-1;
-            }
-            subCardsList[currentSelectedIndex].classList.add("card_selected");
-        });
+/**
+ * Cards class handle carrousel of a liste recipe  
+ */
+class Cards {
+    /** @property cardWidth: recipe card width size (pixel) */
+    cardWidth = 0;
+    /** @property leftButton: left button of carrousel (Element) */
+    leftButton = null;
+    /** @property rightButton: right button of carrousel (Element) */
+    rightButton = null;
+    /** @property cardsList: list of recipes */
+    cardsList = null;
+    /** @property numberOfCard: number of recipes */
+    numberOfCard = 0;
+    /** @property currentSelectedCardIndex: current index recipe display on screen */
+    currentSelectedCardIndex = 0;
 
-        rightButton.addEventListener("click", function (e) {
-            subCardsList[currentSelectedIndex].classList.remove("card_selected");
-            console.log("right button clicked from " + currentSelectedIndex + " to " + (currentSelectedIndex + 1));
-            currentSelectedIndex++;
-            if (currentSelectedIndex >= nbrCards) {
-                currentSelectedIndex = 0;
-            }
-            subCardsList[currentSelectedIndex].classList.add("card_selected");
-        });
+    constructor(card) {
+        // initialisation of class @properties 
+        this.cardWidth = card.querySelector(".cards_carrousel_container").clientWidth;
+        this.leftButton = card.querySelector(".tcb_btn_caroussel_left");
+        this.rightButton = card.querySelector(".tcb_btn_caroussel_right");
+        this.cardsList = card.querySelectorAll('.cards_container');
+        this.numberOfCard = this.cardsList.length;
 
+        this.leftButton.addEventListener('click', this.leftButtonHandler.bind(this));
+        this.rightButton.addEventListener('click', this.rightButtonHandler.bind(this));
+
+        this.buttonsRendering();
+
+        // we need to observe recipe card width when user resize his screen
+        this.observeCarrouselContainerResize(card.querySelector(".cards_carrousel_container"));
     }
+
+    // ! source:  https://www.youtube.com/watch?v=M2c37drnnOA
+    observeCarrouselContainerResize(elementToObseve) {
+        const observer = new ResizeObserver(entries => {
+            const element = entries[0];
+            this.cardWidth = element.contentRect.width;
+            this.showCurrentRecipe();
+            this.disableCardCarrouselTransition();
+        })
+
+        observer.observe(elementToObseve);
+    }
+
+
+    /**
+     * called when user click on left button
+     * @param {Event} e 
+     */
+    leftButtonHandler(e) {
+        this.currentSelectedCardIndex--;
+
+        // check if current recipe displayed on screen is first, 
+        // then we display last recipe from list  
+        if (this.currentSelectedCardIndex < 0){
+            this.currentSelectedCardIndex = this.numberOfCard - 1;
+        }
+
+        this.showCurrentRecipe();
+        this.buttonsRendering();
+    }
+
+    /**
+     * called when user click on right button
+     * @param {Event} e 
+     */
+    rightButtonHandler(e) {
+        this.currentSelectedCardIndex++;
+
+        if (this.currentSelectedCardIndex >= this.numberOfCard)
+            this.currentSelectedCardIndex = 0;
+
+        this.showCurrentRecipe();
+        this.buttonsRendering();
+    }
+
+    /**
+     * display on screen current recipe choose
+     */
+    showCurrentRecipe() {
+        const currentCardCarrousel = this.cardsList[this.currentSelectedCardIndex].parentElement;     
+        currentCardCarrousel.style.transform = `translateX(-${this.currentSelectedCardIndex * this.cardWidth}px)`;
+    }
+    
+    /**
+     * disable card carrousel transition
+     * function called when user resize screen (chrome/firefox window) 
+     */
+    disableCardCarrouselTransition() {
+        const currentCardCarrousel = this.cardsList[this.currentSelectedCardIndex].parentElement; 
+        currentCardCarrousel.style.transitionDuration = '0.0s';
+        setTimeout(() => {
+            // remove transitionDuration from style 
+            // i.e: transitionDuration property from .css get the priority 
+            currentCardCarrousel.style.transitionDuration = '';
+        }, 350);
+        
+    }
+
+    /**
+     * render button left if recipe on screen is not first recipe on list
+     * render button right if recipe on screen is not last recipe on list
+     */
+    buttonsRendering() {
+        this.leftButton.style.display = "";
+        this.rightButton.style.display = "";
+        if (this.currentSelectedCardIndex === 0) {
+            // current recipe on screen is first on list => hide left button, 
+            this.leftButton.style.display = "none";
+        }else if(this.currentSelectedCardIndex === (this.numberOfCard - 1)) {
+            // current recipe on screen is last on list => hide right button, 
+            this.rightButton.style.display = "none";
+        }
+    }
+
 }
