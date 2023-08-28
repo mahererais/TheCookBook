@@ -34,18 +34,6 @@ class RecipeController extends AbstractController
             'recipes' => $recipes,
         ]);
     }
-    /**
-     * @Route("/recipe/{slug}", name="tcb_front_recipe_show")
-     */
-    public function show(Recipe $recipe, $slug): Response
-    {
-        $recipe = $this->entityManager->getRepository(Recipe::class)->findOneBy(['slug' => $slug]);
-
-        // dd($recipe);
-        return $this->render('Front/recipe/show.html.twig', [
-            'recipe' => $recipe,
-        ]);
-    }
 
       /**
      * 
@@ -70,7 +58,6 @@ class RecipeController extends AbstractController
             return $this->redirectToRoute('tcb_front_recipe_getAll');
         }
 
-        return $this->renderForm("Front/recipe/form.html.twig", [
         return $this->renderForm("Front/recipe/form.html.twig", [
             "form" => $form
         ]);
@@ -113,7 +100,6 @@ class RecipeController extends AbstractController
             return $this->redirectToRoute('tcb_front_recipe_getAll');
         }
 
-        return $this->renderForm("Front/recipe/form.html.twig", [
         return $this->renderForm("Front/recipe/form.html.twig", [
             "form" => $form,
             "recipe" => $recipe,
