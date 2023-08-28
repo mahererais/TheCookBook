@@ -17,14 +17,6 @@
 								<th>Id</th>
 								<th>Email</th>
 								<th>Role</th>
-								<th>Password</th>
-								<th>Firstname</th>
-								<th>Lastname</th>
-								<th>Picture</th>
-								<th>Speciality</th>
-								<th>Experience</th>
-								<th>Présentation</th>
-								<th>Status</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -37,14 +29,7 @@
 											<li>{{ role }}</li>
 										{% endfor %}
 									</td>
-									<td>{{ user.password|slice(0, 10) }}</td>
-									<td>{{ user.firstname }}</td>
-									<td>{{ user.lastname }}</td>
-									<td><img class="col-2 movie__poster rounded border" src="{{user.picture}}"></td>
-									<td>{{ user.speciality }}</td>
-									<td>{{ user.experience }}</td>
-									<td>{{ user.presentation }}</td>
-									<td>{{ user.status }}</td>
+									
 
 									<td>
 										<a href="#">
