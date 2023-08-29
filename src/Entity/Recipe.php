@@ -69,6 +69,17 @@ class Recipe
      */
     private $category;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="recipes")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $ebook;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -193,6 +204,30 @@ class Recipe
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function isEbook(): ?bool
+    {
+        return $this->ebook;
+    }
+
+    public function setEbook(bool $ebook): self
+    {
+        $this->ebook = $ebook;
 
         return $this;
     }

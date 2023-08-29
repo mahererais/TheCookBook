@@ -6,8 +6,12 @@
 		<div class="container">
 			<div>
 				<h1>{{recipe.title}}</h1>
+				<h2>Id : {{recipe.id}}</h2>
 				<div class="col">
 					<i class="bi bi-tag">{{recipe.category.title}}</i>
+				</div>
+				<div class="col">
+					<i class="bi ">Statut :{{recipe.status}}</i>
 				</div>
 				<div>
 					<img src="{{recipe.picture}}" class="img-fluid rounded border" alt="{{recipe.title}}">
@@ -41,9 +45,15 @@
 				{% endfor %}
 
 			</div>
+			<div>
 			<div class="col">
 				<i class="bi bi-calendar3">Publiée le
 					{{recipe.createdAt|date("d/m/Y")}}</i>
+			</div>
+			<div class="col">
+				<i class="bi bi-calendar3">Mise à jour le
+					{{recipe.updatedAt|date("d/m/Y")}}</i>
+			</div>
 			</div>
 		</div>
 		<div class="user_container tcb_padding container ">

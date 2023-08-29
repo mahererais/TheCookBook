@@ -28,9 +28,24 @@ class RecipeController extends AbstractController
     public function getAll(RecipeRepository $recipeRepository): Response
     {
         $recipes = $recipeRepository->findAll();
+
         // dd($recipes);
 
         return $this->render('Front/recipe/index.html.twig', [
+            'recipes' => $recipes,
+        ]);
+    }
+
+    /**
+     * @Route("/recipe/query", name="tcb_front_recipe_search")
+     */
+    public function search(RecipeRepository $recipeRepository, Request $request): Response
+    {
+        $recipes = $recipeRepository->searchRecipe($request->get("search"));
+
+        // dd($recipes);
+
+        return $this->render('Front/recipe/search.html.twig', [
             'recipes' => $recipes,
         ]);
     }

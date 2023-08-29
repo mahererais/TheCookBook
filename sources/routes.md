@@ -36,6 +36,8 @@
 | `/users` | `GET` | `UserController` | `getAll` | Liste des chefs | List of the professionnal user who allow people to see their profile |  | tcb_front_user_getAll |
 | `/user/{slug}` | `GET` | `UserController` | `show` | Profil de <user_name> | Profile | {slug} Username of a professionnal user who allows people to see his profile | tcb_front_user_show |
 | `/user/update/{id}` | `GET` | `UserController` | `update` | Profil de <user_name> | Profile |  {id} user id, {slug} Username | tcb_front_user_update |
+| `/user/pdf/{id}` | `GET` | `MainController` | `PdfAction` | créer un PDF | PDF of a given recipe |  | tcb_front_main_pdf |
+
 
 - ### Favorites
 
@@ -56,6 +58,7 @@
 | `/recipe/add` | `GET` | `RecipeController` | `add` | # | Ajout d'une recette | form add recipe | tcb_front_recipe_add
 | `/recipe/update/{id}` | `POST` | `RecipeController` | `update` | #Name of recipe# | - | update new recipe | tcb_front_recipe_update
 | `/recipe/delete/{id}` | `POST` | `RecipeController` | `delete` | #Name of recipe# | - | delete recipe by {id} | tcb_front_recipe_delete
+| `/recipe/query` | `GET` | `RecipeController` | `search` | Résultats de votre recherche | - | search recipe by {title} | tcb_front_recipe_search
 
 
 <hr>
@@ -67,7 +70,8 @@
 
 | URL | Méthode HTTP | Controller | Méthode | Titre | Contenu | Commentaire | Name|
 |--|--|--|--|--|--|--|--|
-| `/admin/users` | `GET` | `UserController` | `getAll` | Liste des utilisateurs | list of users | | tcb_admin_user_getAll
+| `/admin/users` | `GET` | `UserController` | `getAll` | Liste des utilisateurs | the profil of the user | | tcb_admin_user_show
+| `/admin/user/{id}` | `GET` | `UserController` | `show` | Voir un utilisateur | list of users | | tcb_admin_user_getAll
 | `/admin/user/delete/{id}` | `POST` | `UserController` | `delete` | # | suppression of one user |  | tcb_admin_user_delete
 
 
