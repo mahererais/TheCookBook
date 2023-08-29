@@ -50,8 +50,8 @@ class RecipeType extends AbstractType
             ->add('status', ChoiceType::class, [
                 "label" => "Statut de la recette",
                 "choices" => [
-                    "Privé" => "Privé",
-                    "Public" => "Public"
+                    "Privé" => "privé",
+                    "Public" => "public"
                 ],
                 'expanded' => true,
                 'multiple' => false

@@ -28,11 +28,10 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/user/{slug}", name="tcb_front_user_profile")
+     * @Route("/profile/{slug}", name="tcb_front_user_profile")
      */
-    public function show(Request $request, EntityManagerInterface $entityManager, User $user, Security $security): Response
+    public function profile(Request $request, EntityManagerInterface $entityManager, User $user, Security $security): Response
     {
-        //dd($security->getUser());
 
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
@@ -85,7 +84,6 @@ class UserController extends AbstractController
      */
     public function getRecipesByUser(Request $request, EntityManagerInterface $entityManager, User $user, Security $security): Response
     {
-
         return $this->render('Front/user/recipes.html.twig', [
             'user' => $user,
         ]);
