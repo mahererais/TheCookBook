@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Security;
 
 class UserController extends AbstractController
 {
@@ -22,16 +23,17 @@ class UserController extends AbstractController
         $users = $userRepository->findAll();
 
         return $this->render('Front/user/index.html.twig', [
-            'controller_name' => 'UserController',
             'users' => $users,
         ]);
     }
 
     /**
-     * @Route("/user/{slug}", name="tcb_front_user_show")
+     * @Route("/user/{slug}", name="tcb_front_user_profile")
      */
-    public function show(Request $request, EntityManagerInterface $entityManager, User $user): Response
+    public function show(Request $request, EntityManagerInterface $entityManager, User $user, Security $security): Response
     {
+        //dd($security->getUser());
+
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
@@ -47,10 +49,9 @@ class UserController extends AbstractController
         }
 
         return $this->renderForm("Front/user/form.html.twig", [
-            "form" => $form, 
+            "form" => $form,
             "user" => $user
         ]);
-
     }
 
     /**
@@ -60,21 +61,32 @@ class UserController extends AbstractController
     {
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
-        
+
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($$user);
             $entityManager->flush();
 
-        
+
             $this->addFlash("success", "Votre profil a bien été modifié");
-        
-            return $this->redirectToRoute('tcb_front_user_show', ["id" => $id]);
+
+            return $this->redirectToRoute('tcb_front_user_profile', ["id" => $id]);
         }
 
 
 
         return $this->render('user/update.html.twig', [
             'controller_name' => 'UserController',
+            'user' => $user,
+        ]);
+    }
+
+    /**
+     * @Route("/user/{slug}/recipes", name="tcb_front_user_getRecipesByUser")
+     */
+    public function getRecipesByUser(Request $request, EntityManagerInterface $entityManager, User $user, Security $security): Response
+    {
+
+        return $this->render('Front/user/recipes.html.twig', [
             'user' => $user,
         ]);
     }

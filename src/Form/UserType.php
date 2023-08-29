@@ -25,8 +25,6 @@ class UserType extends AbstractType
                     "placeholder" => "Entrez votre email"
                 ]
             ])
-            // ->add('roles')
-            // ->add('password')
             ->add('firstname', TextType::class, [
                 "label" => "nom",
                 "attr" => [
@@ -64,12 +62,15 @@ class UserType extends AbstractType
                     "rows" => 5,
                 ]
             ])
-            ->add('password', PasswordType::class, [
-                "label" => "Mot de passe",
-                "attr" => [
-                    "placeholder" => "Entrez votre mot de passe"
-                ]
-            ])
+            // ->add('password', PasswordType::class, [
+            //     "label" => "Mot de passe",
+            //     "attr" => [
+            //         "placeholder" => "Entrez votre mot de passe"
+            //     ],
+            //     //'hash_property_path' => 'password', // ! The hash_property_path option was introduced in Symfony 6.2.
+            //     "mapped" => false, // unmapped means that this field is not associated to any entity property
+            //     "required" => false, // make it optional so you don't have to re-upload the PDF file every time you edit user profile
+            // ])
             ->add('status', ChoiceType::class, [
                 "label" => "Status",
                 "choices" => [

@@ -49,10 +49,13 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
             return new RedirectResponse($targetPath);
         }
 
+        // récupération du user
+        $user = $token->getUser();
         
-        // For example:
-        return new RedirectResponse($this->urlGenerator->generate('tcb_front_main_home'));
-        throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
+        
+        return new RedirectResponse($this->urlGenerator->generate('tcb_front_user_profile', ['slug' => $user->getSlug()]));
+        // return new RedirectResponse($this->urlGenerator->generate('tcb_front_main_home'));
+        // throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
 
     protected function getLoginUrl(Request $request): string

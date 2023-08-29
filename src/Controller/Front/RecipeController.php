@@ -50,8 +50,8 @@ class RecipeController extends AbstractController
         ]);
     }
 
-      /**
-     * 
+    /**
+     *
      * @Route("/recipe/add", name="tcb_front_recipe_add")
      */
     public function add(Request $request, EntityManagerInterface $entityManager): Response
@@ -77,26 +77,12 @@ class RecipeController extends AbstractController
             "form" => $form
         ]);
     }
-    /**
-     * @Route("/recipe/{slug}", name="tcb_front_recipe_show")
-     */
-    public function show(Recipe $recipe, $slug): Response
-    {
-        $recipe = $this->entityManager->getRepository(Recipe::class)->findOneBy(['slug' => $slug]);
-
-        // dd($recipe);
-        return $this->render('Front/recipe/show.html.twig', [
-            'recipe' => $recipe,
-        ]);
-    }
-
 
 
     /**
-    /**
-     * 
+     *
      * @Route("/recipe/update/{id}", name="tcb_front_recipe_update", requirements={"id" = "\d+"})
-     * 
+     *
      */
     public function update(Request $request, EntityManagerInterface $entityManager, Recipe $recipe, int $id): Response
     {
@@ -120,4 +106,41 @@ class RecipeController extends AbstractController
             "recipe" => $recipe,
         ]);
     }
+
+    /**
+     * 
+     * @Route("/recipe/delete/{id}", name="tcb_front_recipe_delete", requirements={"id" = "\d+"})
+     */
+    public function delete(Recipe $recipe, EntityManagerInterface $entityManager): Response
+    {
+        // ! ne pas oublier le CSRF
+        // if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->request->get('_token'))) {
+        //     $userRepository->remove($user, true);
+        // }
+
+        $entityManager->remove($recipe);
+        $entityManager->flush();
+
+        $this->addFlash(
+            'danger',
+            "La recette ".$recipe->getTitle()." a bien été supprimé :"
+        );
+
+
+        return $this->redirectToRoute("tcb_front_recipe_getAll");
+    }
+
+    /**
+     * @Route("/recipe/{slug}", name="tcb_front_recipe_show")
+     */
+    public function show(Recipe $recipe, $slug): Response
+    {
+        $recipe = $this->entityManager->getRepository(Recipe::class)->findOneBy(['slug' => $slug]);
+
+        // dd($recipe);
+        return $this->render('Front/recipe/show.html.twig', [
+            'recipe' => $recipe,
+        ]);
+    }
+
 }

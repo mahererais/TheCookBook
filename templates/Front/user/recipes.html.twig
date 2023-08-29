@@ -1,0 +1,83 @@
+{% extends 'Front/front_base.html.twig' %}
+
+{% block title %}profil de
+	{{user.lastname}}
+{% endblock %}
+
+{% block body %}
+
+	<aside>
+
+		<div>
+			<li>
+				<a href="{{ path('tcb_front_user_profile', {slug: app.user.slug})}}">Mon profil</a>
+			</li>
+			<li>
+				<a href="#">Mes recettes</a>
+			</li>
+			<li>
+				<a href="{{ path('tcb_front_recipe_add')}}">Ajouter une recettes</a>
+			</li>
+			<li>
+				<a href="#">Mon Ebook</a>
+			</li>
+
+			<li>
+				<a href="{{ path('tcb_front_security_logout') }}">Se déconnecter</a>
+			</li>
+		</div>
+
+	</aside>
+
+	<section>
+		<h2>Mes recettes</h2>
+		
+			{% for recipe in user.recipes %}
+
+				<div class="container-fluid">
+			<div class="table-responsive mx-auto">
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th class="col-2">Titre</th>
+							<th>Categorie</th>
+							<th>Ingrédients</th>
+
+						</tr>
+					</thead>
+							<tr>
+								<td>{{ recipe.id }}</td>
+								<td>{{ recipe.title }}</td>
+								<td>{{ recipe.category.title }}</td>
+								<!-- Assuming category has a 'title' property -->
+								<td>
+									<ul>
+										{% for ingredient in recipe.ingredients %}
+											<li>{{ ingredient }}</li>
+										{% endfor %}
+									</ul>
+								</td>
+								<td>
+									<a href="{{ path('tcb_admin_recipe_show', {id: recipe.id}) }}">
+										<i class="bi bi-eye btn btn-warning"></i>
+									</a>
+									<a onclick="return confirm('Voulez-vous supprimer ?')" href="{{ path('tcb_admin_recipe_delete', {id: recipe.id}) }}">
+										<i class="bi bi-trash btn btn-danger"></i>
+									</a>
+								</td>
+							</tr>
+						{% else %}
+							<tr>
+								<td colspan="6">Aucune recette trouvée</td>
+							</tr>
+
+
+				</table>
+			</div>
+		</div>
+			{% endfor %}
+	</section>
+
+{% endblock %}
+
