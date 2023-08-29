@@ -1,0 +1,42 @@
+{% extends 'Front/front_base.html.twig' %}
+
+{% block title %}Liste des chefs
+{% endblock %}
+
+
+{% block body %}
+
+	<h1 class="page_title">Les chefs de CookBook</h1>
+
+	{% for user in users %}
+
+		<div class="cards">
+
+			<div class="r_cards_container">
+
+				<img src="{{user.picture}}" alt="{{user.firstname}} {{user.lastname}}">
+
+				<div class="r_cards_content">
+					<h2>{{user.firstname}} {{user.lastname}}</h2>
+					<p>chef {{user.experience}}</p>
+					<h3>Sa spécialité</h3>
+							<p>{{user.speciality}}<p>
+					<h3>En quelques mots</h3>
+					<p class="r_card_presentation">{{user.presentation}}</p>
+
+			{#		<div class="r_card_btn">
+						<a class="tcb_btn" href="{{ path('tcb_front_recipe_show', { 'slug' : recipe.slug}) }}">Voir son profil</a>
+						<a class="heart_icon">
+							<i class="fas fa-heart"></i>
+						</a>
+					</div>#}
+				</div>
+
+			</div>
+		</div>
+
+	{% endfor %}
+
+	<button type="button" class="tcb_btn">Voir plus</button>
+
+{% endblock %}
