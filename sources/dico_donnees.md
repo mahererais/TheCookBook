@@ -33,7 +33,7 @@
 | id |INT |PRIMARY KEY NOT NULL, UNSIGNED, AUTO INCREMENT |The ID of the category |
 | title  | VARCHAR(64) | NOT NULL  | Name of the category|
 | slug | VARCHAR(64) | NOT NULL | Name of the category|
-
+|picture | VARCHAR(255) | NOT NULL | URL of the category picture |
 
 ## User
 

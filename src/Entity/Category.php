@@ -34,6 +34,12 @@ class Category
      */
     private $recipes;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $picture;
+    
+
     public function __construct()
     {
         $this->recipes = new ArrayCollection();
@@ -101,5 +107,17 @@ class Category
     public function __toString()
     {
         return $this->title;
+    }
+
+    public function getPicture(): ?string
+    {
+        return $this->picture;
+    }
+
+    public function setPicture(string $picture): self
+    {
+        $this->picture = $picture;
+
+        return $this;
     }
 }

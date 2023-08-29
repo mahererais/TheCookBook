@@ -42,6 +42,7 @@ class AppFixtures extends Fixture
 
             $category->setTitle($categoryTitle);
             $category->setSlug($this->slugger->slug($category->getTitle()));
+            $category->setPicture($faker->imageUrl(300, 300, "", true));
 
             $categories[] = $category;
 
