@@ -82,11 +82,12 @@ class RecipeController extends AbstractController
 
     /**
      * 
-     * @Route("/recipe/update/{id}", name="tcb_front_recipe_update", requirements={"id" = "\d+"})
+     * @Route("/recipe/update/{slug}", name="tcb_front_recipe_update")
      *
      */
-    public function update(Request $request, EntityManagerInterface $entityManager, Recipe $recipe, int $id): Response
+    public function update(Request $request, EntityManagerInterface $entityManager, string $slug, Recipe $recipe, RecipeRepository $recipeRepository ): Response
     {
+        $recipe = $recipeRepository->findOneBy(['slug' => $slug]);
         $form = $this->createForm(RecipeType::class, $recipe);
         $form->handleRequest($request);
 
@@ -98,8 +99,9 @@ class RecipeController extends AbstractController
             // ! flash message to add
             $this->addFlash("success", "La recette a été modifiée.");
 
-
-            return $this->redirectToRoute('tcb_front_recipe_getAll');
+            //dd($slug);
+            
+            return $this->redirectToRoute('tcb_front_recipe_show', ['slug' => $recipe->getSlug()]);
         }
 
         return $this->renderForm("Front/recipe/form.html.twig", [
@@ -110,25 +112,27 @@ class RecipeController extends AbstractController
 
     /**
      * 
-     * @Route("/recipe/delete/{id}", name="tcb_front_recipe_delete", requirements={"id" = "\d+"})
+     * @Route("/recipe/delete/{slug}", name="tcb_front_recipe_delete")
      */
-    public function delete(Recipe $recipe, EntityManagerInterface $entityManager): Response
+    public function delete(Recipe $recipe, EntityManagerInterface $entityManager, string $slug, Request $request): Response
     {
         // ! ne pas oublier le CSRF
         // if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->request->get('_token'))) {
         //     $userRepository->remove($user, true);
         // }
+        $recipe = $this->entityManager->getRepository(Recipe::class)->findOneBy(['slug' => $slug]);
 
         $entityManager->remove($recipe);
         $entityManager->flush();
 
         $this->addFlash(
             'danger',
-            "L'utilisateur ".$recipe->getTitle()." a bien été supprimé :"
+            "La recette a bien été supprimé !"
         );
 
-
-        return $this->redirectToRoute("tcb_front_recipe_getAll");
+        $referer = $request->headers->get("referer");
+        
+        return $this->redirect($referer);
     }
 
     /**

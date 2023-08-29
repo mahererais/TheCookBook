@@ -35,7 +35,8 @@
 | URL | Méthode HTTP | Controller | Méthode | Titre | Contenu | Commentaire | Name|
 |--|--|--|--|--|--|--|--|
 | `/users` | `GET` | `UserController` | `getAll` | Liste des chefs | List of the professionnal user who allow people to see their profile |  | tcb_front_user_getAll |
-| `/user/{slug}` | `GET` | `UserController` | `profile` | Profil de <user_name> | Profile | {slug} Username of a professionnal user who allows people to see his profile | tcb_front_user_profile |
+| `/user/{slug}` | `GET` | `UserController` | `show` | Profil de <user_name> | Profile | {slug} Username of a professionnal user who allows people to see his profile | tcb_front_user_show |
+| `/profile/{slug}` | `GET` | `UserController` | `profile` | Profil de <user_name> | Profile | {slug} Username of the logged user | tcb_front_user_profile |
 | `/user/update/{slug}` | `GET` | `UserController` | `update` | Profil de <user_name> | Profile | {slug} Username | tcb_front_user_update |
 | `/user/pdf/{id}` | `GET` | `MainController` | `PdfAction` | créer un PDF | PDF of a given recipe |  | tcb_front_main_pdf |
 | `/user/{slug}/recipes` | `GET` | `UserController` | `getRecipesByUser` | accéder aux recettes d'un user connecté | Acces to the recipe list of the sepecific logged user |  | tcb_front_user_getRecipesByUser |
@@ -58,8 +59,8 @@
 | `/recipe/{slug}` | `GET` | `RecipeController` | `show` | #Name of recipe# | Recettes | {slug} the recipe name  | tcb_front_recipe_show
 | `/recipe/add` | `POST` | `RecipeController` | `add` | #Name of recipe# | - | create new recipe | tcb_front_recipe_add
 | `/recipe/add` | `GET` | `RecipeController` | `add` | # | Ajout d'une recette | form add recipe | tcb_front_recipe_add
-| `/recipe/update/{id}` | `POST` | `RecipeController` | `update` | #Name of recipe# | - | update new recipe | tcb_front_recipe_update
-| `/recipe/delete/{id}` | `POST` | `RecipeController` | `delete` | #Name of recipe# | - | delete recipe by {id} | tcb_front_recipe_delete
+| `/recipe/update/{slug}` | `POST` | `RecipeController` | `update` | #Name of recipe# | - | update recipe by {slug} | tcb_front_recipe_update
+| `/recipe/delete/{slug}` | `POST` | `RecipeController` | `delete` | #Name of recipe# | - | delete recipe by {slug} | tcb_front_recipe_delete
 | `/recipe/query` | `GET` | `RecipeController` | `search` | Résultats de votre recherche | - | search recipe by {title} | tcb_front_recipe_search
 
 

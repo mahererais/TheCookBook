@@ -2,6 +2,9 @@
 
 {% block body %}
 
+	<pre>
+		{{ dump(form) }}
+	</pre>
 
 	<div class="container bg-light pt-5">
 		<div class="row mb-2">
@@ -28,7 +31,7 @@
 							{{form_errors(form.picture)}}
 						</div>
 						<div class="col-3 mb-3">
-							{{form_row(form.steps)}}
+							{{form_row(form.steps, {'value': recipe.steps}) }}
 						</div>
 						<div class="col-3 mb-3">
 							{{form_label(form.status)}}
