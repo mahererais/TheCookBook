@@ -53,12 +53,20 @@ class AppFixtures extends Fixture
 
         $userList = [
             "admin" => "ROLE_ADMIN",
-            "maher" => "ROLE_USER",
-            "manuella" => "ROLE_USER",
-            "marie" => "ROLE_USER",
+            "maher" => "ROLE_ADMIN",
+            "manuella" => "ROLE_ADMIN",
+            "marie" => "ROLE_ADMIN",
             "oumar" => "",
-            "simon" => "ROLE_USER"
+            "simon" => "ROLE_ADMIN",
+            "Philippe" => "ROLE_USER",
+            "Anne-Sophie" => "ROLE_USER",
+            "Nicolas" => "ROLE_USER",
+            "Jean-Michel" => "ROLE_USER",
+            "Franck" => "ROLE_USER",
+            "Colette" => "ROLE_USER",
+            "Louise" =>"ROLE_USER"
         ];
+        
         foreach ($userList as $userName => $userRole) {
 
             $user = new User();
@@ -74,7 +82,7 @@ class AppFixtures extends Fixture
             // randomize either professional or amateur cooker
             $randomExperience = mt_rand(0, 1);
             if ($randomExperience) {
-                $user->setExperience("professional");
+                $user->setExperience("professionel");
             } else {
                 $user->setExperience("amateur");
             };
