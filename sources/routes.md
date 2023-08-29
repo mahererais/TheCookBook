@@ -59,6 +59,7 @@
 | `/recipe/update/{id}` | `POST` | `RecipeController` | `update` | #Name of recipe# | - | update new recipe | tcb_front_recipe_update
 | `/recipe/delete/{id}` | `POST` | `RecipeController` | `delete` | #Name of recipe# | - | delete recipe by {id} | tcb_front_recipe_delete
 | `/recipe/query` | `GET` | `RecipeController` | `search` | Résultats de votre recherche | - | search recipe by {title} | tcb_front_recipe_search
+| `/recipes/category/{slug}` | `GET` | `RecipeController` | `recipesByCategory` | Recettes d'une catégorie | - | liste of recipes of one category | tcb_front_recipe_recipesByCategory
 
 
 <hr>

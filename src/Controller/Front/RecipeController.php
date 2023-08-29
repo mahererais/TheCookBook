@@ -5,6 +5,7 @@ namespace App\Controller\Front;
 use App\Entity\Recipe;
 use App\Form\CategoryType;
 use App\Form\RecipeType;
+use App\Repository\CategoryRepository;
 use App\Repository\RecipeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -21,6 +22,20 @@ class RecipeController extends AbstractController
         $this->entityManager = $entityManager;
     }
 
+     /**
+     * @Route("/recipes/category/{slug}/{id}", name="tcb_front_recipe_recipesByCategory")
+     */
+    public function recipesByCategory(RecipeRepository $recipeRepository, CategoryRepository $categoryRepository, int $id ): Response
+    {
+        $category = $categoryRepository->find($id);
+        $recipes = $recipeRepository->findByCategory($category);
+
+        // dd($recipes);
+
+        return $this->render('Front/recipe/index.html.twig', [
+            'recipes' => $recipes,
+        ]);
+    }
 
     /**
      * @Route("/recipes", name="tcb_front_recipe_getAll")
@@ -92,7 +107,6 @@ class RecipeController extends AbstractController
 
 
 
-    /**
     /**
      * 
      * @Route("/recipe/update/{id}", name="tcb_front_recipe_update", requirements={"id" = "\d+"})
