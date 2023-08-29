@@ -61,7 +61,7 @@ class RecipeType extends AbstractType
                 "attr" => [
                     "placeholder" => "30 mn"
                 ],
-                "help" => "* temps en minutes"
+                "help" => "* en minutes"
             ])
             ->add('ingredients', CollectionType::class, [
                 'entry_type' => TextType::class,

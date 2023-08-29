@@ -43,8 +43,9 @@ class CategoryController extends AbstractController
     {
         
         $category = $this->entityManager->getRepository(Category::class)->findOneBy(['slug' => $slug]);
+        // dd($slug);
         $recipes = $this->entityManager->getRepository(Recipe::class)->findByCategory($category);
-        // dd($category);
+       
 
         return $this->render('Front/recipe/index.html.twig', [
             'recipes' => $recipes,
