@@ -40,7 +40,7 @@ class Recipe
 
     /**
      * @ORM\Column(type="datetime_immutable")
-     * @Assert\NotBlank
+     * 
      */
     private $created_at;
 
@@ -57,7 +57,7 @@ class Recipe
 
     /**
      * @ORM\Column(type="string", length=128)
-     * @Assert\NotBlank
+     * 
      */
     private $slug;
 
@@ -82,7 +82,7 @@ class Recipe
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="recipes")
      * @ORM\JoinColumn(nullable=false)
-     * @Assert\NotBlank
+     * 
      */
     private $user;
 
