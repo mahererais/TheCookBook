@@ -42,7 +42,7 @@ class UserController extends AbstractController
             $entityManager->flush();
 
             // ! flash message to add
-            $this->addFlash("success", "Recette bien ajoutée !");
+            $this->addFlash("success", "L'utilisateur a bien mis à jour !");
 
 
             return $this->redirectToRoute('tcb_front_recipe_getAll');

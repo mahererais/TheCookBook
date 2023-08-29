@@ -124,7 +124,7 @@ class RecipeController extends AbstractController
 
         $this->addFlash(
             'danger',
-            "La recette ".$recipe->getTitle()." a bien été supprimé :"
+            "L'utilisateur ".$recipe->getTitle()." a bien été supprimé :"
         );
 
 

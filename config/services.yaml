@@ -53,3 +53,18 @@ services:
                 event: 'preUpdate'  
                 entity: 'App\Entity\Recipe'
                 method: 'slugifyTitle'
+
+    App\Listener\UserListener:
+        tags:
+            -
+                name: 'doctrine.orm.entity_listener'
+                # this is the only required option for the lifecycle listener tag
+                event: 'prePersist'
+                entity: 'App\Entity\User'
+                method: 'slugifyTitle'
+            -
+                name: 'doctrine.orm.entity_listener'
+                # this is the only required option for the lifecycle listener tag
+                event: 'preUpdate'  
+                entity: 'App\Entity\User'
+                method: 'slugifyTitle'
