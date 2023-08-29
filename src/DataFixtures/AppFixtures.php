@@ -81,7 +81,7 @@ class AppFixtures extends Fixture
             // randomize either professional or amateur cooker
             $randomExperience = mt_rand(0, 1);
             if ($randomExperience) {
-                $user->setExperience("professional");
+                $user->setExperience("professionel");
             } else {
                 $user->setExperience("amateur");
             };

@@ -6,36 +6,42 @@
 
 {% block body %}
 
-	<h1 class="page_title">Les chefs de CookBook</h1>
+	<h1 class="page_title">The CookBook : les chefs</h1>
 
-	{% for user in users %}
+		{% for user in users %}
+			{% if user.status == "public" and user.roles == ["ROLE_USER"] %}
 
-		<div class="cards">
+			<div class="cards">
 
-			<div class="r_cards_container">
+				<div class="l_cards_container">
 
-				<img src="{{user.picture}}" alt="{{user.firstname}} {{user.lastname}}">
+					<img src="{{user.picture}}" alt="{{user.firstname}} {{user.lastname}}">
 
-				<div class="r_cards_content">
-					<h2>{{user.firstname}} {{user.lastname}}</h2>
-					<p>chef {{user.experience}}</p>
-					<h3>Sa spécialité</h3>
-							<p>{{user.speciality}}<p>
-					<h3>En quelques mots</h3>
-					<p class="r_card_presentation">{{user.presentation}}</p>
+					<div class="r_cards_content">
+						<h2>{{user.firstname}}
+							{{user.lastname}}</h2>
+						<p>chef
+							{{user.experience}}</p>
+						<h3>Sa spécialité</h3>
+						<p>{{user.speciality}}</p>
+						<p>
+							<h3>En quelques mots</h3>
+						</p>
+						<p class="l_card_presentation">{{user.presentation}}</p>
 
-			{#		<div class="r_card_btn">
-						<a class="tcb_btn" href="{{ path('tcb_front_recipe_show', { 'slug' : recipe.slug}) }}">Voir son profil</a>
-						<a class="heart_icon">
-							<i class="fas fa-heart"></i>
-						</a>
-					</div>#}
+								<div class="l_card_btn">
+												<a class="tcb_btn" href="">Voir son profil</a>
+
+											</div>
+					</div>
+
 				</div>
-
 			</div>
-		</div>
 
-	{% endfor %}
+	{% endif %}
+
+		{% endfor %}
+
 
 	<button type="button" class="tcb_btn">Voir plus</button>
 
