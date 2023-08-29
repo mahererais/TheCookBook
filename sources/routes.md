@@ -35,9 +35,10 @@
 | URL | Méthode HTTP | Controller | Méthode | Titre | Contenu | Commentaire | Name|
 |--|--|--|--|--|--|--|--|
 | `/users` | `GET` | `UserController` | `getAll` | Liste des chefs | List of the professionnal user who allow people to see their profile |  | tcb_front_user_getAll |
-| `/user/{slug}` | `GET` | `UserController` | `show` | Profil de <user_name> | Profile | {slug} Username of a professionnal user who allows people to see his profile | tcb_front_user_show |
-| `/user/update/{id}` | `GET` | `UserController` | `update` | Profil de <user_name> | Profile |  {id} user id, {slug} Username | tcb_front_user_update |
+| `/user/{slug}` | `GET` | `UserController` | `profile` | Profil de <user_name> | Profile | {slug} Username of a professionnal user who allows people to see his profile | tcb_front_user_profile |
+| `/user/update/{slug}` | `GET` | `UserController` | `update` | Profil de <user_name> | Profile | {slug} Username | tcb_front_user_update |
 | `/user/pdf/{id}` | `GET` | `MainController` | `PdfAction` | créer un PDF | PDF of a given recipe |  | tcb_front_main_pdf |
+| `/user/{slug}/recipes` | `GET` | `UserController` | `getRecipesByUser` | accéder aux recettes d'un user connecté | Acces to the recipe list of the sepecific logged user |  | tcb_front_user_getRecipesByUser |
 
 
 - ### Favorites
