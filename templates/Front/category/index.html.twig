@@ -1,6 +1,6 @@
 {% extends 'Front/front_base.html.twig' %}
 
-{% block title %}Les catégories
+{% block title %}Liste des catégories
 {% endblock %}
 
 {% block body %}
@@ -10,7 +10,7 @@
 
         <div class="titles_container">
             <h1 class="page_title">The Cook Book</h1>
-            <p class="page_subTitle">Partage de recettes et éditions de portfolio</p>
+            <p class="page_subTitle">Partage de recettes et édition de portfolio</p>
         </div>
             {# ! voir SCSS pour centrer l'image #}
             <div class="carousel-container">
@@ -21,7 +21,7 @@
                     <h2>{{ category.title }}</h2>
                     
                     <div class="centered-container">
-                        <a class="tcb_btn" href="{{ path('tcb_front_recipe_recipesByCategory', { 'slug' : category.slug , 'id' : category.id}) }}">Voir les recettes</a>
+                        <a class="tcb_btn" href="{{ path('tcb_front_category_show', { 'slug' : category.slug}) }}">Voir les recettes</a>
                     </div>
                 </div>
                 {% endfor %}

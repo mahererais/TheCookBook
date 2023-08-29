@@ -82,7 +82,7 @@ class RecipeRepository extends ServiceEntityRepository
     }
 
     /**
-     * @return Recipes find by Category
+     * @return Recipes find by one Category
      * 
      * */ 
     public function findByCategory(Category $category)

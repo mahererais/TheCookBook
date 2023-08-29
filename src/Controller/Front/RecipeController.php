@@ -22,21 +22,6 @@ class RecipeController extends AbstractController
         $this->entityManager = $entityManager;
     }
 
-     /**
-     * @Route("/recipes/category/{slug}/{id}", name="tcb_front_recipe_recipesByCategory")
-     */
-    public function recipesByCategory(RecipeRepository $recipeRepository, CategoryRepository $categoryRepository, int $id ): Response
-    {
-        $category = $categoryRepository->find($id);
-        $recipes = $recipeRepository->findByCategory($category);
-
-        // dd($recipes);
-
-        return $this->render('Front/recipe/index.html.twig', [
-            'recipes' => $recipes,
-        ]);
-    }
-
     /**
      * @Route("/recipes", name="tcb_front_recipe_getAll")
      */
