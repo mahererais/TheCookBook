@@ -12,6 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Security;
 
 class RecipeController extends AbstractController
 {
@@ -54,21 +55,23 @@ class RecipeController extends AbstractController
      *
      * @Route("/recipe/add", name="tcb_front_recipe_add")
      */
-    public function add(Request $request, EntityManagerInterface $entityManager): Response
+    public function add(Request $request, EntityManagerInterface $entityManager, Security $security): Response
     {
         $recipe = new Recipe();
+        $user = $security->getUser();
+
+        // dd($userId);
         $form = $this->createForm(RecipeType::class, $recipe);
         $form->handleRequest($request);
 
         // dd($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $recipe->setUser($user);
             $entityManager->persist($recipe);
             $entityManager->flush();
 
-            // ! flash message to add
             $this->addFlash("success", "Recette bien ajoutée !");
-
 
             return $this->redirectToRoute('tcb_front_recipe_getAll');
         }

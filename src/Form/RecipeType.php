@@ -8,6 +8,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -22,21 +23,24 @@ class RecipeType extends AbstractType
     {
         $builder
             ->add('title', TextType::class, [
-                "label" => "Titre de la recette",
+                "label" => "Titre de votre recette",
                 "attr" => [
                     "placeholder" => "Titre"
                 ]
             ])
+            // ->add('picture', FileType::class,[
+            //     "label" => "Image de votre recette"
+            // ])
             ->add('picture', UrlType::class,[
-                "label" => "Url de l'image",
+                "label" => "Photo de votre recette",
                 "attr" => [
-                    "placeholder" => "http::// ...."
+                    "placeholder" => "http//..."
                 ]
             ])
            
             ->add('steps', CollectionType::class, [
                 'entry_type' => TextType::class,
-                "label" => "Etapes de la recette",
+                "label" => "Etapes de préparation de votre recette",
                 'entry_options' => ['label' => false],
                 'allow_add' => true,
                 'allow_delete' => true,
@@ -44,7 +48,7 @@ class RecipeType extends AbstractType
             ])
 
             ->add('status', ChoiceType::class, [
-                "label" => "Statut",
+                "label" => "Statut de la recette",
                 "choices" => [
                     "Privé" => "Privé",
                     "Public" => "Public"
@@ -59,7 +63,6 @@ class RecipeType extends AbstractType
                 ],
                 "help" => "* temps en minutes"
             ])
-            // ! voir affichage des ingredients
             ->add('ingredients', CollectionType::class, [
                 'entry_type' => TextType::class,
                 "label" => "Ingrédients de la recette",
@@ -72,7 +75,16 @@ class RecipeType extends AbstractType
             ->add('category', EntityType::class, [
                 'class'=> Category::class,
                 "choice_label" => "title",
-                
+                "label" => "Catégorie"
+            ])
+            ->add('ebook', ChoiceType::class, [
+                "label" => "Voulez vous ajouter cette recette à votre Ebook ?",
+                "choices" => [
+                    "Oui" => "Oui",
+                    "Non" => "Non"
+                ],
+                'expanded' => true,
+                'multiple' => false
             ])
         ;
     }
