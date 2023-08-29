@@ -34,7 +34,7 @@ class CategoryController extends AbstractController
     }
 
     /**
-     * @Route("/category/{id}/{slug}", name="tcb_front_category_show", requirements={"id"="\d+"})
+     * @Route("/category/{slug}", name="tcb_front_category_show", requirements={"id"="\d+"})
      * 
      * display one category by id
      */
