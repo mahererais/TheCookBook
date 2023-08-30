@@ -76,8 +76,8 @@ class RecipeController extends AbstractController
             return $this->redirectToRoute('tcb_front_recipe_getAll');
         }
 
-        return $this->renderForm("Front/recipe/form.html.twig", [
-            "form" => $form
+        return $this->renderForm("Front/user/add_recipe.html.twig", [
+            "form" => $form,
         ]);
     }
 
@@ -107,7 +107,7 @@ class RecipeController extends AbstractController
             return $this->redirectToRoute('tcb_front_recipe_show', ['slug' => $recipe->getSlug()]);
         }
 
-        return $this->renderForm("Front/recipe/form.html.twig", [
+        return $this->renderForm("Front/user/add_recipe.html.twig", [
             "form" => $form,
             "recipe" => $recipe,
         ]);

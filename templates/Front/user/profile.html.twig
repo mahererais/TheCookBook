@@ -1,0 +1,53 @@
+{% extends 'Front/front_base.html.twig' %}
+
+{% block title %}profil de {{app.user.firstname}}
+{% endblock %}
+
+{% block stylesheets %}
+	<!-- Bootstrap CSS -->
+	<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+	<!-- Bootstrap icons -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+	<link rel="stylesheet" href="{{asset('assets/css/front/style.css')}}">
+{% endblock %}
+
+{% block body %}
+
+	{% block profile_nav %}
+		<div class="d-flex p-2 flex-column flex-md-row gap-4">
+			<aside style="width: 190px" class="flex-shrink-0">
+
+				<div>
+					<li>
+						<a href="{{ path('tcb_front_user_profile', {slug: app.user.slug})}}">Mon profil</a>
+					</li>
+					<li>
+						<a href="{{ path('tcb_front_user_update', {slug: app.user.slug})}}">Modifier mes informations</a>
+					</li>
+					<li>
+						<a href="{{ path('tcb_front_user_getRecipesByUser', {slug: app.user.slug})}}">Mes recettes</a>
+					</li>
+					<li>
+						<a href="{{ path('tcb_front_recipe_add')}}">Ajouter une recette</a>
+					</li>
+
+					<li>
+						<a href="#">Mon Ebook</a>
+					</li>
+
+					<li>
+						<a href="{{ path('tcb_front_security_logout') }}">Se déconnecter</a>
+					</li>
+				</div>
+			</aside>
+
+		{% endblock %}
+
+		{% block content %}
+			Infos à dynamiser
+		</div>
+	{% endblock %}
+{% endblock %}
+

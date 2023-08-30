@@ -8,11 +8,8 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\TagType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -28,6 +25,11 @@ class RecipeType extends AbstractType
                     "placeholder" => "Titre"
                 ]
             ])
+            ->add('category', EntityType::class, [
+                'class'=> Category::class,
+                "choice_label" => "title",
+                "label" => "Catégorie"
+            ])
             // ->add('picture', FileType::class,[
             //     "label" => "Image de votre recette"
             // ])
@@ -36,6 +38,15 @@ class RecipeType extends AbstractType
                 "attr" => [
                     "placeholder" => "http//..."
                 ]
+            ])
+
+            ->add('ingredients', CollectionType::class, [
+                'entry_type' => TextType::class,
+                "label" => "Ingrédients de la recette",
+                'entry_options' => ['label' => false],
+                'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false,
             ])
            
             ->add('steps', CollectionType::class, [
@@ -63,20 +74,9 @@ class RecipeType extends AbstractType
                 ],
                 "help" => "* en minutes"
             ])
-            ->add('ingredients', CollectionType::class, [
-                'entry_type' => TextType::class,
-                "label" => "Ingrédients de la recette",
-                'entry_options' => ['label' => false],
-                'allow_add' => true,
-                'allow_delete' => true,
-                'by_reference' => false,
-            ])
             
-            ->add('category', EntityType::class, [
-                'class'=> Category::class,
-                "choice_label" => "title",
-                "label" => "Catégorie"
-            ])
+            
+            
             ->add('ebook', ChoiceType::class, [
                 "label" => "Voulez vous ajouter cette recette à votre Ebook ?",
                 "choices" => [

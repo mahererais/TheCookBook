@@ -26,13 +26,13 @@ class UserType extends AbstractType
                 ]
             ])
             ->add('firstname', TextType::class, [
-                "label" => "nom",
+                "label" => "prénom",
                 "attr" => [
                     "placeholder" => "Entrez votre prénom"
                 ]
             ])
             ->add('lastname', TextType::class, [
-                "label" => "Prénom",
+                "label" => "nom",
                 "attr" => [
                     "placeholder" => "Entrez votre nom"
                 ]

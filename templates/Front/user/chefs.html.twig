@@ -8,8 +8,8 @@
 
 	<h1 class="page_title">The CookBook : les chefs</h1>
 
-		{% for user in users %}
-			{% if user.status == "public" and user.roles == ["ROLE_USER"] %}
+	{% for user in users %}
+		{% if user.status == "public" and user.roles == ["ROLE_USER"] %}
 
 			<div class="cards">
 
@@ -29,18 +29,17 @@
 						</p>
 						<p class="l_card_presentation">{{user.presentation}}</p>
 
-								<div class="l_card_btn">
-												<a class="tcb_btn" href="">Voir son profil</a>
-
-											</div>
+						<div class="l_card_btn">
+							<a class="tcb_btn" href="">Voir son profil</a>
+						</div>
 					</div>
 
 				</div>
 			</div>
 
-	{% endif %}
+		{% endif %}
 
-		{% endfor %}
+	{% endfor %}
 
 
 	<button type="button" class="tcb_btn">Voir plus</button>

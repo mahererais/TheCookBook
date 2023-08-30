@@ -29,7 +29,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/profile/{slug}", name="tcb_front_user_profile")
+     * @Route("/profile/update/{slug}", name="tcb_front_user_update")
      */
     public function profile(Request $request, EntityManagerInterface $entityManager, User $user, Security $security): Response
     {
@@ -45,37 +45,22 @@ class UserController extends AbstractController
             $this->addFlash("success", "L'utilisateur a bien mis à jour !");
 
 
-            return $this->redirectToRoute('tcb_front_recipe_getAll');
+            return $this->redirectToRoute('tcb_front_user_profile');
         }
 
-        return $this->renderForm("Front/user/form.html.twig", [
+        return $this->renderForm("Front/user/update.html.twig", [
             "form" => $form,
             "user" => $user
         ]);
     }
 
     /**
-     * @Route("/profile/update/{slug}", name="tcb_front_user_update", requirements={"id" = "\d+"})
+     * @Route("/profile/{slug}", name="tcb_front_user_profile")
      */
-    public function update(Request $request, EntityManagerInterface $entityManager, User $user, int $id): Response
+    public function update(Request $request, EntityManagerInterface $entityManager, User $user, Security $security, UserRepository $userRepository, $slug): Response
     {
-        $form = $this->createForm(UserType::class, $user);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($$user);
-            $entityManager->flush();
-
-
-            $this->addFlash("success", "Votre profil a bien été modifié");
-
-            return $this->redirectToRoute('tcb_front_user_profile', ["id" => $id]);
-        }
-
-
-
-        return $this->render('user/update.html.twig', [
-            'controller_name' => 'UserController',
+            $user = $userRepository->findOneBy(['slug' => $slug]);
+            return $this->render('Front/user/profile.html.twig', [
             'user' => $user,
         ]);
     }
@@ -84,6 +69,16 @@ class UserController extends AbstractController
      * @Route("/profile/{slug}/recipes", name="tcb_front_user_getRecipesByUser")
      */
     public function getRecipesByUser(Request $request, EntityManagerInterface $entityManager, User $user, Security $security): Response
+    {
+        return $this->render('Front/user/recipes.html.twig', [
+            'user' => $user,
+        ]);
+    }
+
+    /**
+     * @Route("/profile/{slug}/ebook", name="tcb_front_user_ebook")
+     */
+    public function ebook(Request $request, EntityManagerInterface $entityManager, User $user, Security $security): Response
     {
         return $this->render('Front/user/recipes.html.twig', [
             'user' => $user,
