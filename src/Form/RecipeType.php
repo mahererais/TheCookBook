@@ -80,8 +80,8 @@ class RecipeType extends AbstractType
             ->add('ebook', ChoiceType::class, [
                 "label" => "Voulez vous ajouter cette recette à votre Ebook ?",
                 "choices" => [
-                    "Oui" => true,
-                    "Non" => false
+                    "Oui" => 1,
+                    "Non" => 0
                 ],
                 'expanded' => true,
                 'multiple' => false

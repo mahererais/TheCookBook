@@ -1,50 +1,26 @@
 {% extends 'Front/user/profile.html.twig' %}
 
 {% block content %}
-	<div class="d-flex p-2 flex-column flex-lg-row">
-
-		<section>
-			<h2>Les recettes sélectionnées pour mon ebook :</h2>
-
-			<div class="table-responsive">
-				<table class="table table-striped">
-					<thead>
-						<tr>
-							<th>Titre</th>
-							<th>Catégorie</th>
-							<th>Image</th>
-							<th>Temps de préparation</th>
-							<th>Date de publication</th>
-						</tr>
-					</thead>
-					<tbody>
-						{% for recipe in user.recipes %}
-							<tr>
-								<td>{{ recipe.title }}</td>
-								<td>{{ recipe.category.title }}</td>
-								<td><img src="{{ recipe.picture }}" alt="{{ recipe.title }}" class="img-thumbnail"></td>
-								<td>{{ recipe.duration }}
-									mn</td>
-								<td>{{ recipe.createdAt|date("d/m/Y") }}</td>
-								<td>
-									<a href="{{ path('tcb_front_recipe_show', { 'slug' : recipe.slug}) }}">
-										<i class="bi bi-eye btn btn-warning"></i>
-									</a>
-									<a href="{{path('tcb_front_recipe_update', { 'slug' : recipe.slug})}}">
-										<i class="bi bi-pencil btn btn-secondary"></i>
-									</a>
-									<a onclick="return confirm('Voulez vous supprimer ?')" href="{{path('tcb_front_recipe_delete', { 'slug' : recipe.slug})}}">
-										<i class="bi bi-trash btn btn-danger"></i>
-									</a>
-								</td>
-							</tr>
-						{% endfor %}
-					</tbody>
-				</table>
-			</div>
-		</section>
-
-	</div>
+	 <div class="profile-container mt-5">
+            <h2>Ebook de {{ user.firstname }}</h2>
+            {% if ebookRecipes is not empty %}
+                <div class="row">
+                    {% for recipe in ebookRecipes %}
+                        <div class="col-md-4 mb-4">
+                            <div class="card">
+                                <img src="{{ recipe.picture }}" alt="{{ recipe.title }}" class="card-img-top">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ recipe.title }}</h5>
+                                    <!-- ... Autres détails de la recette ... -->
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p>L'utilisateur n'a pas encore ajouté de recettes à son ebook.</p>
+            {% endif %}
+        </div>
 
 {% endblock %}
 
