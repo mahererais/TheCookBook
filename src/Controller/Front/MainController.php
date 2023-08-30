@@ -31,7 +31,7 @@ class MainController extends AbstractController
             $users = $userRepository->findall();
         }
 
-        //dd($user);
+        //dd($users);
 
         return $this->render('Front/home/index.html.twig', [
             "categoryRecipes" => $categoryRecipes,
