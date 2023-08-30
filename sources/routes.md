@@ -36,10 +36,18 @@
 |--|--|--|--|--|--|--|--|
 | `/users` | `GET` | `UserController` | `getAll` | Liste des chefs | List of the professionnal user who allow people to see their profile |  | tcb_front_user_getAll |
 | `/user/{slug}` | `GET` | `UserController` | `show` | Profil de <user_name> | Profile | {slug} Username of a professionnal user who allows people to see his profile | tcb_front_user_show |
+
+
 | `/profile/{slug}` | `GET` | `UserController` | `profile` | Profil de <user_name> | Profile | {slug} Username of the logged user | tcb_front_user_profile |
-| `/user/update/{slug}` | `GET` | `UserController` | `update` | Profil de <user_name> | Profile | {slug} Username | tcb_front_user_update |
-| `/user/pdf/{id}` | `GET` | `MainController` | `PdfAction` | créer un PDF | PDF of a given recipe |  | tcb_front_main_pdf |
 | `/user/{slug}/recipes` | `GET` | `UserController` | `getRecipesByUser` | accéder aux recettes d'un user connecté | Acces to the recipe list of the sepecific logged user |  | tcb_front_user_getRecipesByUser |
+| `/profile/{slug}` | `GET` | `UserController` | `profile` | Profil de <user_name> | Profile | {slug} Username of the logged user | tcb_front_user_profile |
+| `/profile/update/{slug}` | `GET` | `UserController` | `update` |Update of the <user_name> |profile Profile | {slug} Username | tcb_front_user_update |
+| `/profile/{slug}/ebook` | `GET` | `UserController` | `ebook` | Ebbok recipes <user_name> | List of recipes that the connected user wants to appear in his ebook  | {slug} Username | tcb_front_user_ebook |
+
+
+
+| `/user/pdf/{id}` | `GET` | `MainController` | `PdfAction` | créer un PDF | PDF of a given recipe |  | tcb_front_main_pdf |
+
 
 
 - ### Favorites

@@ -55,7 +55,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/user/update/{id}", name="tcb_front_user_update", requirements={"id" = "\d+"})
+     * @Route("/profile/update/{slug}", name="tcb_front_user_update", requirements={"id" = "\d+"})
      */
     public function update(Request $request, EntityManagerInterface $entityManager, User $user, int $id): Response
     {
@@ -81,7 +81,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/user/{slug}/recipes", name="tcb_front_user_getRecipesByUser")
+     * @Route("/profile/{slug}/recipes", name="tcb_front_user_getRecipesByUser")
      */
     public function getRecipesByUser(Request $request, EntityManagerInterface $entityManager, User $user, Security $security): Response
     {
