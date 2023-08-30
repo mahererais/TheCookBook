@@ -14,6 +14,14 @@ use Symfony\Component\Security\Core\Security;
 
 class UserController extends AbstractController
 {
+
+    private $entityManager;
+
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
+
     /**
      * @Route("/users", name="tcb_front_user_getAll")
      */
@@ -25,6 +33,19 @@ class UserController extends AbstractController
         return $this->render('Front/user/chefs.html.twig', [
             'controller_name' => 'UserController',
             'users' => $users,
+        ]);
+    }
+
+    /**
+     * @Route("/user/{slug}", name="tcb_front_user_show")
+     */
+    public function show(User $user, $slug): Response
+    {
+        $recipe = $this->entityManager->getRepository(User::class)->findOneBy(['slug' => $slug]);
+
+        // dd($recipe);
+        return $this->render('Front/user/show.html.twig', [
+            'user' => $user,
         ]);
     }
 

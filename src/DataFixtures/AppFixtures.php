@@ -75,8 +75,8 @@ class AppFixtures extends Fixture
             $user->setRoles([$userRole]);
             $user->setFirstname($userName);
             $user->setLastname($faker->lastName);
-            $user->setPicture($faker->imageUrl(450, 300, "", true));
-            $user->setSpeciality($faker->sentence());
+            $user->setPicture(("https://loremflickr.com/450/300/cat?random=" . mt_rand(1, 120) . ""));
+            $user->setSpeciality($faker->sentence(3));
             $user->setSlug($this->slugger->slug($user->getFirstname()));
 
             // randomize either professional or amateur cooker
@@ -103,7 +103,8 @@ class AppFixtures extends Fixture
                 $recipe = new Recipe();
 
                 $recipe->setTitle($faker->text(20));
-                $recipe->setPicture($faker->imageUrl(450, 300, "", true));
+                //$recipe->setPicture($faker->imageUrl(450, 300, "", true));
+                $recipe->setPicture("https://loremflickr.com/450/300/food?random=" . mt_rand(1, 120) . "");
                 $recipe->setSteps($faker->paragraphs(4));
                 $recipe->setCreatedAt(new \DateTimeImmutable($faker->date()));
                 $recipe->setDuration($faker->randomNumber(2));
