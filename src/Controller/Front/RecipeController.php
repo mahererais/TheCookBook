@@ -40,11 +40,11 @@ class RecipeController extends AbstractController
     }
 
     /**
-     * @Route("/recipe/query", name="tcb_front_recipe_search")
+     * @Route("/recipe/search", name="tcb_front_recipe_search")
      */
     public function search(RecipeRepository $recipeRepository, Request $request): Response
     {
-        $recipes = $recipeRepository->searchRecipe($request->get("search"));
+        $recipes = $recipeRepository->searchRecipe($request->get("query"));
 
         // dd($recipes);
 

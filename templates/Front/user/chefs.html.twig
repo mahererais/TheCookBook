@@ -8,6 +8,14 @@
 
 <h1 class="page_title">The CookBook : les chefs</h1>
 
+							<div style="text-align: center">
+							<h3> Chercher un chef</h3>
+								<form method="GET" class="search_container" action="{{path('tcb_front_user_search')}}">
+									<i class="fas fa-search"></i>
+									<input name="search" type="text" placeholder="Chercher un chef">
+								</form>
+							</div>
+
 {% for user in users %}
 	{% if user.status == "public" and user.roles == ["ROLE_USER"] %}
 

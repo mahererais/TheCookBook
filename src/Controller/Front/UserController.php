@@ -50,6 +50,18 @@ class UserController extends AbstractController
     }
 
     /**
+     * @Route("/user/search", name="tcb_front_user_search")
+     */
+    public function search(UserRepository $userRepository, Request $request): Response
+    {
+        $users = $userRepository->searchUser($request->get("query"));
+
+        return $this->render('Front/user/search.html.twig', [
+            'users' => $users,
+        ]);
+    }
+
+    /**
      * @Route("/profile/{slug}", name="tcb_front_user_profile")
      */
     public function profile(Request $request, EntityManagerInterface $entityManager, User $user, Security $security): Response
