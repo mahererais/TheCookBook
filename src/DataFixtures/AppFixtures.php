@@ -42,7 +42,7 @@ class AppFixtures extends Fixture
 
             $category->setTitle($categoryTitle);
             $category->setSlug($this->slugger->slug($category->getTitle()));
-            $category->setPicture($faker->imageUrl(300, 300, "", true));
+            $category->setPicture(("https://loremflickr.com/450/300/food?lock=" . mt_rand(1, 120) . ""));
 
             $categories[] = $category;
 

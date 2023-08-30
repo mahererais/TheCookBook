@@ -7,6 +7,7 @@ use App\Entity\Recipe;
 use App\Entity\Category;
 use App\Repository\RecipeRepository;
 use App\Repository\CategoryRepository;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,7 +20,7 @@ class MainController extends AbstractController
     /**
      * @Route("/", name="tcb_front_main_home")
      */
-    public function index(RecipeRepository $recipeRepository, CategoryRepository $categoryRepository): Response
+    public function index(RecipeRepository $recipeRepository, UserRepository $userRepository, CategoryRepository $categoryRepository): Response
     {
         $categories = $categoryRepository->findAll();
 
@@ -27,10 +28,14 @@ class MainController extends AbstractController
         foreach ($categories as $category) {
             $randomRecipes = $recipeRepository->findRandomRecipesByCategory($category, 4); // Replace with your method to fetch random recipes
             $categoryRecipes[$category->getTitle()] = $randomRecipes;
+            $users = $userRepository->findall();
         }
 
+        //dd($user);
+
         return $this->render('Front/home/index.html.twig', [
-            "categoryRecipes" => $categoryRecipes
+            "categoryRecipes" => $categoryRecipes,
+            "users" => $users
         ]);
 
         // $recipes = $recipeRepository->findAll();
