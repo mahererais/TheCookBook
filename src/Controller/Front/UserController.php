@@ -4,6 +4,7 @@ namespace App\Controller\Front;
 
 use App\Entity\User;
 use App\Form\UserType;
+use App\Repository\RecipeRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -111,10 +112,16 @@ class UserController extends AbstractController
     /**
      * @Route("/profile/{slug}/ebook", name="tcb_front_user_ebook")
      */
-    public function ebook(Request $request, EntityManagerInterface $entityManager, User $user, Security $security): Response
+    public function ebook(Request $request, EntityManagerInterface $entityManager, User $user, Security $security, RecipeRepository $recipeRepository): Response
     {
-        return $this->render('Front/user/recipes.html.twig', [
+        $ebookRecipes = $recipeRepository->findBy([
             'user' => $user,
+            'ebook' => true,
+        ]);
+
+        return $this->render('Front/user/ebook.html.twig', [
+            'user' => $user,
+            'ebookRecipes' => $ebookRecipes
         ]);
     }
 }
