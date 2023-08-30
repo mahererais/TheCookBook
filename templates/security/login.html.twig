@@ -5,7 +5,7 @@
 
 {% block body %}
 
-	<form action="{{path('tcb_front_security_login')}}" method="post">
+	<form name="login_form" action="{{path('tcb_front_security_login')}}" method="post">
 		{% if error %}
 			<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 		{% endif %}

@@ -2,6 +2,9 @@
 
 {% block body %}
 
+	{# <pre>
+		{{ dump(form) }}
+	</pre> #}
 
 	<div class="container bg-light pt-5">
 		<div class="row mb-2">
@@ -22,13 +25,28 @@
 							{{form_errors(form.title)}}
 						</div>
 						<div class="col-3 mb-3">
+							{{form_label(form.category)}}
+							{{form_widget(form.category)}}
+							{{form_help(form.category)}}
+							{{form_errors(form.category)}}
+						</div>
+						<div class="col-3 mb-3">
+							{{form_row(form.ingredients)}}
+						</div>
+						<div class="col-3 mb-3">
 							{{form_label(form.picture)}}
 							{{form_widget(form.picture)}}
 							{{form_help(form.picture)}}
 							{{form_errors(form.picture)}}
 						</div>
 						<div class="col-3 mb-3">
-							{{form_row(form.steps)}}
+							{{form_row(form.steps, {'value': recipe.steps}) }}
+						</div>
+						<div class="col-3 mb-3">
+							{{form_label(form.duration)}}
+							{{form_widget(form.duration)}}
+							{{form_help(form.duration)}}
+							{{form_errors(form.duration)}}
 						</div>
 						<div class="col-3 mb-3">
 							{{form_label(form.status)}}
@@ -37,22 +55,11 @@
 							{{form_errors(form.status)}}
 						</div>
 						<div class="col-3 mb-3">
-							{{form_label(form.duration)}}
-							{{form_widget(form.duration)}}
-							{{form_help(form.duration)}}
-							{{form_errors(form.duration)}}
+							{{form_label(form.ebook)}}
+							{{form_widget(form.ebook)}}
+							{{form_help(form.ebook)}}
+							{{form_errors(form.ebook)}}
 						</div>
-
-						<div class="col-3 mb-3">
-							{{form_row(form.ingredients)}}
-						</div>
-						<div class="col-3 mb-3">
-							{{form_label(form.category)}}
-							{{form_widget(form.category)}}
-							{{form_help(form.category)}}
-							{{form_errors(form.category)}}
-						</div>
-
 
 						<button class="btn btn-primary" type="submit">Envoyer</button>
 

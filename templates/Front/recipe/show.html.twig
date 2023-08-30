@@ -6,14 +6,14 @@
 
 {% block body %}
 
+<h1 class="page_title"> {{recipe.title}}</h1>
 
 	<main class="container">
 		<div class="row">
 			<div class="flex-row w-50"></div>
 			<div class="flex-row w-50">
-				<h1 class="my-4">{{recipe.title}}</h1>
 				<div class="col">
-					<i class="bi bi-tag">{{recipe.category.title}}</i>
+					<i class="bi bi-tag">catégorie: {{recipe.category.title}}</i>
 				</div>
 				<div>
 					<img src="{{recipe.picture}}" class="mw-100" alt="{{recipe.title}}">

@@ -1,12 +1,13 @@
 {% extends 'Front/front_base.html.twig' %}
 
-{% block title %}Liste des recettes
+{% block title %}Résultats de votre recherche
 {% endblock %}
 
 
 {% block body %}
 
-	<h1 class="page_title">Liste des recettes </h1>
+<h1 class="page_title"> Résultats de votre recherche</h1>
+{# ! Dynamiser le titre de la recherche avec le(s) terme(s) de recherche #}
 
 	{% for recipe in recipes %}
 

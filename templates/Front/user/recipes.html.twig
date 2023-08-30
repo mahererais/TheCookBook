@@ -1,0 +1,90 @@
+{% extends 'Front/front_base.html.twig' %}
+
+{% block title %}profil de
+	{{user.lastname}}
+{% endblock %}
+
+{% block stylesheets %}
+
+	<!-- Bootstrap CSS -->
+	<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+	<!-- Bootstrap icons -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+	<link rel="stylesheet" href="{{asset('assets/css/front/style.css')}}">
+
+{% endblock %}
+
+{% block body %}
+
+	<div class="d-flex p-2 flex-column flex-lg-row">
+
+		<aside>
+
+			<div>
+				<li>
+					<a href="{{ path('tcb_front_user_profile', {slug: app.user.slug})}}">Mon profil</a>
+				</li>
+				<li>
+					<a href="#">Mes recettes</a>
+				</li>
+				<li>
+					<a href="{{ path('tcb_front_recipe_add')}}">Ajouter une recettes</a>
+				</li>
+				<li>
+					<a href="#">Mon Ebook</a>
+				</li>
+
+				<li>
+					<a href="{{ path('tcb_front_security_logout') }}">Se déconnecter</a>
+				</li>
+			</div>
+
+		</aside>
+
+		<section>
+			<h2>Mes recettes :</h2>
+
+			<div class="table-responsive">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Titre</th>
+							<th>Catégorie</th>
+							<th>Image</th>
+							<th>Temps de préparation</th>
+							<th>Date de publication</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for recipe in user.recipes %}
+							<tr>
+								<td>{{ recipe.title }}</td>
+								<td>{{ recipe.category.title }}</td>
+								<td><img src="{{ recipe.picture }}" alt="{{ recipe.title }}" class="img-thumbnail"></td>
+								<td>{{ recipe.duration }}
+									mn</td>
+								<td>{{ recipe.createdAt|date("d/m/Y") }}</td>
+								<td>
+									<a href="{{ path('tcb_front_recipe_show', { 'slug' : recipe.slug}) }}">
+										<i class="bi bi-eye btn btn-warning"></i>
+									</a>
+									<a href="{{path('tcb_front_recipe_update', { 'slug' : recipe.slug})}}">
+										<i class="bi bi-pencil btn btn-secondary"></i>
+									</a>
+									<a onclick="return confirm('Voulez vous supprimer ?')" href="{{path('tcb_front_recipe_delete', { 'slug' : recipe.slug})}}">
+										<i class="bi bi-trash btn btn-danger"></i>
+									</a>
+								</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</section>
+
+	</div>
+
+{% endblock %}
+

@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\RecipeRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=RecipeRepository::class)
@@ -20,21 +21,26 @@ class Recipe
 
     /**
      * @ORM\Column(type="string", length=128)
+     * @Assert\NotBlank(message="Le titre de la recette est obligatoire")
      */
     private $title;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Url
+     * @Assert\NotBlank(message="La photo de la recette est obligatoire")
      */
     private $picture;
 
     /**
      * @ORM\Column(type="array")
+     * @Assert\NotBlank(message="La recette doit comporte au moins une étape")
      */
     private $steps = [];
 
     /**
      * @ORM\Column(type="datetime_immutable")
+     * 
      */
     private $created_at;
 
@@ -45,21 +51,25 @@ class Recipe
 
     /**
      * @ORM\Column(type="string", length=64)
+     * @Assert\NotBlank(message="Vous devez choisir le statut de la recette")
      */
     private $status;
 
     /**
      * @ORM\Column(type="string", length=128)
+     * 
      */
     private $slug;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Positive
      */
     private $duration;
 
     /**
      * @ORM\Column(type="array")
+     * @Assert\NotBlank(message="La recette doit avoir au moins 1 ingrédient")
      */
     private $ingredients = [];
 
@@ -68,6 +78,19 @@ class Recipe
      * @ORM\JoinColumn(nullable=false)
      */
     private $category;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="recipes")
+     * @ORM\JoinColumn(nullable=false)
+     * 
+     */
+    private $user;
+
+    /**
+     * @ORM\Column(type="boolean")
+     * @Assert\NotBlank(message="Vous devez faire un choix")
+     */
+    private $ebook;
 
     public function getId(): ?int
     {
@@ -193,6 +216,30 @@ class Recipe
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function isEbook(): ?bool
+    {
+        return $this->ebook;
+    }
+
+    public function setEbook(bool $ebook): self
+    {
+        $this->ebook = $ebook;
 
         return $this;
     }

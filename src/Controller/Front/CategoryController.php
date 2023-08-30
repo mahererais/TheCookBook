@@ -3,6 +3,7 @@
 namespace App\Controller\Front;
 
 use App\Entity\Category;
+use App\Entity\Recipe;
 use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -42,11 +43,13 @@ class CategoryController extends AbstractController
     {
         
         $category = $this->entityManager->getRepository(Category::class)->findOneBy(['slug' => $slug]);
+        // dd($slug);
+        $recipes = $this->entityManager->getRepository(Recipe::class)->findByCategory($category);
+       
 
-        // dd($category);
-
-        return $this->render('Front/category/index.html.twig', [
-            'controller_name' => 'CategoryController',
+        return $this->render('Front/recipe/index.html.twig', [
+            'recipes' => $recipes,
         ]);
     }
+
 }

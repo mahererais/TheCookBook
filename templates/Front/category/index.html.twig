@@ -1,37 +1,28 @@
 {% extends 'Front/front_base.html.twig' %}
 
-{% block title %}categorie
+{% block title %}Liste des catégories
 {% endblock %}
 
 {% block body %}
-<main>
-    <div class="main_container">
+   
 
 
-    <div class="titles_container">
-		<h1 class="page_title">The Cook Book</h1>
-		<p class="page_subTitle">Phrase définissant le site</p>
-	</div>
-        
-
-        <div class="carousel-container">
-            {% for category in categories %}
-            <div class="cards">
-            <img src="http://img.freepik.com/photos-premium/mariner-mettre-du-poivre-conserve_75924-11719.jpg">
-
-                <h2>{{ category.title }}</h2>
-                
-
-                
-                <div class="centered-container">
-									<a class="tcb_btn" href="{{ path('tcb_front_category_show', { 'slug' : category.slug}) }}">Voir categorie</a>
-
+        {% for category in categories %}
+        <div class="cards ">
+            
+            <div class="r_cards_container">
+                <img src="{{category.picture}}">
+            
+                <div class="r_cards_content">
+                    <h2>{{ category.title }}</h2>
+                    
+                    <div class="r_card_btn">
+                        <a class="tcb_btn" href="{{ path('tcb_front_category_show', { 'slug' : category.slug}) }}">Voir les recettes</a>
+                    </div>
                 </div>
             </div>
-            {% endfor %}
+            
         </div>
-
-      
-    </div>
-</main>
+        {% endfor %}
+        
 {% endblock %}

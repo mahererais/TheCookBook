@@ -6,9 +6,12 @@ use App\Repository\CategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=CategoryRepository::class)
+ * @UniqueEntity(fields={"title"}, message="Cette catégorie est déjà utilisée")
  */
 class Category
 {
@@ -20,12 +23,15 @@ class Category
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=64)
+     * @ORM\Column(type="string", length=64, unique=true)
+     * @Assert\NotBlank
+     *
      */
     private $title;
 
     /**
      * @ORM\Column(type="string", length=64)
+     * 
      */
     private $slug;
 
@@ -33,6 +39,14 @@ class Category
      * @ORM\OneToMany(targetEntity=Recipe::class, mappedBy="category", orphanRemoval=true)
      */
     private $recipes;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * @Assert\Url
+     */
+    private $picture;
+    
 
     public function __construct()
     {
@@ -101,5 +115,17 @@ class Category
     public function __toString()
     {
         return $this->title;
+    }
+
+    public function getPicture(): ?string
+    {
+        return $this->picture;
+    }
+
+    public function setPicture(string $picture): self
+    {
+        $this->picture = $picture;
+
+        return $this;
     }
 }

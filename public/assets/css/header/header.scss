@@ -80,6 +80,44 @@ header {
             .fa-user {
                 color: white;
                 font-size: 1.5rem;
+            } 
+            
+            a.login_btn {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-shrink: 0; // 0  veut dire que l'element ne pas rétrécir
+
+                position: relative;
+                color: white;
+                width: 2.5rem;
+                height: 2.5rem;
+                border-radius: 999px;
+                
+                
+                overflow: hidden;
+            
+                transition: 0.2s;
+
+                &:hover {
+                    color: var(--main-text-color);
+                }
+
+                &::after {
+                    // represente white circle above user image
+                    content: '';
+                    position: absolute;
+                    inset: 0;
+                    box-shadow: inset 0 0 3px black;
+                    border: 2px solid white;
+                    border-radius: 999px;
+                }
+
+                img {
+                    object-fit: cover;
+                    width: 100%;
+                    height: 100%;
+                }
             }
 
             .search_container {
@@ -93,7 +131,7 @@ header {
 
                 box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.8);
 
-                &>input[type=text] {
+                & input[type=text] {
                     margin-left: 5px;
                     background-color: transparent;
                     border: none;
