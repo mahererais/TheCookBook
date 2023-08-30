@@ -2,18 +2,19 @@
 
 namespace App\Controller\Front;
 
+use App\Entity\User;
 use App\Entity\Recipe;
-use App\Form\CategoryType;
 use App\Form\RecipeType;
-use App\Repository\CategoryRepository;
-use App\Repository\RecipeRepository;
+use App\Form\CategoryType;
 use App\Repository\UserRepository;
+use App\Repository\RecipeRepository;
+use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Security;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class RecipeController extends AbstractController
 {
@@ -143,14 +144,15 @@ class RecipeController extends AbstractController
     /**
      * @Route("/recipe/{slug}", name="tcb_front_recipe_show")
      */
-    public function show(Recipe $recipe, $slug): Response
+    public function show(Recipe $recipe, UserRepository $userRepository, $slug): Response
     {
         $recipe = $this->entityManager->getRepository(Recipe::class)->findOneBy(['slug' => $slug]);
+        $user = $userRepository->findAll($recipe);
 
         // dd($recipe);
         return $this->render('Front/recipe/show.html.twig', [
             'recipe' => $recipe,
+            'user' => $user
         ]);
     }
-
 }

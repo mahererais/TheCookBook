@@ -75,7 +75,7 @@ class AppFixtures extends Fixture
             $user->setRoles([$userRole]);
             $user->setFirstname($userName);
             $user->setLastname($faker->lastName);
-            $user->setPicture(("https://loremflickr.com/450/300/cat?random=" . mt_rand(1, 120) . ""));
+            $user->setPicture(("https://loremflickr.com/450/300/cat?lock=" . mt_rand(1, 120) . ""));
             $user->setSpeciality($faker->sentence(3));
             $user->setSlug($this->slugger->slug($user->getFirstname()));
 
@@ -104,7 +104,7 @@ class AppFixtures extends Fixture
 
                 $recipe->setTitle($faker->text(20));
                 //$recipe->setPicture($faker->imageUrl(450, 300, "", true));
-                $recipe->setPicture("https://loremflickr.com/450/300/food?random=" . mt_rand(1, 120) . "");
+                $recipe->setPicture("https://loremflickr.com/450/300/food?lock=" . mt_rand(1, 120) . "");
                 $recipe->setSteps($faker->paragraphs(4));
                 $recipe->setCreatedAt(new \DateTimeImmutable($faker->date()));
                 $recipe->setDuration($faker->randomNumber(2));
