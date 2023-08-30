@@ -7,6 +7,7 @@ use App\Form\CategoryType;
 use App\Form\RecipeType;
 use App\Repository\CategoryRepository;
 use App\Repository\RecipeRepository;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -26,7 +27,7 @@ class RecipeController extends AbstractController
     /**
      * @Route("/recipes", name="tcb_front_recipe_getAll")
      */
-    public function getAll(RecipeRepository $recipeRepository): Response
+    public function getAll(RecipeRepository $recipeRepository, UserRepository $users): Response
     {
         $recipes = $recipeRepository->findAll();
 
@@ -34,15 +35,16 @@ class RecipeController extends AbstractController
 
         return $this->render('Front/recipe/index.html.twig', [
             'recipes' => $recipes,
+            'users' => $users
         ]);
     }
 
     /**
-     * @Route("/recipe/query", name="tcb_front_recipe_search")
+     * @Route("/recipe/search", name="tcb_front_recipe_search")
      */
     public function search(RecipeRepository $recipeRepository, Request $request): Response
     {
-        $recipes = $recipeRepository->searchRecipe($request->get("search"));
+        $recipes = $recipeRepository->searchRecipe($request->get("query"));
 
         // dd($recipes);
 

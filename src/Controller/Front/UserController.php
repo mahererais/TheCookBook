@@ -14,6 +14,14 @@ use Symfony\Component\Security\Core\Security;
 
 class UserController extends AbstractController
 {
+
+    private $entityManager;
+
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
+
     /**
      * @Route("/users", name="tcb_front_user_getAll")
      */
@@ -29,7 +37,32 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/profile/update/{slug}", name="tcb_front_user_update")
+     * @Route("/user/{slug}", name="tcb_front_user_show")
+     */
+    public function show(User $user, $slug): Response
+    {
+        $recipe = $this->entityManager->getRepository(User::class)->findOneBy(['slug' => $slug]);
+
+        // dd($recipe);
+        return $this->render('Front/user/show.html.twig', [
+            'user' => $user,
+        ]);
+    }
+
+    /**
+     * @Route("/user/search", name="tcb_front_user_search")
+     */
+    public function search(UserRepository $userRepository, Request $request): Response
+    {
+        $users = $userRepository->searchUser($request->get("query"));
+
+        return $this->render('Front/user/search.html.twig', [
+            'users' => $users,
+        ]);
+    }
+
+    /**
+     *  @Route("/profile/update/{slug}", name="tcb_front_user_update")
      */
     public function profile(Request $request, EntityManagerInterface $entityManager, User $user, Security $security): Response
     {

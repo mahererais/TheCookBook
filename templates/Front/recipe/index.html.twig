@@ -21,7 +21,9 @@
 					<h3>{{recipe.category.title}}</h3>
 					{# ! to be dynamized with user entity addition #}
 					{# <p>Proposée par {{user.firstname}}</p> #}
-					<p>Proposée par Nicolas</p>
+					{% for user in users %}						
+					<p>Proposée par {{user.firstname}}{{user.lasname}}</p>
+					{% endfor %}
 					<h3>Préparation:</h3>
 					{% for step in recipe.steps %}
 						<ul>
