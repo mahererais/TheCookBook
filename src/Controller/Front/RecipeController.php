@@ -30,7 +30,11 @@ class RecipeController extends AbstractController
      */
     public function getAll(RecipeRepository $recipeRepository, UserRepository $users): Response
     {
-        $recipes = $recipeRepository->findAll();
+        //$recipes = $recipeRepository->findAll();
+        $recipes = $recipeRepository->findBy(
+            [],
+            ['created_at' => 'DESC'], 
+        );
 
         // dd($recipes);
 

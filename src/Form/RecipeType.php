@@ -57,7 +57,13 @@ class RecipeType extends AbstractType
                 'allow_delete' => true,
                 'by_reference' => false,
             ])
-
+            ->add('duration', IntegerType::class, [
+                "label" => "Temps de préparation",
+                "attr" => [
+                    "placeholder" => "30 mn"
+                ],
+                "help" => "* en minutes"
+            ])
             ->add('status', ChoiceType::class, [
                 "label" => "Statut de la recette",
                 "choices" => [
@@ -67,16 +73,6 @@ class RecipeType extends AbstractType
                 'expanded' => true,
                 'multiple' => false
             ])
-            ->add('duration', IntegerType::class, [
-                "label" => "Temps de préparation",
-                "attr" => [
-                    "placeholder" => "30 mn"
-                ],
-                "help" => "* en minutes"
-            ])
-            
-            
-            
             ->add('ebook', ChoiceType::class, [
                 "label" => "Voulez vous ajouter cette recette à votre Ebook ?",
                 "choices" => [

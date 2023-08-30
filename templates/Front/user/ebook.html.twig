@@ -1,26 +1,29 @@
 {% extends 'Front/user/profile.html.twig' %}
 
 {% block content %}
-	 <div class="profile-container mt-5">
-            <h2>Ebook de {{ user.firstname }}</h2>
-            {% if ebookRecipes is not empty %}
-                <div class="row">
-                    {% for recipe in ebookRecipes %}
-                        <div class="col-md-4 mb-4">
-                            <div class="card">
-                                <img src="{{ recipe.picture }}" alt="{{ recipe.title }}" class="card-img-top">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{ recipe.title }}</h5>
-                                    <!-- ... Autres détails de la recette ... -->
-                                </div>
-                            </div>
-                        </div>
-                    {% endfor %}
-                </div>
-            {% else %}
-                <p>L'utilisateur n'a pas encore ajouté de recettes à son ebook.</p>
-            {% endif %}
-        </div>
+	<div class="profile-container mt-5">
+		<h2>Ebook de
+			{{ user.firstname }}</h2>
+		{% if ebookRecipes is not empty %}
+			<div class="row">
+				{% for recipe in ebookRecipes %}
+					<div class="col-md-4 mb-4">
+						<div class="card">
+							<img src="{{ recipe.picture }}" alt="{{ recipe.title }}" class="card-img-top">
+							<div class="card-body">
+								<h5 class="card-title">{{ recipe.title }}</h5>
+							</div>
+							<a onclick="return confirm('Voulez vous supprimer ?')" href="{{path('tcb_front_recipe_delete', { 'slug' : recipe.slug})}}">
+								<i class="bi bi-x-circle-fill"></i>
+							</a>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		{% else %}
+			<p>L'utilisateur n'a pas encore ajouté de recettes à son ebook.</p>
+		{% endif %}
+	</div>
 
 {% endblock %}
 

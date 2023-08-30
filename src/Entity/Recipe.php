@@ -87,7 +87,7 @@ class Recipe
     private $user;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="string", length=64)
      * @Assert\NotBlank(message="Vous devez faire un choix")
      */
     private $ebook;
@@ -232,12 +232,12 @@ class Recipe
         return $this;
     }
 
-    public function isEbook(): ?bool
+    public function isEbook(): ?string
     {
         return $this->ebook;
     }
 
-    public function setEbook(bool $ebook): self
+    public function setEbook(string $ebook): self
     {
         $this->ebook = $ebook;
 

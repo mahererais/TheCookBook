@@ -16,7 +16,7 @@
 |user_id | ENTITY | NOT NULL | the name of the author of the recipe |
 |category_id | ENTITY |NOT NULL | the category of the recipe |
 |ingredients| longtext | NOT NULL | name and quantity of ingredients|
-|ebook| boolean | NOT NULL | choice yes or no for the recipe to be in the ebook|
+|ebook| string | NOT NULL | choice yes or no for the recipe to be in the ebook|
 
 ## Favorites
 
