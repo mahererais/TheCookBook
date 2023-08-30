@@ -64,7 +64,7 @@ class UserController extends AbstractController
     /**
      *  @Route("/profile/update/{slug}", name="tcb_front_user_update")
      */
-    public function profile(Request $request, EntityManagerInterface $entityManager, User $user, Security $security): Response
+    public function update(Request $request, EntityManagerInterface $entityManager, User $user, Security $security): Response
     {
 
         $form = $this->createForm(UserType::class, $user);
@@ -90,7 +90,7 @@ class UserController extends AbstractController
     /**
      * @Route("/profile/{slug}", name="tcb_front_user_profile")
      */
-    public function update(Request $request, EntityManagerInterface $entityManager, User $user, Security $security, UserRepository $userRepository, $slug): Response
+    public function profile(Request $request, EntityManagerInterface $entityManager, User $user, Security $security, UserRepository $userRepository, $slug): Response
     {
             $user = $userRepository->findOneBy(['slug' => $slug]);
             return $this->render('Front/user/profile.html.twig', [
