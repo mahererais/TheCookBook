@@ -1,14 +1,28 @@
 
+[
+    "title" => "",
+    "picture" => "",
+],
 
-Coq au Vin => https://img.cuisineaz.com/660x660/2013/12/20/i19968-coq-au-vin.jpeg
+$recipes = [
+    [
+        "title" => "Coq au Vin",
+        "picture" => "https://img.cuisineaz.com/660x660/2013/12/20/i19968-coq-au-vin.jpeg"]
+    ],
+    [
+        "title" => "Boeuf Bourguignon",
+        "picture" => "https://img.cuisineaz.com/660x660/2013/12/20/i19968-coq-au-vin.jpeg"]
+    ],
 
-Boeuf Bourguignon => https://img.cuisineaz.com/660x660/2013/12/20/i19968-coq-au-vin.jpeg
+];
+
+
 
 Ratatouille => https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQndRdWmAAD61mrXM2NpTiAmgf42MuH9JAERw&usqp=CAU
 
 Quiche Lorraine > https://fgdjrynm.filerobot.com/recipes/d909dfad598b093dd5644768501d75f3d437ac4f7bcb27ee17ccfcc56d6bd7fc.jpg?vh=7b532d
 
-Escargots de Bourgogne =>
+Escargots de Bourgogne => 
 
 Bouillabaisse => https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKpqviQisVZeaCAx42-XpoFGh5L2xskdCrfA&usqp=CAU
 
