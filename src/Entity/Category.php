@@ -43,7 +43,7 @@ class Category
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\Url
-     * @Assert\NotBlank
+     * 
      */
     private $picture;
     

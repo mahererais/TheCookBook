@@ -75,6 +75,10 @@ class RecipeController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $recipe->setUser($user);
+
+            $imageCloudUrl =  $request->get("cloudinaryUrl");
+            $recipe->setPicture($imageCloudUrl);
+
             $entityManager->persist($recipe);
             $entityManager->flush();
 
@@ -101,6 +105,7 @@ class RecipeController extends AbstractController
         $form = $this->createForm(RecipeType::class, $recipe);
         $form->handleRequest($request);
 
+        dd($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($recipe);

@@ -73,6 +73,10 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $imageCloudUrl =  $request->get("cloudinaryUrl");
+            $user->setPicture($imageCloudUrl);
+
             $entityManager->persist($user);
             $entityManager->flush();
 
@@ -80,7 +84,7 @@ class UserController extends AbstractController
             $this->addFlash("success", "L'utilisateur a bien mis à jour !");
 
 
-            return $this->redirectToRoute('tcb_front_user_profile');
+            return $this->redirectToRoute('tcb_front_user_profile', ['slug' => $security->getUser()->getSlug()]);
         }
 
         return $this->renderForm("Front/user/update.html.twig", [

@@ -2,55 +2,70 @@
 
 
 	{% block content %}
-		{{form_start(form)}}
 
+		{{form_start(form, {attr: {class: 'w-100'}})}}
 
+		<div class="col-12 mb-3">
 		{{form_label(form.email)}}
 		{{form_widget(form.email)}}
 		{{form_help(form.email)}}
 		{{form_errors(form.email)}}
-
+		</div>
+		<div class="col-12 mb-3">
 		{{form_label(form.lastname)}}
 		{{form_widget(form.lastname)}}
 		{{form_help(form.lastname)}}
 		{{form_errors(form.lastname)}}
-
+		</div>
+		<div class="col-12 mb-3">
 		{{form_label(form.firstname)}}
 		{{form_widget(form.firstname)}}
 		{{form_help(form.firstname)}}
 		{{form_errors(form.firstname)}}
-
-		{{form_label(form.picture)}}
-		{{form_widget(form.picture)}}
-		{{form_help(form.picture)}}
-		{{form_errors(form.picture)}}
-
-		{{form_label(form.speciality)}}
-		{{form_widget(form.speciality)}}
-		{{form_help(form.speciality)}}
-		{{form_errors(form.speciality)}}
-
-		{{form_label(form.experience)}}
-		{{form_widget(form.experience)}}
-		{{form_help(form.experience)}}
-		{{form_errors(form.experience)}}
-
-		{{form_label(form.presentation)}}
-		{{form_widget(form.presentation)}}
-		{{form_help(form.presentation)}}
-		{{form_errors(form.presentation)}}
-
+		</div>
+		<div class="col-12 mb-3">
+			{{form_label(form.picture)}}
+			{{form_widget(form.picture)}}
+			{{form_help(form.picture)}}
+			{{form_errors(form.picture)}}
+		</div>
+		<div class="col-12 mb-3">
+			<a id="upload_widget" class="cloudinary-button">Choisir un fichier</a>
+			<small class="cloudinary-input"></small>
+			<input type="hidden" id="cloudinaryUrl" name="cloudinaryUrl">
+		</div>
+		<div class="col-12 mb-3">
+			{{form_label(form.speciality)}}
+			{{form_widget(form.speciality)}}
+			{{form_help(form.speciality)}}
+			{{form_errors(form.speciality)}}
+		</div>
+		<div class="col-12 mb-3">
+			{{form_label(form.experience)}}
+			{{form_widget(form.experience)}}
+			{{form_help(form.experience)}}
+			{{form_errors(form.experience)}}
+		</div>
+		<div class="col-12 mb-3">
+			{{form_label(form.presentation)}}
+			{{form_widget(form.presentation)}}
+			{{form_help(form.presentation)}}
+			{{form_errors(form.presentation)}}
+		</div>
+		<div class="col-12 mb-3">
 		{# {{form_label(form.password)}}
 				{{form_widget(form.password)}}
 				{{form_help(form.password)}}
 				{{form_errors(form.password)}} #}
 
-
-		{{form_label(form.status)}}
-		{{form_widget(form.status)}}
-		{{form_help(form.status)}}
-		{{form_errors(form.status)}}
-
+		</div>
+		<div class="col-12 mb-3">
+			{{form_label(form.status)}}
+			{{form_widget(form.status)}}
+			{{form_help(form.status)}}
+			{{form_errors(form.status)}}
+		</div>
+		<div class="col-12 mb-3">
 
 		<button class="tcb_btn" type="submit">Valider</button>
 
@@ -59,4 +74,36 @@
 		</div>
 	{% endblock %}
 
+
+{% block js %}
+	<script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>  
+
+	<script type="text/javascript">  
+		var myWidget = cloudinary.createUploadWidget({
+			cloudName: 'dxl8cac89', 
+			uploadPreset: 'test_upload',
+			folder: 'Images'}, (error, result) => { 
+				if (!error && result && result.event === "success") { 
+				console.log('Done! Here is the image info: ', result.info); 
+					// get file name 
+					const file_name = `${result.info.original_filename}.${result.info.format}`;
+					// retrieve picture image name element on DOM
+					const imageNameElement = document.querySelector(".cloudinary-input");
+					// set file_name to value of picture input   
+					imageNameElement.textContent = file_name;
+
+					// retrieve cloudinary input hidden element on DOM
+					const cloudinary_input = document.getElementById("cloudinaryUrl");
+					// set file_name to value of picture input   
+					cloudinary_input.value = result.info.url;
+				}
+			}
+		)
+
+		document.getElementById("upload_widget").addEventListener("click", function(){
+			myWidget.open();
+		}, false);
+	</script>
+
+{% endblock %}
 

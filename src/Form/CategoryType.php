@@ -22,19 +22,10 @@ class CategoryType extends AbstractType
                 "placeholder" => "Nom"
             ]
         ])
-        // ->add('picture', UrlType::class,[
-        //     "label" => "Photo de la catégorie",
-        //     "attr" => [
-        //         "placeholder" => "http//..."
-        //     ]
-        // ])
-        ->add('picture', TextType::class,[
+        ->add('picture', HiddenType::class,[
             "label" => "Photo de la catégorie",
             // unmapped means that this field is not associated to any entity property
             "mapped" => false,
-            "attr" => [
-                "disabled" => '',
-            ]
         ])
         ;
     }

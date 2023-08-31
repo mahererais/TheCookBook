@@ -30,10 +30,13 @@
 							{{form_help(form.picture)}}
 							{{form_errors(form.picture)}}
 						</div>
-						<input type="hidden" id="cloudinaryUrl" name="cloudinaryUrl">
 
-						<a id="upload_widget" class="cloudinary-button">Choisir un fichier</a>	
-
+						<div class="col-12 mb-3">
+							<a id="upload_widget" class="cloudinary-button">Choisir un fichier</a>
+							<small class="cloudinary-input"></small>
+							<input type="hidden" id="cloudinaryUrl" name="cloudinaryUrl">
+						</div>
+						
 						<button class="btn btn-primary" type="submit">Envoyer</button>
 						
 					{{form_end(form)}}
@@ -56,10 +59,10 @@
 				console.log('Done! Here is the image info: ', result.info); 
 					// get file name 
 					const file_name = `${result.info.original_filename}.${result.info.format}`;
-					// retrieve picture input element on DOM
-					const picture_input = document.getElementById("category_picture");
+					// retrieve picture image name element on DOM
+					const imageNameElement = document.querySelector(".cloudinary-input");
 					// set file_name to value of picture input   
-					picture_input.value = file_name;
+					imageNameElement.textContent = file_name;
 
 					// retrieve cloudinary input hidden element on DOM
 					const cloudinary_input = document.getElementById("cloudinaryUrl");

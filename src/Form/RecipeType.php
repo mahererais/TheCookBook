@@ -8,6 +8,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
@@ -30,14 +31,10 @@ class RecipeType extends AbstractType
                 "choice_label" => "title",
                 "label" => "Catégorie"
             ])
-            // ->add('picture', FileType::class,[
-            //     "label" => "Image de votre recette"
-            // ])
-            ->add('picture', UrlType::class,[
-                "label" => "Photo de votre recette",
-                "attr" => [
-                    "placeholder" => "http//..."
-                ]
+            ->add('picture', HiddenType::class,[
+                "label" => "Photo de la recette",
+                // unmapped means that this field is not associated to any entity property
+                "mapped" => false,
             ])
 
             ->add('ingredients', CollectionType::class, [
