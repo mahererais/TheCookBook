@@ -28,7 +28,7 @@ class Recipe
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\Url
-     * @Assert\NotBlank(message="La photo de la recette est obligatoire")
+     * 
      */
     private $picture;
 
