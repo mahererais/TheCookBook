@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class UserController extends AbstractController
 {
@@ -68,6 +69,7 @@ class UserController extends AbstractController
      */
     public function update(Request $request, EntityManagerInterface $entityManager, User $user, Security $security): Response
     {
+        $this->denyAccessUnlessGranted('PROFILE_ACCESS', $user);
 
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
@@ -76,7 +78,7 @@ class UserController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            // ! flash message to add
+            // flash message to add
             $this->addFlash("success", "L'utilisateur a bien mis à jour !");
 
 
@@ -94,6 +96,8 @@ class UserController extends AbstractController
      */
     public function profile(Request $request, EntityManagerInterface $entityManager, User $user, Security $security, UserRepository $userRepository, $slug): Response
     {
+        $this->denyAccessUnlessGranted('PROFILE_ACCESS', $user);
+
             $user = $userRepository->findOneBy(['slug' => $slug]);
             return $this->render('Front/user/profile.html.twig', [
             'user' => $user,
@@ -105,6 +109,7 @@ class UserController extends AbstractController
      */
     public function getRecipesByUserLog(Request $request, EntityManagerInterface $entityManager, User $user, Security $security): Response
     {
+        $this->denyAccessUnlessGranted('PROFILE_ACCESS', $user);
         return $this->render('Front/user/recipes.html.twig', [
             'user' => $user,
         ]);
@@ -115,6 +120,7 @@ class UserController extends AbstractController
      */
     public function ebook(Request $request, EntityManagerInterface $entityManager, User $user, Security $security, RecipeRepository $recipeRepository): Response
     {
+        $this->denyAccessUnlessGranted('PROFILE_ACCESS', $user);
         $ebookRecipes = $recipeRepository->findBy([
             'user' => $user,
             'ebook' => true,

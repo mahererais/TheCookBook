@@ -1,6 +1,6 @@
 <?php
 
-namespace App\src\Security\Voter;
+namespace App\Security\Voter;
 
 use App\Entity\User;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
@@ -18,14 +18,14 @@ class ProfileVoter extends Voter
 
     protected function voteOnAttribute(string $attribute, $subject, TokenInterface $token): bool
     {
-        $user = $token->getUser();
+        $authenticatedUser = $token->getUser();
 
-        if (!$user instanceof UserInterface) {
+        if (!$authenticatedUser  instanceof User) {
             // L'utilisateur n'est pas connecté
             return false;
         }
 
         // Si l'utilisateur connecté est le même que le profil demandé
-        return $user === $subject;
+        return $authenticatedUser->getSlug() === $subject->getSlug();
     }
 }
