@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# at root project, execute current script with command below
+# sh migrations/reload.dataBase.sh
+
 echo "--- delete all table and tcb database ---";
 php bin/console do:da:dr --force;
 
