@@ -45,7 +45,7 @@ class RecipeController extends AbstractController
     }
 
     /**
-     * @Route("/recipe/search", name="tcb_front_recipe_search")
+     * @Route("/recipe/query", name="tcb_front_recipe_search")
      */
     public function search(RecipeRepository $recipeRepository, Request $request): Response
     {
@@ -87,8 +87,6 @@ class RecipeController extends AbstractController
             "form" => $form,
         ]);
     }
-
-
 
     /**
      * 

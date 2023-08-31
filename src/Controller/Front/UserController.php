@@ -40,6 +40,18 @@ class UserController extends AbstractController
     }
 
     /**
+     * @Route("/user/search", name="tcb_front_user_search")
+     */
+    public function search(UserRepository $userRepository, Request $request): Response
+    {
+        $users = $userRepository->searchUser($request->get("query"));
+
+        return $this->render('Front/user/search.html.twig', [
+            'users' => $users,
+        ]);
+    }
+
+    /**
      * @Route("/user/{slug}", name="tcb_front_user_show")
      */
     public function show(User $user, $slug): Response
@@ -49,18 +61,6 @@ class UserController extends AbstractController
         // dd($recipe);
         return $this->render('Front/user/show.html.twig', [
             'user' => $user,
-        ]);
-    }
-
-    /**
-     * @Route("/user/search", name="tcb_front_user_search")
-     */
-    public function search(UserRepository $userRepository, Request $request): Response
-    {
-        $users = $userRepository->searchUser($request->get("query"));
-
-        return $this->render('Front/user/search.html.twig', [
-            'users' => $users,
         ]);
     }
 
