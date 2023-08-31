@@ -28,9 +28,10 @@ class MainController extends AbstractController
             $randomRecipes = $recipeRepository->findRandomRecipesByCategory($category, 4); // Replace with your method to fetch random recipes
             $categoryRecipes[$category->getTitle()] = $randomRecipes;
         }
+        //dd($categoryRecipes);
 
         return $this->render('Front/home/index.html.twig', [
-            "categoryRecipes" => $categoryRecipes
+            "categoryRecipes" => $categoryRecipes,
         ]);
 
         // $recipes = $recipeRepository->findAll();

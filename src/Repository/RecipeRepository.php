@@ -49,8 +49,13 @@ class RecipeRepository extends ServiceEntityRepository
     public function findRandomRecipesByCategory(Category $category, int $limit)
     {
         return $this->createQueryBuilder('r')
+            ->join('r.user', 'u')
             ->andWhere('r.category = :category')
             ->setParameter('category', $category)
+            ->andWhere('r.status = :status') // Add this line to filter by recipe status
+            ->andWhere('u.roles = :roles') // Add this line to filter by recipe status
+            ->setParameter('status', 'public') // Set the status to 'public'
+            ->setParameter('roles', '["ROLE_USER"]') // Set the status to 'public'
             ->orderBy('r.id', 'ASC') // Change the order to 'ASC' to ensure cross-database compatibility
             ->setMaxResults($limit)
             ->getQuery()
