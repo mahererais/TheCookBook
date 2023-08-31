@@ -125,10 +125,10 @@ class AppFixtures extends Fixture
                 $recipe->setSlug($this->slugger->slug($recipe->getTitle()));
                 $recipe->setCategory($categories[array_rand($categories)]);
                 
-
-                // I link the user to the recipe
+                $users=[];
+                // I randomly link the user to the recipe
                 $recipe->setUser($user);
-
+                
                 $manager->persist($recipe);
             }
 
