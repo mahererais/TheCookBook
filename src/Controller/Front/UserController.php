@@ -2,6 +2,7 @@
 
 namespace App\Controller\Front;
 
+use App\Entity\Recipe;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\RecipeRepository;
@@ -38,18 +39,6 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/user/search", name="tcb_front_user_search")
-     */
-    public function search(UserRepository $userRepository, Request $request): Response
-    {
-        $users = $userRepository->searchUser($request->get("search"));
-
-        return $this->render('Front/user/search.html.twig', [
-            'users' => $users,
-        ]);
-    }
-
-    /**
      * @Route("/user/{slug}", name="tcb_front_user_show")
      */
     public function show(User $user, $slug): Response
@@ -59,6 +48,18 @@ class UserController extends AbstractController
         // dd($recipe);
         return $this->render('Front/user/show.html.twig', [
             'user' => $user,
+        ]);
+    }
+
+    /**
+     * @Route("/user/search", name="tcb_front_user_search")
+     */
+    public function search(UserRepository $userRepository, Request $request): Response
+    {
+        $users = $userRepository->searchUser($request->get("query"));
+
+        return $this->render('Front/user/search.html.twig', [
+            'users' => $users,
         ]);
     }
 
@@ -100,9 +101,9 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/profile/{slug}/recipes", name="tcb_front_user_getRecipesByUser")
+     * @Route("/profile/{slug}/recipes", name="tcb_front_user_getRecipesByUserLog")
      */
-    public function getRecipesByUser(Request $request, EntityManagerInterface $entityManager, User $user, Security $security): Response
+    public function getRecipesByUserLog(Request $request, EntityManagerInterface $entityManager, User $user, Security $security): Response
     {
         return $this->render('Front/user/recipes.html.twig', [
             'user' => $user,
@@ -124,4 +125,14 @@ class UserController extends AbstractController
             'ebookRecipes' => $ebookRecipes
         ]);
     }
+
+    // /**
+    //  * @Route("/profile/{slug}/ebook/delete", name="removeFromEbook")
+    //  */
+    // public function removeFromEbook(Recipe $recipe): Response
+    // {
+    //    //!A TERMINER
+
+
+    // }
 }
