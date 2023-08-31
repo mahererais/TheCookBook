@@ -2,18 +2,20 @@
 
 namespace App\Controller\Front;
 
-use App\Entity\Recipe;
+use Knp\Snappy\Pdf;
 use App\Entity\User;
+use App\Entity\Recipe;
 use App\Form\UserType;
-use App\Repository\RecipeRepository;
-use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManager;
+use App\Repository\UserRepository;
+use App\Repository\RecipeRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Security;
+use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class UserController extends AbstractController
 {
@@ -125,6 +127,16 @@ class UserController extends AbstractController
             'user' => $user,
             'ebookRecipes' => $ebookRecipes
         ]);
+    }
+
+    /**
+     * @Route("/profile/{slug}/ebook/generate", name="tcb_front_user_ebook_generate")
+     */
+    public function getEbook(Pdf $knpSnappyPdf, Recipe $recipe)
+    {
+        $recipe = $this->entityManager->getRepository(Recipe::class)->findall();
+        
+
     }
 
      /**
