@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Category;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -27,10 +28,13 @@ class CategoryType extends AbstractType
         //         "placeholder" => "http//..."
         //     ]
         // ])
-        ->add('picture', FileType::class,[
+        ->add('picture', TextType::class,[
             "label" => "Photo de la catégorie",
             // unmapped means that this field is not associated to any entity property
             "mapped" => false,
+            "attr" => [
+                "disabled" => '',
+            ]
         ])
         ;
     }

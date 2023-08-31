@@ -42,8 +42,8 @@ class Category
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank
      * @Assert\Url
+     * @Assert\NotBlank
      */
     private $picture;
     

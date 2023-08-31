@@ -40,8 +40,11 @@ class UserType extends AbstractType
             ->add('picture', FileType::class, [
                 "label" => "Image",
                 "mapped" => false, // unmapped means that this field is not associated to any entity property
-                "required" => false // make it optional so you don't have to re-upload the PDF file every time you edit user profile
-                ])
+                "required" => false,// make it optional so you don't have to re-upload the PDF file every time you edit user profile
+                "attr" => [
+                    "cloudinary" => "upload_widget"
+                ]
+            ])
             ->add('speciality', TextType::class, [
                 "label" => "Specialité",
                 "attr" => [
