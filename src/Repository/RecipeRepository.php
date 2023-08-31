@@ -52,8 +52,10 @@ class RecipeRepository extends ServiceEntityRepository
             ->join('r.user', 'u')
             ->andWhere('r.category = :category')
             ->setParameter('category', $category)
-            ->andWhere('r.user.status = :user_status') // Add this line to filter by user status
-            ->setParameter('user_status', 'public') // Set the status to 'public'
+            ->andWhere('r.status = :status') // Add this line to filter by recipe status
+            ->andWhere('u.roles = :roles') // Add this line to filter by recipe status
+            ->setParameter('status', 'public') // Set the status to 'public'
+            ->setParameter('roles', '["ROLE_USER"]') // Set the status to 'public'
             ->orderBy('r.id', 'ASC') // Change the order to 'ASC' to ensure cross-database compatibility
             ->setMaxResults($limit)
             ->getQuery()
