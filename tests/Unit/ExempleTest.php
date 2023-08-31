@@ -4,12 +4,11 @@ namespace App\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
 
-// ! Les noms de classes tests doivent finir par Test
+
 class ExempleTest extends TestCase
 {
 
-    // pour faire du test au cas par cas, je crée plusieurs scénarios dans un tableau,
-    // si tous les cas passent, notre fonction est BUENITO
+
     private const TEST_CASES = [
         [
             "numbers" => [10,10],
