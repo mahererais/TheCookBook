@@ -1,0 +1,72 @@
+{% extends 'Front/front_base.html.twig' %}
+
+{% block title %}Chef
+	{{user.firstname}}
+	{{user.lastname}}
+{% endblock %}
+
+{% block body %}
+
+	<main class="container">
+		<h1 class="page_title">Chef
+			{{user.firstname}}
+			{{user.lastname}}</h1>
+		<div style="text-align: center">
+			<img src="{{user.picture}}" class="mw-100" alt="{{user.firstname}} {{user.lastname}}">
+		</div>
+
+		<h3>chef
+			{{user.experience}}</h3>
+			<br>
+
+		<div class="row">
+			<div class="flex-row w-50"></div>
+			<div class="flex-row w-50">
+				<div class="col">
+					<i class="bi bi-tag"><u>Sa specialité:</u>
+						{{user.speciality}}</i>
+				</div>
+				<br>
+				<div>
+					<div class="row my-4">
+						<div class="col">
+							<i class="bi bi-alarm"><u>En quelques mots :</u>
+								{{user.presentation}}
+								mn</i>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br>
+		<div style="text-align: center">
+		<h2>Ses recettes</h2>
+		</div>
+
+		{% for recipe in user.recipes %}
+
+			<div class="cards">
+
+				<div class="r_cards_container">
+
+					<img src="{{recipe.picture}}" alt="{{recipe.title}}">
+
+					<div class="r_cards_content">
+						<h2>{{recipe.title}}</h2>
+						<h3>Catégorie: {{recipe.category.title}}</h3>
+						<div class="r_card_btn">
+							<a class="tcb_btn" href="{{ path('tcb_front_recipe_show', { 'slug' : recipe.slug}) }}">Voir la recette</a>
+							<a class="heart_icon">
+								<i class="fas fa-heart"></i>
+							</a>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			{% endfor %}
+
+		</main>
+
+	{% endblock %}
+

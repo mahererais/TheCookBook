@@ -2,17 +2,19 @@
 
 namespace App\Controller\Front;
 
+use App\Entity\User;
 use App\Entity\Recipe;
-use App\Form\CategoryType;
 use App\Form\RecipeType;
-use App\Repository\CategoryRepository;
+use App\Form\CategoryType;
+use App\Repository\UserRepository;
 use App\Repository\RecipeRepository;
+use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Security;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class RecipeController extends AbstractController
 {
@@ -26,23 +28,28 @@ class RecipeController extends AbstractController
     /**
      * @Route("/recipes", name="tcb_front_recipe_getAll")
      */
-    public function getAll(RecipeRepository $recipeRepository): Response
+    public function getAll(RecipeRepository $recipeRepository, UserRepository $users): Response
     {
-        $recipes = $recipeRepository->findAll();
+        //$recipes = $recipeRepository->findAll();
+        $recipes = $recipeRepository->findBy(
+            [],
+            ['created_at' => 'DESC'], 
+        );
 
         // dd($recipes);
 
         return $this->render('Front/recipe/index.html.twig', [
             'recipes' => $recipes,
+            'users' => $users
         ]);
     }
 
     /**
-     * @Route("/recipe/query", name="tcb_front_recipe_search")
+     * @Route("/recipe/search", name="tcb_front_recipe_search")
      */
     public function search(RecipeRepository $recipeRepository, Request $request): Response
     {
-        $recipes = $recipeRepository->searchRecipe($request->get("search"));
+        $recipes = $recipeRepository->searchRecipe($request->get("query"));
 
         // dd($recipes);
 
@@ -76,8 +83,8 @@ class RecipeController extends AbstractController
             return $this->redirectToRoute('tcb_front_recipe_getAll');
         }
 
-        return $this->renderForm("Front/recipe/form.html.twig", [
-            "form" => $form
+        return $this->renderForm("Front/user/add_recipe.html.twig", [
+            "form" => $form,
         ]);
     }
 
@@ -107,7 +114,7 @@ class RecipeController extends AbstractController
             return $this->redirectToRoute('tcb_front_recipe_show', ['slug' => $recipe->getSlug()]);
         }
 
-        return $this->renderForm("Front/recipe/form.html.twig", [
+        return $this->renderForm("Front/user/add_recipe.html.twig", [
             "form" => $form,
             "recipe" => $recipe,
         ]);
@@ -141,14 +148,15 @@ class RecipeController extends AbstractController
     /**
      * @Route("/recipe/{slug}", name="tcb_front_recipe_show")
      */
-    public function show(Recipe $recipe, $slug): Response
+    public function show(Recipe $recipe, UserRepository $userRepository, $slug): Response
     {
         $recipe = $this->entityManager->getRepository(Recipe::class)->findOneBy(['slug' => $slug]);
+        $user = $userRepository->findAll($recipe);
 
         // dd($recipe);
         return $this->render('Front/recipe/show.html.twig', [
             'recipe' => $recipe,
+            'user' => $user
         ]);
     }
-
 }

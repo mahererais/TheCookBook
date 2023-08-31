@@ -75,8 +75,8 @@ class AppFixtures extends Fixture
             $user->setRoles([$userRole]);
             $user->setFirstname($userName);
             $user->setLastname($faker->lastName);
-            $user->setPicture($faker->imageUrl(450, 300, "", true));
-            $user->setSpeciality($faker->sentence());
+            $user->setPicture(("https://loremflickr.com/450/300/cat?lock=" . mt_rand(1, 120) . ""));
+            $user->setSpeciality($faker->sentence(3));
             $user->setSlug($this->slugger->slug($user->getFirstname()));
 
             // randomize either professional or amateur cooker
@@ -103,19 +103,16 @@ class AppFixtures extends Fixture
                 $recipe = new Recipe();
 
                 $recipe->setTitle($faker->text(20));
-                $recipe->setPicture($faker->imageUrl(450, 300, "", true));
+                //$recipe->setPicture($faker->imageUrl(450, 300, "", true));
+                $recipe->setPicture("https://loremflickr.com/450/300/food?lock=" . mt_rand(1, 120) . "");
                 $recipe->setSteps($faker->paragraphs(4));
                 $recipe->setCreatedAt(new \DateTimeImmutable($faker->date()));
                 $recipe->setDuration($faker->randomNumber(2));
                 $recipe->setIngredients($faker->words(5));
 
                 // randomize either true or false of the Ebook boolean
-                $randomEbook = mt_rand(0, 1);
-                if ($randomEbook) {
-                    $recipe->setEbook("true");
-                } else {
-                    $recipe->setEbook("false");
-                }
+                $randomEbook = (bool) mt_rand(0, 1);
+                $recipe->setEbook($randomEbook);
 
                 // randomize either public or private status
                 $randomStatus = mt_rand(0, 1);
