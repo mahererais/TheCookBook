@@ -49,8 +49,11 @@ class RecipeRepository extends ServiceEntityRepository
     public function findRandomRecipesByCategory(Category $category, int $limit)
     {
         return $this->createQueryBuilder('r')
+            ->join('r.user', 'u')
             ->andWhere('r.category = :category')
             ->setParameter('category', $category)
+            ->andWhere('r.user.status = :user_status') // Add this line to filter by user status
+            ->setParameter('user_status', 'public') // Set the status to 'public'
             ->orderBy('r.id', 'ASC') // Change the order to 'ASC' to ensure cross-database compatibility
             ->setMaxResults($limit)
             ->getQuery()
@@ -62,12 +65,12 @@ class RecipeRepository extends ServiceEntityRepository
     * @param string|null $string to find in recipes
     */
 
-   public function searchRecipe(?string $search = null): ?array
+   public function searchRecipe(?string $query = null): ?array
    {
        return $this->createQueryBuilder('m')
             ->orderBy("m.title","ASC")
-            ->where("m.title LIKE :search")
-            ->setParameter("search", "%$search%")
+            ->where("m.title LIKE :query")
+            ->setParameter("query", "%$query%")
             ->getQuery()
             ->getResult()
        ;

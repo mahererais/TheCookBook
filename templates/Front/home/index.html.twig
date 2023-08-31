@@ -5,67 +5,59 @@
 
 {% block body %}
 
-	<h1 class="page_title">
-		Bienvenue sur The CookBook !
-	</h1>
+<h1 class="page_title"> Bienvenue sur The CookBook ! </h1>
 
-	{% for category, recipes in categoryRecipes %}
-		{% for user in users %}
+		{% for category, recipes in categoryRecipes %}
 
-			{% if user.status == "public" and user.roles == ["ROLE_USER"] %}
+			<div class="cards">
+				
+				<div class="cards_carrousel_container">
+				<div class="cards_carrousel">
+					{% for recipe in recipes %}
+						<div class="cards_container">
+							<img src="{{ recipe.getPicture() }}" alt="{{ recipe.title() }}">
+							<div class="cards_content">
+								<h2>{{ recipe.title() }}</h2>
+								<p>proposée par <a href="">{{recipe.user.firstname}} {{recipe.user.lastname}}</a></p>
+								<h3>Ingrédients :</h3>
+								<ul>
+									{% for ingredient in recipe.ingredients|slice(0, 2) %}
+										<li>{{ ingredient }}</li>
+									{% endfor %}
+								</ul>
+								
 
-				<div class="cards">
+								<h3>Préparation:</h3>
+								<p class="card_presentation">
+									
+									<li>{{ recipe.steps|first|slice(0, 50) }}</li>
+								
+								</p>
 
-					<div class="cards_carrousel_container">
-						<div class="cards_carrousel">
-							{% for recipe in recipes %}
-								<div class="cards_container">
-									<img src="{{ recipe.getPicture() }}" alt="{{ recipe.title() }}">
-									<div class="cards_content">
-										<h2>{{ recipe.title() }}</h2>
-										<p>proposée par <a href="{{ path('tcb_front_user_show', { 'slug' : user.slug}) }}">{{user.firstname}} {{user.lastname}}</a></p>
-
-										<h3>Ingrédients :</h3>
-										<ul>
-											{% for ingredient in recipe.ingredients|slice(0, 2) %}
-												<li>{{ ingredient }}</li>
-											{% endfor %}
-										</ul>
-
-
-										<h3>Préparation:</h3>
-										<p class="card_presentation">
-
-											<li>{{ recipe.steps|first|slice(0, 50) }}</li>
-
-										</p>
-
-										<div class="card_btn">
-											<a class="heart_icon">
-												<i class="fas fa-heart"></i>
-											</a>
-											<a class="tcb_btn" href="{{ path('tcb_front_recipe_show', { 'slug' : recipe.slug}) }}">Voir la recette</a>
-										</div>
-									</div>
+								<div class="card_btn">
+									<a class="heart_icon">
+										<i class="fas fa-heart"></i>
+									</a>
+									<a class="tcb_btn" href="{{ path('tcb_front_recipe_show', { 'slug' : recipe.slug}) }}">Voir la recette</a>
 								</div>
-							{% endfor %}
+							</div>
 						</div>
-					</div>
-
-					<a class="tcb_btn_caroussel tcb_btn_caroussel_left">
-						<i class="fas fa-arrow-up"></i>
-					</a>
-					<a class="tcb_btn_caroussel tcb_btn_caroussel_right">
-						<i class="fas fa-arrow-up"></i>
-					</a>
-					<div class="card_title">
-						{{ category }}
-					</div>
+					{% endfor %}
 				</div>
-			{% endif %}
+				</div>
+
+				<a class="tcb_btn_caroussel tcb_btn_caroussel_left">
+					<i class="fas fa-arrow-up"></i>
+				</a>
+				<a class="tcb_btn_caroussel tcb_btn_caroussel_right">
+					<i class="fas fa-arrow-up"></i>
+				</a>
+				<div class="card_title">
+					{{ category }}
+				</div>
+			</div>
 		{% endfor %}
 
-	{% endfor %}
-
 {% endblock %}
+
 
