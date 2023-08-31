@@ -7,6 +7,7 @@ use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\RecipeRepository;
 use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -126,13 +127,24 @@ class UserController extends AbstractController
         ]);
     }
 
-    // /**
-    //  * @Route("/profile/{slug}/ebook/delete", name="removeFromEbook")
-    //  */
-    // public function removeFromEbook(Recipe $recipe): Response
-    // {
-    //    //!A TERMINER
+     /**
+      * @Route("/profile/{slug}/ebook/delete{recipeSlug}", name="tcb_front_user_removeFromEbook")
+      */
+     public function removeFromEbook(RecipeRepository $recipeRepository, $slug, $recipeSlug, EntityManagerInterface $entityManagerInterface): Response
+     {
+        $user = $this->getUser();
+        $recipe = $recipeRepository->findOneBy([
+            'slug' => $recipeSlug, 
+            'user' => $user]);
 
+        if ($recipe && $recipe->isEbook() === '1') {
+            $recipe->removeFromEbook();
 
-    // }
+            $entityManagerInterface->flush();
+            $this->addFlash("success", "La recette a été retirée de votre Ebook.");
+
+            return $this->redirectToRoute('tcb_front_user_ebook', ['slug' => $slug]);
+        }
+
+     }
 }
