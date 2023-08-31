@@ -1,0 +1,222 @@
+{% extends 'Front/user/profile.html.twig' %}
+
+{% block content %}
+
+
+<div class="w-100">
+
+	{% if app.request.attributes.get("_route") is same as "tcb_front_recipe_add" %}
+		<h2>Ajouter une recette</h2>
+	{% else %}
+		<h2>Modifier la recette</h2>
+	{% endif %}
+
+	{{form_start(form, {attr: {novalidate: 'novalidate'}})}}
+
+		<div class="col-12 mb-3">
+			{{form_label(form.title)}}
+			{{form_widget(form.title)}}
+			{{form_help(form.title)}}
+			{{form_errors(form.title)}}
+		</div>
+		<div class="col-12 mb-3">
+			{{form_label(form.category)}}
+			{{form_widget(form.category)}}
+			{{form_help(form.category)}}
+			{{form_errors(form.category)}}
+		</div>
+		<div class="col-12 mb-3">
+			{{form_label(form.picture)}}
+			{{form_widget(form.picture)}}
+			{{form_help(form.picture)}}
+			{{form_errors(form.picture)}}
+		</div>
+		<div class="col-12 mb-3">
+			<a id="upload_widget" class="cloudinary-button">Choisir un fichier</a>
+			<small class="cloudinary-input"></small>
+			<input type="hidden" id="cloudinaryUrl" name="cloudinaryUrl">
+		</div>
+		<div class="col-12 mb-3">
+			{{ form_label(form.ingredients) }}
+			{{ form_errors(form.ingredients) }}
+
+			<ol class="add_ingredients d-flex flex-column" 
+				data-index="{{ form.ingredients|length > 0 ? form.ingredients|last.vars.name + 1 : 0 }}"
+				data-prototype="{{ form_widget(form.ingredients.vars.prototype)|e('html_attr') }}">
+				{% for ingredient in form.ingredients %}
+					<li class="m-2 ms-4" style="list-style: disc">
+						{{ form_errors(ingredient) }}
+						{{ form_widget(ingredient, {attr : {required: 'required'}}) }}
+					</li>
+				{% endfor %}
+			</ol>
+			<button type="button" 
+					class="add_ingredient_link tcb_btn mt-3" 
+					data-collection-holder-class="add_ingredients">
+					Ajouter un ingredient
+			</button>
+		</div>
+
+		<div class="col-12 mb-3">
+			{{ form_label(form.steps) }}
+			{{ form_errors(form.steps) }}
+
+			<ol class="add_steps d-flex flex-column" 
+				data-index="{{ form.steps|length > 0 ? form.steps|last.vars.name + 1 : 0 }}"
+				data-prototype="{{ form_widget(form.steps.vars.prototype)|e('html_attr') }}">
+				{% for step in form.steps %}
+					<li class="m-2 ms-4" style="list-style: decimal">
+						{{ form_errors(step) }}
+						{{ form_widget(step, {attr : {required: 'required'}}) }}
+					</li>
+				{% endfor %}
+			</ol>
+			<button type="button" 
+					class="add_step_link tcb_btn mt-3" 
+					data-collection-holder-class="add_steps">
+					Ajouter une étape
+			</button>
+		</div>
+		<div class="col-12 mb-3">
+			{{form_label(form.duration)}}
+			{{form_widget(form.duration)}}
+			{{form_help(form.duration)}}
+			{{form_errors(form.duration)}}
+		</div>
+		<div class="col-12 mb-3">
+			{{form_label(form.status)}}
+			{{form_widget(form.status)}}
+			{{form_help(form.status)}}
+			{{form_errors(form.status)}}
+		</div>
+		<div class="col-12 mb-3">
+			{{form_label(form.ebook)}}
+			{{form_widget(form.ebook)}}
+			{{form_help(form.ebook)}}
+			{{form_errors(form.ebook)}}
+		</div>
+		
+
+		<button class="tcb_btn" type="submit">Envoyer</button>
+
+	{{form_end(form)}}
+</div>
+
+{% endblock %}
+{% block js %}
+	<script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>  
+
+	<script type="text/javascript">  
+		var myWidget = cloudinary.createUploadWidget({
+			cloudName: 'dxl8cac89', 
+			uploadPreset: 'test_upload',
+			folder: 'Images'}, (error, result) => { 
+				if (!error && result && result.event === "success") { 
+				console.log('Done! Here is the image info: ', result.info); 
+					// get file name 
+					const file_name = `${result.info.original_filename}.${result.info.format}`;
+					// retrieve picture image name element on DOM
+					const imageNameElement = document.querySelector(".cloudinary-input");
+					// set file_name to value of picture input   
+					imageNameElement.textContent = file_name;
+
+					// retrieve cloudinary input hidden element on DOM
+					const cloudinary_input = document.getElementById("cloudinaryUrl");
+					// set file_name to value of picture input   
+					cloudinary_input.value = result.info.url;
+
+				}
+			}
+		)
+
+		document.getElementById("upload_widget").addEventListener("click", function(){
+			myWidget.open();
+		}, false);
+	</script>
+
+	<script>
+		// ! source : https://symfony.com/doc/current/form/form_collections.html#form-collections-new-prototype
+		
+		/**
+		 * function called when user click on delete button
+		 */
+		const addIngredientFormDeleteLink = (item) => {
+			const removeFormButton = document.createElement('button');
+			removeFormButton.style = `
+				position: absolute;
+				top: 50%; right: -1rem;
+				transform: translateY(-50%);
+				color: var(--corail-color);
+				background-color: transparent;
+				border: none;
+				font-size: 2em;
+			`;
+
+			removeFormButton.innerText = '-';
+
+			item.append(removeFormButton);
+
+			removeFormButton.addEventListener('click', (e) => {
+				e.preventDefault();
+				// remove the li for the tag form
+				item.remove();
+			});
+		}
+
+		/**
+		 * function called when user click on add(ingredient or step) button
+		 */
+		const addFormToCollection = (listStyle) => {
+			return (e) => {
+				const collectionHolder = document.querySelector('.' + e.currentTarget.dataset.collectionHolderClass);
+				
+				const item = document.createElement('li');
+				item.classList.add("m-2", "ms-4");
+				item.style.listStyle = listStyle;
+				item.style.position = "relative"; // cause remove btn have position absolute
+
+				item.innerHTML = collectionHolder.dataset.prototype.replace(/__name__/g, collectionHolder.dataset.index);
+
+				item.querySelector("input").attributes.required = "required";
+				
+				collectionHolder.appendChild(item);
+
+				collectionHolder.dataset.index ++;
+
+				addIngredientFormDeleteLink(item);
+			};
+		};
+
+		
+		
+		
+		// ============== steps handler ============
+
+		// for each "add step button", we add a event click listener
+		document.querySelectorAll('.add_step_link').forEach(btn => {
+			btn.addEventListener("click", addFormToCollection("decimal"));
+		});
+
+		// for each "ingredient", we add a event click listener
+		document.querySelectorAll('ol.add_steps li').forEach((li) => {
+			li.style.position = "relative";
+			li.style.width = "90%";
+        	addIngredientFormDeleteLink(li)
+    	})
+
+		// ============== ingredient handler ============
+		
+		// for each "add ingredient button", we add a event click listener
+		document.querySelectorAll('.add_ingredient_link').forEach(btn => {
+			btn.addEventListener("click", addFormToCollection("disc"));
+		});
+
+		// for each "ingredient", we add a event click listener
+		document.querySelectorAll('ol.add_ingredients li').forEach((li) => {
+			li.style.position = "relative";
+			li.style.width = "90%";
+        	addIngredientFormDeleteLink(li)
+    	})
+
+	</script>
+{% endblock %}

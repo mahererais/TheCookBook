@@ -9,6 +9,8 @@
 	<h1 class="page_title">Liste des recettes </h1>
 
 	{% for recipe in recipes %}
+			{% if recipe.user.status == "public" and recipe.user.roles == ["ROLE_USER"] %}
+
 
 		<div class="cards">
 
@@ -21,7 +23,7 @@
 					<h3>{{recipe.category.title}}</h3>
 					{# ! to be dynamized with user entity addition #}
 					{# <p>Proposée par {{user.firstname}}</p> #}
-					<p>Proposée par Nicolas</p>
+					<p>Proposée par <a href="{{ path('tcb_front_user_show', { 'slug' : recipe.user.slug}) }}">{{recipe.user.firstname}} {{recipe.user.lastname}}</a></p>
 					<h3>Préparation:</h3>
 					{% for step in recipe.steps %}
 						<ul>
@@ -29,6 +31,7 @@
 						</ul>
 					{% endfor %}
 					<p class="r_card_presentation">{{recipe.title}}</p>
+
 
 					<div class="r_card_btn">
 						<a class="tcb_btn" href="{{ path('tcb_front_recipe_show', { 'slug' : recipe.slug}) }}">Voir la recette</a>
@@ -40,7 +43,7 @@
 
 			</div>
 		</div>
-
+{% endif %}
 	{% endfor %}
 
 	<button type="button" class="tcb_btn">Voir plus</button>

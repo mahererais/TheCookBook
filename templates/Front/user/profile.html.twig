@@ -1,0 +1,83 @@
+{% extends 'Front/front_base.html.twig' %}
+
+{% set user = app.user %}
+
+{% block title %}profil de
+	{{app.user.firstname}}
+{% endblock %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{asset('assets/css/front/style.css')}}">
+	<!-- Bootstrap CSS -->
+	<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+	<!-- Bootstrap icons -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+	
+{% endblock %}
+
+{% block body %}
+
+	{% block profile_nav %}
+		<div class="d-flex p-2 flex-column flex-md-row gap-4">
+			<aside style="width: 190px" class="flex-shrink-0">
+
+				<div>
+					<li>
+						<a href="{{ path('tcb_front_user_profile', {slug: user.slug})}}">Mon profil</a>
+					</li>
+					<li>
+						<a href="{{ path('tcb_front_user_update', {slug: user.slug})}}">Modifier mes informations</a>
+					</li>
+					<li>
+						<a href="{{ path('tcb_front_user_getRecipesByUserLog', {slug: user.slug})}}">Mes recettes</a>
+					</li>
+					<li>
+						<a href="{{ path('tcb_front_recipe_add')}}">Ajouter une recette</a>
+					</li>
+
+					<li>
+						<a href="{{ path('tcb_front_user_ebook', {slug: user.slug})}}">Mon Ebook</a>
+					</li>
+
+					<li>
+						<a href="{{ path('tcb_front_security_logout') }}">Se déconnecter</a>
+					</li>
+				</div>
+			</aside>
+
+		{% endblock %}
+
+		{% block content %}
+			<div class="profile-container mt-5">
+				<div class="row">
+					<h2>Profil de
+						{{ user.firstname }}</h2>
+					<div class="col-md-4">
+						<img src="{{user.picture}}" alt="{{user.firstname}} {{user.lastname}}">
+					</div>
+					<div class="col-md-8">
+						<p>Email :
+							{{ user.email }}</p>
+						<p>Nom :
+							{{ user.lastname }}</p>
+						<p>Prénom :
+							{{ user.firstname }}</p>
+						<p>Spécialité :
+							{{ user.speciality }}</p>
+						<p>Expérience :
+							{{ user.experience }}</p>
+						<p>Présentation :
+							{{ user.presentation }}</p>
+						{#<p>Password :
+																					{{ user.password }}</p>#}
+						<p>Statut :
+							{{ user.status }}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	{% endblock %}
+{% endblock %}
+

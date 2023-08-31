@@ -8,11 +8,9 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\TagType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -28,14 +26,24 @@ class RecipeType extends AbstractType
                     "placeholder" => "Titre"
                 ]
             ])
-            // ->add('picture', FileType::class,[
-            //     "label" => "Image de votre recette"
-            // ])
-            ->add('picture', UrlType::class,[
-                "label" => "Photo de votre recette",
-                "attr" => [
-                    "placeholder" => "http//..."
-                ]
+            ->add('category', EntityType::class, [
+                'class'=> Category::class,
+                "choice_label" => "title",
+                "label" => "Catégorie"
+            ])
+            ->add('picture', HiddenType::class,[
+                "label" => "Photo de la recette",
+                // unmapped means that this field is not associated to any entity property
+                "mapped" => false,
+            ])
+
+            ->add('ingredients', CollectionType::class, [
+                'entry_type' => TextType::class,
+                "label" => "Ingrédients de la recette",
+                'entry_options' => ['label' => false],
+                'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false,
             ])
            
             ->add('steps', CollectionType::class, [
@@ -46,7 +54,13 @@ class RecipeType extends AbstractType
                 'allow_delete' => true,
                 'by_reference' => false,
             ])
-
+            ->add('duration', IntegerType::class, [
+                "label" => "Temps de préparation",
+                "attr" => [
+                    "placeholder" => "30 mn"
+                ],
+                "help" => "* en minutes"
+            ])
             ->add('status', ChoiceType::class, [
                 "label" => "Statut de la recette",
                 "choices" => [
@@ -56,32 +70,11 @@ class RecipeType extends AbstractType
                 'expanded' => true,
                 'multiple' => false
             ])
-            ->add('duration', IntegerType::class, [
-                "label" => "Temps de préparation",
-                "attr" => [
-                    "placeholder" => "30 mn"
-                ],
-                "help" => "* en minutes"
-            ])
-            ->add('ingredients', CollectionType::class, [
-                'entry_type' => TextType::class,
-                "label" => "Ingrédients de la recette",
-                'entry_options' => ['label' => false],
-                'allow_add' => true,
-                'allow_delete' => true,
-                'by_reference' => false,
-            ])
-            
-            ->add('category', EntityType::class, [
-                'class'=> Category::class,
-                "choice_label" => "title",
-                "label" => "Catégorie"
-            ])
             ->add('ebook', ChoiceType::class, [
                 "label" => "Voulez vous ajouter cette recette à votre Ebook ?",
                 "choices" => [
-                    "Oui" => true,
-                    "Non" => false
+                    "Oui" => 1,
+                    "Non" => 0
                 ],
                 'expanded' => true,
                 'multiple' => false
