@@ -244,4 +244,12 @@ class Recipe
         return $this;
     }
 
+    public function removeFromEbook(): self
+    {
+        $this->setEbook('0');
+
+        return $this;
+    }
+
+
 }

@@ -6,14 +6,16 @@
 
 {% block body %}
 
-<h1 class="page_title"> {{recipe.title}}</h1>
+	<h1 class="page_title">
+		{{recipe.title}}</h1>
 
 	<main class="container">
 		<div class="row">
 			<div class="flex-row w-50"></div>
 			<div class="flex-row w-50">
 				<div class="col">
-					<i class="bi bi-tag">catégorie: {{recipe.category.title}}</i>
+					<i class="bi bi-tag">catégorie:
+						{{recipe.category.title}}</i>
 				</div>
 				<div>
 					<img src="{{recipe.picture}}" class="mw-100" alt="{{recipe.title}}">
@@ -55,44 +57,43 @@
 
 		<div class="user_container tcb_padding">
 
-			<a href="#profil_chef">
-				<img src="https://images.unsplash.com/photo-1593085512500-5d55148d6f0d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80" alt="avatare chef">
+			<a href="{{ path('tcb_front_user_show', { 'slug' : recipe.user.slug}) }}">
+				<img src="{{recipe.user.picture}}" alt="{{recipe.user.firstname}}{{recipe.user.lastname}}">
 			</a>
 
-			{% for user in recipe.user %}
-				
-			<div class="user_descriptions">
-				<div>
-					<label>Nom :
-					</label>
-					<p>{{recipe.user.lastname}}</p>
-					{# ! à dynamiser avec user #}
-					{# <p>{{user.name}}</p> #}
 
-					<label>Prénom :
-					</label>
-					<p>Nicolas</p>
-					{# ! à dynamiser avec user #}
-					{# <p>{{user.firstname}}</p> #}
-				</div>
-				<div>
-					<label>Spécialité :
-					</label>
-					<p>Cuisine en tous genres</p>
-					{# ! à dynamiser avec user #}
-					{# <p>{{user.speciality}}</p> #}
+				<div class="user_descriptions">
+					<div>
+						<label>Nom :
+						</label>
+						<p>{{recipe.user.lastname}}</p>
+						{# ! à dynamiser avec user #}
+						{# <p>{{user.name}}</p> #}
 
-					<label>Experience :
-					</label>
-					<p>Professionnel</p>
-					{# ! à dynamiser avec user #}
-					{# <p>{{user.experience}}</p> #}
+						<label>Prénom :
+						</label>
+						<p>{{recipe.user.firstname}}</p>
+						{# ! à dynamiser avec user #}
+						{# <p>{{user.firstname}}</p> #}
+					</div>
+					<div>
+						<label>Spécialité :
+						</label>
+						<p>{{recipe.user.speciality}}</p>
+						{# ! à dynamiser avec user #}
+						{# <p>{{user.speciality}}</p> #}
+
+						<label>Experience :
+						</label>
+						<p>chef {{recipe.user.experience}}</p>
+						{# ! à dynamiser avec user #}
+						{# <p>{{user.experience}}</p> #}
+					</div>
 				</div>
-			</div>
-			
-			{% endfor %}
+
 
 		</div>
 	</main>
 
 {% endblock %}
+

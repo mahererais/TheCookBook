@@ -14,7 +14,7 @@
                                 <h5 class="card-title">{{ recipe.title }}</h5>
                                 </a>
                                 <a onclick="return confirm('Voulez vous retirer cette recette de votre Ebook ?')"
-                                   href="#">
+                                   href="{{ path ('tcb_front_user_removeFromEbook', {slug: user.slug,  'recipeSlug': recipe.slug }) }}">
                                     <i class="bi bi-x-circle-fill text-dark"></i>
                                 </a>
                             </div>

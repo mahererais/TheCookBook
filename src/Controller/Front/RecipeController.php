@@ -156,7 +156,7 @@ class RecipeController extends AbstractController
     public function show(Recipe $recipe, UserRepository $userRepository, $slug): Response
     {
         $recipe = $this->entityManager->getRepository(Recipe::class)->findOneBy(['slug' => $slug]);
-        $user = $userRepository->findAll($recipe);
+        $user = $userRepository->findAll();
 
         // dd($recipe);
         return $this->render('Front/recipe/show.html.twig', [
