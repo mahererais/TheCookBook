@@ -49,7 +49,7 @@ class RecipeController extends AbstractController
      */
     public function search(RecipeRepository $recipeRepository, Request $request): Response
     {
-        $recipes = $recipeRepository->searchRecipe($request->get("query"));
+        $recipes = $recipeRepository->searchRecipe($request->get("search"));
 
         // dd($recipes);
 

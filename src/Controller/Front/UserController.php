@@ -41,11 +41,11 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/user/search", name="tcb_front_user_search")
+     * @Route("/user/query", name="tcb_front_user_search")
      */
     public function search(UserRepository $userRepository, Request $request): Response
     {
-        $users = $userRepository->searchUser($request->get("query"));
+        $users = $userRepository->searchUser($request->get("search"));
 
         return $this->render('Front/user/search.html.twig', [
             'users' => $users,

@@ -67,16 +67,17 @@ class RecipeRepository extends ServiceEntityRepository
     * @param string|null $string to find in recipes
     */
 
-   public function searchRecipe(?string $query = null): ?array
+   public function searchRecipe(?string $search = null): ?array
    {
-       return $this->createQueryBuilder('m')
-            ->orderBy("m.title","ASC")
-            ->where("m.title LIKE :query")
-            ->setParameter("query", "%$query%")
-            ->getQuery()
-            ->getResult()
-       ;
-   }
+    return $this->createQueryBuilder('m')
+         ->orderBy("m.title","ASC")
+         ->where("m.title LIKE :search")
+         ->setParameter("search", "%$search%")
+         ->getQuery()
+         ->getResult()
+    ;
+}
+
     public function findByUser(User $user)
     {
         return $this->createQueryBuilder('r')
