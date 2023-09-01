@@ -74,7 +74,8 @@ class CategoryController extends AbstractController
         }
 
         return $this->renderForm("Admin/category/form.html.twig",[
-            "form" => $form
+            "form" => $form,
+            "category" => $category
         ]);
     }
 
@@ -89,6 +90,10 @@ class CategoryController extends AbstractController
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $imageCloudUrl =  $request->get("cloudinaryUrl");
+            $category->setPicture($imageCloudUrl);
+
             $entityManager->persist($category);
             $entityManager->flush();
 

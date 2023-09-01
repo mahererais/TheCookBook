@@ -30,8 +30,11 @@
 			{{form_errors(form.picture)}}
 		</div>
 		<div class="col-12 mb-3">
-			<a id="upload_widget" class="cloudinary-button">Choisir un fichier</a>
-			<small class="cloudinary-input"></small>
+			<a id="upload_widget" class="cloudinary-button tcb_btn">Choisir un fichier</a>
+			<a class="login_btn">
+				<img src="{{app.user.picture}}" alt="avatar image" id="avatar_image">
+			</a>
+			<small class="cloudinary-small"></small>
 			<input type="hidden" id="cloudinaryUrl" name="cloudinaryUrl">
 		</div>
 		<div class="col-12 mb-3">
@@ -88,7 +91,7 @@
 					// get file name 
 					const file_name = `${result.info.original_filename}.${result.info.format}`;
 					// retrieve picture image name element on DOM
-					const imageNameElement = document.querySelector(".cloudinary-input");
+					const imageNameElement = document.querySelector(".cloudinary-small");
 					// set file_name to value of picture input   
 					imageNameElement.textContent = file_name;
 
@@ -96,6 +99,11 @@
 					const cloudinary_input = document.getElementById("cloudinaryUrl");
 					// set file_name to value of picture input   
 					cloudinary_input.value = result.info.url;
+
+					// retrieve cloudinary cloudinary_image element on DOM
+					const cloudinary_image = document.getElementById("cloudinary_image");
+					// set file_name to value of picture scr image   
+					cloudinary_image.src = result.info.url;
 				}
 			}
 		)

@@ -21,11 +21,11 @@ class ProfileVoter extends Voter
         $authenticatedUser = $token->getUser();
 
         if (!$authenticatedUser  instanceof User) {
-            // L'utilisateur n'est pas connecté
+            // If the user is not logged, he cannot access
             return false;
         }
 
-        // Si l'utilisateur connecté est le même que le profil demandé
+        // He can access if the user logged is the same as the URL slug :
         return $authenticatedUser->getSlug() === $subject->getSlug();
     }
 }

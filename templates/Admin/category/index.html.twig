@@ -18,6 +18,7 @@
 				<tr>
 					<th>Id</th>
 					<th>Title</th>
+					<th>Image</th>
 					<th>Action</th>
 				</tr>
 			</thead>
@@ -26,6 +27,7 @@
 					<tr>
 						<td>{{ category.id }}</td>
 						<td>{{ category.title }}</td>
+						<td class="col-2"><img src="{{category.picture}}" alt="{{category.title}}" class="img-thumbnail"></td>
 						<td>
 							<a href="{{ path('tcb_admin_category_update', {'id': category.id}) }}">
 								<i class="bi bi-pencil btn btn-secondary"></i>
