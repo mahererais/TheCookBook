@@ -1,31 +1,45 @@
 // ! source:  https://writecode.fr/tutoriel/sass-limportation
+form[name="login_form"], //  page login form
+form[name="user_show_form"], // page ???? (mystère et pomme d'arosoir)
+form[name="registration_form"],
+.register_container{
 
-form[name="login_form"], form[name="user_show_form"] {
+    position: absolute;
+    top: 5em;
+    left: 50%;
+    transform: translateX(-50%);
 
     width: 100%;
     max-width: 480px;
 
+    padding-inline: 1em;
     margin: auto;
-    font-size: 1.3em;
+    font-size: 1.1em;
     color: var(--main-text-color);
+    
+    // user on template "register.html.twig" & "login.html.twig"
+    // page header title (button "se connecter" & "s"inscrire)
+    
 
     .info {
         color: var(#555);
         font-size: 0.7em;
     }
+}
+        
 
-    .page_title_container {
+.page_register_title_container {
         display: flex;
-        justify-content: space-between;
+        justify-content: space-around;
         align-items: center;
         height: 2rem;
         
         &>a {
-            width: 50%;
+            width: max-content;
             text-align: center;
             color: var(--main-text-color);
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
             transition: 0.2s;
             
             &:visited {
@@ -41,63 +55,6 @@ form[name="login_form"], form[name="user_show_form"] {
             &:hover {
                 opacity: initial;
                 color: var(--main-text-color);
-                font-weight: 600;
             }
         }
     }
-
-    label,
-    input {
-        display: block;
-    }
-
-    label,
-    .page_title_container {
-        width: 100%;
-        margin-top: 1.5em;
-    }
-
-
-    label {
-        font-size: 1em;
-        font-weight: bold;
-    }
-
-    input {
-
-        border: none;
-        border-bottom: 1px solid #ddd;
-        padding: 0.3em 0 ;
-        font-size: 0.9em;
-        margin-top: 1em;
-        width: 100%;
-        background-color: var(--secondary-color);
-
-        &:focus {
-            outline: none;
-        }
-    }
-
-    button {
-
-        background-color: var(--main-color);
-        color: white;
-        padding: 0.5em;
-        border: 2px solid var(--main-color);
-        font-size: 1.2em;
-
-        width: 100%;
-        margin-top: 2em;
-
-        border-radius: 0.5em;
-
-        cursor: pointer;
-
-        transition: 0.2s;
-
-        &:hover {
-            background-color: var(--secondary-color);
-            color: var(--main-color);
-        }
-    }
-}

@@ -93,9 +93,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $recipes;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isVerified = false;
+    
     public function __construct()
     {
         $this->recipes = new ArrayCollection();
+        $this->setRoles(["ROLE_USER"]);
     }
 
     public function getId(): ?int
@@ -308,6 +314,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function isVerified(): bool
+    {
+        return $this->isVerified;
+    }
+
+    public function setIsVerified(bool $isVerified): self
+    {
+        $this->isVerified = $isVerified;
 
         return $this;
     }
