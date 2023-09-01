@@ -102,8 +102,8 @@ class UserController extends AbstractController
     {
         $this->denyAccessUnlessGranted('PROFILE_ACCESS', $user);
 
-            $user = $userRepository->findOneBy(['slug' => $slug]);
-            return $this->render('Front/user/profile.html.twig', [
+        $user = $userRepository->findOneBy(['slug' => $slug]);
+        return $this->render('Front/user/profile.html.twig', [
             'user' => $user,
         ]);
     }
@@ -136,15 +136,16 @@ class UserController extends AbstractController
         ]);
     }
 
-     /**
-      * @Route("/profile/{slug}/ebook/delete{recipeSlug}", name="tcb_front_user_removeFromEbook")
-      */
-     public function removeFromEbook(RecipeRepository $recipeRepository, $slug, $recipeSlug, EntityManagerInterface $entityManagerInterface): Response
-     {
+    /**
+     * @Route("/profile/{slug}/ebook/delete{recipeSlug}", name="tcb_front_user_removeFromEbook")
+     */
+    public function removeFromEbook(RecipeRepository $recipeRepository, $slug, $recipeSlug, EntityManagerInterface $entityManagerInterface): Response
+    {
         $user = $this->getUser();
         $recipe = $recipeRepository->findOneBy([
-            'slug' => $recipeSlug, 
-            'user' => $user]);
+            'slug' => $recipeSlug,
+            'user' => $user
+        ]);
 
         if ($recipe && $recipe->isEbook() === '1') {
             $recipe->removeFromEbook();
@@ -154,6 +155,41 @@ class UserController extends AbstractController
 
             return $this->redirectToRoute('tcb_front_user_ebook', ['slug' => $slug]);
         }
+    }
 
-     }
+    /**
+     * @Route("/add-favorite/{id}", name="tcb_front_user_addFavorite")
+     */
+    public function addFavorite(Request $request, $id, EntityManagerInterface $em, RecipeRepository $recipeRepository): Response
+    {
+        $user = $this->getUser();
+        // je récupère mon user connecté
+
+        if (!$user) {
+            // L'utilisateur n'est pas connecté, redirigez-le vers la page de connexion ou affichez un message d'erreur
+            return $this->redirectToRoute('login'); // Remplacez 'login' par la route de votre page de connexion
+        }
+        
+        $recipe = $recipeRepository->find($id);
+
+        if (!$recipe) {
+            // La recette n'a pas été trouvée, affichez un message d'erreur ou redirigez l'utilisateur
+            return $this->redirectToRoute('recipes'); // Remplacez 'recipes' par la route de la liste de recettes
+        }
+
+        $user->addFavorite($recipe);
+        $favorites = $user->getFavorites();
+        
+        $em->flush();
+
+        // Affichez un message de succès ou redirigez l'utilisateur vers une autre page
+        $this->addFlash('success', 'La recette a été ajoutée à vos favoris.');
+
+        $id = $recipe->getId();
+
+        return $this->render('Front/user/favorites.html.twig', [
+            
+            'favorites' => $favorites
+        ]);
+    }
 }
