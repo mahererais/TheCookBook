@@ -2,18 +2,18 @@
 
 {% set user = app.user %}
 
-{% block title %}profil de
+{% block title %}Profil de
 	{{app.user.firstname}}
 {% endblock %}
 
 {% block stylesheets %}
-	<link rel="stylesheet" href="{{asset('assets/css/front/style.css')}}">
 	<!-- Bootstrap CSS -->
 	<link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 	<!-- Bootstrap icons -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 
+	<link rel="stylesheet" href="{{asset('assets/css/front/style.css')}}">
 	
 {% endblock %}
 
@@ -31,6 +31,9 @@
 						<a href="{{ path('tcb_front_user_update', {slug: user.slug})}}">Modifier mes informations</a>
 					</li>
 					<li>
+						<a href="{{ path('tcb_front_favorite_getAll', {slug: user.slug})}}">Mes favoris</a>
+					</li>
+					<li>
 						<a href="{{ path('tcb_front_user_getRecipesByUserLog', {slug: user.slug})}}">Mes recettes</a>
 					</li>
 					<li>
@@ -40,7 +43,6 @@
 					<li>
 						<a href="{{ path('tcb_front_user_ebook', {slug: user.slug})}}">Mon Ebook</a>
 					</li>
-
 					<li>
 						<a href="{{ path('tcb_front_security_logout') }}">Se déconnecter</a>
 					</li>
@@ -55,7 +57,10 @@
 					<h2>Profil de
 						{{ user.firstname }}</h2>
 					<div class="col-md-4">
+					{% if user.picture %}
 						<img src="{{user.picture}}" alt="{{user.firstname}} {{user.lastname}}">
+					{% endif %}	
+					
 					</div>
 					<div class="col-md-8">
 						<p>Email :

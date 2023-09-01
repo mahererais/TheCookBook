@@ -54,7 +54,7 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
         
         // check if user get role admin
         if (in_array("ROLE_ADMIN", $user->getRoles()))
-            return new RedirectResponse($this->urlGenerator->generate('tcb_admin_recipe_home', ['slug' => $user->getSlug()]));
+            return new RedirectResponse($this->urlGenerator->generate('tcb_admin_recipe_home'));
 
         return new RedirectResponse($this->urlGenerator->generate('tcb_front_user_profile', ['slug' => $user->getSlug()]));
         // return new RedirectResponse($this->urlGenerator->generate('tcb_front_main_home'));

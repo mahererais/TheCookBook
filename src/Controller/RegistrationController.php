@@ -20,11 +20,17 @@ class RegistrationController extends AbstractController
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
     {
         $user = new User();
+        $user->setRoles(["ROLE_USER"]);
+
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
+        //dd($form);
+
         if ($form->isSubmitted() && $form->isValid()) {
             // encode the plain password
+            $user->setPicture("https://img.freepik.com/psd-premium/male-chef-3d-avatar-illustration-job-icon_173394-160.jpg?size=100");
+
             $user->setPassword(
             $userPasswordHasher->hashPassword(
                     $user,
@@ -35,6 +41,8 @@ class RegistrationController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
             // do anything else you need here, like send an email
+
+            $this->addFlash("success", "Compte bien créé !");
 
             return $this->redirectToRoute('tcb_front_security_login');
         }

@@ -2,43 +2,33 @@
 
 namespace App\Security\Voter;
 
+use App\Entity\Recipe;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 class RecipeVoter extends Voter
 {
-    public const EDIT = 'POST_EDIT';
-    public const VIEW = 'POST_VIEW';
+    public const RECIPE_MODIF = 'RECIPE_MODIF';
 
     protected function supports(string $attribute, $subject): bool
     {
-        // replace with your own logic
-        // https://symfony.com/doc/current/security/voters.html
-        return in_array($attribute, [self::EDIT, self::VIEW])
-            && $subject instanceof \App\Entity\Recipe;
+        return in_array($attribute, [self::RECIPE_MODIF]) && $subject instanceof Recipe;
     }
 
     protected function voteOnAttribute(string $attribute, $subject, TokenInterface $token): bool
     {
         $user = $token->getUser();
-        // if the user is anonymous, do not grant access
+        // the user must be logged in; if not, deny access
         if (!$user instanceof UserInterface) {
             return false;
         }
 
-        // ... (check conditions and return true to grant permission) ...
-        switch ($attribute) {
-            case self::EDIT:
-                // logic to determine if the user can EDIT
-                // return true or false
-                break;
-            case self::VIEW:
-                // logic to determine if the user can VIEW
-                // return true or false
-                break;
-        }
+        // the subject of the authorization is about the RECIPE :
+        /** @var Recipe $recipe */
+        $recipe = $subject;
 
-        return false;
+        // we search if the user of the recipe is the user trying to access to the URL
+        return $recipe->getUser() === $user;
     }
 }
