@@ -108,7 +108,7 @@ class AppFixtures extends Fixture
                 $recipe->setSteps($faker->paragraphs(4));
                 $recipe->setCreatedAt(new \DateTimeImmutable($faker->date()));
                 $recipe->setDuration($faker->randomNumber(2));
-                $recipe->setIngredients($faker->words(5));
+                $recipe->setIngredients($faker->words(mt_rand(2, 10)));
 
                 // randomize either true or false of the Ebook boolean
                 $randomEbook = (bool) mt_rand(0, 1);

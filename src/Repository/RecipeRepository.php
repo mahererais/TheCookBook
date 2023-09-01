@@ -70,9 +70,14 @@ class RecipeRepository extends ServiceEntityRepository
    public function searchRecipe(?string $search = null): ?array
    {
     return $this->createQueryBuilder('m')
+         ->join('m.user', 'u')
          ->orderBy("m.title","ASC")
          ->where("m.title LIKE :search")
          ->setParameter("search", "%$search%")
+         ->andWhere('m.status = :status') 
+         ->setParameter('status', 'public')
+         ->andWhere('u.roles = :roles') // Add this line to filter by recipe status
+         ->setParameter('roles', '["ROLE_USER"]') // Set the status to 'public'
          ->getQuery()
          ->getResult()
     ;
