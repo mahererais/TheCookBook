@@ -20,9 +20,7 @@
 				<div class="r_cards_content">
 					<h2>{{recipe.title}}</h2>
 					<h3>{{recipe.category.title}}</h3>
-					{# ! to be dynamized with user entity addition #}
-					{# <p>Proposée par {{user.firstname}}</p> #}
-					<p>Proposée par Nicolas</p>
+					<p>Proposée par <a href="{{ path('tcb_front_user_show', { 'slug' : recipe.user.slug}) }}">{{recipe.user.firstname}} {{recipe.user.lastname}}</a></p>
 					<h3>Préparation:</h3>
 					{% for step in recipe.steps %}
 						<ul>
