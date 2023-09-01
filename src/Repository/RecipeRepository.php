@@ -105,6 +105,15 @@ class RecipeRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function getEbook(?string $search = null): ?array
+    {
+        return $this->createQueryBuilder('r')
+            ->andWhere('r.ebook = :ebook') // Add this line to filter by recipe status
+            ->setParameter('ebook', '1') // Set the status to 'public'
+            ->getQuery()
+            ->getResult();
+    }
+
     //    /**
     //     * @return Recipe[] Returns an array of Recipe objects
     //     */

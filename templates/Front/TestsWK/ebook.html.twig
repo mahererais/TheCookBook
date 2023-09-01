@@ -22,7 +22,8 @@
 	</head>
 
 	<body>
-
+		{% for recipe in recipes %}
+			
 		<nav class="container navbar navbar-expand-lg bg-primary my-4" data-bs-theme="dark">
 			<div class="container-fluid">
 				<a class="logo" href="#">
@@ -40,7 +41,7 @@
 			<div class="row">
 				<div class="flex-row w-25">
 					<div>
-						<img src="{{asset(ebookRecipes.picture)}}" class="mw-100" alt="">
+						<img src="{{asset(recipes.picture)}}" class="mw-100" alt="">
 					</div>
 				</div>
 				<div class="flex-row w-75">
@@ -75,6 +76,9 @@
 				</div>
 			</div>
 		</main>
+
+				{% endfor %}
+
 
 		<footer class="container my-4">
 			<div class="alert alert-dismissible alert-success">

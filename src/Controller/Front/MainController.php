@@ -3,6 +3,7 @@
 namespace App\Controller\Front;
 
 use Knp\Snappy\Pdf;
+use App\Entity\User;
 use App\Entity\Recipe;
 use App\Entity\Category;
 use App\Repository\RecipeRepository;
@@ -73,6 +74,25 @@ class MainController extends AbstractController
         //  'controller_name' => 'MainController',
         //  "recipe" => $recipe
         //]);
+    }
+
+    /**
+     * @Route("/{id}/ebook", name="tcb_front_user_ebook_generate", requirements={"id"="\d+"})
+     */
+    public function ebook(Pdf $knpSnappyPdf, Recipe $recipe, User $user, $id)
+    {
+        $recipe = $this->entityManager->getRepository(Recipe::class)->getEbook(['id' => $id]);
+        //dd($recipe);
+
+        $html = $this->renderView('Front/TestsWK/ebook.html.twig', [
+           "recipe" => $recipe
+        ]);
+        $knpSnappyPdf->setOption('enable-local-file-access', true);
+
+        return new PdfResponse(
+            $knpSnappyPdf->getOutputFromHtml($html),
+           'ebook.pdf',
+        );        
     }
 
 }
