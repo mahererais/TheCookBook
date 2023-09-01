@@ -31,7 +31,6 @@ class UserController extends AbstractController
      */
     public function getAll(UserRepository $userRepository): Response
     {
-
         $users = $userRepository->findAll();
 
         return $this->render('Front/user/chefs.html.twig', [
