@@ -22,7 +22,14 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
-    
+
+    # SERVICE
+    App\Service\CloudinaryService:
+        arguments:
+            $apiSecret: '%env(string:MY_SECRET)%'
+            $apiMyKey: '%env(int:MY_KEY)%'
+            $apiCloud: '%env(string:MY_CLOUDNAME)%'
+            
     # EVENTS
     App\Listener\CategoryListener:
         tags:

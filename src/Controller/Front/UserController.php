@@ -16,6 +16,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class UserController extends AbstractController
 {
@@ -32,11 +33,22 @@ class UserController extends AbstractController
      */
     public function getAll(UserRepository $userRepository): Response
     {
-
         $users = $userRepository->findAll();
 
         return $this->render('Front/user/chefs.html.twig', [
             'controller_name' => 'UserController',
+            'users' => $users,
+        ]);
+    }
+
+    /**
+     * @Route("/user/query", name="tcb_front_user_search")
+     */
+    public function search(UserRepository $userRepository, Request $request): Response
+    {
+        $users = $userRepository->searchUser($request->get("search"));
+
+        return $this->render('Front/user/search.html.twig', [
             'users' => $users,
         ]);
     }
@@ -55,35 +67,28 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/user/search", name="tcb_front_user_search")
-     */
-    public function search(UserRepository $userRepository, Request $request): Response
-    {
-        $users = $userRepository->searchUser($request->get("query"));
-
-        return $this->render('Front/user/search.html.twig', [
-            'users' => $users,
-        ]);
-    }
-
-    /**
      *  @Route("/profile/update/{slug}", name="tcb_front_user_update")
      */
     public function update(Request $request, EntityManagerInterface $entityManager, User $user, Security $security): Response
     {
+        $this->denyAccessUnlessGranted('PROFILE_ACCESS', $user);
 
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $imageCloudUrl =  $request->get("cloudinaryUrl");
+            $user->setPicture($imageCloudUrl);
+
             $entityManager->persist($user);
             $entityManager->flush();
 
-            // ! flash message to add
+            // flash message to add
             $this->addFlash("success", "L'utilisateur a bien mis à jour !");
 
 
-            return $this->redirectToRoute('tcb_front_user_profile');
+            return $this->redirectToRoute('tcb_front_user_profile', ['slug' => $security->getUser()->getSlug()]);
         }
 
         return $this->renderForm("Front/user/update.html.twig", [
@@ -97,6 +102,8 @@ class UserController extends AbstractController
      */
     public function profile(Request $request, EntityManagerInterface $entityManager, User $user, Security $security, UserRepository $userRepository, $slug): Response
     {
+        $this->denyAccessUnlessGranted('PROFILE_ACCESS', $user);
+
             $user = $userRepository->findOneBy(['slug' => $slug]);
             return $this->render('Front/user/profile.html.twig', [
             'user' => $user,
@@ -108,6 +115,7 @@ class UserController extends AbstractController
      */
     public function getRecipesByUserLog(Request $request, EntityManagerInterface $entityManager, User $user, Security $security): Response
     {
+        $this->denyAccessUnlessGranted('PROFILE_ACCESS', $user);
         return $this->render('Front/user/recipes.html.twig', [
             'user' => $user,
         ]);
@@ -118,6 +126,7 @@ class UserController extends AbstractController
      */
     public function ebook(Request $request, EntityManagerInterface $entityManager, User $user, Security $security, RecipeRepository $recipeRepository): Response
     {
+        $this->denyAccessUnlessGranted('PROFILE_ACCESS', $user);
         $ebookRecipes = $recipeRepository->findBy([
             'user' => $user,
             'ebook' => true,

@@ -45,11 +45,11 @@ class RecipeController extends AbstractController
     }
 
     /**
-     * @Route("/recipe/search", name="tcb_front_recipe_search")
+     * @Route("/recipe/query", name="tcb_front_recipe_search")
      */
     public function search(RecipeRepository $recipeRepository, Request $request): Response
     {
-        $recipes = $recipeRepository->searchRecipe($request->get("query"));
+        $recipes = $recipeRepository->searchRecipe($request->get("search"));
 
         // dd($recipes);
 
@@ -75,6 +75,10 @@ class RecipeController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $recipe->setUser($user);
+
+            $imageCloudUrl =  $request->get("cloudinaryUrl");
+            $recipe->setPicture($imageCloudUrl);
+
             $entityManager->persist($recipe);
             $entityManager->flush();
 
@@ -88,8 +92,6 @@ class RecipeController extends AbstractController
         ]);
     }
 
-
-
     /**
      * 
      * @Route("/recipe/update/{slug}", name="tcb_front_recipe_update")
@@ -101,6 +103,7 @@ class RecipeController extends AbstractController
         $form = $this->createForm(RecipeType::class, $recipe);
         $form->handleRequest($request);
 
+        dd($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($recipe);

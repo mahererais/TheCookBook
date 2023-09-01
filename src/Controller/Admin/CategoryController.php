@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+
 class CategoryController extends AbstractController
 {
     /**
@@ -58,8 +59,13 @@ class CategoryController extends AbstractController
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $imageCloudUrl =  $request->get("cloudinaryUrl");
+            $category->setPicture($imageCloudUrl);
+
             $entityManager->persist($category);
             $entityManager->flush();
+
 
             
             $this->addFlash("success", "Catégorie correctement ajoutée en BDD.");
