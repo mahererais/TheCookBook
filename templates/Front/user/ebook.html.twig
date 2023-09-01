@@ -1,8 +1,11 @@
 {% extends 'Front/user/profile.html.twig' %}
 
 {% block content %}
-    <div class="profile-container mt-5">
-        <h2>Ebook de {{ user.firstname }}</h2>
+    <div class="profile-container">
+        <div class="d-flex justify-content-between align-items-center">
+            <h2>Ebook de {{ user.firstname }}</h2>
+            <a class="tcb_btn" href="#">Générer le Ebook</a>
+        </div>
         {% if ebookRecipes is not empty %}
             <div class="row">
                 {% for recipe in ebookRecipes %}
