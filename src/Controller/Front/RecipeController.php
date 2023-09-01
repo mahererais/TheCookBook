@@ -16,7 +16,9 @@ use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class RecipeController extends AbstractController
 {
@@ -63,6 +65,7 @@ class RecipeController extends AbstractController
     /**
      *
      * @Route("/recipe/add", name="tcb_front_recipe_add")
+     * 
      */
     public function add(Request $request, EntityManagerInterface $entityManager, Security $security): Response
     {
@@ -91,12 +94,14 @@ class RecipeController extends AbstractController
 
         return $this->renderForm("Front/user/add_recipe.html.twig", [
             "form" => $form,
+            "recipe"=> $recipe
         ]);
     }
 
     /**
      * 
      * @Route("/recipe/update/{slug}", name="tcb_front_recipe_update")
+     * @IsGranted("RECIPE_MODIF", subject="recipe")
      *
      */
     public function update(Request $request, EntityManagerInterface $entityManager, string $slug, Recipe $recipe, RecipeRepository $recipeRepository ): Response
@@ -105,9 +110,13 @@ class RecipeController extends AbstractController
         $form = $this->createForm(RecipeType::class, $recipe);
         $form->handleRequest($request);
 
-        dd($request);
+        // dd($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $imageCloudUrl =  $request->get("cloudinaryUrl");
+            $recipe->setPicture($imageCloudUrl);
+            
             $entityManager->persist($recipe);
             $entityManager->flush();
 
@@ -128,13 +137,19 @@ class RecipeController extends AbstractController
     /**
      * 
      * @Route("/recipe/delete/{slug}", name="tcb_front_recipe_delete")
+     * @IsGranted("RECIPE_MODIF", subject="recipe")
      */
-    public function delete(Recipe $recipe, EntityManagerInterface $entityManager, string $slug, Request $request): Response
+    public function delete(Recipe $recipe, EntityManagerInterface $entityManager, string $slug, Request $request, Security $security): Response
     {
         // ! ne pas oublier le CSRF
         // if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->request->get('_token'))) {
         //     $userRepository->remove($user, true);
         // }
+
+        if (!$recipe) {
+            throw new NotFoundHttpException('La recette n\'a pas été trouvée');
+        }
+        
         $recipe = $this->entityManager->getRepository(Recipe::class)->findOneBy(['slug' => $slug]);
 
         $entityManager->remove($recipe);
@@ -145,7 +160,7 @@ class RecipeController extends AbstractController
             "La recette a bien été supprimé !"
         );
 
-        $referer = $request->headers->get("referer");
+        $referer = $request->headers->get("referer") ?: $this->generateUrl('tcb_front_user_getRecipesByUserLog', ['slug' => $security->getUser()->getSlug()]);
         
         return $this->redirect($referer);
     }

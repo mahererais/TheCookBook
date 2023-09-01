@@ -76,23 +76,4 @@ class MainController extends AbstractController
         //]);
     }
 
-    /**
-     * @Route("/{id}/ebook", name="tcb_front_user_ebook_generate", requirements={"id"="\d+"})
-     */
-    public function ebook(Pdf $knpSnappyPdf, Recipe $recipe, User $user, $id)
-    {
-        $recipe = $this->entityManager->getRepository(Recipe::class)->getEbook(['id' => $id]);
-        //dd($recipe);
-
-        $html = $this->renderView('Front/TestsWK/ebook.html.twig', [
-           "recipe" => $recipe
-        ]);
-        $knpSnappyPdf->setOption('enable-local-file-access', true);
-
-        return new PdfResponse(
-            $knpSnappyPdf->getOutputFromHtml($html),
-           'ebook.pdf',
-        );        
-    }
-
 }
