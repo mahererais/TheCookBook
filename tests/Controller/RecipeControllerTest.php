@@ -13,7 +13,7 @@ class RecipeControllerTest extends WebTestCase
         $client->request('GET', '/recipes');
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
-        $this->assertSelectorTextContains('h1', 'Liste des recettes'); // Remplacez 'Recipes' par le texte attendu dans votre modèle
+        $this->assertSelectorTextContains('h1', 'Liste des recettes'); 
     }
     
 }
