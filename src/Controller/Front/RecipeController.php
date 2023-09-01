@@ -89,6 +89,7 @@ class RecipeController extends AbstractController
 
         return $this->renderForm("Front/user/add_recipe.html.twig", [
             "form" => $form,
+            "recipe"=> $recipe
         ]);
     }
 
@@ -103,9 +104,12 @@ class RecipeController extends AbstractController
         $form = $this->createForm(RecipeType::class, $recipe);
         $form->handleRequest($request);
 
-        dd($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $imageCloudUrl =  $request->get("cloudinaryUrl");
+            $recipe->setPicture($imageCloudUrl);
+            
             $entityManager->persist($recipe);
             $entityManager->flush();
 

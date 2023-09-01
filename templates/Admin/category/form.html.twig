@@ -33,7 +33,13 @@
 
 						<div class="col-12 mb-3">
 							<a id="upload_widget" class="cloudinary-button">Choisir un fichier</a>
-							<small class="cloudinary-input"></small>
+							{% if category.picture %}
+								<a >
+									<img src="{{category.picture}}" alt="category image" id="cloudinary_image" class="img-thumbnail col-3">
+								</a>
+							{% endif %}
+							<small class="cloudinary-small"></small>
+							
 							<input type="hidden" id="cloudinaryUrl" name="cloudinaryUrl">
 						</div>
 						
@@ -60,7 +66,7 @@
 					// get file name 
 					const file_name = `${result.info.original_filename}.${result.info.format}`;
 					// retrieve picture image name element on DOM
-					const imageNameElement = document.querySelector(".cloudinary-input");
+					const imageNameElement = document.querySelector(".cloudinary-small");
 					// set file_name to value of picture input   
 					imageNameElement.textContent = file_name;
 
@@ -68,6 +74,11 @@
 					const cloudinary_input = document.getElementById("cloudinaryUrl");
 					// set file_name to value of picture input   
 					cloudinary_input.value = result.info.url;
+
+					// retrieve cloudinary cloudinary_image element on DOM
+					const cloudinary_image = document.getElementById("cloudinary_image");
+					// set file_name to value of picture scr image   
+					cloudinary_image.src = result.info.url;
 				}
 			}
 		)
