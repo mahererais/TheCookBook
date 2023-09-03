@@ -53,7 +53,7 @@ header {
 
                     // &:not(:last-child):hover {
                     &:hover {
-                        font-size: 1em;
+                        //font-size: 1em;
 
                         & > a {
                             display: block;
@@ -136,7 +136,7 @@ header {
                         outline: none;
                     }
 
-                    max-width: 150px;
+                    max-width: 140px;
                 }
 
                 i {
@@ -150,7 +150,7 @@ header {
 }
 
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 768px) {
 
     header {
         z-index: 15;
@@ -181,6 +181,19 @@ header {
                         }
 
                     }
+                }
+            }
+
+            a.logo {
+                --size : 50px;
+                width: var(--size)!important;
+                aspect-ratio: 1;
+                background-image: url("/images/logo_marmite_cookbook.png");
+                background-position: center;
+                background-size: var(--size) var(--size);
+                img {
+                    display: none;
+                    opacity: 0;
                 }
             }
 
@@ -256,7 +269,7 @@ ul {
 // externe code : https://uiverse.io/vk-uiux/lucky-owl-16
 
 #menuToggle {
-    font-size: 2em;
+    font-size: 1.5em;
     display: none;
     z-index: 10000;
 }

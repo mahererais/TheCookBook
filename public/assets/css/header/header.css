@@ -42,9 +42,6 @@ header .header_container nav ul li {
   font-size: min(20px, 0.4em + 1.1vw);
   transition: font-size 0s;
 }
-header .header_container nav ul li:hover {
-  font-size: 1em;
-}
 header .header_container nav ul li:hover > a {
   display: block;
   transform: translateY(-5px);
@@ -100,7 +97,7 @@ header .header_container .right_bar_container .search_container input[type=text]
   border: none;
   font-family: "Poppins", sans-serif;
   padding: 0;
-  max-width: 150px;
+  max-width: 140px;
 }
 header .header_container .right_bar_container .search_container input[type=text]:focus {
   outline: none;
@@ -109,7 +106,7 @@ header .header_container .right_bar_container .search_container i {
   color: var(--main-text-color);
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 768px) {
   header {
     z-index: 15;
   }
@@ -132,6 +129,18 @@ header .header_container .right_bar_container .search_container i {
   }
   header .header_container nav ul li:last-child {
     display: unset;
+  }
+  header .header_container a.logo {
+    --size: 50px;
+    width: var(--size) !important;
+    aspect-ratio: 1;
+    background-image: url("/images/logo_marmite_cookbook.png");
+    background-position: center;
+    background-size: var(--size) var(--size);
+  }
+  header .header_container a.logo img {
+    display: none;
+    opacity: 0;
   }
   #menuToggle {
     display: block !important;
@@ -186,7 +195,7 @@ ul li > a:hover {
   }
 }
 #menuToggle {
-  font-size: 2em;
+  font-size: 1.5em;
   display: none;
   z-index: 10000;
 }

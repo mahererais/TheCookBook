@@ -338,6 +338,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         if (!$this->favorites->contains($favorite)) {
             $this->favorites[] = $favorite;
         }
+        return $this;
     }
 
     public function removeFavorite(Recipe $favorite): self
