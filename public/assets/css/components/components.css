@@ -163,14 +163,13 @@ form button[type=submit]:hover {
   color: var(--main-color);
 }
 form button[type=submit]:focus {
-  border-color: black;
+  border-color: var(--main-color);
+  color: var(--main-color);
+  background-color: white;
 }
 form input[type=checkbox] {
-  display: inline;
-  width: unset;
-  margin: 1em 0 0 1em;
-  accent-color: var(--main-color);
-  transform: translateY(2px);
+  accent-color: var(--main-color) !important;
+  transform: translateY(3px);
 }
 form label[for=registration_form_agreeTerms] {
   display: inline;
@@ -201,4 +200,5 @@ form input {
 }
 form input:focus {
   outline: none;
+  box-shadow: 0 0 0 0.25rem rgba(7, 137, 117, 0.5) !important;
 }/*# sourceMappingURL=components.css.map */
