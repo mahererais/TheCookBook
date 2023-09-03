@@ -82,17 +82,27 @@
 {% endblock %}
 
 {% block footer %}
-	<footer >
+	<footer>
 
-		<div class="footer_container">
-			<a class="tcb_btn_arrow_top" href="#header_id">
-				<i class="fas fa-arrow-up"></i>
-			</a>
+				<div class="footer_container">
+					<a class="tcb_btn_arrow_top" href="#header_id">
+						<i class="fas fa-arrow-up"></i>
+					</a>
 
-			<ul>
-				<li><a href="#">Mentions Légales</a></li>
-			</ul>
-		</div>
+					<ul>
+						<li>
+							<a href="{{ path('tcb_front_main_home') }}">Accueil</a>
+							<a href="{{ path('tcb_front_main_home') }}">BackOffice</a>
+						</li>
+						<li>
+							<p>@ The Cook Book 2023| Tous Droits Réservés</p>
+						</li>
+						<li>
+							<a href="#">Nous Contacter</a>
+							<a href="#">Mentions Légales</a>
+						</li>
+					</ul>
+				</div>
 
-	</footer>
+			</footer>
 {% endblock %}
