@@ -3,6 +3,7 @@
 namespace App\Security;
 
 use Doctrine\ORM\EntityManagerInterface;
+use Exception;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mailer\MailerInterface;
@@ -23,6 +24,14 @@ class EmailVerifier
         $this->entityManager = $manager;
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param string $verifyEmailRouteName
+     * @param App\Entity\User $user
+     * @param TemplatedEmail $email
+     * @return void
+     */
     public function sendEmailConfirmation(string $verifyEmailRouteName, UserInterface $user, TemplatedEmail $email): void
     {
         $signatureComponents = $this->verifyEmailHelper->generateSignature(
@@ -43,10 +52,17 @@ class EmailVerifier
 
     /**
      * @throws VerifyEmailExceptionInterface
+     * @param App\Entity\User $user
      */
     public function handleEmailConfirmation(Request $request, UserInterface $user): void
     {
         $this->verifyEmailHelper->validateEmailConfirmation($request->getUri(), $user->getId(), $user->getEmail());
+
+        if ($user->getIsVerified()) {
+            // mail already verify
+            throw new Exception("Cet email a déjà été vérifié");
+            return;
+        }
 
         $user->setIsVerified(true);
 

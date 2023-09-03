@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Security\EmailVerifier;
 use Doctrine\ORM\EntityManagerInterface;
+use Exception;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -40,29 +41,30 @@ class RegistrationController extends AbstractController
 
             // encode the plain password
             $user->setPassword(
-            $userPasswordHasher->hashPassword(
+                $userPasswordHasher->hashPassword(
                     $user,
                     $form->get('plainPassword')->getData()
                 )
             );
-
             $entityManager->persist($user);
             $entityManager->flush();
 
-            $this->addFlash("success", "Compte bien créé !");
+            $this->addFlash("success", "Un email vous a été envoyé pour l'activation de votre compte");
 
+            // do anything else you need here, like send an email
             // generate a signed url and email it to the user
-            $this->emailVerifier->sendEmailConfirmation('tcb_verify_email', $user,
+            $this->emailVerifier->sendEmailConfirmation(
+                'tcb_verify_email',
+                $user,
                 (new TemplatedEmail())
-                    ->from(new Address('no.reply.thecookbook@gmail.com', 'The Cook Book (Bot-No-Replay)'))
+                    ->from(new Address('no.reply.thecookbook@gmail.com', 'The Cook Book (Bot-No-Reply)'))
                     ->to($user->getEmail())
                     ->subject('Veuillez confirmer votre Email')
                     ->htmlTemplate('registration/confirmation_email.html.twig')
                     ->context([
-                        "fistname" => $user->getFirstname(),
-                        ])
+                        "firstname" => $user->getFirstname(),
+                    ])
             );
-            // do anything else you need here, like send an email
 
             return $this->redirectToRoute('tcb_front_security_login');
         }
@@ -79,18 +81,54 @@ class RegistrationController extends AbstractController
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
+        /** @var \App\Entity\User */
+        $user = $this->getUser();
+
         // validate email confirmation link, sets User::isVerified=true and persists
         try {
-            $this->emailVerifier->handleEmailConfirmation($request, $this->getUser());
+            $this->emailVerifier->handleEmailConfirmation($request, $user);
         } catch (VerifyEmailExceptionInterface $exception) {
-            $this->addFlash('verify_email_error', $translator->trans($exception->getReason(), [], 'VerifyEmailBundle'));
+            $this->addFlash('danger', $translator->trans($exception->getReason(), [], 'VerifyEmailBundle'));
 
             return $this->redirectToRoute('tcb_front_security_register');
+        } catch (Exception $exc) {
+            $this->addFlash('warning', $exc->getMessage());
+
+            return $this->redirectToRoute('tcb_front_main_home');
         }
 
         // @TODO Change the redirect on success and handle or remove the flash message in your templates
-        $this->addFlash('success', 'Your email address has been verified.');
+        $this->addFlash('success', 'Votre email a bien été verifié');
 
-        return $this->redirectToRoute('tcb_front_security_register');
+        return $this->redirectToRoute('tcb_front_user_profile', ['slug' => $user->getSlug()]);
     }
+
+    // /**
+    //  * @Route("/re-send/email/verify", name="tcb_resend_email")
+    //  */
+    // public function reSendVerif()
+    // {
+    //     /** @var \App\Entity\User */
+    //     $user = $this->getUser();
+
+    //     if (!$user) {
+    //         $this->addFlash("success", "Un email vous a été envoyé avec le lien d'activation");
+    //         return $this->redirectToRoute("tcb_front_security_login");
+    //     }
+
+    //     $this->emailVerifier->sendEmailConfirmation(
+    //         'tcb_verify_email',
+    //         $user,
+    //         (new TemplatedEmail())
+    //             ->from(new Address('no.reply.thecookbook@gmail.com', 'The Cook Book (Bot-No-Reply)'))
+    //             ->to($user->getEmail())
+    //             ->subject('Veuillez confirmer votre Email')
+    //             ->htmlTemplate('registration/confirmation_email.html.twig')
+    //             ->context([
+    //                 "firstname" => $user->getFirstname(),
+    //             ])
+    //     );
+
+    //     return $this->redirectToRoute('tcb_front_security_login');
+    // }
 }

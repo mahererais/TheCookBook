@@ -14,9 +14,12 @@ class SecurityController extends AbstractController
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-        // if ($this->getUser()) {
-        //     return $this->redirectToRoute('target_path');
-        // }
+        // check is user is already logged
+        if ($this->getUser()) {
+            /** @var \App\Entity\User */
+            $user = $this->getUser();
+            return $this->redirectToRoute('tcb_front_user_profile', ['slug' => $user->getSlug()]);
+        }
 
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();

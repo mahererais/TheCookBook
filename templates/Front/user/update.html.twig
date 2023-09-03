@@ -3,7 +3,7 @@
 
 	{% block content %}
 
-		{{form_start(form, {attr: {class: 'w-100'}})}}
+		{{form_start(form, {attr: {class: 'w-100', novalidate: 'novalidate'}},)}}
 
 		<div class="col-12 mb-3">
 		{{form_label(form.email)}}

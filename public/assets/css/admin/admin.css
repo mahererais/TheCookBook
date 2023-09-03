@@ -291,12 +291,12 @@ a {
   background-color: var(--main-color) !important;
   border: 2px solid var(--main-color);
   border-radius: 5px;
-  color: white;
-  transition: 0.2s;
+  color: white !important;
+  transition: 0.2s !important;
 }
 .tcb_btn:hover {
   background-color: white !important;
-  color: var(--main-text-color);
+  color: var(--main-text-color) !important;
 }
 
 .heart_icon {
@@ -336,15 +336,6 @@ h6 {
 }
 
 @media screen and (max-width: 700px) {
-  html {
-    font-size: 87.5%;
-  }
-  html:has(#checkbox:checked) {
-    overflow: hidden;
-  }
-  :root {
-    --container-padding: 1rem 0.5rem;
-  }
   a.tcb_btn_arrow_top {
     padding: 0.8rem;
   }
@@ -385,6 +376,83 @@ a.login_btn img {
      object-fit: cover;
   width: 100%;
   height: 100%;
+}
+
+form .invalid-feedback {
+  font-style: italic;
+  font-weight: 500;
+  font-size: 0.6em;
+  color: var(--corail-color);
+  margin-left: 0.8em;
+}
+form .help-text {
+  font-size: 0.5em;
+  opacity: 0.8;
+  font-weight: 500;
+  margin-left: 1em;
+  font-style: italic;
+}
+form input:invalid {
+  border-color: var(--corail-color);
+}
+form input:valid {
+  border-color: var(--main-color);
+}
+form button[type=submit] {
+  background-color: var(--main-color);
+  color: white;
+  padding: 0.5em;
+  border: 2px solid var(--main-color);
+  font-size: 1.1em;
+  width: 100%;
+  margin-top: 1.5em;
+  border-radius: 0.5em;
+  cursor: pointer;
+  transition: 0.2s;
+}
+form button[type=submit]:hover {
+  background-color: var(--secondary-color);
+  color: var(--main-color);
+}
+form button[type=submit]:focus {
+  border-color: black;
+}
+form input[type=checkbox] {
+  display: inline;
+  width: unset;
+  margin: 1em 0 0 1em;
+  accent-color: var(--main-color);
+  transform: translateY(2px);
+}
+form label[for=registration_form_agreeTerms] {
+  display: inline;
+  font-size: 0.6em;
+}
+form label,
+form input {
+  display: block;
+}
+form label,
+form .page_title_container {
+  width: 100%;
+  margin-top: 1.5em;
+}
+form label {
+  font-size: 0.9em;
+  font-weight: bold;
+}
+form input {
+  border: none;
+  border-bottom: 1px solid #ddd;
+  padding: 0.3em 0;
+  font-size: 0.9em;
+  margin-top: 0.8em;
+  padding-inline: 0.5em;
+  width: 100%;
+  background-color: var(--secondary-color);
+}
+form input:focus {
+  outline: none;
 }
 
 main .user_container {

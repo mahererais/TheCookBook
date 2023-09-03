@@ -28,7 +28,7 @@ $ php bin/console make:registration-form
  > no.reply.thecookbook@gmail.com
 
  What "name" should be associated with that email address? e.g. "Acme Mail Bot":
- > The Cook Book (Bot-No-Replay)
+ > The Cook Book (Bot-No-Reply)
 
  Do you want to automatically authenticate the user after registration? (yes/no) [yes]:
  > no
@@ -108,3 +108,13 @@ $ php bin/console make:registration-form
 $ composer require symfony/mailer
 $ composer require symfony/mailjet-mailer
 ```
+
+
+
+
+
+#  verfifier si l'utilisateur a été bien été verifié 
+
+- la table "user" a un champs "is_verified" et doit être à "true" pour pouvoir s'authentifier
+- recherche : https://openclassrooms.com/forum/sujet/symfony-5-verifier-si-le-compte-est-actif
+- doc : https://symfony.com/doc/current/security/user_checkers.html 
