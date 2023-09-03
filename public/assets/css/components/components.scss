@@ -47,12 +47,12 @@ a {
     background-color: var(--main-color) !important;
     border: 2px solid var(--main-color);
     border-radius: 5px;
-    color: white;
-    transition: 0.2s;
+    color: white!important;
+    transition: 0.2s!important;
 
     &:hover {
         background-color: white !important;
-        color: var(--main-text-color);
+        color: var(--main-text-color) !important;
     }
 }
 
@@ -71,21 +71,6 @@ h6 {font-size: 0.67em; font-weight: bold;}
 
 
 @media screen and (max-width: 700px) {
-
-
-
-    html {
-        font-size: 100% * calc(14/16);
-    }
-
-    html:has(#checkbox:checked) {
-        overflow: hidden;
-
-    }
-
-    :root {
-        --container-padding: 1rem 0.5rem;
-    }
 
 
     a.tcb_btn_arrow_top {
@@ -150,3 +135,6 @@ a.login_btn {
         height: 100%;
     }
 }
+
+
+@import './form.scss';
