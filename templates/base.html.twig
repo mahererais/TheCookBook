@@ -118,7 +118,7 @@
 						<li>
 							<a href="{{ path('tcb_front_main_home') }}">Accueil</a>
 							{% if is_granted('IS_AUTHENTICATED_FULLY') and "ROLE_ADMIN" in app.user.roles %}
-								<a href="{{ path('tcb_front_main_home') }}">BackOffice</a>
+								<a href="{{ path('tcb_admin_recipe_home') }}">BackOffice</a>
 							{% endif %}
 						</li>
 						<li>
