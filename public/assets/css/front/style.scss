@@ -10,6 +10,19 @@
     --main-text-color: #3F3735;
     --corail-color: #F55E51;
     --container-padding: 1rem 1.5rem;
+
+
+    --bs-btn-bg : var(--main-color)!important;
+    --bs-btn-border-color: var(--main-color)!important;
+
+    --bs-btn-hover-bg: white!important;
+    --bs-btn-hover-color: var(--main-color)!important;
+    --bs-btn-hover-border-color: var(--main-color)!important;
+    
+    --bs-btn-active-bg: #077565!important;
+    --bs-btn-active-color: white!important;
+    --bs-btn-active-border-color: #077565!important;
+
 }
      
 
