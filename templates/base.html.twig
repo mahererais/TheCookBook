@@ -47,6 +47,13 @@
 					{% block connexion %}
 						<div class="right_bar_container">
 
+							<div>
+								<form method="GET" class="search_container" action="{{path('tcb_front_recipe_search')}}">
+									<i class="fas fa-search"></i>
+									<input name="search" type="text" placeholder="Chercher une recette">
+								</form>
+							</div>
+
 							{% if is_granted('IS_AUTHENTICATED_FULLY') %}
 								<a class="login_btn" href="{{path('tcb_front_user_profile', {slug: app.user.slug})}}">
 									<img src="{{app.user.picture}}" alt="avatar du profile utilisateur">
@@ -57,12 +64,6 @@
 								</a>
 							{% endif %}
 
-							<div>
-								<form method="GET" class="search_container" action="{{path('tcb_front_recipe_search')}}">
-									<i class="fas fa-search"></i>
-									<input name="search" type="text" placeholder="Chercher une recette">
-								</form>
-							</div>
 						</div>
 					{% endblock %}
 
@@ -73,6 +74,11 @@
 							<li><a href="{{ path('tcb_front_recipe_getAll') }}">Recettes</a></li>
 							<li><a href="{{ path('tcb_front_user_getAll') }}">Chefs</a></li>
 							<li><a href="{{ path('tcb_front_category_getAll') }}">Catégories</a></li>
+							{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+								<li><a href="{{path('tcb_front_user_profile', {slug: app.user.slug})}}">Profil</a></li>
+							{% else %}
+								<li><a href="{{path('tcb_front_security_login')}}">Connexion</a></li>
+							{% endif %}
 						</ul>
 
 					</nav>

@@ -118,7 +118,8 @@ a.login_btn::after {
   border: 2px solid white;
   border-radius: 999px;
 }
-a.login_btn img {
+
+a > img {
   -o-object-fit: cover;
      object-fit: cover;
   width: 100%;
