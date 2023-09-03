@@ -20,6 +20,7 @@ class ResetPasswordRequestFormType extends AbstractType
                         'message' => 'Please enter your email',
                     ]),
                 ],
+                "help" => "Entrez votre adresse email et nous vous enverrons un lien pour reinitialiser votre mot de passe"
             ])
         ;
     }
