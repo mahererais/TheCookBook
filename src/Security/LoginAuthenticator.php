@@ -50,11 +50,15 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
         }
 
         // récupération du user
+        /** @var \App\Entity\User */
         $user = $token->getUser();
+        if (!$user->getIsVerified()) {
+            return new RedirectResponse($this->urlGenerator->generate('tcb_front_security_login'));
+        } 
         
         // check if user get role admin
         if (in_array("ROLE_ADMIN", $user->getRoles()))
-            return new RedirectResponse($this->urlGenerator->generate('tcb_admin_recipe_home', ['slug' => $user->getSlug()]));
+            return new RedirectResponse($this->urlGenerator->generate('tcb_admin_recipe_home'));
 
         return new RedirectResponse($this->urlGenerator->generate('tcb_front_user_profile', ['slug' => $user->getSlug()]));
         // return new RedirectResponse($this->urlGenerator->generate('tcb_front_main_home'));

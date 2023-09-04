@@ -55,9 +55,9 @@
 | URL | Méthode HTTP | Controller | Méthode | Titre | Contenu | Commentaire | Name|
 |--|--|--|--|--|--|--|--|
 | `/favorites` | `GET` | `FavoriteController` | `getAll` |Liste de Favoris| List of favorite | activation of the "favorite" tab of recipes via the navbar when the user is connected | tcb_front_favorite_getAll|
-| `/favorite/add/{id}` | `POST` | `FavoriteController` | `add` |Ajout d'un Favori| Add a favorite | id is the id of the recipe we want to add as a favorite | tcb_front_favorite_add|
-| `/favorite/remove/{id}` | `POST` | `FavoriteController` | `remove` |Suppression d'un favori| Remove a favorite | id is the id of the recipe we want to delete as a favorite | tcb_front_favorite_remove |
-| `/favorite/empty` | `POST` | `FavoriteController` | `empty` |Suppression de tous les favoris| Remove all the favorites |  | tcb_front_favorite_empty |
+| `/favorite/add/{slug}` | `POST` | `UserController` | `addFavorite` |Ajout d'un Favoris| Add a recipe to the favorite list | | tcb_front_user_addFavorite|
+| `/favorite/remove/{slug}` | `POST` | `FavoriteController` | `remove` |Suppression d'un favori| Remove a favorite | slug is the name of the recipe we want to delete as a favorite | tcb_front_favorite_remove |
+| `/favorites/empty` | `POST` | `FavoriteController` | `empty` |Suppression de tous les favoris| Remove all the favorites |  | tcb_front_favorite_empty |
 
 - ### Recipe
 

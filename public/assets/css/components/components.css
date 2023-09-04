@@ -38,12 +38,12 @@ a {
   background-color: var(--main-color) !important;
   border: 2px solid var(--main-color);
   border-radius: 5px;
-  color: white;
-  transition: 0.2s;
+  color: white !important;
+  transition: 0.2s !important;
 }
 .tcb_btn:hover {
   background-color: white !important;
-  color: var(--main-text-color);
+  color: var(--main-text-color) !important;
 }
 
 .heart_icon {
@@ -82,16 +82,7 @@ h6 {
   font-weight: bold;
 }
 
-@media screen and (max-width: 700px) {
-  html {
-    font-size: 87.5%;
-  }
-  html:has(#checkbox:checked) {
-    overflow: hidden;
-  }
-  :root {
-    --container-padding: 1rem 0.5rem;
-  }
+@media screen and (max-width: 768px) {
   a.tcb_btn_arrow_top {
     padding: 0.8rem;
   }
@@ -127,9 +118,87 @@ a.login_btn::after {
   border: 2px solid white;
   border-radius: 999px;
 }
-a.login_btn img {
+
+a > img {
   -o-object-fit: cover;
      object-fit: cover;
   width: 100%;
   height: 100%;
+}
+
+form .invalid-feedback {
+  font-style: italic;
+  font-weight: 500;
+  font-size: 0.6em;
+  color: var(--corail-color);
+  margin-left: 0.8em;
+}
+form .help-text {
+  font-size: 0.5em;
+  opacity: 0.8;
+  font-weight: 500;
+  margin-left: 1em;
+  font-style: italic;
+}
+form input:invalid {
+  border-color: var(--corail-color);
+}
+form input:valid {
+  border-color: var(--main-color);
+}
+form button[type=submit] {
+  background-color: var(--main-color);
+  color: white;
+  padding: 0.5em;
+  border: 2px solid var(--main-color);
+  font-size: 1.1em;
+  width: 100%;
+  margin-top: 1.5em;
+  border-radius: 0.5em;
+  cursor: pointer;
+  transition: 0.2s;
+}
+form button[type=submit]:hover {
+  background-color: var(--secondary-color);
+  color: var(--main-color);
+}
+form button[type=submit]:focus {
+  border-color: var(--main-color);
+  color: var(--main-color);
+  background-color: white;
+}
+form input[type=checkbox] {
+  accent-color: var(--main-color) !important;
+  transform: translateY(3px);
+}
+form label[for=registration_form_agreeTerms] {
+  display: inline;
+  font-size: 0.6em;
+}
+form label,
+form input {
+  display: block;
+}
+form label,
+form .page_title_container {
+  width: 100%;
+  margin-top: 1.5em;
+}
+form label {
+  font-size: 0.9em;
+  font-weight: bold;
+}
+form input {
+  border: none;
+  border-bottom: 1px solid #ddd;
+  padding: 0.3em 0;
+  font-size: 0.9em;
+  margin-top: 0.8em;
+  padding-inline: 0.5em;
+  width: 100%;
+  background-color: var(--secondary-color);
+}
+form input:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.25rem rgba(7, 137, 117, 0.5) !important;
 }/*# sourceMappingURL=components.css.map */

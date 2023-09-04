@@ -10,7 +10,7 @@
     --container-padding: 1rem 1.5rem;
 
     // ! variable global Boostrap
-    .btn-primary {
+    //.btn-primary {
         --bs-btn-bg : #F55E51;
         --bs-btn-border-color: #F55E51;
 
@@ -21,7 +21,9 @@
         --bs-btn-active-bg: rgb(124, 32, 32);
         --bs-btn-active-color: white;
         --bs-btn-active-border-color: rgb(124, 32, 32);
-    }
+
+        --bs-link-color-rgb: #F55E51;
+    //}
 }
 
 

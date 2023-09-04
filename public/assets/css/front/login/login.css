@@ -1,81 +1,46 @@
-form[name=login_form], form[name=user_show_form] {
+form[name=login_form],
+form[name=user_show_form],
+form[name=registration_form],
+.register_container {
   width: 100%;
   max-width: 480px;
+  padding-inline: 1em;
   margin: auto;
-  font-size: 1.3em;
+  font-size: 1.1em;
   color: var(--main-text-color);
 }
-form[name=login_form] .info, form[name=user_show_form] .info {
+form[name=login_form] .info,
+form[name=user_show_form] .info,
+form[name=registration_form] .info,
+.register_container .info {
   color: var(#555);
   font-size: 0.7em;
 }
-form[name=login_form] .page_title_container, form[name=user_show_form] .page_title_container {
+
+.page_register_title_container {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   height: 2rem;
 }
-form[name=login_form] .page_title_container > a, form[name=user_show_form] .page_title_container > a {
-  width: 50%;
+.page_register_title_container > a {
+  width: -moz-max-content;
+  width: max-content;
   text-align: center;
   color: var(--main-text-color);
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 600;
   transition: 0.2s;
 }
-form[name=login_form] .page_title_container > a:visited, form[name=user_show_form] .page_title_container > a:visited {
+.page_register_title_container > a:visited {
   color: var(--main-text-color);
 }
-form[name=login_form] .page_title_container > a.isDisabled, form[name=user_show_form] .page_title_container > a.isDisabled {
+.page_register_title_container > a.isDisabled {
   color: currentColor;
   opacity: 0.5;
   font-weight: normal;
 }
-form[name=login_form] .page_title_container > a:hover, form[name=user_show_form] .page_title_container > a:hover {
+.page_register_title_container > a:hover {
   opacity: initial;
   color: var(--main-text-color);
-  font-weight: 600;
-}
-form[name=login_form] label,
-form[name=login_form] input, form[name=user_show_form] label,
-form[name=user_show_form] input {
-  display: block;
-}
-form[name=login_form] label,
-form[name=login_form] .page_title_container, form[name=user_show_form] label,
-form[name=user_show_form] .page_title_container {
-  width: 100%;
-  margin-top: 1.5em;
-}
-form[name=login_form] label, form[name=user_show_form] label {
-  font-size: 1em;
-  font-weight: bold;
-}
-form[name=login_form] input, form[name=user_show_form] input {
-  border: none;
-  border-bottom: 1px solid #ddd;
-  padding: 0.3em 0;
-  font-size: 0.9em;
-  margin-top: 1em;
-  width: 100%;
-  background-color: var(--secondary-color);
-}
-form[name=login_form] input:focus, form[name=user_show_form] input:focus {
-  outline: none;
-}
-form[name=login_form] button, form[name=user_show_form] button {
-  background-color: var(--main-color);
-  color: white;
-  padding: 0.5em;
-  border: 2px solid var(--main-color);
-  font-size: 1.2em;
-  width: 100%;
-  margin-top: 2em;
-  border-radius: 0.5em;
-  cursor: pointer;
-  transition: 0.2s;
-}
-form[name=login_form] button:hover, form[name=user_show_form] button:hover {
-  background-color: var(--secondary-color);
-  color: var(--main-color);
 }/*# sourceMappingURL=login.css.map */
