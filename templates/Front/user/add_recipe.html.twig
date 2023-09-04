@@ -32,7 +32,7 @@
 			{{form_errors(form.picture)}}
 		</div>
 		<div class="col-12 mb-3">
-			<a id="upload_widget" class="cloudinary-button">Choisir un fichier</a>
+			<a id="upload_widget" class="cloudinary-button tcb_btn">Choisir un fichier</a>
 			{% if recipe.picture %}
 				<a >
 					<img src="{{recipe.picture}}" alt="recipe image" id="cloudinary_image" class="img-thumbnail col-3">
@@ -116,6 +116,93 @@
 		var myWidget = cloudinary.createUploadWidget({
 			cloudName: 'dxl8cac89', 
 			uploadPreset: 'test_upload',
+			// add french message
+			language: 'fr',
+			text: {
+				"fr": {
+					"queue": {
+						"title": "Fichier téléchargé",
+						"title_uploading_with_counter": "Téléchargement d'un fichier",
+						"title_processing_with_counter": "Téléchargement en cours",
+						"title_uploading": "Uploading assets",
+						"mini_title": "Téléchargé",
+						"mini_title_uploading": "En cours de tékéhargement",
+						"mini_title_processing": "Téléchargement en cours",
+						"show_completed": "Show completed",
+						"retry_failed": "Retry failed",
+						"abort_all": "Abort all",
+						"upload_more": "Upload more",
+						"done": "Envoi",
+						"mini_upload_count": "Un fichier téléchargé",
+						"statuses": {
+							"uploading": "Uploading...",
+							"processing": "Téléchargement...",
+							"error": "Error",
+							"uploaded": "Terminé",
+							"aborted": "Aborted",
+						},
+					},
+					"crop": {
+						"title": "Recadrer",
+						"crop_btn": "Recadrer",
+						"skip_btn": "Valider sans recadrer",
+						"image_error": "Erreur de chargement de l'image",
+					},
+					"menu": {
+						"files": "Mes fichiers",
+						"web": "Adresse web",
+					},
+					"local": {
+						"browse": "Parcourir",
+						"dd_title_single": "Faites glisser et déposez ici",
+						"drop_title_single": "Déposez un fichier à télécharger"
+					},
+				},
+			},
+			// remove "add more" in the widget
+			multiple: false,
+			// upload image parameters
+			maxImageHeight: 288,
+			maxImageWidth: 512,
+			croppingValidateDimensions: true,
+			//validateMaxWidthHeight: true,
+			cropping: true,
+			croppingAspectRatio: 16/9,
+			resourceType: "image",
+			sources: [
+				"local",
+				"url",
+				"camera",
+				"google_drive",
+				"facebook",
+				"dropbox",
+				"instagram",
+			],
+			styles: {
+				palette: {
+					window: "#078975",
+					sourceBg: "#F9F9F9",
+					windowBorder: "#078975",
+					tabIcon: "#F9F9F9",
+					inactiveTabIcon: "#3F3735",
+					menuIcons: "#3F3735",
+					link: "#F55E51",
+					action: "#FFFFFF",
+					inProgress: "#FFAF08",
+					complete: "#F55E51",
+					error: "#130909",
+					textDark: "#078975",
+					textLight: "#fcfffd"
+				},
+				fonts: {
+					default: null,
+					"'Poppins', sans-serif": {
+						url: "https://fonts.googleapis.com/css?family=Poppins",
+						active: true
+					}
+				}
+			},
+
 			folder: 'Images'}, (error, result) => { 
 				if (!error && result && result.event === "success") { 
 					console.log('Done! Here is the image info: ', result.info); 
