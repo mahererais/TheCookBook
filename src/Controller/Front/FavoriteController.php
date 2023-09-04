@@ -8,11 +8,13 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class FavoriteController extends AbstractController
 {
     /**
      * @Route("/favorites", name="tcb_front_favorite_getAll")
+     * @IsGranted("ROLE_USER")
      */
     public function getAll(): Response
     {
@@ -24,8 +26,9 @@ class FavoriteController extends AbstractController
         ]);
     }
 
-     /**
+    /**
      * @Route("/favorite/remove/{slug}", name="tcb_front_favorite_remove")
+     * @IsGranted("ROLE_USER")
      */
     public function remove(RecipeRepository $recipeRepository, $slug, EntityManagerInterface $entityManager): Response
     {
@@ -49,9 +52,10 @@ class FavoriteController extends AbstractController
             return $this->redirectToRoute('tcb_front_favorite_getAll');
         }
     }
-  
+
     /**
      * @Route("/favorites/empty", name="tcb_front_favorite_empty")
+     * @IsGranted("ROLE_USER")
      * 
      */
     public function empty(EntityManagerInterface $entityManager): Response
@@ -65,6 +69,5 @@ class FavoriteController extends AbstractController
         $this->addFlash("success", "Votre liste de favoris a été vidée");
 
         return $this->redirectToRoute('tcb_front_favorite_getAll');
-
     }
 }

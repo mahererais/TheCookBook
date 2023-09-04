@@ -15,6 +15,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class UserController extends AbstractController
 {
@@ -137,7 +138,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/profile/{slug}/ebook/delete{recipeSlug}", name="tcb_front_user_removeFromEbook")
+     * @Route("/profile/{slug}/ebook/delete/{recipeSlug}", name="tcb_front_user_removeFromEbook")
      */
     public function removeFromEbook(RecipeRepository $recipeRepository, $slug, $recipeSlug, EntityManagerInterface $entityManagerInterface): Response
     {
@@ -158,9 +159,10 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/add-favorite/{id}", name="tcb_front_user_addFavorite")
+     * @Route("/add-favorite/{slug}", name="tcb_front_user_addFavorite")
+     * @IsGranted("ROLE_USER")
      */
-    public function addFavorite(Request $request, $id, EntityManagerInterface $em, RecipeRepository $recipeRepository): Response
+    public function addFavorite(Request $request, $slug, EntityManagerInterface $em, RecipeRepository $recipeRepository): Response
     {
         $user = $this->getUser();
         // je récupère mon user connecté
@@ -170,7 +172,9 @@ class UserController extends AbstractController
             return $this->redirectToRoute('login'); // Remplacez 'login' par la route de votre page de connexion
         }
         
-        $recipe = $recipeRepository->find($id);
+        $recipe = $recipeRepository->findOneBy([
+            'slug' => $slug
+        ]);
 
         if (!$recipe) {
             // La recette n'a pas été trouvée, affichez un message d'erreur ou redirigez l'utilisateur
