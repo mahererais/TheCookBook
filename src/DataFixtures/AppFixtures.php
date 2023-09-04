@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\DataFixtures\Provider\AppProvider;
 use App\Entity\Category;
 use App\Entity\Recipe;
 use App\Entity\User;
@@ -29,7 +30,8 @@ class AppFixtures extends Fixture
         // initialisation of faker
         $faker = Factory::create('fr_FR');
 
-
+        // ici j'ajoute mon provider personnalisé
+        $faker->addProvider(new AppProvider($faker));
 
         // = ============ CATEGORY handler
 
@@ -49,6 +51,8 @@ class AppFixtures extends Fixture
             $manager->persist($category);
         }
 
+        echo PHP_EOL . '==== CATEGORY fixture ====> OK ' . PHP_EOL;
+
         // = ============ USER handler
 
         $userList = [
@@ -56,7 +60,7 @@ class AppFixtures extends Fixture
             "maher" => "ROLE_ADMIN",
             "manuella" => "ROLE_ADMIN",
             "marie" => "ROLE_ADMIN",
-            "oumar" => "",
+            "oumar" => "ROLE_ADMIN",
             "simon" => "ROLE_ADMIN",
             "Philippe" => "ROLE_USER",
             "Anne-Sophie" => "ROLE_USER",
@@ -64,9 +68,11 @@ class AppFixtures extends Fixture
             "Jean-Michel" => "ROLE_USER",
             "Franck" => "ROLE_USER",
             "Colette" => "ROLE_USER",
-            "Louise" =>"ROLE_USER"
+            "Louise" => "ROLE_USER"
         ];
-        
+
+        $chefs = []; // content list of user with ROLE_USER only
+
         foreach ($userList as $userName => $userRole) {
 
             $user = new User();
@@ -76,6 +82,7 @@ class AppFixtures extends Fixture
             $user->setFirstname($userName);
             $user->setLastname($faker->lastName);
             $user->setPicture(("https://loremflickr.com/450/300/cat?lock=" . mt_rand(1, 120) . ""));
+            //$user->setPicture($faker->getRandomAvatar());
             $user->setSpeciality($faker->sentence(3));
             $user->setSlug($this->slugger->slug($user->getFirstname()));
             $user->setIsVerified(true);
@@ -98,45 +105,57 @@ class AppFixtures extends Fixture
                 $user->setStatus("privé");
             }
 
-            // = ============ RECIPE handler
-
-            for ($i = 1; $i <= 20; $i++) {
-                $recipe = new Recipe();
-
-                $recipe->setTitle($faker->text(20));
-                //$recipe->setPicture($faker->imageUrl(450, 300, "", true));
-                $recipe->setPicture("https://loremflickr.com/450/300/food?lock=" . mt_rand(1, 120) . "");
-                $recipe->setSteps($faker->paragraphs(4));
-                $recipe->setCreatedAt(new \DateTimeImmutable($faker->date()));
-                $recipe->setDuration($faker->randomNumber(2));
-                $recipe->setIngredients($faker->words(mt_rand(2, 10)));
-
-                // randomize either true or false of the Ebook boolean
-                $randomEbook = (bool) mt_rand(0, 1);
-                $recipe->setEbook($randomEbook);
-
-                // randomize either public or private status
-                $randomStatus = mt_rand(0, 1);
-                if ($randomStatus) {
-                    $recipe->setStatus("public");
-                } else {
-                    $recipe->setStatus("privé");
-                }
-
-                $recipe->setSlug($this->slugger->slug($recipe->getTitle()));
-                $recipe->setCategory($categories[array_rand($categories)]);
-                
-                $users=[];
-                // I randomly link the user to the recipe
-                $recipe->setUser($user);
-                
-                $manager->persist($recipe);
+            if (!in_array("ROLE_ADMIN", $user->getRoles())){
+                $chefs[] = $user;
             }
 
             $manager->persist($user);
+            $manager->flush();
         }
 
+        echo '==== USER fixture ====> OK ' . PHP_EOL;
 
-        $manager->flush();
+        // = ============ RECIPE handler
+        
+        
+        for ($i = 1; $i <= 100; $i++) {
+            $recipe = new Recipe();
+            
+            $recipeFaker = $faker->getRecipe();
+
+            $recipe->setTitle($recipeFaker['title']);
+            $recipe->setPicture($recipeFaker['picture']);
+            $recipe->setSteps($faker->paragraphs(4));
+            $recipe->setCreatedAt(new \DateTimeImmutable($faker->date()));
+            $recipe->setDuration($faker->randomNumber(2));
+            $recipe->setIngredients($faker->getIngregients());
+
+            // randomize either true or false of the Ebook boolean
+            $randomEbook = (bool) mt_rand(0, 1);
+            $recipe->setEbook($randomEbook);
+
+            // randomize either public or private status
+            $randomStatus = mt_rand(0, 1);
+            if ($randomStatus) {
+                $recipe->setStatus("public");
+            } else {
+                $recipe->setStatus("privé");
+            }
+
+            $recipe->setSlug($this->slugger->slug($recipe->getTitle()));
+            $recipe->setCategory($categories[array_rand($categories)]);
+
+            
+            // I randomly link the user to the recipe
+            /** @var \App\Entity\User */
+            $randUser = array_rand($chefs);
+            $recipe->setUser($chefs[$randUser]);
+
+            $manager->persist($recipe);
+            $manager->flush();
+        }
+
+        echo '==== RECIPE fixture ====> OK ' . PHP_EOL;
+        
     }
 }
