@@ -45,7 +45,7 @@
 		<div class="col-12 mb-3">
 			{{ form_label(form.ingredients) }}
 			{{ form_errors(form.ingredients) }}
-
+			{{ form_help(form.ingredients) }}
 			<ol class="add_ingredients d-flex flex-column" 
 				data-index="{{ form.ingredients|length > 0 ? form.ingredients|last.vars.name + 1 : 0 }}"
 				data-prototype="{{ form_widget(form.ingredients.vars.prototype)|e('html_attr') }}">
@@ -66,7 +66,7 @@
 		<div class="col-12 mb-3">
 			{{ form_label(form.steps) }}
 			{{ form_errors(form.steps) }}
-
+			{{ form_help(form.steps) }}
 			<ol class="add_steps d-flex flex-column" 
 				data-index="{{ form.steps|length > 0 ? form.steps|last.vars.name + 1 : 0 }}"
 				data-prototype="{{ form_widget(form.steps.vars.prototype)|e('html_attr') }}">

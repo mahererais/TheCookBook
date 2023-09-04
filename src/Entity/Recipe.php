@@ -36,7 +36,7 @@ class Recipe
 
     /**
      * @ORM\Column(type="array")
-     * @Assert\NotBlank(message="La recette doit comporte au moins une étape")
+     * 
      */
     private $steps = [];
 
@@ -71,7 +71,7 @@ class Recipe
 
     /**
      * @ORM\Column(type="array")
-     * @Assert\NotBlank(message="La recette doit avoir au moins 1 ingrédient")
+     * 
      */
     private $ingredients = [];
 

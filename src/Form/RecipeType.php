@@ -14,6 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class RecipeType extends AbstractType
 {
@@ -44,6 +45,12 @@ class RecipeType extends AbstractType
                 'allow_add' => true,
                 'allow_delete' => true,
                 'by_reference' => false,
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez saisir un ingrédient',
+                    ]),
+                ],
+                "help" => "Saisir au moins un ingrédient"
             ])
            
             ->add('steps', CollectionType::class, [
@@ -53,6 +60,12 @@ class RecipeType extends AbstractType
                 'allow_add' => true,
                 'allow_delete' => true,
                 'by_reference' => false,
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez saisir une étape',
+                    ]),
+                ],
+                "help" => "Saisir au moins une étape"
             ])
             ->add('duration', IntegerType::class, [
                 "label" => "Temps de préparation",
