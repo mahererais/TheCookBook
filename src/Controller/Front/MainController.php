@@ -85,9 +85,7 @@ class MainController extends AbstractController
     public function ebook(Pdf $knpSnappyPdf, Request $request, EntityManagerInterface $entityManager, User $user, Security $security, RecipeRepository $recipeRepository): Response
     {
         $this->denyAccessUnlessGranted('PROFILE_ACCESS', $user);
-        $recipe = $this->entityManager->getRepository(Recipe::class)->getEbook($user);
-        //dd($recipe);
-        
+        $recipe = $this->entityManager->getRepository(Recipe::class)->getEbook($user);        
 
         $ebookRecipes = $recipeRepository->findBy([
             'user' => $user,
@@ -107,10 +105,12 @@ class MainController extends AbstractController
          // 'ebookRecipes' => $ebookRecipes
         //]);
 
+        //dd($ebookRecipes);
+
+
         return new PdfResponse(
             $knpSnappyPdf->getOutputFromHtml($html),
             'ebook.pdf',
         );
-        
     }
 }
