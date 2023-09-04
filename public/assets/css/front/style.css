@@ -22,6 +22,7 @@
   --bs-btn-active-bg: #077565!important;
   --bs-btn-active-color: white!important;
   --bs-btn-active-border-color: #077565!important;
+  --bs-btn-hover-border-color: var(--main-color)!important ;
 }
 
 html {

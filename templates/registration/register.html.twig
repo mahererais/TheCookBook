@@ -19,9 +19,17 @@
             </div>
             {{ form_row(registrationForm.firstname) }}
             {{ form_row(registrationForm.email) }}
-            {{ form_row(registrationForm.password, {
+            {{ form_row(registrationForm.password.first, {
                 label: 'Mot de passe'
             }) }}
+            <div class="col-12 mb-3">
+                {{form_widget(registrationForm.password.second)}}
+                {{form_help(registrationForm.password.second)}}
+                {{form_errors(registrationForm.password.second)}}
+		    </div>
+            {# {{ form_row(registrationForm.password.second, {
+                label: none
+            }) }} #}
             {{ form_row(registrationForm.agreeTerms) }}
 
             <button type="submit" class="btn">S'inscrire</button>

@@ -12,6 +12,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
@@ -67,7 +68,7 @@ class UserController extends AbstractController
     /**
      *  @Route("/profile/update/{slug}", name="tcb_front_user_update")
      */
-    public function update(Request $request, EntityManagerInterface $entityManager, User $user, Security $security): Response
+    public function update(Request $request, EntityManagerInterface $entityManager, User $user, UserPasswordHasherInterface $userPasswordHasher): Response
     {
         $this->denyAccessUnlessGranted('PROFILE_ACCESS', $user);
 
@@ -75,6 +76,13 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $user->setPassword(
+                $userPasswordHasher->hashPassword(
+                    $user,
+                    $form->get('password')->getData()
+                )
+            );
 
             $imageCloudUrl =  $request->get("cloudinaryUrl");
             $user->setPicture($imageCloudUrl);
