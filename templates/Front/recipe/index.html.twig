@@ -6,46 +6,56 @@
 
 {% block body %}
 
-	<h1 class="page_title">Liste des recettes </h1>
+	<h1 class="page_title">Liste des recettes
+	</h1>
 
 	{% for recipe in recipes %}
-			{% if recipe.user.status == "public" and recipe.user.roles == ["ROLE_USER"] %}
+		{% if recipe.user.status == "public" and recipe.user.roles == ["ROLE_USER"] %}
 
 
-		<div class="cards">
+			<div class="cards">
 
-			<div class="r_cards_container">
+				<div class="r_cards_container">
 
-				<img src="{{recipe.picture}}" alt="{{recipe.title}}">
+					<img src="{{recipe.picture}}" alt="{{recipe.title}}">
 
-				<div class="r_cards_content">
-					<h2>{{recipe.title}}</h2>
-					<h3>{{recipe.category.title}}</h3>
-					{# ! to be dynamized with user entity addition #}
-					{# <p>Proposée par {{user.firstname}}</p> #}
-					<p>Proposée par <a href="{{ path('tcb_front_user_show', { 'slug' : recipe.user.slug}) }}">{{recipe.user.firstname}} {{recipe.user.lastname}}</a></p>
-					<h3>Préparation:</h3>
-					{% for step in recipe.steps %}
-						<ul>
-							<li>{{step}}</li>
-						</ul>
-					{% endfor %}
-					<p class="r_card_presentation">{{recipe.title}}</p>
+					<div class="r_cards_content">
+						<h2>{{recipe.title}}</h2>
+						<h3>{{recipe.category.title}}</h3>
+						{# ! to be dynamized with user entity addition #}
+						{# <p>Proposée par {{user.firstname}}</p> #}
+						<p>Proposée par
+							<a href="{{ path('tcb_front_user_show', { 'slug' : recipe.user.slug}) }}">{{recipe.user.firstname}}
+								{{recipe.user.lastname}}</a>
+						</p>
+						<h3>Préparation:</h3>
+						{% for step in recipe.steps %}
+							<ul>
+								<li>{{step}}</li>
+							</ul>
+						{% endfor %}
+						<p class="r_card_presentation">{{recipe.title}}</p>
 
 
-					<div class="r_card_btn">
-						<a class="tcb_btn" href="{{ path('tcb_front_recipe_show', { 'slug' : recipe.slug}) }}">Voir la recette</a>
-						<a href="{{ path('tcb_front_user_addFavorite', { 'slug' : recipe.slug}) }}" class="heart_icon">
-							<i class="fas fa-heart"></i>
-						</a>
+						<div class="r_card_btn">
+							<a class="tcb_btn" href="{{ path('tcb_front_recipe_show', { 'slug' : recipe.slug}) }}">Voir la recette</a>
+								{% if app.user and app.user.getFavorites().contains(recipe) %}
+								<a href="{{ path('tcb_front_favorite_remove', { 'slug': recipe.slug } ) }}" class="heart_icon">
+									<i class="bi bi-heart-fill"></i>
+								{% else %}
+								<a href="{{ path('tcb_front_user_addFavorite', { 'slug' : recipe.slug}) }}" class="heart_icon">
+									<i class="bi bi-heart"></i>
+								{% endif %}
+							</a>
+						</div>
 					</div>
-				</div>
 
+				</div>
 			</div>
-		</div>
-{% endif %}
+		{% endif %}
 	{% endfor %}
 
 	<button type="button" class="tcb_btn">Voir plus</button>
 
 {% endblock %}
+
