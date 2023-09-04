@@ -52,6 +52,7 @@ class FavoriteController extends AbstractController
   
     /**
      * @Route("/favorites/empty", name="tcb_front_favorite_empty")
+     * 
      */
     public function empty(EntityManagerInterface $entityManager): Response
     {
