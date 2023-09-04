@@ -50,14 +50,20 @@ class FavoriteController extends AbstractController
         }
     }
   
-
     /**
      * @Route("/favorites/empty", name="tcb_front_favorite_empty")
      */
-    public function empty(): Response
+    public function empty(EntityManagerInterface $entityManager): Response
     {
-        return $this->render('Front/user/favorites.html.twig', [
-            'controller_name' => 'FavoriteController',
-        ]);
+        $user = $this->getUser();
+
+        $user->getFavorites()->clear();
+
+        $entityManager->flush();
+
+        $this->addFlash("success", "Votre liste de favoris a été vidée");
+
+        return $this->redirectToRoute('tcb_front_favorite_getAll');
+
     }
 }
