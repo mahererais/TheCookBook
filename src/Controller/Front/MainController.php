@@ -6,11 +6,12 @@ use Knp\Snappy\Pdf;
 use App\Entity\User;
 use App\Entity\Recipe;
 use App\Entity\Category;
+use App\Repository\UserRepository;
 use App\Repository\RecipeRepository;
 use App\Repository\CategoryRepository;
-use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
@@ -51,7 +52,7 @@ class MainController extends AbstractController
     public function __construct(EntityManagerInterface $entityManager)
     {
         $this->entityManager = $entityManager;
-    } 
+    }
 
     /**
      * @Route("/pdf/{id}", name="tcb_front_main_pdf", requirements={"id"="\d+"})
@@ -68,7 +69,7 @@ class MainController extends AbstractController
 
         return new PdfResponse(
             $knpSnappyPdf->getOutputFromHtml($html),
-           'recette.pdf',
+            'recette.pdf',
         );
 
         //return $this->render('Front/TestsWK/home.html.twig', [
@@ -78,26 +79,38 @@ class MainController extends AbstractController
     }
 
     /**
-     * @Route("/{slug}/ebook/", name="tcb_front_main_ebook")
+     * @Route("/{slug}/ebook/", name="tcb_front_main_ebook", requirements={"user_id"="\d+"})
      */
 
-     public function ebook(Pdf $knpSnappyPdf, UserRepository $userRepository,  Recipe $recipe, $slug): Response
-     {
-        $recipes = $this->entityManager->getRepository(Recipe::class)->findOneBy(['ebook' => $ebook]);
-        dd($recipes);
-        $html = $this->renderView('Front/TestsWK/ebook.html.twig', [
-           "recipe" => $recipe
+    public function ebook(Pdf $knpSnappyPdf, Request $request, EntityManagerInterface $entityManager, User $user, Security $security, RecipeRepository $recipeRepository): Response
+    {
+        $this->denyAccessUnlessGranted('PROFILE_ACCESS', $user);
+        $recipe = $this->entityManager->getRepository(Recipe::class)->getEbook($user);
+        //dd($recipe);
+        
+
+        $ebookRecipes = $recipeRepository->findBy([
+            'user' => $user,
+            'ebook' => true,
         ]);
+
+        $html = $this->renderView('Front/TestsWK/ebook.html.twig', [
+            "recipe" => $recipe,
+            'ebookRecipes' => $ebookRecipes
+         ]);
+
         $knpSnappyPdf->setOption('enable-local-file-access', true);
 
-        //return new PdfResponse(
-        //    $knpSnappyPdf->getOutputFromHtml($html),
-        //   'recette.pdf',
-        //);
+         //       return $this->render('Front/TestsWK/ebook.html.twig', [
+         // 'controller_name' => 'MainController',
+         // 'recipe' => $recipe,
+         // 'ebookRecipes' => $ebookRecipes
+        //]);
 
-        return $this->render('Front/TestsWK/ebook.html.twig', [
-          'controller_name' => 'MainController',
-          "recipe" => $recipe
-        ]);
-     }
+        return new PdfResponse(
+            $knpSnappyPdf->getOutputFromHtml($html),
+            'ebook.pdf',
+        );
+        
+    }
 }

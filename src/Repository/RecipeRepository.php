@@ -110,13 +110,16 @@ class RecipeRepository extends ServiceEntityRepository
     * @param string|null $string to find in users
     */
 
-    public function getEbook($user)
+    public function getEbook(User $user)
     {
         return $this->createQueryBuilder('e')
+        ->join('e.user', 'u')
         ->andWhere('e.ebook = :ebook') 
         ->setParameter('ebook', '1')
-        ->andWhere('e.user_id = :user') 
-        ->setParameter('user', $user);
+        ->andWhere('u.id = :user') 
+        ->setParameter('user', $user)
+        ->getQuery()
+        ->getResult();
     }
 
     //    /**

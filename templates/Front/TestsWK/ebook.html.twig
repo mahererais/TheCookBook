@@ -6,8 +6,7 @@
 		<title>The Cook Book - votre recette</title>
 
 		<!-- Bootstrap icons -->
-		<link
-		rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 		<!-- Our custom CSS -->
 		<link
 		rel="stylesheet" href="https://bootswatch.com/5/minty/bootstrap.css">
@@ -23,6 +22,8 @@
 
 	<body>
 
+	{% for recipes in recipe %}
+
 		<nav class="container navbar navbar-expand-lg bg-primary my-4" data-bs-theme="dark">
 			<div class="container-fluid">
 				<a class="logo" href="#">
@@ -30,8 +31,8 @@
 				</a>
 
 				<div>
-						<img src="https://images.unsplash.com/photo-1593085512500-5d55148d6f0d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80" class="rounded-circle shadow-4-strong" width="100">
-						Les recette de Prénom Nom
+						<img src="{{recipes.user.picture}}" class="rounded-circle shadow-4-strong" width="100">
+						<p style="color: white">Les recette de {{recipes.user.firstname}} {{recipes.user.lastname}}</p>
 				</div>
 			</div>
 		</nav>
@@ -40,41 +41,43 @@
 			<div class="row">
 				<div class="flex-row w-25">
 					<div>
-						<img src="{{asset(recipe.picture)}}" class="mw-100" alt="">
+						<img src="{{asset(recipes.picture)}}" class="mw-100" alt="">
 					</div>
 				</div>
 				<div class="flex-row w-75">
-					<h1 class="my-4">{{recipe.title}}</h1>
+					<h1 class="my-4">{{recipes.title}}</h1>
 					<div>
 						<div class="row my-4">
 							<div class="col">
 								<i class="bi bi-tag">
-									{{recipe.category}}</i>
+									{{recipes.category}}</i>
 							</div>
 							<div class="col">
 								<i class="bi bi-alarm">
-									{{recipe.duration}}</i>
+									{{recipes.duration}}</i>
 							</div>
 							<div class="col">
-								<i class="bi bi-calendar3">{{recipe.createdAt|date("d/m/Y")}}</i>
+								<i class="bi bi-calendar3">{{recipes.createdAt|date("d/m/Y")}}</i>
 							</div>
 						</div>
 					</div>
 				</div>
 				<div class="my-4">
 					<h3>Ingrédients</h3>
-					{% for ingredient in recipe.ingredients %}
+					{% for ingredient in recipes.ingredients %}
 						<li>{{ ingredient }}</li>
 					{% endfor %}
 				</div>
 				<div>
 					<h3>Etapes de préparation</h3>
-					{% for step in recipe.steps %}
+					{% for step in recipes.steps %}
 						<li>{{ step }} </li>
                     {% endfor %}
 				</div>
 			</div>
 		</main>
+
+		{% endfor %}
 
 		<footer class="container my-4">
 			<div class="alert alert-dismissible alert-success">
@@ -85,5 +88,4 @@
 		</footer>
 
 	</body>
-
 </html>
