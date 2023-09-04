@@ -3,7 +3,6 @@
 namespace App\Controller\Front;
 
 use Knp\Snappy\Pdf;
-use App\Entity\User;
 use App\Entity\Recipe;
 use App\Entity\Category;
 use App\Repository\RecipeRepository;
@@ -75,5 +74,4 @@ class MainController extends AbstractController
         //  "recipe" => $recipe
         //]);
     }
-
 }

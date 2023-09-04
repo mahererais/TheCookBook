@@ -138,25 +138,6 @@ class UserController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/profile/{slug}/ebook/generate", name="tcb_front_user_ebook_generate")
-     */
-    public function getEbook(Pdf $knpSnappyPdf, Recipe $recipe)
-    {
-        $recipe = $this->entityManager->getRepository(Recipe::class)->getEbook();
-        //dd($recipe);
-        $html = $this->renderView('Front/TestsWK/ebook.html.twig', [
-           "recipe" => $recipe
-        ]);
-        $knpSnappyPdf->setOption('enable-local-file-access', true);
-
-        return new PdfResponse(
-            $knpSnappyPdf->getOutputFromHtml($html),
-           'ebook.pdf',
-        );        
-
-    }
-
      /**
       * @Route("/profile/{slug}/ebook/delete{recipeSlug}", name="tcb_front_user_removeFromEbook")
       */
