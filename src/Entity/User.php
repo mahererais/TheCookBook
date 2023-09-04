@@ -97,12 +97,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\ManyToMany(targetEntity=Recipe::class, inversedBy="favorites")
      */
     private $favorites;
+    
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isVerified = false;
 
     public function __construct()
     {
         $this->recipes = new ArrayCollection();
         $this->favorites = new ArrayCollection();
+        $this->setRoles(["ROLE_USER"]);
     }
+    
 
     public function getId(): ?int
     {
@@ -331,7 +338,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         if (!$this->favorites->contains($favorite)) {
             $this->favorites[] = $favorite;
         }
-
         return $this;
     }
 
@@ -340,5 +346,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->favorites->removeElement($favorite);
 
         return $this;
+    }
+
+    public function setIsVerified(bool $isVerified): self
+    {
+        $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+    public function isVerified(): bool
+    {
+        return $this->isVerified;
+    }
+
+    public function getIsVerified(): bool
+    {
+        return $this->isVerified;
     }
 }

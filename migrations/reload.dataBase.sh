@@ -17,8 +17,8 @@ php bin/console ma:mi;
 
 
 echo "--- create all table ---";
-php bin/console do:mi:mi;
+php bin/console do:mi:mi -n;
 
 echo "--- load fake data ---";
-php bin/console do:fi:lo;
+php bin/console do:fi:lo -n;
 

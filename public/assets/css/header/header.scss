@@ -14,6 +14,7 @@ header {
     .header_container {
 
         padding: var(--container-padding);
+        padding-block: 0;
         width: var(--container-width);
 
         display: flex;
@@ -23,7 +24,7 @@ header {
         gap: 1rem;
 
         &>.logo {
-            width: 60px;
+            width: 200px;
 
             img {
                 max-width: 100%;
@@ -34,39 +35,69 @@ header {
 
             display: flex;
             margin: 0 0 0 auto;
+            height: 100px;
 
-            li {
-                position: relative;
+            ul {
+                height: 100%;
 
-                padding: 0.5rem 0;
+                li {
+                    display: flex;
+                    flex-wrap: wrap;
+                    align-content: center;
+                    justify-content: center;
+                    position: relative;
+                    padding: 0.8rem 0;
+                    height: 100%;
+                    font-size: min(20px, calc(0.4em + 1.1 * 1vw));
+                    transition: font-size 0s;
 
-                // &:not(:last-child):hover {
-                &:hover {
-                    font-size: 1em;
-                    & > * {
-                        display: block;
-                        transform: translateY(-5px);
+                    // &:not(:last-child):hover {
+                    &:hover {
+                        //font-size: 1em;
+
+                        & > a {
+                            display: block;
+                            transform: translateY(-5px);
+                            
+                            &:after {
+                                   width: 100%;
+                                   left: 0;
+                            }
+                        }
+
                     }
+
+                    &>a {
+                        color: white;
+                        padding-block: 0.3em;
+
+                        &:after {
+                            content: "";
+                            position: absolute;
+                            width: 0%;
+                            height: 3px;
+                            border-radius: 99px;
+                            bottom: 0;
+                            left: 50%;
+                            background: var(--main-text-color);
+                            background: white;
+                            transition: 0.2s;
+
+                            &:hover {
+                                width: 100%;
+                                left: 0;
+                            }
+                        }
+
+                    }
+
+                    &:last-child {
+                        display: none;
+                    }
+
                 }
-
-                // &:after {
-                //     content: "";
-                //     position: absolute;
-                //     width: 0%;
-                //     height: 3px;
-                //     border-radius: 99px;
-                //     bottom: 0;
-                //     left: 50%;
-                //     background: var(--main-text-color);
-                //     background: white;
-                //     transition: 0.2s;
-                // }
-
-                // &:hover:after {
-                //     width: 100%;
-                //     left: 0;
-                // }
             }
+
 
         }
 
@@ -80,45 +111,7 @@ header {
             .fa-user {
                 color: white;
                 font-size: 1.5rem;
-            } 
-            
-            // a.login_btn {
-            //     display: flex;
-            //     justify-content: center;
-            //     align-items: center;
-            //     flex-shrink: 0; // 0  veut dire que l'element ne pas rétrécir
-
-            //     position: relative;
-            //     color: white;
-            //     width: 2.5rem;
-            //     height: 2.5rem;
-            //     border-radius: 999px;
-                
-                
-            //     overflow: hidden;
-            
-            //     transition: 0.2s;
-
-            //     &:hover {
-            //         color: var(--main-text-color);
-            //     }
-
-            //     &::after {
-            //         // represente white circle above user image
-            //         content: '';
-            //         position: absolute;
-            //         inset: 0;
-            //         box-shadow: inset 0 0 3px black;
-            //         border: 2px solid white;
-            //         border-radius: 999px;
-            //     }
-
-            //     img {
-            //         object-fit: cover;
-            //         width: 100%;
-            //         height: 100%;
-            //     }
-            // }
+            }
 
             .search_container {
 
@@ -133,15 +126,17 @@ header {
 
                 & input[type=text] {
                     margin-left: 5px;
+                    margin-block: 0;
                     background-color: transparent;
                     border: none;
                     font-family: 'Poppins', sans-serif;
+                    padding: 0;
 
                     &:focus {
                         outline: none;
                     }
 
-                    max-width: 150px;
+                    max-width: 140px;
                 }
 
                 i {
@@ -155,7 +150,7 @@ header {
 }
 
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 768px) {
 
     header {
         z-index: 15;
@@ -170,7 +165,39 @@ header {
                 width: 100%;
             }
 
-            
+            nav {
+                height: 80px;
+                ul {
+                    li {
+                        height: unset;
+                        font-size: 1.5rem;
+                        
+                        &:hover {
+                            font-size: 1.5rem;
+                        }
+
+                        &:last-child {
+                            display: unset;
+                        }
+
+                    }
+                }
+            }
+
+            a.logo {
+                --size : 50px;
+                width: var(--size)!important;
+                aspect-ratio: 1;
+                background-image: url("/images/logo_marmite_cookbook.png");
+                background-position: center;
+                background-size: var(--size) var(--size);
+                img {
+                    display: none;
+                    opacity: 0;
+                }
+            }
+
+
         }
     }
 
@@ -206,7 +233,7 @@ ul {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 1.5rem;
+    gap: 1rem;
 
     & li {
         list-style: none;
@@ -242,7 +269,7 @@ ul {
 // externe code : https://uiverse.io/vk-uiux/lucky-owl-16
 
 #menuToggle {
-    font-size: 2em;
+    font-size: 1.5em;
     display: none;
     z-index: 10000;
 }

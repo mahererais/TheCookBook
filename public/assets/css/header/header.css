@@ -9,6 +9,7 @@ header {
 }
 header .header_container {
   padding: var(--container-padding);
+  padding-block: 0;
   width: var(--container-width);
   display: flex;
   flex-direction: row-reverse;
@@ -17,7 +18,7 @@ header .header_container {
   gap: 1rem;
 }
 header .header_container > .logo {
-  width: 60px;
+  width: 200px;
 }
 header .header_container > .logo img {
   max-width: 100%;
@@ -25,17 +26,52 @@ header .header_container > .logo img {
 header .header_container nav {
   display: flex;
   margin: 0 0 0 auto;
+  height: 100px;
 }
-header .header_container nav li {
+header .header_container nav ul {
+  height: 100%;
+}
+header .header_container nav ul li {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
   position: relative;
-  padding: 0.5rem 0;
+  padding: 0.8rem 0;
+  height: 100%;
+  font-size: min(20px, 0.4em + 1.1vw);
+  transition: font-size 0s;
 }
-header .header_container nav li:hover {
-  font-size: 1em;
-}
-header .header_container nav li:hover > * {
+header .header_container nav ul li:hover > a {
   display: block;
   transform: translateY(-5px);
+}
+header .header_container nav ul li:hover > a:after {
+  width: 100%;
+  left: 0;
+}
+header .header_container nav ul li > a {
+  color: white;
+  padding-block: 0.3em;
+}
+header .header_container nav ul li > a:after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 3px;
+  border-radius: 99px;
+  bottom: 0;
+  left: 50%;
+  background: var(--main-text-color);
+  background: white;
+  transition: 0.2s;
+}
+header .header_container nav ul li > a:after:hover {
+  width: 100%;
+  left: 0;
+}
+header .header_container nav ul li:last-child {
+  display: none;
 }
 header .header_container .right_bar_container {
   display: flex;
@@ -56,10 +92,12 @@ header .header_container .right_bar_container .search_container {
 }
 header .header_container .right_bar_container .search_container input[type=text] {
   margin-left: 5px;
+  margin-block: 0;
   background-color: transparent;
   border: none;
   font-family: "Poppins", sans-serif;
-  max-width: 150px;
+  padding: 0;
+  max-width: 140px;
 }
 header .header_container .right_bar_container .search_container input[type=text]:focus {
   outline: none;
@@ -68,7 +106,7 @@ header .header_container .right_bar_container .search_container i {
   color: var(--main-text-color);
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 768px) {
   header {
     z-index: 15;
   }
@@ -78,6 +116,31 @@ header .header_container .right_bar_container .search_container i {
   }
   header .header_container .search_container {
     width: 100%;
+  }
+  header .header_container nav {
+    height: 80px;
+  }
+  header .header_container nav ul li {
+    height: unset;
+    font-size: 1.5rem;
+  }
+  header .header_container nav ul li:hover {
+    font-size: 1.5rem;
+  }
+  header .header_container nav ul li:last-child {
+    display: unset;
+  }
+  header .header_container a.logo {
+    --size: 50px;
+    width: var(--size) !important;
+    aspect-ratio: 1;
+    background-image: url("/images/logo_marmite_cookbook.png");
+    background-position: center;
+    background-size: var(--size) var(--size);
+  }
+  header .header_container a.logo img {
+    display: none;
+    opacity: 0;
   }
   #menuToggle {
     display: block !important;
@@ -105,7 +168,7 @@ ul {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 ul li {
   list-style: none;
@@ -132,7 +195,7 @@ ul li > a:hover {
   }
 }
 #menuToggle {
-  font-size: 2em;
+  font-size: 1.5em;
   display: none;
   z-index: 10000;
 }

@@ -10,6 +10,19 @@
     --main-text-color: #3F3735;
     --corail-color: #F55E51;
     --container-padding: 1rem 1.5rem;
+
+
+    --bs-btn-bg : var(--main-color)!important;
+    --bs-btn-border-color: var(--main-color)!important;
+
+    --bs-btn-hover-bg: white!important;
+    --bs-btn-hover-color: var(--main-color)!important;
+    --bs-btn-hover-border-color: var(--main-color)!important;
+    
+    --bs-btn-active-bg: #077565!important;
+    --bs-btn-active-color: white!important;
+    --bs-btn-active-border-color: #077565!important;
+
 }
      
 
@@ -26,14 +39,29 @@ body {
     min-height: 100vh;
 }
 
-
-@import './login/login.scss';
-@import './register/register.scss';
-@import './recipes/recipes.scss';
-@import './recipe_show/recipe_show.scss';
-@import './homePage/homePage.scss';
-@import './chefs/chefs.scss';
-@import '../header/header.scss';
-@import '../footer/footer.scss';
-@import '../components/components.scss';
+@import './login/login.css';
+@import './recipes/recipes.css';
+@import './recipe_show/recipe_show.css';
+@import './homePage/homePage.css';
+@import './chefs/chefs.css';
+@import '../header/header.css';
+@import '../footer/footer.css';
+@import '../components/components.css';
 //@import '../general/general.scss';
+
+@media screen and (max-width: 768px) {
+
+    html {
+        font-size: 100% * calc(14/16);
+    }
+
+    html:has(#checkbox:checked) {
+        overflow: hidden;
+
+    }
+
+    :root {
+        --container-padding: 1rem 1rem;
+    }
+
+}

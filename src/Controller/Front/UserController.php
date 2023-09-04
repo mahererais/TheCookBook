@@ -86,7 +86,7 @@ class UserController extends AbstractController
             $this->addFlash("success", "L'utilisateur a bien mis à jour !");
 
 
-            return $this->redirectToRoute('tcb_front_user_profile', ['slug' => $security->getUser()->getSlug()]);
+            return $this->redirectToRoute('tcb_front_user_profile', ['slug' => $user->getSlug()]);
         }
 
         return $this->renderForm("Front/user/update.html.twig", [
@@ -162,6 +162,7 @@ class UserController extends AbstractController
      */
     public function addFavorite(Request $request, $id, EntityManagerInterface $em, RecipeRepository $recipeRepository): Response
     {
+        /** @var \App\Entity\User */
         $user = $this->getUser();
         // je récupère mon user connecté
 
