@@ -1,18 +1,18 @@
-<html lang="en">
+
+
+<html lang="fr">
 
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>The Cook Book - votre recette</title>
+		<title>The Cook Book - votre ebook</title>
 
 		<!-- Bootstrap icons -->
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 		<!-- Our custom CSS -->
-		<link
-		rel="stylesheet" href="https://bootswatch.com/5/minty/bootstrap.css">
+		<link rel="stylesheet" href="http://mahererais-server.eddi.cloud/css/pdf.css">
 		<!-- favicon -->
-		<link
-		rel="shortcut icon" href="{{ asset('images/favicon_cookbook.png')}}" type="image/x-icon">
+		<link rel="shortcut icon" href="{{ asset('images/logo_the_cookbook.png')}}" type="image/x-icon">
 
 		<!-- https://fonts.google.com/ -->
 		<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,7 +22,7 @@
 
 	<body>
 
-	{% for recipes in recipe %}
+		{% for recipes in recipe %}
 
 		<nav class="container navbar navbar-expand-lg bg-primary my-4" data-bs-theme="dark">
 			<div class="container-fluid">
@@ -50,7 +50,7 @@
 						<div class="row my-4">
 							<div class="col">
 								<i class="bi bi-tag">
-									{{recipes.category}}</i>
+									catégorie: {{recipes.category}}</i>
 							</div>
 							<div class="col">
 								<i class="bi bi-alarm">
@@ -76,7 +76,7 @@
 				</div>
 			</div>
 		</main>
-
+				<p class="new-page"></p>
 		{% endfor %}
 
 		<footer class="container my-4">
