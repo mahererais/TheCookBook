@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -40,30 +41,44 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('plainPassword', PasswordType::class, [
+            ->add('password', RepeatedType::class, [
+                'type' => PasswordType::class,
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
-                'label' => "Mot de passe",
-                'mapped' => false,
-                'attr' => [
-                     'autocomplete' => 'new-password',
-                     "placeholder" => "Entrez votre mot de passe",
-                     'minlength' => 6,
-                     "tabindex" => 0,
-                 ],
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Veuillez entrer un mot de passe',
-                    ]),
-                    new Length([
-                        'min' => 6,
-                        //'minMessage' => 'Your password should be at least {{ limit }} characters',
-                        // max length allowed by Symfony for security reasons
-                        'max' => 4096,
-                    ]),
+                'first_options' => [
+                    'label' => "Mot de passe",
+                    'mapped' => false,
+                    'attr' => [
+                         'autocomplete' => 'new-password',
+                         "placeholder" => "Entrez votre mot de passe",
+                         'minlength' => 6,
+                         "tabindex" => 0,
+                     ],
+                    'constraints' => [
+                        new NotBlank([
+                            'message' => 'Veuillez entrer un mot de passe',
+                        ]),
+                        new Length([
+                            'min' => 6,
+                            //'minMessage' => 'Your password should be at least {{ limit }} characters',
+                            // max length allowed by Symfony for security reasons
+                            'max' => 4096,
+                        ]),
+                    ],
+                    "help" => "le mot de passe doit contenir au moins 6 caractéres"
+                ], 
+                'second_options' => [
+                    'attr' => [
+                        'autocomplete' => 'new-password',
+                        "placeholder" => "Entrez à nouveau votre mot de passe",
+                        'minlength' => 6,
+                        "tabindex" => 0,
+                    ],
+                    'label' => 'Répéter',
+                    
                 ],
-                "help" => "le mot de passe doit contenir au moins 6 caractéres"
-                ])
+                'invalid_message' => 'Les mots de passe saisis ne sont pas identiques.',
+            ])
         ;
     }
 

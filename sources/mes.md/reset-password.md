@@ -33,7 +33,7 @@ Let's make a password reset feature!
  These are used to generate the email code. Don't worry, you can change them in the code later!
 
  What email address will be used to send reset confirmations? e.g. mailer@your-domain.com:
- > no.reply.thecookbook@gmail.com
+ > thecookbook.no.reply@gmail.com
 
  What "name" should be associated with that email address? e.g. "Acme Mail Bot":
  > The Cook Book (Bot-No-Reply)

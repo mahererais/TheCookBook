@@ -29,7 +29,7 @@
 			{{form_help(form.picture)}}
 			{{form_errors(form.picture)}}
 		</div>
-		<div class="col-12 mb-3">
+		<div class="col-12 mb-3 d-flex align-items-center gap-4 ">
 			<a id="upload_widget" class="cloudinary-button tcb_btn">Choisir un fichier</a>
 			<a class="login_btn">
 				<img src="{{app.user.picture}}" alt="avatar image" id="cloudinary_image">
@@ -56,11 +56,10 @@
 			{{form_errors(form.presentation)}}
 		</div>
 		<div class="col-12 mb-3">
-		{# {{form_label(form.password)}}
-				{{form_widget(form.password)}}
-				{{form_help(form.password)}}
-				{{form_errors(form.password)}} #}
-
+			{{form_label(form.password)}}
+			{{form_widget(form.password)}}
+			{{form_help(form.password)}}
+			{{form_errors(form.password)}}
 		</div>
 		<div class="col-12 mb-3">
 			{{form_label(form.status)}}
