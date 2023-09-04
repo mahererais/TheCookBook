@@ -105,6 +105,20 @@ class RecipeRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    /**
+    * @return array[] Returns an array of user objects
+    * @param string|null $string to find in users
+    */
+
+    public function getEbook($user)
+    {
+        return $this->createQueryBuilder('e')
+        ->andWhere('e.ebook = :ebook') 
+        ->setParameter('ebook', '1')
+        ->andWhere('e.user_id = :user') 
+        ->setParameter('user', $user);
+    }
+
     //    /**
     //     * @return Recipe[] Returns an array of Recipe objects
     //     */
