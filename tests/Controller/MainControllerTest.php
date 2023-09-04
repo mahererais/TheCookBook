@@ -24,7 +24,19 @@ class MainControllerTest extends WebTestCase
 
     }
 
-    
+    public function testHomeadmin(): void
+    {
+        $client = static::createClient();
 
-   
+        $crawler = $client->request('GET', '/');
+
+        
+        $this->assertResponseIsSuccessful();
+
+
+        $this->assertSelectorExists("a[href='/login']", "Le lien de connexion n'est pas visible");
+
+        $this->assertSelectorNotExists("a[href='/favoris']","Malgrès l'anonymat le lien des favoris s'affiche");
+
+    }
 }

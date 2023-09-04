@@ -15,5 +15,7 @@ class RecipeControllerTest extends WebTestCase
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
         $this->assertSelectorTextContains('h1', 'Liste des recettes'); 
     }
+
+    
     
 }
