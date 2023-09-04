@@ -2,7 +2,6 @@
 
 namespace App\Controller\Front;
 
-use Knp\Snappy\Pdf;
 use App\Entity\Recipe;
 use App\Entity\Category;
 use App\Repository\RecipeRepository;
