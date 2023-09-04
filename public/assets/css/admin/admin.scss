@@ -45,14 +45,31 @@ body {
 // @import url("./header/header.css");
 // @import url("./footer/footer.css");
 
-@import '../header/header.scss';
-@import '../footer/footer.scss';
-@import '../components/components.scss';
+@import '../header/header.css';
+@import '../footer/footer.css';
+@import '../components/components.css';
 
-@import '../front/recipe_show/recipe_show.scss';
+@import '../front/recipe_show/recipe_show.css';
 
 /* Réduction de la largeur totale du tableau de la liste de recettes dans admin */
 .table {
     max-width: 75%;
     margin: 0 auto;
+}
+
+@media screen and (max-width: 768px) {
+
+    html {
+        font-size: 100% * calc(14/16);
+    }
+
+    html:has(#checkbox:checked) {
+        overflow: hidden;
+
+    }
+
+    :root {
+        --container-padding: 1rem 1rem;
+    }
+
 }

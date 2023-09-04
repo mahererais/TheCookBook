@@ -55,7 +55,7 @@
 							</div>
 
 							{% if is_granted('IS_AUTHENTICATED_FULLY') %}
-								<a class="login_btn" href="{{path('tcb_front_user_profile', {slug: app.user.slug})}}">
+								<a class="login_btn avatar" href="{{path('tcb_front_user_profile', {slug: app.user.slug})}}">
 									<img src="{{app.user.picture}}" alt="avatar du profile utilisateur">
 								</a>
 							{% else %}

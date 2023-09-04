@@ -172,6 +172,7 @@ class UserController extends AbstractController
      */
     public function addFavorite(Request $request, $slug, EntityManagerInterface $em, RecipeRepository $recipeRepository): Response
     {
+        /** @var \App\Entity\User */
         $user = $this->getUser();
         // je récupère mon user connecté
 

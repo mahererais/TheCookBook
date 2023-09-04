@@ -98,38 +98,6 @@ main {
     }
 }
 
-a.login_btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-shrink: 0; // 0  veut dire que l'element ne pas rétrécir
-
-    position: relative;
-    color: white;
-    width: 2.5rem;
-    height: 2.5rem;
-    border-radius: 999px;
-    
-    
-    overflow: hidden;
-
-    transition: 0.2s;
-
-    &:hover {
-        color: var(--main-text-color);
-    }
-
-    &::after {
-        // represente white circle above user image
-        content: '';
-        position: absolute;
-        inset: 0;
-        box-shadow: inset 0 0 3px black;
-        border: 2px solid white;
-        border-radius: 999px;
-    }
-
-}
 
 a {
     & > img {
@@ -137,7 +105,47 @@ a {
         width: 100%;
         height: 100%;
     }
+
+    &.avatar {
+        width: 3.5rem!important;
+        height: 3.5rem!important;
+    }
+
+    &.login_btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-shrink: 0; // 0  veut dire que l'element ne pas rétrécir
+    
+        position: relative;
+        color: white;
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 999px;
+        
+        
+        overflow: hidden;
+    
+        transition: 0.2s;
+    
+        &:hover {
+            color: var(--main-text-color);
+        }
+    
+        &::after {
+            // represente white circle above user image
+            content: '';
+            position: absolute;
+            inset: 0;
+            box-shadow: inset 0 0 3px black;
+            border: 2px solid white;
+            border-radius: 999px;
+        }
+    }
 }
 
 
-@import './form.css';
+
+@import './form/form.css';
+@import './searchBar/searchBar.css';
+@import './sideBar/sideBar.css';

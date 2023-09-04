@@ -30,8 +30,12 @@
 
 			{% block connexion %}
 				<div class="right_bar_container">
+					<div class="search_container">
+						<i class="fas fa-search"></i>
+						<input type="text" placeholder="recherche ...">
+					</div>
 					{% if is_granted('IS_AUTHENTICATED_FULLY') and "ROLE_ADMIN" in app.user.roles %}
-								<a class="login_btn" href="{{path('tcb_front_user_profile', {'slug': app.user.slug})}}">
+								<a class="login_btn avatar" href="{{path('tcb_front_user_profile', {'slug': app.user.slug})}}">
 									<img src="{{app.user.picture ?: "https://c8.alamy.com/zoomsfr/9/d08ded34f26b4368843097d19c025b0e/2gwexg2.jpg" }}" alt="avatar du profile utilisateur">
 								</a>
 							{% else %}
@@ -39,10 +43,6 @@
 									<i class="fas fa-user"></i>
 								</a>
 							{% endif %}
-					<div class="search_container">
-						<i class="fas fa-search"></i>
-						<input type="text" placeholder="recherche ...">
-					</div>
 				</div>
 			{% endblock %}
 
@@ -53,6 +53,7 @@
 					<li><a href="{{path('tcb_admin_recipe_getAll')}}">Liste recettes</a></li>
 					<li><a href="{{path('tcb_admin_user_getAll')}}">Liste utilisateurs</a></li>
 					<li><a href="{{path('tcb_admin_category_getAll')}}">Liste catégories</a></li>
+					<li><a href="{{path('tcb_front_main_home')}}">Front</a></li>						
 				</ul>
 
 			</nav>
