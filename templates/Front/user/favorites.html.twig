@@ -19,7 +19,7 @@
                                 <h5 class="card-title">{{ recipe.title }}</h5>
                                 </a>
                                 <a onclick="return confirm('Voulez vous retirer cette recette de vos favoris ?')"
-                                   href="{{ path ('tcb_front_user_removeFromEbook', {slug: user.slug,  'recipeSlug': recipe.slug }) }}">
+                                   href="{{ path ('tcb_front_favorite_remove', { 'slug': recipe.slug } ) }}">
                                     <i class="bi bi-x-circle-fill text-dark"></i>
                                 </a>
                             </div>
