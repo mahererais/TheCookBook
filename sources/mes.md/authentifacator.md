@@ -25,7 +25,7 @@ $ php bin/console make:registration-form
  > no
 
  What email address will be used to send registration confirmations? e.g. mailer@your-domain.com:
- > no.reply.thecookbook@gmail.com
+ > thecookbook.no.reply@gmail.com
 
  What "name" should be associated with that email address? e.g. "Acme Mail Bot":
  > The Cook Book (Bot-No-Reply)

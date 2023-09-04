@@ -65,16 +65,14 @@ class RecipeController extends AbstractController
      * @Route("/recipe/add", name="tcb_front_recipe_add")
      * 
      */
-    public function add(Request $request, EntityManagerInterface $entityManager, Security $security): Response
+    public function add(Request $request, EntityManagerInterface $entityManager, Security $security, Recipe $recipe = null): Response
     {
+
         $recipe = new Recipe();
         $user = $security->getUser();
 
-        // dd($userId);
         $form = $this->createForm(RecipeType::class, $recipe);
         $form->handleRequest($request);
-
-        // dd($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $recipe->setUser($user);
@@ -99,11 +97,11 @@ class RecipeController extends AbstractController
     /**
      * 
      * @Route("/recipe/update/{slug}", name="tcb_front_recipe_update")
-     * @IsGranted("RECIPE_MODIF", subject="recipe")
      *
      */
     public function update(Request $request, EntityManagerInterface $entityManager, string $slug, Recipe $recipe, RecipeRepository $recipeRepository ): Response
     {
+        $this->denyAccessUnlessGranted('RECIPE_MODIF', $recipe);
         $recipe = $recipeRepository->findOneBy(['slug' => $slug]);
         $form = $this->createForm(RecipeType::class, $recipe);
         $form->handleRequest($request);
@@ -135,27 +133,24 @@ class RecipeController extends AbstractController
     /**
      * 
      * @Route("/recipe/delete/{slug}", name="tcb_front_recipe_delete")
-     * @IsGranted("RECIPE_MODIF", subject="recipe")
      */
-    public function delete(Recipe $recipe, EntityManagerInterface $entityManager, string $slug, Request $request, Security $security): Response
+    public function delete(RecipeRepository $recipeRepository, EntityManagerInterface $entityManager, string $slug, Request $request, Security $security): Response
     {
-        // ! ne pas oublier le CSRF
-        // if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->request->get('_token'))) {
-        //     $userRepository->remove($user, true);
-        // }
+        $recipe = $recipeRepository->findOneBy(['slug' => $slug]);
 
         if (!$recipe) {
-            throw new NotFoundHttpException('La recette n\'a pas été trouvée');
+            $this->addFlash('danger', 'La recette n\'a pas été trouvée.');
+            return $this->redirectToRoute('tcb_front_recipe_getAll');
         }
-        
-        $recipe = $this->entityManager->getRepository(Recipe::class)->findOneBy(['slug' => $slug]);
+
+        $this->denyAccessUnlessGranted('RECIPE_MODIF', $recipe);
 
         $entityManager->remove($recipe);
         $entityManager->flush();
 
         $this->addFlash(
             'danger',
-            "La recette a bien été supprimé !"
+            "La recette a bien été supprimée !"
         );
 
         $referer = $request->headers->get("referer") ?: $this->generateUrl('tcb_front_user_getRecipesByUserLog', ['slug' => $security->getUser()->getSlug()]);

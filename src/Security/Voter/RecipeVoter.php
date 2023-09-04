@@ -10,10 +10,11 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class RecipeVoter extends Voter
 {
     public const RECIPE_MODIF = 'RECIPE_MODIF';
+    public const ADD_RECIPE = 'ADD_RECIPE';
 
     protected function supports(string $attribute, $subject): bool
     {
-        return in_array($attribute, [self::RECIPE_MODIF]) && $subject instanceof Recipe;
+        return in_array($attribute, [self::RECIPE_MODIF, self::ADD_RECIPE]) && $subject instanceof Recipe;
     }
 
     protected function voteOnAttribute(string $attribute, $subject, TokenInterface $token): bool
@@ -28,7 +29,16 @@ class RecipeVoter extends Voter
         /** @var Recipe $recipe */
         $recipe = $subject;
 
-        // we search if the user of the recipe is the user trying to access to the URL
-        return $recipe->getUser() === $user;
+        if ($attribute === self::RECIPE_MODIF) {
+            // check if the user of the recipe is the user trying to modify or delete the recipe
+            return $recipe->getUser() === $user;
+        }
+
+        if ($attribute === self::ADD_RECIPE) {
+            // allow adding a recipe only if the user is logged in
+            return true;
+        }
+
+        return false;
     }
 }
