@@ -50,7 +50,7 @@ class RecipeListener
             ->getRepository(Recipe::class)
             ->findBy(['title' => $title]);
 
-        // Collecte des slugs existants
+        // Collecting all the existing slugs
         foreach ($existingRecipes as $existingRecipe) {
             $existingSlugs[] = $existingRecipe->getSlug();
         }
