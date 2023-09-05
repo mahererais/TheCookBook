@@ -114,6 +114,30 @@
 | `/api/users/{page}/{count}`|`GET`|`ApiUserController`|`getUserForPageNumber`| get users from server | {page} is the page number, {count} means number of users we want |
 | `/api/recipes/{page}/{count}`|`GET`|`ApiRecipeController`|`getRecipeForPageNumber`| get recipes from server | {page} is the page number, {count} means number of recipe we want |
 
+## Registration
+
+
+URL | Méthode HTTP | Controller | Méthode | Contenu | Commentaire |
+Name|
+|--|--|--|--|--|--|--|--|
+|`/register`|`GET`|`RegistrationController`|`Register`|User registration form|Inscription|tcb_front_register|
+|`/verify/email`|`GET`|`RegistrationController`|`verifyUserEmail`|User registration form|Handle email verification errors|
+tcb_verify_email|
+
+## reset
+
+URL | Méthode HTTP | Controller | Méthode | Contenu | Commentaire |
+Name|
+|--|--|--|--|--|--|--|--|
+
+|`reset-password`|`GET`|`ResetPasswordController`|`request`|Formulaire de demande de réinitialisation de mot de passe|Cette page permet aux utilisateurs de saisir leur adresse e-mail pour demander une réinitialisation de mot de passe|
+
+|`/reset-password/check-email`|`GET`|`ResetPasswordControlle`|`checkEmail`|. Cette page informe l'utilisateur qu'il doit vérifier son e-mail pour le lien de réinitialisation du mot de passe.
+
+|`/reset-password/reset/{token}`|`GET`|`ResetPasswordController`|Formulaire de réinitialisation de mot de passe|
+|`/reset-password/reset/{token}`|`POST`|`ResetPasswordController`|`reset`||
+
+
 <br>
 <br>
 <hr>
