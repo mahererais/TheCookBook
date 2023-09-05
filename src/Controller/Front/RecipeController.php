@@ -2,14 +2,12 @@
 
 namespace App\Controller\Front;
 
-use App\Entity\User;
 use App\Entity\Recipe;
 use App\Form\RecipeType;
-use App\Form\CategoryType;
 use App\Repository\UserRepository;
 use App\Repository\RecipeRepository;
-use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
@@ -30,17 +28,25 @@ class RecipeController extends AbstractController
     /**
      * @Route("/recipes", name="tcb_front_recipe_getAll")
      */
-    public function getAll(RecipeRepository $recipeRepository, UserRepository $users): Response
+    // = besoin de PaginatorInterface et de la requete 
+    public function getAll( RecipeRepository $recipeRepository,
+                             UserRepository $users, 
+                             PaginatorInterface $paginator, 
+                             Request $request): Response
     {
-        //$recipes = $recipeRepository->findAll();
         $recipes = $recipeRepository->findBy(
             [],
             ['created_at' => 'DESC'], 
         );
 
-        // dd($recipes);
+        $recipes = $paginator->paginate(
+            $recipes, // = my datas
+            $request->query->getInt('page', 1), // = get page number in request url, and set page default to "1"
+            10 // = limit by page
+        );
 
-        return $this->render('Front/recipe/index.html.twig', [
+
+        return $this->render('Front/recipe/list.html.twig', [
             'recipes' => $recipes,
             'users' => $users
         ]);
