@@ -2,9 +2,11 @@ header {
 
 
     //margin-bottom: auto !important;
-    position: relative;
+    position: sticky;
+    top: 0;
+    backdrop-filter: blur(10px);
 
-    background-color: var(--main-color);
+    background-color: var(--main-color-header);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
     z-index: 10;
 
