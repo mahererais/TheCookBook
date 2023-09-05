@@ -34,10 +34,7 @@ class UserController extends AbstractController
      */
     public function getAll(UserRepository $userRepository, PaginatorInterface $paginator, Request $request): Response
     {
-        // = how het users with a specific role 
-        // = source : https://endelwar.it/2020/08/filter-users-by-role-in-symfony-5/
-        // = installation du packages "scienta/doctrine-json-functions"
-        // = Doctrine 2 doesn’t come with support for MySQL JSON functions, this packages add support for them
+        // = retrieve all users with role 'user' and status 'public'  
         $users = $userRepository->findByRoleAndStatus('user', "public");
         
         $users = $paginator->paginate(

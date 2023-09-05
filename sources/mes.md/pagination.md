@@ -71,10 +71,20 @@
 
 - **⚠️** : pour récuperer la liste des utisateurs qui ont à la fois un role ***user*** et un status ***public***, j'ai du faire une requête custome mais ***impossible*** de filtrer par le role (qui est de type "json" pour symfony).
 - recherche sur le net : [FILTER USERS BY ROLE IN SYMFONY 5](https://endelwar.it/2020/08/filter-users-by-role-in-symfony-5/)
+
   - installation du packages : [ScientaNL/DoctrineJsonFunctions](https://github.com/ScientaNL/DoctrineJsonFunctions)
     ```console
     $ composer require scienta/doctrine-json-functions
     ```
+  - ajouter la configuration de dans `config/packages/doctrine.yaml`
+    ```yaml
+    doctrine:
+    orm:
+      dql:
+          string_functions:
+              JSON_CONTAINS: Scienta\DoctrineJsonFunctions\Query\AST\Functions\Mysql\JsonContains
+    ```
+
   - ajouter la requête custome dans `src/Repository/UserRepository.php`
     ```php
     /**
@@ -106,4 +116,30 @@
         ..................
         ..................
     ```  
+
+<hr>
+
+### ⚠️ : apres discussion avec Simon et Marie, plus besoin du packages `ScientaNL/DoctrineJsonFunctions` pour la recherche par rôles avec Doctrine.
+
+```php
+  // mise a jour requête custome
+  /**
+   * find all users with given role 
+   *
+   * @param string $role : role of user we look like
+   * @return void
+   */
+  public function findByRoleAndStatus(string $role, string $status = "")
+  {
+      $role = mb_strtoupper($role);
+
+      return $this->createQueryBuilder('u')
+          ->andWhere('u.roles = :role')
+          ->setParameter('role', '["ROLE_' . $role . '"]')
+          ->andWhere('u.status = :status')
+          ->setParameter('status', $status)
+          ->getQuery()
+          ->getResult();
+  }
+```
   

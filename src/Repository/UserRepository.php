@@ -83,8 +83,8 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $role = mb_strtoupper($role);
 
         return $this->createQueryBuilder('u')
-            ->andWhere('JSON_CONTAINS(u.roles, :role) = 1')
-            ->setParameter('role', '"ROLE_' . $role . '"')
+            ->andWhere('u.roles = :role')
+            ->setParameter('role', '["ROLE_' . $role . '"]')
             ->andWhere('u.status = :status')
             ->setParameter('status', $status)
             ->getQuery()
