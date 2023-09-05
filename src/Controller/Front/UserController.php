@@ -178,7 +178,7 @@ class UserController extends AbstractController
 
         if (!$user) {
             // L'utilisateur n'est pas connecté, redirigez-le vers la page de connexion ou affichez un message d'erreur
-            return $this->redirectToRoute('login'); // Remplacez 'login' par la route de votre page de connexion
+            return $this->redirectToRoute('tcb_front_security_login'); 
         }
         
         $recipe = $recipeRepository->findOneBy([
@@ -187,22 +187,17 @@ class UserController extends AbstractController
 
         if (!$recipe) {
             // La recette n'a pas été trouvée, affichez un message d'erreur ou redirigez l'utilisateur
-            return $this->redirectToRoute('recipes'); // Remplacez 'recipes' par la route de la liste de recettes
+            return $this->redirectToRoute('tcb_front_recipe_getAll'); 
         }
 
         $user->addFavorite($recipe);
-        $favorites = $user->getFavorites();
+        // $favorites = $user->getFavorites();
         
         $em->flush();
 
-        // Affichez un message de succès ou redirigez l'utilisateur vers une autre page
+        // Afficher un message de succès
         $this->addFlash('success', 'La recette a été ajoutée à vos favoris.');
 
-        $id = $recipe->getId();
-
-        return $this->render('Front/user/favorites.html.twig', [
-            
-            'favorites' => $favorites
-        ]);
+        return $this->redirectToRoute('tcb_front_recipe_getAll');
     }
 }

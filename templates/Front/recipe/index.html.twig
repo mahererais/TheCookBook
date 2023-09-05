@@ -39,13 +39,9 @@
 
 						<div class="r_card_btn">
 							<a class="tcb_btn" href="{{ path('tcb_front_recipe_show', { 'slug' : recipe.slug}) }}">Voir la recette</a>
-								{% if app.user and app.user.getFavorites().contains(recipe) %}
-								<a href="{{ path('tcb_front_favorite_remove', { 'slug': recipe.slug } ) }}" class="heart_icon">
-									<i class="bi bi-heart-fill"></i>
-								{% else %}
-								<a href="{{ path('tcb_front_user_addFavorite', { 'slug' : recipe.slug}) }}" class="heart_icon">
-									<i class="bi bi-heart"></i>
-								{% endif %}
+								
+								{# inclusion of the toogle button to switch to favorite recipe  #}
+								{% include "Front/fragments/toggle_favorite_button.html.twig" %}
 							</a>
 						</div>
 					</div>
