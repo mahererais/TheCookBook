@@ -6,8 +6,9 @@
 
 {% block body %}
 
-<h1 class="page_title"> Résultats de votre recherche</h1>
-{# ! Dynamiser le titre de la recherche avec le(s) terme(s) de recherche #}
+	<h1 class="page_title">
+		Résultats de votre recherche</h1>
+	{# ! Dynamiser le titre de la recherche avec le(s) terme(s) de recherche #}
 
 	{% for recipe in recipes %}
 
@@ -20,7 +21,10 @@
 				<div class="r_cards_content">
 					<h2>{{recipe.title}}</h2>
 					<h3>{{recipe.category.title}}</h3>
-					<p>Proposée par <a href="{{ path('tcb_front_user_show', { 'slug' : recipe.user.slug}) }}">{{recipe.user.firstname}} {{recipe.user.lastname}}</a></p>
+					<p>Proposée par
+						<a href="{{ path('tcb_front_user_show', { 'slug' : recipe.user.slug}) }}">{{recipe.user.firstname}}
+							{{recipe.user.lastname}}</a>
+					</p>
 					<h3>Préparation:</h3>
 					{% for step in recipe.steps %}
 						<ul>
@@ -31,9 +35,10 @@
 
 					<div class="r_card_btn">
 						<a class="tcb_btn" href="{{ path('tcb_front_recipe_show', { 'slug' : recipe.slug}) }}">Voir la recette</a>
-						<a class="heart_icon">
-							<i class="fas fa-heart"></i>
-						</a>
+
+						{# inclusion of the toogle button to switch to favorite recipe  #}
+						{% include "Front/fragments/_toggle_favorite_button.html.twig" %}
+
 					</div>
 				</div>
 
@@ -45,3 +50,4 @@
 	<button type="button" class="tcb_btn">Voir plus</button>
 
 {% endblock %}
+

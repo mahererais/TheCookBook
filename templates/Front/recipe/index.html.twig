@@ -39,10 +39,8 @@
 
 						<div class="r_card_btn">
 							<a class="tcb_btn" href="{{ path('tcb_front_recipe_show', { 'slug' : recipe.slug}) }}">Voir la recette</a>
-								
 								{# inclusion of the toogle button to switch to favorite recipe  #}
-								{% include "Front/fragments/toggle_favorite_button.html.twig" %}
-							</a>
+								{% include "Front/fragments/_toggle_favorite_button.html.twig" %}
 						</div>
 					</div>
 

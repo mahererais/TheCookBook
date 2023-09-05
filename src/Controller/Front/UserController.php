@@ -191,7 +191,7 @@ class UserController extends AbstractController
         }
 
         $user->addFavorite($recipe);
-        // $favorites = $user->getFavorites();
+        $favorites = $user->getFavorites();
         
         $em->flush();
 
