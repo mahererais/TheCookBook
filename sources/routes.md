@@ -7,7 +7,9 @@
 | URL | Méthode HTTP | Controller | Méthode | Titre | Contenu | Commentaire | name |
 |--|--|--|--|--|--|--|--|
 | `/` | `GET` | `MainController` | `home` | The Cook Book | show the most recent recipes published by the users  | - | tcb_front_main_home |
-| `/legal-mentions/` | `GET` | `MainController` | `legalMentions` | Mentions Légales | Legal Mentions | - | tcb_front_main_legalMentions |
+| `/legal-mentions` | `GET` | `MainController` | `legalMentions` | Mentions Légales | Legal Mentions | - | tcb_front_main_legalMentions |
+| `/about` | `GET` | `MainController` | `about` | A propos | About the team | - | tcb_front_main_about |
+
 
 - ### Category
 
@@ -42,10 +44,6 @@
 | `/profile/{slug}` | `GET` | `UserController` | `profile` | Profil de <user_name> | Profile | {slug} Username of the logged user | tcb_front_user_profile |
 | `/profile/update/{slug}` | `GET` | `UserController` | `update` |Update of the <user_name> |profile Profile | {slug} Username | tcb_front_user_update |
 | `/profile/{slug}/ebook` | `GET` | `UserController` | `ebook` | Ebbok recipes <user_name> | List of recipes that the connected user wants to appear in his ebook  | {slug} Username | tcb_front_user_ebook |
-
-
-
-
 | `/user/pdf/{id}` | `GET` | `MainController` | `PdfAction` | créer un PDF | PDF of a given recipe |  | tcb_front_main_pdf |
 
 
