@@ -34,12 +34,12 @@ class RecipeController extends AbstractController
                              PaginatorInterface $paginator, 
                              Request $request): Response
     {
-        $recipes = $recipeRepository->findBy([],['created_at' => 'DESC']);
-
+        $recipes = $recipeRepository->findRecipes(); 
+        
         $recipes = $paginator->paginate(
             $recipes, // = my datas
             $request->query->getInt('page', 1), // = get page number in request url, and set page default to "1"
-            10 // = limit by page
+            5 // = limit by page
         );
 
 

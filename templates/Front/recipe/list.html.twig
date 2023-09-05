@@ -10,9 +10,7 @@
 	</h1>
 
 	{% for recipe in recipes %}
-		{% if recipe.user.status == "public" and recipe.user.roles == ["ROLE_USER"] %}
-
-
+		
 			<div class="cards">
 
 				<div class="r_cards_container">
@@ -49,10 +47,8 @@
 							</a>
 						</div>
 					</div>
-
 				</div>
 			</div>
-		{% endif %}
 	{% endfor %}
 
 	{# display navigation #}

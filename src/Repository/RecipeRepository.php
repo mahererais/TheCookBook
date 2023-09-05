@@ -45,7 +45,6 @@ class RecipeRepository extends ServiceEntityRepository
      * @return 3 Recipes randomly find by Category id
      * and ordered by id ASC
      * */
-
     public function findRandomRecipesByCategory(Category $category, int $limit)
     {
         return $this->createQueryBuilder('r')
@@ -66,22 +65,21 @@ class RecipeRepository extends ServiceEntityRepository
     * @return array[] Returns an array of recipe objects
     * @param string|null $string to find in recipes
     */
-
    public function searchRecipe(?string $search = null): ?array
    {
-    return $this->createQueryBuilder('m')
-         ->join('m.user', 'u')
-         ->orderBy("m.title","ASC")
-         ->where("m.title LIKE :search")
-         ->setParameter("search", "%$search%")
-         ->andWhere('m.status = :status') 
-         ->setParameter('status', 'public')
-         ->andWhere('u.roles = :roles') // Add this line to filter by recipe status
-         ->setParameter('roles', '["ROLE_USER"]') // Set the status to 'public'
-         ->getQuery()
-         ->getResult()
-    ;
-}
+        return $this->createQueryBuilder('m')
+            ->join('m.user', 'u')
+            ->orderBy("m.title","ASC")
+            ->where("m.title LIKE :search")
+            ->setParameter("search", "%$search%")
+            ->andWhere('m.status = :status') 
+            ->setParameter('status', 'public')
+            ->andWhere('u.roles = :roles') // Add this line to filter by recipe status
+            ->setParameter('roles', '["ROLE_USER"]') // Set the status to 'public'
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 
     public function findByUser(User $user)
     {
@@ -109,7 +107,6 @@ class RecipeRepository extends ServiceEntityRepository
     * @return array[] Returns an array of user objects
     * @param string|null $string to find in users
     */
-
     public function getEbook(User $user)
     {
         return $this->createQueryBuilder('e')
@@ -120,6 +117,35 @@ class RecipeRepository extends ServiceEntityRepository
         ->setParameter('user', $user)
         ->getQuery()
         ->getResult();
+    }
+
+    /**
+     * find public recipes from user (not admin)  
+     *
+     * @param string $userRole : role of user (user by default)
+     * @param string $userRole : role of user (user by default)
+     * @return void
+     */
+    public function findRecipes(string $userRole = "user", string $status = "public")
+    {
+        // = upercase $userRole (i.e : "user" => "USER")
+        $role = mb_strtoupper($userRole);
+
+        return $this->createQueryBuilder('r')
+            // = join user table and attached a u (alias)
+            ->innerJoin('r.user', 'u') 
+            // = condition user.roles = :role
+            ->andWhere('u.roles = :role')
+            // = set ":role" to '["ROLE_$user"]'  (i.e: for $role = "USER", we get '["ROLE_USER"]')
+            ->setParameter('role', '["ROLE_' . $role . '"]')
+            // = condition recipe.status = :status
+            ->andWhere('r.status = :status')
+            // = set ":status" to $status  (i.e: by default $status = "publib")
+            ->setParameter('status', $status)
+            // = order request by date creation
+            ->orderBy('r.created_at', 'DESC')
+            ->getQuery()
+            ->getResult();
     }
 
     //    /**
