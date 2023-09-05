@@ -55,3 +55,19 @@
 	</div>
 	{# <button type="button" class="tcb_btn">Voir plus</button> #}
   ```
+
+
+
+
+>   ## ⚠️ quand vous avez une erreur, essayer de ***clear le cache***
+> ```console
+> $ php bin/console cache:clear
+> ```
+
+<hr>
+<br>
+
+- on fait la même chose pour la liste des chefs 
+
+- pour récuperer la liste des utisateurs qui ont le role "user" uniquement 
+> dans la liste des chefs, on n'affiche pas les administrateurs. Pour que le bundle knpPaginator fonction, il faut recuperer les users.

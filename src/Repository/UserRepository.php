@@ -60,7 +60,6 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     * @return array[] Returns an array of user objects
     * @param string|null $string to find in users
     */
-    
     public function searchUser(?string $search = null): ?array
     {
         return $this->createQueryBuilder('m')
@@ -72,6 +71,24 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
              ->getQuery()
              ->getResult()
         ;
+    }
+    /**
+     * find all users with given role 
+     *
+     * @param string $role : role of user we look like
+     * @return void
+     */
+    public function findByRoleAndStatus(string $role, string $status = "")
+    {
+        $role = mb_strtoupper($role);
+
+        return $this->createQueryBuilder('u')
+            ->andWhere('JSON_CONTAINS(u.roles, :role) = 1')
+            ->setParameter('role', '"ROLE_' . $role . '"')
+            ->andWhere('u.status = :status')
+            ->setParameter('status', $status)
+            ->getQuery()
+            ->getResult();
     }
 
 //    /**

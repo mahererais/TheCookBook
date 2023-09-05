@@ -9,6 +9,7 @@ use App\Repository\RecipeRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -31,12 +32,21 @@ class UserController extends AbstractController
     /**
      * @Route("/users", name="tcb_front_user_getAll")
      */
-    public function getAll(UserRepository $userRepository): Response
+    public function getAll(UserRepository $userRepository, PaginatorInterface $paginator, Request $request): Response
     {
-        $users = $userRepository->findAll();
+        // = how het users with a specific role 
+        // = source : https://endelwar.it/2020/08/filter-users-by-role-in-symfony-5/
+        // = installation du packages "scienta/doctrine-json-functions"
+        // = Doctrine 2 doesn’t come with support for MySQL JSON functions, this packages add support for them
+        $users = $userRepository->findByRoleAndStatus('user', "public");
+        
+        $users = $paginator->paginate(
+            $users, // = my datas
+            $request->query->getInt('page', 1), // = get page number in request url, and set page default to "1"
+            5 // = limit by page
+        );
 
         return $this->render('Front/user/chefs.html.twig', [
-            'controller_name' => 'UserController',
             'users' => $users,
         ]);
     }

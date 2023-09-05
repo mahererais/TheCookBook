@@ -34,10 +34,7 @@ class RecipeController extends AbstractController
                              PaginatorInterface $paginator, 
                              Request $request): Response
     {
-        $recipes = $recipeRepository->findBy(
-            [],
-            ['created_at' => 'DESC'], 
-        );
+        $recipes = $recipeRepository->findBy([],['created_at' => 'DESC']);
 
         $recipes = $paginator->paginate(
             $recipes, // = my datas
