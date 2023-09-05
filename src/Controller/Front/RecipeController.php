@@ -102,7 +102,9 @@ class RecipeController extends AbstractController
     public function update(Request $request, EntityManagerInterface $entityManager, string $slug, Recipe $recipe, RecipeRepository $recipeRepository ): Response
     {
         $this->denyAccessUnlessGranted('RECIPE_MODIF', $recipe);
-        $recipe = $recipeRepository->findOneBy(['slug' => $slug]);
+
+        // ! pas besoin vu qu'on le recupere en argment de la function update(injection de dependance)
+        // $recipe = $recipeRepository->findOneBy(['slug' => $slug]);
         $form = $this->createForm(RecipeType::class, $recipe);
         $form->handleRequest($request);
 
@@ -153,7 +155,9 @@ class RecipeController extends AbstractController
             "La recette a bien été supprimée !"
         );
 
-        $referer = $request->headers->get("referer") ?: $this->generateUrl('tcb_front_user_getRecipesByUserLog', ['slug' => $security->getUser()->getSlug()]);
+        /** @var \App\Entity\User */
+        $user = $security->getUser();
+        $referer = $request->headers->get("referer") ?: $this->generateUrl('tcb_front_user_getRecipesByUserLog', ['slug' => $user->getSlug()]);
         
         return $this->redirect($referer);
     }

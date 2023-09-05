@@ -1,6 +1,7 @@
 .tcb_sideBar {
   width: 240px !important;
   --aside-container-radius: 0.5rem;
+  box-shadow: 0 0 12px -2px rgb(0, 0, 0);
 }
 .tcb_sideBar ul {
   display: flex;
@@ -9,7 +10,6 @@
   gap: 0;
   background-color: var(--main-color);
   text-align: center;
-  height: 100%;
 }
 .tcb_sideBar ul li {
   position: relative;
@@ -44,12 +44,13 @@
 .tcb_sideBar ul li:before {
   content: "";
   display: block;
-  --size: 10px;
+  --size: 12px;
   width: var(--size);
   height: var(--size);
   background-color: white;
   border-radius: 50%;
   align-self: center;
+  box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.7);
 }
 
 @media screen and (max-width: 768px) {

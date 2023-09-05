@@ -78,12 +78,14 @@ class UserController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $user->setPassword(
-                $userPasswordHasher->hashPassword(
-                    $user,
-                    $form->get('password')->getData()
-                )
-            );
+            if (strlen($form->get('password')->getData()) >= 6) {
+                $user->setPassword(
+                    $userPasswordHasher->hashPassword(
+                        $user,
+                        $form->get('password')->getData()
+                    )
+                );
+            }
 
             $imageCloudUrl =  $request->get("cloudinaryUrl");
             $user->setPicture($imageCloudUrl);
@@ -180,7 +182,7 @@ class UserController extends AbstractController
             // L'utilisateur n'est pas connecté, redirigez-le vers la page de connexion ou affichez un message d'erreur
             return $this->redirectToRoute('login'); // Remplacez 'login' par la route de votre page de connexion
         }
-        
+
         $recipe = $recipeRepository->findOneBy([
             'slug' => $slug
         ]);
@@ -192,7 +194,7 @@ class UserController extends AbstractController
 
         $user->addFavorite($recipe);
         $favorites = $user->getFavorites();
-        
+
         $em->flush();
 
         // Affichez un message de succès ou redirigez l'utilisateur vers une autre page
@@ -201,7 +203,7 @@ class UserController extends AbstractController
         $id = $recipe->getId();
 
         return $this->render('Front/user/favorites.html.twig', [
-            
+
             'favorites' => $favorites
         ]);
     }
