@@ -21,9 +21,8 @@
 
 	{% block profile_nav %}
 		<div class="d-flex p-2 flex-column flex-md-row gap-4">
-			<aside style="width: 190px" class="flex-shrink-0">
-
-				<div>
+			<aside class="tcb_sideBar flex-shrink-0">
+				<ul>
 					<li>
 						<a href="{{ path('tcb_front_user_profile', {slug: user.slug})}}">Mon profil</a>
 					</li>
@@ -43,10 +42,15 @@
 					<li>
 						<a href="{{ path('tcb_front_user_ebook', {slug: user.slug})}}">Mon Ebook</a>
 					</li>
+					{% if is_granted('IS_AUTHENTICATED_FULLY') and "ROLE_ADMIN" in app.user.roles %}
+						<li>
+							<a href="{{ path('tcb_admin_recipe_home') }}">BackOffice</a>
+						</li>
+					{% endif %}
 					<li>
 						<a href="{{ path('tcb_front_security_logout') }}">Se déconnecter</a>
 					</li>
-				</div>
+				</ul>
 			</aside>
 
 		{% endblock %}

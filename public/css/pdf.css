@@ -6,6 +6,11 @@
  * Licensed under MIT
  * Based on Bootstrap
 */
+@media print {
+  .new-page {
+    page-break-before: always;
+  }
+}
 /*!
  * Bootstrap  v5.3.1 (https://getbootstrap.com/)
  * Copyright 2011-2023 The Bootstrap Authors

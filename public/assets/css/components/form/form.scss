@@ -102,6 +102,16 @@ form {
         background-color: var(--secondary-color);
 
         
+<<<<<<< HEAD:public/assets/css/components/form.scss
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+        outline: none;
+        box-shadow: 0 0 0 0.25rem rgba($color: #078975, $alpha: 0.5)!important;
+=======
+>>>>>>> develop:public/assets/css/components/form/form.scss
     }
 
     input:focus,
@@ -110,8 +120,4 @@ form {
         outline: none;
         box-shadow: 0 0 0 0.25rem rgba($color: #078975, $alpha: 0.5)!important;
     }
-
-    
-    
-
 }

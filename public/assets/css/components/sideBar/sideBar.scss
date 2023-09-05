@@ -1,0 +1,87 @@
+.tcb_sideBar {
+
+    width: 240px!important;
+    
+    --aside-container-radius: 0.5rem;
+    //border-radius: var(--aside-container-radius);
+    //overflow: hidden;
+    
+    ul {
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        gap: 0;
+        
+        background-color: var(--main-color);
+        text-align: center;
+        
+        height: 100%;
+        
+        li {
+            position: relative;
+
+            width: 100%;
+            padding: 0.5em;
+            border: 2px solid var(--main-color);
+            cursor: pointer;
+
+            display: flex;
+
+            a {
+                width: 100%;
+            }
+
+
+            &:hover {
+                background-color: white;
+
+                a {
+                    color: var(--main-text-color);
+                }
+            }
+
+            &:first-child {
+                //border-top-left-radius: var(--aside-container-radius);
+                //border-top-right-radius: var(--aside-container-radius);
+            }
+
+            &:last-child {
+                background-color: var(--corail-color);
+                border-color: var(--corail-color);
+
+                &:hover {
+                    background-color: white;
+                    a {
+                        color: var(--corail-color);
+                    }
+                }
+
+                &:before {
+                    content: unset;
+                }
+            }
+
+            &:before/*:not(:last-child)*/ {
+                content: '';
+
+                display: block;
+                --size : 10px;
+                width: var(--size);
+                height: var(--size);
+                background-color: white;
+                border-radius: 50%;
+
+                align-self: center;
+            }
+        }
+    }
+
+}
+
+@media screen and (max-width: 768px) {
+
+    .tcb_sideBar {
+        width: 100%!important;
+    }
+
+}

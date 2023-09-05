@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 @import './form.css';
+=======
+@import './form/form.css';
+@import './searchBar/searchBar.css';
+@import './sideBar/sideBar.css';
+>>>>>>> develop
 a.tcb_btn_arrow_top {
   width: 3rem;
   aspect-ratio: 1;
@@ -95,6 +101,16 @@ main .main_container {
   max-width: var(--container-width);
 }
 
+a > img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+a.avatar {
+  width: 3.5rem !important;
+  height: 3.5rem !important;
+}
 a.login_btn {
   display: flex;
   justify-content: center;
@@ -102,8 +118,8 @@ a.login_btn {
   flex-shrink: 0;
   position: relative;
   color: white;
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 3rem;
+  height: 3rem;
   border-radius: 999px;
   overflow: hidden;
   transition: 0.2s;
@@ -118,6 +134,7 @@ a.login_btn::after {
   box-shadow: inset 0 0 3px black;
   border: 2px solid white;
   border-radius: 999px;
+<<<<<<< HEAD
 }
 
 a > img {
@@ -125,4 +142,6 @@ a > img {
      object-fit: cover;
   width: 100%;
   height: 100%;
+=======
+>>>>>>> develop
 }/*# sourceMappingURL=components.css.map */

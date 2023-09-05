@@ -1,0 +1,59 @@
+.tcb_sideBar {
+  width: 240px !important;
+  --aside-container-radius: 0.5rem;
+}
+.tcb_sideBar ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  gap: 0;
+  background-color: var(--main-color);
+  text-align: center;
+  height: 100%;
+}
+.tcb_sideBar ul li {
+  position: relative;
+  width: 100%;
+  padding: 0.5em;
+  border: 2px solid var(--main-color);
+  cursor: pointer;
+  display: flex;
+}
+.tcb_sideBar ul li a {
+  width: 100%;
+}
+.tcb_sideBar ul li:hover {
+  background-color: white;
+}
+.tcb_sideBar ul li:hover a {
+  color: var(--main-text-color);
+}
+.tcb_sideBar ul li:last-child {
+  background-color: var(--corail-color);
+  border-color: var(--corail-color);
+}
+.tcb_sideBar ul li:last-child:hover {
+  background-color: white;
+}
+.tcb_sideBar ul li:last-child:hover a {
+  color: var(--corail-color);
+}
+.tcb_sideBar ul li:last-child:before {
+  content: unset;
+}
+.tcb_sideBar ul li:before {
+  content: "";
+  display: block;
+  --size: 10px;
+  width: var(--size);
+  height: var(--size);
+  background-color: white;
+  border-radius: 50%;
+  align-self: center;
+}
+
+@media screen and (max-width: 768px) {
+  .tcb_sideBar {
+    width: 100% !important;
+  }
+}/*# sourceMappingURL=sideBar.css.map */
