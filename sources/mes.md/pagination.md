@@ -69,5 +69,41 @@
 
 - on fait la même chose pour la liste des chefs 
 
-- pour récuperer la liste des utisateurs qui ont le role "user" uniquement 
-> dans la liste des chefs, on n'affiche pas les administrateurs. Pour que le bundle knpPaginator fonction, il faut recuperer les users.
+- **⚠️** : pour récuperer la liste des utisateurs qui ont à la fois un role ***user*** et un status ***public***, j'ai du faire une requête custome mais ***impossible*** de filtrer par le role (qui est de type "json" pour symfony).
+- recherche sur le net : [FILTER USERS BY ROLE IN SYMFONY 5](https://endelwar.it/2020/08/filter-users-by-role-in-symfony-5/)
+  - installation du packages : [ScientaNL/DoctrineJsonFunctions](https://github.com/ScientaNL/DoctrineJsonFunctions)
+    ```console
+    $ composer require scienta/doctrine-json-functions
+    ```
+  - ajouter la requête custome dans `src/Repository/UserRepository.php`
+    ```php
+    /**
+     * find all users with given role 
+     * @param string $role : role of user we look like
+     * @return void
+     */
+    public function findByRoleAndStatus(string $role, string $status = "")
+    {
+        $role = mb_strtoupper($role);
+
+        return $this->createQueryBuilder('u')
+            ->andWhere('JSON_CONTAINS(u.roles, :role) = 1')
+            ->setParameter('role', '"ROLE_' . $role . '"')
+            ->andWhere('u.status = :status')
+            ->setParameter('status', $status)
+            ->getQuery()
+            ->getResult();
+    }
+    ```
+  - recuperation des chefs  `src/Controller/UserController.php`
+    ```php
+    /**
+     * @Route("/users", name="tcb_front_user_getAll")
+     */
+    public function getAll(UserRepository $userRepository, PaginatorInterface $paginator, Request $request): Response
+    {
+        $users = $userRepository->findByRoleAndStatus('user', "public");
+        ..................
+        ..................
+    ```  
+  
