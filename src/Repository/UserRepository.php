@@ -72,6 +72,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
              ->getResult()
         ;
     }
+    
     /**
      * find all users with given role 
      *
