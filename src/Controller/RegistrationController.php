@@ -108,7 +108,7 @@ class RegistrationController extends AbstractController
     }
 
     // /**
-    //  * @Route("/re-send/email/verify", name="tcb_resend_email")
+    //  *  @Route("/re-send/email/verify", name="tcb_resend_email")
     //  */
     // public function reSendVerif()
     // {

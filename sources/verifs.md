@@ -42,8 +42,6 @@ ok
 ok
 
 # recipe
-verifier recipe/update{slug}
-le reste est est ok
 
 # user
 ok
