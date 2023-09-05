@@ -20,32 +20,38 @@
 
 	<body>
 
-		<div class="card">
-			<img src="https://zupimages.net/up/23/34/jt5z.png" alt="logo cookbook" width="400">
-			<h1 class="card-header text-center">Les recettes de {{recipe[0].user.firstname}} {{recipe[0].user.lastname}} </h1>
-			<div class="card-body">
-				<h3 class="card-title">chef {{recipe[0].user.experience}}</h3>
-				<h6 class="card-subtitle text-muted">Ma spécialité: {{recipe[0].user.experience}}</h6>
+		<div class="card mt-4">
+			<div style="text-align: center">
+				<img src="https://zupimages.net/up/23/36/9dff.png" alt="logo cookbook" width="400">
 			</div>
-			<img src="{{recipe[0].user.picture}}">
+			<br>
+			<br>
+			<h1 class="text-center text-uppercase font-weight-bold">Les recettes de {{recipe[0].user.firstname}} {{recipe[0].user.lastname}} </h1>
 			<div class="card-body">
-
+				<h3 class="card-title text-center">chef {{recipe[0].user.experience}}</h3>
+				<h6 class="card-subtitle text-muted text-center">Ma spécialité: {{recipe[0].user.speciality}}</h6>
+			</div>
+			<div style="text-align: center">
+				<img src="{{recipe[0].user.picture}}" size="100" alt="{{recipe[0].user.firstname}} {{recipe[0].user.lastname}}">
+			</div>
+			<div class="card-body mt-4">
 				<h2> Sommaire des recettes: </h2>
 				{% for recipes in recipe %}
 					<ul>
 						<li>{{recipes.title}}</li>
 					</ul>
 				{% endfor %}
-				<p class="new-page"></p>
 			</div>
 		</div>
+		<p class="new-page"></p>
+
 
 			{% for recipes in recipe %}
 
-				<nav class="container navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+				<nav class="container navbar navbar-expand-lg bg-primary my-4" data-bs-theme="dark">
 					<div class="container-fluid">
 						<a class="logo" href="#">
-							<img src="https://zupimages.net/up/23/34/jt5z.png" alt="logo cookbook" width="400">
+							<img src="https://zupimages.net/up/23/36/bfmk.png" alt="logo cookbook" width="400">
 						</a>
 
 						<div>
@@ -61,11 +67,11 @@
 					<div class="row">
 						<div class="flex-row w-25">
 							<div>
-								<img src="{{asset(recipes.picture)}}" class="mw-100" alt="">
+								<img src="{{asset(recipes.picture)}}" class="mw-100" alt="{{recipes.title}}">
 							</div>
 						</div>
 						<div class="flex-row w-75">
-							<h1 class="my-4">{{recipes.title}}</h1>
+							<h2 class="my-4 text-uppercase font-weight-bold">{{recipes.title}}</h2>
 							<div>
 								<div class="row my-4">
 									<div class="col">
@@ -75,10 +81,13 @@
 									</div>
 									<div class="col">
 										<i class="bi bi-alarm">
+											Temps de préparation:
 											{{recipes.duration}}</i>
 									</div>
 									<div class="col">
-										<i class="bi bi-calendar3">{{recipes.createdAt|date("d/m/Y")}}</i>
+										<i class="bi bi-calendar3">
+										Ajouté le :
+										{{recipes.createdAt|date("d/m/Y")}}</i>
 									</div>
 								</div>
 							</div>
