@@ -91,16 +91,17 @@ class RecipeRepository extends ServiceEntityRepository
     }
 
     /**
-     * @return Recipes find by one Category
      * 
+     * @return Recipes find by one Category
      * */ 
-    public function findByCategory(Category $category)
+    public function findByCategory(string $categorySlug)
     {
-        return $this->createQueryBuilder('r')
-            ->andWhere('r.category = :category')
-            ->setParameter('category', $category)
-            ->getQuery()
-            ->getResult();
+        return $this->createQueryBuilder('r')       //= SQL command on adminer/phpMyAdmin 
+            ->innerJoin('r.category', 'c')          //= SELECT recipe.* 
+            ->andWhere('c.slug = :slug')            //= FROM recipe
+            ->setParameter('slug', $categorySlug)   //= INNER JOIN category
+            ->getQuery()                            //= ON category.id = recipe.category_id
+            ->getResult();                          //= where category.slug = "Apéritifs"   
     }
 
     /**

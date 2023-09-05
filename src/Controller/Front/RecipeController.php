@@ -30,22 +30,19 @@ class RecipeController extends AbstractController
      */
     // = besoin de PaginatorInterface et de la requete 
     public function getAll( RecipeRepository $recipeRepository,
-                             UserRepository $users, 
-                             PaginatorInterface $paginator, 
-                             Request $request): Response
+                            PaginatorInterface $paginator, 
+                            Request $request): Response
     {
         $recipes = $recipeRepository->findRecipes(); 
-        
+
         $recipes = $paginator->paginate(
             $recipes, // = my datas
             $request->query->getInt('page', 1), // = get page number in request url, and set page default to "1"
             5 // = limit by page
         );
 
-
         return $this->render('Front/recipe/list.html.twig', [
             'recipes' => $recipes,
-            'users' => $users
         ]);
     }
 
