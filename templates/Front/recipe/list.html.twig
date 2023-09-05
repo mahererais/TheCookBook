@@ -55,7 +55,11 @@
 		{% endif %}
 	{% endfor %}
 
-	<button type="button" class="tcb_btn">Voir plus</button>
+	{# display navigation #}
+	<div class="tcb_pagnination">
+		{{ knp_pagination_render(recipes, 'Front/fragments/_paginator.html.twig') }}
+	</div>
+	{# <button type="button" class="tcb_btn">Voir plus</button> #}
 
 {% endblock %}
 

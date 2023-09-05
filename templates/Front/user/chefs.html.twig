@@ -17,8 +17,9 @@
 		</form>
 	</div>
 
+
 	{% for user in users %}
-		{% if user.status == "public" and user.roles == ["ROLE_USER"] %}
+		{% if user.status == "public" %}
 
 			<div class="cards">
 
@@ -50,8 +51,11 @@
 
 	{% endfor %}
 
-
-	<button type="button" class="tcb_btn">Voir plus</button>
+	{# display navigation #}
+	<div class="tcb_pagnination">
+		{{ knp_pagination_render(users, 'Front/fragments/_paginator.html.twig') }}
+	</div>
+	{# <button type="button" class="tcb_btn">Voir plus</button> #}
 
 {% endblock %}
 
