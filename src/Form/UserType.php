@@ -36,7 +36,7 @@ class UserType extends AbstractType
                     "placeholder" => "Entrez votre nom"
                 ]
             ])
-            ->add('picture', HiddenType::class,[
+            ->add('picture', HiddenType::class, [
                 "label" => "Photo de mon profil",
                 // unmapped means that this field is not associated to any entity property
                 "mapped" => false,
@@ -64,12 +64,16 @@ class UserType extends AbstractType
             ->add('password', PasswordType::class, [
                 "label" => "Mot de passe",
                 "attr" => [
-                    "placeholder" => "Entrez votre mot de passe"
+                    "placeholder" => "Entrez votre mot de passe",
+                    'minlength' => 6,
+                    //'autocomplete' => 'current-password',
+                    'autocomplete' => 'new-password',
                 ],
                 //'hash_property_path' => 'password', // ! The hash_property_path option was introduced in Symfony 6.2.
                 "mapped" => false, // unmapped means that this field is not associated to any entity property
-                "required" => false, // make it optional so you don't have to re-upload the PDF file every time you edit user profile
-            ])
+                "required" => true, // make it optional so you don't have to re-upload the PDF file every time you edit user profile
+                "help" => "le mot de passe doit contenir au moins 6 caractéres",
+                ])
             ->add('status', ChoiceType::class, [
                 "label" => "Status",
                 "choices" => [
