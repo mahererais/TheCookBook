@@ -71,15 +71,10 @@ class MainController extends AbstractController
             $knpSnappyPdf->getOutputFromHtml($html),
             'recette.pdf',
         );
-
-        //return $this->render('Front/TestsWK/home.html.twig', [
-        //  'controller_name' => 'MainController',
-        //  "recipe" => $recipe
-        //]);
     }
 
     /**
-     * @Route("/{slug}/ebook/", name="tcb_front_main_ebook", requirements={"user_id"="\d+"})
+     * @Route("/{slug}/ebook/", name="tcb_front_main_ebook")
      */
 
     public function ebook(Pdf $knpSnappyPdf, Request $request, EntityManagerInterface $entityManager, User $user, Security $security, RecipeRepository $recipeRepository): Response
@@ -113,4 +108,24 @@ class MainController extends AbstractController
             'ebook.pdf',
         );
     }
+
+    /**
+     * @Route("/legal-mentions", name="tcb_front_main_legalMentions")
+     */
+
+     public function legalMentions(){ 
+
+        return $this->render('Front/home/legal_mentions.html.twig');
+     }
+
+     /**
+     * @Route("/about", name="tcb_front_main_about")
+     */
+
+     public function about(){
+        
+        return $this->render('Front/home/about.html.twig');
+     }
+
+
 }

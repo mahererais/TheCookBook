@@ -4,7 +4,7 @@
     <div class="profile-container">
         <div class="d-flex justify-content-between align-items-center">
             <h2>Ebook de {{ user.firstname }}</h2>
-            <a class="tcb_btn" href="#">Générer le Ebook</a>
+            <a class="tcb_btn" href="{{ path ('tcb_front_main_ebook', {slug: user.slug}) }}">Générer le Ebook</a>
         </div>
         {% if ebookRecipes is not empty %}
             <div class="row">
