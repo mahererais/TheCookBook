@@ -10,14 +10,15 @@
     <div class="categories_container">
  
         {% for category in categories %}
-            <div class="category_card">
+            <a  href="{{ path('tcb_front_category_show', { 'slug' : category.slug})}}"
+                class="category_card">
 
                 <img src="{{category.picture}}">
 
                 <h2>{{ category.title }}</h2>
 
 
-            </div>
+            </a>
         {% endfor %}
     
     </div>
