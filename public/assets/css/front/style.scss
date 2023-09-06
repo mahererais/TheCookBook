@@ -44,6 +44,7 @@ body {
     min-height: 100vh;
 }
 
+@import './about/about.css';
 @import './login/login.css';
 @import './recipes/recipes.css';
 @import './recipe_show/recipe_show.css';
@@ -53,6 +54,7 @@ body {
 @import '../footer/footer.css';
 @import '../components/components.css';
 //@import '../general/general.scss';
+
 
 @media screen and (max-width: 768px) {
 
