@@ -1,4 +1,5 @@
 @import '../reset.css';
+@import './about/about.css';
 @import './login/login.css';
 @import './recipes/recipes.css';
 @import './recipe_show/recipe_show.css';
