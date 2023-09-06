@@ -1,0 +1,19 @@
+{% extends 'Front/front_base.html.twig' %}
+
+{% block title %}Erreur !
+{% endblock %}
+
+{% block body %}
+
+	<h1 class="page_title">
+		Oh non, cette page de votre livre de cuisine n'existe pas !
+	</h1>
+		<p class="text-center">Vous devriez revoir les ingrédients, ou retourner sur
+			<a href="{{ path('tcb_front_main_home')}}">la page d'accueil</a></p>
+				<div class="text-center">
+
+				<img src="https://media.tenor.com/Efbh-XpC7EQAAAAM/philippe-etchebest-coucou.gif" width="400">
+			</div>
+
+		{% endblock %}
+

@@ -1,16 +1,17 @@
-{% extends 'base.html.twig' %}
+{% extends 'Front/front_base.html.twig' %}
 
+{% block title %}Erreur !
+{% endblock %}
 
-    <main class="container my-5">
+{% block body %}
 
-        {% if status_code is same as 404 %}
-            <h1>Oops la page que vous cherchez n'est pas accessible - {{status_code}}</h1>
-            <img src="https://www.justwatch.com/images/backdrop/162684168/s640/josephine-ange-gardien" alt="josephine ange gardien">
-        {% elseif status_code is same as 500 %}
-            <h1>Oops nous rencontrons actuellement un soucis, merci de patienter 1 minutes et de réessayer - {{status_code}}</h1>
-            <img src="https://www.reportagesphotos.fr/wp-content/uploads/2023/06/actu-mimie-mathy-victime-de-menaces-de-mort-par-une-psychopathe-elle-craint-pour-sa-vie-mimie-mathy.jpg" alt="Joséphine ange gardien">
-        {% endif %}
+	<h1 class="page_title"> Vous nêtes pas admis en cuisine ! </h1>
+		<p class="text-center">Vous devriez retourner sur
+			<a href="{{ path('tcb_front_main_home')}}">la page d'accueil</a></p>
+				<div class="text-center">
 
+				<img src="https://media.tenor.com/UqoYh0fVLX8AAAAC/gordon-ramsay-chef-ramsay.gif" width="400">
+			</div>
 
-        <a class="d-block" href="{{path('app_main_home')}}">Retourner sur la page d'accueil</a>
-    </main>
+		{% endblock %}
+
