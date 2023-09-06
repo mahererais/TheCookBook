@@ -82,7 +82,7 @@ class UserController extends AbstractController
 
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
-
+       
         if ($form->isSubmitted() && $form->isValid()) {
 
             if (strlen($form->get('password')->getData()) >= 6) {
@@ -93,11 +93,16 @@ class UserController extends AbstractController
                     )
                 );
             }
-
-            $imageCloudUrl =  $request->get("cloudinaryUrl");
-            $user->setPicture($imageCloudUrl);
+            // I get the url of the image if it exists
+            $picture = $request->attributes->get('user')->getPicture(); 
+            // if the url of the image doesn't exist, I add the upload
+            if(!$picture) {
+                $imageCloudUrl =  $request->get("cloudinaryUrl");
+                $user->setPicture($imageCloudUrl);
+            }
 
             $entityManager->persist($user);
+            
             $entityManager->flush();
 
             // flash message to add
