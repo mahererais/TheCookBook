@@ -29,9 +29,7 @@ ajout une petite case et mettre juste aprés le message "accepetr les conditions
 ### Routes 
 
 ## home : 
-
--Mentions légales n'affiches pas la pages des mention legales ni aucune page ou erreur
-mettre à jour le MD il manque pluisieurs routes pour les contacts 
+-Mentions légales ok maintenant . Tout est OK .
 
 
 # Category 
