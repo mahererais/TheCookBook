@@ -1,0 +1,17 @@
+{% extends 'Front/front_base.html.twig' %}
+
+{% block title %}Erreur 500 !
+{% endblock %}
+
+{% block body %}
+
+	<h1 class="page_title"> Oops, le serve(u)r a rencontré un bug ! </h1>
+		<p class="text-center">Vous devriez retenter plus tard, ou retourner sur
+			<a href="{{ path('tcb_front_main_home')}}">la page d'accueil</a></p>
+				<div class="text-center">
+
+				<img src="https://media.tenor.com/1aNfr0BSFLgAAAAM/staatsloterij-dancing.gif" width="400">
+			</div>
+
+		{% endblock %}
+
