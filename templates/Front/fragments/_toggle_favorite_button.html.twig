@@ -1,0 +1,13 @@
+{# if the recipe is part of the favorite list of the logged user #}
+{% if app.user and app.user.getFavorites().contains(recipe) %}
+	{# the heart-icon is full of color, on click it's removing the recipe from the favorites #}
+	<a href="{{ path ('tcb_front_favorite_remove', { 'slug': recipe.slug } ) }}" class="heart_icon">
+		<i class="bi bi-heart-fill"></i>
+	</a>
+	{# if the recipe isn't part of the favorite yet #}
+{% else %}
+	{# heart-icon is empty, on click it's adding the recipe to the favorites #}
+	<a href="{{ path ('tcb_front_user_addFavorite', { 'slug' : recipe.slug}) }}" class="heart_icon">
+		<i class="bi bi-heart"></i>
+	</a>
+{% endif %}

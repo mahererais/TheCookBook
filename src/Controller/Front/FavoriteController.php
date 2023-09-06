@@ -49,7 +49,7 @@ class FavoriteController extends AbstractController
             $entityManager->flush();
             $this->addFlash("success", "La recette a été retirée de votre liste de favoris.");
 
-            return $this->redirectToRoute('tcb_front_favorite_getAll');
+            return $this->redirectToRoute('tcb_front_recipe_getAll');
         }
     }
 

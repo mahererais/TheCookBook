@@ -35,16 +35,21 @@ class AppFixtures extends Fixture
 
         // = ============ CATEGORY handler
 
-        $categoryList = ["Apéritifs", "Entrées", "Plats", "Desserts"];
+        $categoryList = [
+            "Apéritifs" => "https://images.unsplash.com/photo-1640209872074-dd584b38f2b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+            "Entrées" => "https://images.unsplash.com/photo-1671180401158-8d9d060d4966?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2041&q=80",
+            "Plats" => "https://images.unsplash.com/photo-1626075241658-b049d34dc624?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+            "Desserts" => "https://images.unsplash.com/photo-1564495584622-0bb3af6f668e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80"
+        ];
 
         $categories = [];
 
-        foreach ($categoryList as $categoryTitle) {
+        foreach ($categoryList as $categoryTitle => $categoryImage) {
             $category = new Category;
 
             $category->setTitle($categoryTitle);
             $category->setSlug($this->slugger->slug($category->getTitle()));
-            $category->setPicture(("https://loremflickr.com/450/300/food?lock=" . mt_rand(1, 120) . ""));
+            $category->setPicture(($categoryImage));
 
             $categories[] = $category;
 
@@ -105,7 +110,7 @@ class AppFixtures extends Fixture
                 $user->setStatus("privé");
             }
 
-            if (!in_array("ROLE_ADMIN", $user->getRoles())){
+            if (!in_array("ROLE_ADMIN", $user->getRoles())) {
                 $chefs[] = $user;
             }
 
@@ -116,11 +121,11 @@ class AppFixtures extends Fixture
         echo '==== USER fixture ====> OK ' . PHP_EOL;
 
         // = ============ RECIPE handler
-        
-        
+
+
         for ($i = 1; $i <= 100; $i++) {
             $recipe = new Recipe();
-            
+
             $recipeFaker = $faker->getRecipe();
 
             $recipe->setTitle($recipeFaker['title']);
@@ -145,7 +150,7 @@ class AppFixtures extends Fixture
             $recipe->setSlug($this->slugger->slug($recipe->getTitle()));
             $recipe->setCategory($categories[array_rand($categories)]);
 
-            
+
             // I randomly link the user to the recipe
             /** @var \App\Entity\User */
             $randUser = array_rand($chefs);
@@ -156,6 +161,5 @@ class AppFixtures extends Fixture
         }
 
         echo '==== RECIPE fixture ====> OK ' . PHP_EOL;
-        
     }
 }

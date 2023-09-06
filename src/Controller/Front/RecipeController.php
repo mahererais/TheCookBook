@@ -2,14 +2,12 @@
 
 namespace App\Controller\Front;
 
-use App\Entity\User;
 use App\Entity\Recipe;
 use App\Form\RecipeType;
-use App\Form\CategoryType;
 use App\Repository\UserRepository;
 use App\Repository\RecipeRepository;
-use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
@@ -30,17 +28,22 @@ class RecipeController extends AbstractController
     /**
      * @Route("/recipes", name="tcb_front_recipe_getAll")
      */
-    public function getAll(RecipeRepository $recipeRepository, UserRepository $users): Response
+    // = besoin de PaginatorInterface et de la requete 
+    public function getAll( RecipeRepository $recipeRepository,
+                             UserRepository $users, 
+                             PaginatorInterface $paginator, 
+                             Request $request): Response
     {
-        //$recipes = $recipeRepository->findAll();
-        $recipes = $recipeRepository->findBy(
-            [],
-            ['created_at' => 'DESC'], 
+        $recipes = $recipeRepository->findBy([],['created_at' => 'DESC']);
+
+        $recipes = $paginator->paginate(
+            $recipes, // = my datas
+            $request->query->getInt('page', 1), // = get page number in request url, and set page default to "1"
+            10 // = limit by page
         );
 
-        // dd($recipes);
 
-        return $this->render('Front/recipe/index.html.twig', [
+        return $this->render('Front/recipe/list.html.twig', [
             'recipes' => $recipes,
             'users' => $users
         ]);
@@ -102,7 +105,9 @@ class RecipeController extends AbstractController
     public function update(Request $request, EntityManagerInterface $entityManager, string $slug, Recipe $recipe, RecipeRepository $recipeRepository ): Response
     {
         $this->denyAccessUnlessGranted('RECIPE_MODIF', $recipe);
-        $recipe = $recipeRepository->findOneBy(['slug' => $slug]);
+
+        // ! pas besoin vu qu'on le recupere en argment de la function update(injection de dependance)
+        // $recipe = $recipeRepository->findOneBy(['slug' => $slug]);
         $form = $this->createForm(RecipeType::class, $recipe);
         $form->handleRequest($request);
 
@@ -153,7 +158,9 @@ class RecipeController extends AbstractController
             "La recette a bien été supprimée !"
         );
 
-        $referer = $request->headers->get("referer") ?: $this->generateUrl('tcb_front_user_getRecipesByUserLog', ['slug' => $security->getUser()->getSlug()]);
+        /** @var \App\Entity\User */
+        $user = $security->getUser();
+        $referer = $request->headers->get("referer") ?: $this->generateUrl('tcb_front_user_getRecipesByUserLog', ['slug' => $user->getSlug()]);
         
         return $this->redirect($referer);
     }

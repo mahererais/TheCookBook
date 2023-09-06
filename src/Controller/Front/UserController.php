@@ -9,6 +9,7 @@ use App\Repository\RecipeRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -31,12 +32,18 @@ class UserController extends AbstractController
     /**
      * @Route("/users", name="tcb_front_user_getAll")
      */
-    public function getAll(UserRepository $userRepository): Response
+    public function getAll(UserRepository $userRepository, PaginatorInterface $paginator, Request $request): Response
     {
-        $users = $userRepository->findAll();
+        // = retrieve all users with role 'user' and status 'public'  
+        $users = $userRepository->findByRoleAndStatus('user', "public");
+        
+        $users = $paginator->paginate(
+            $users, // = my datas
+            $request->query->getInt('page', 1), // = get page number in request url, and set page default to "1"
+            5 // = limit by page
+        );
 
         return $this->render('Front/user/chefs.html.twig', [
-            'controller_name' => 'UserController',
             'users' => $users,
         ]);
     }
@@ -78,12 +85,14 @@ class UserController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $user->setPassword(
-                $userPasswordHasher->hashPassword(
-                    $user,
-                    $form->get('password')->getData()
-                )
-            );
+            if (strlen($form->get('password')->getData()) >= 6) {
+                $user->setPassword(
+                    $userPasswordHasher->hashPassword(
+                        $user,
+                        $form->get('password')->getData()
+                    )
+                );
+            }
 
             $imageCloudUrl =  $request->get("cloudinaryUrl");
             $user->setPicture($imageCloudUrl);
@@ -177,31 +186,26 @@ class UserController extends AbstractController
 
         if (!$user) {
             // L'utilisateur n'est pas connecté, redirigez-le vers la page de connexion ou affichez un message d'erreur
-            return $this->redirectToRoute('login'); // Remplacez 'login' par la route de votre page de connexion
+            return $this->redirectToRoute('tcb_front_security_login'); 
         }
-        
+
         $recipe = $recipeRepository->findOneBy([
             'slug' => $slug
         ]);
 
         if (!$recipe) {
             // La recette n'a pas été trouvée, affichez un message d'erreur ou redirigez l'utilisateur
-            return $this->redirectToRoute('recipes'); // Remplacez 'recipes' par la route de la liste de recettes
+            return $this->redirectToRoute('tcb_front_recipe_getAll'); 
         }
 
         $user->addFavorite($recipe);
         $favorites = $user->getFavorites();
-        
+
         $em->flush();
 
-        // Affichez un message de succès ou redirigez l'utilisateur vers une autre page
+        // Afficher un message de succès
         $this->addFlash('success', 'La recette a été ajoutée à vos favoris.');
 
-        $id = $recipe->getId();
-
-        return $this->render('Front/user/favorites.html.twig', [
-            
-            'favorites' => $favorites
-        ]);
+        return $this->redirectToRoute('tcb_front_recipe_getAll');
     }
 }

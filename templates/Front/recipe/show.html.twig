@@ -6,29 +6,32 @@
 
 {% block body %}
 
-	<h1 class="page_title">
-		{{recipe.title}}</h1>
+	<div class="page-title text-center">
+		<h1 style="text-transform:uppercase">{{recipe.title}}</h1>
+		<i class="bi bi-tag">catégorie: {{recipe.category.title}}</i>
+		<p>	proposé par
+			<a href="#user_profile">{{recipe.user.firstname}}{{recipe.user.lastname}}</a>
+		</p>
+			<i class="bi bi-calendar3">Publiée le
+				{{recipe.createdAt|date("d/m/Y")}}</i>
+
+	</div>
+
 
 	<main class="container">
 		<div class="row">
-			<div class="flex-row w-50">
-				<div class="col">
-					<i class="bi bi-tag">catégorie:
-						{{recipe.category.title}}</i>
-				</div>
-				<div>
+			<div>
+				<div class="text-center">
 					<img src="{{recipe.picture}}" class="mw-100" alt="{{recipe.title}}">
 				</div>
 				<div>
 					<div class="row my-4">
-
-						<div class="col">
+						<div class="col my-4">
 							<i class="bi bi-alarm">Temps de préparation :
 								{{recipe.duration}}
 								mn</i>
 						</div>
-
-						<div class="list-group my-4 ">
+						<div>
 							<h3>Ingrédients :
 							</h3>
 
@@ -39,22 +42,17 @@
 						</div>
 					</div>
 				</div>
-			</div>
-			<div>
+
 				<h3>Etapes de préparation :</h3>
 
 				{% for step in recipe.steps %}
-					<p>{{step}}</p>
+					<p class="my-2">{{step}}</p>
 				{% endfor %}
 
 			</div>
-			<div class="col">
-				<i class="bi bi-calendar3">Publiée le
-					{{recipe.createdAt|date("d/m/Y")}}</i>
-			</div>
 		</div>
 
-		<div class="user_container tcb_padding">
+		<div class="user_container tcb_padding my-4" id="user_profile">
 
 			<a href="{{ path('tcb_front_user_show', { 'slug' : recipe.user.slug}) }}">
 				<img src="{{recipe.user.picture}}" alt="{{recipe.user.firstname}}{{recipe.user.lastname}}">
