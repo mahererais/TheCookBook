@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+
+    <main class="container my-5">
+
+        {% if status_code is same as 404 %}
+            <h1>Oops la page que vous cherchez n'est pas accessible - {{status_code}}</h1>
+            <img src="https://www.justwatch.com/images/backdrop/162684168/s640/josephine-ange-gardien" alt="josephine ange gardien">
+        {% elseif status_code is same as 500 %}
+            <h1>Oops nous rencontrons actuellement un soucis, merci de patienter 1 minutes et de réessayer - {{status_code}}</h1>
+            <img src="https://www.reportagesphotos.fr/wp-content/uploads/2023/06/actu-mimie-mathy-victime-de-menaces-de-mort-par-une-psychopathe-elle-craint-pour-sa-vie-mimie-mathy.jpg" alt="Joséphine ange gardien">
+        {% endif %}
+
+
+        <a class="d-block" href="{{path('app_main_home')}}">Retourner sur la page d'accueil</a>
+    </main>
