@@ -7,14 +7,14 @@
 {% block body %}
 
 	<div class="page-title text-center">
-		<h1 style="text-transform:uppercase">{{recipe.title}}</h1>
+		<h1 style="text-transform:uppercase">{{recipe.title}} {% include "Front/fragments/_toggle_favorite_button.html.twig" %} </h1>
+		
 		<i class="bi bi-tag">catégorie: {{recipe.category.title}}</i>
 		<p>	proposé par
 			<a href="#user_profile">{{recipe.user.firstname}}{{recipe.user.lastname}}</a>
 		</p>
 			<i class="bi bi-calendar3">Publiée le
 				{{recipe.createdAt|date("d/m/Y")}}</i>
-
 	</div>
 
 
@@ -26,12 +26,14 @@
 				</div>
 				<div>
 					<div class="row my-4">
+					
 						<div class="col my-4">
 							<i class="bi bi-alarm">Temps de préparation :
 								{{recipe.duration}}
 								mn</i>
 						</div>
 						<div>
+						
 							<h3>Ingrédients :
 							</h3>
 
@@ -48,7 +50,7 @@
 				{% for step in recipe.steps %}
 					<p class="my-2">{{step}}</p>
 				{% endfor %}
-
+				
 			</div>
 		</div>
 
