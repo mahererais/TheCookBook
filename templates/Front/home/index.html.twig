@@ -60,7 +60,8 @@
 				<i class="fas fa-arrow-up"></i>
 			</a>
 			<div class="card_title">
-				{{ category }}
+				<a style="color:#000000" href="{{path('tcb_front_category_show', { 'slug' : recipes[0].category.slug}) }}">{{ category }} </a>
+				<p style="font-size:0.6em;"><a href="{{path('tcb_front_category_show', { 'slug' : recipes[0].category.slug}) }}">Voir tout >></a></p>
 			</div>
 		</div>
 	{% endfor %}
