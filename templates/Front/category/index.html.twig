@@ -4,25 +4,29 @@
 {% endblock %}
 
 {% block body %}
-   
 
+	<h1 class="mx-auto">Liste des catégories</h1>
 
+    <div class="categories_container">
+ 
         {% for category in categories %}
-        <div class="cards ">
-            
-            <div class="r_cards_container">
+            <div class="category_card">
+
                 <img src="{{category.picture}}">
-            
-                <div class="r_cards_content">
-                    <h2>{{ category.title }}</h2>
-                    
-                    <div class="r_card_btn">
-                        <a class="tcb_btn" href="{{ path('tcb_front_category_show', { 'slug' : category.slug}) }}">Voir les recettes</a>
-                    </div>
-                </div>
+
+                <h2>{{ category.title }}</h2>
+
+
             </div>
-            
-        </div>
         {% endfor %}
-        
+    
+    </div>
+
+
+	{# 
+        <div class="r_card_btn">
+            <a class="tcb_btn" href="{{ path('tcb_front_category_show', { 'slug' : category.slug}) }}">Voir les recettes</a>
+        </div> 
+    #}
+
 {% endblock %}

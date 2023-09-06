@@ -88,7 +88,7 @@ header .header_container .right_bar_container .fa-user {
   font-size: 2rem;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   header {
     z-index: 15;
   }

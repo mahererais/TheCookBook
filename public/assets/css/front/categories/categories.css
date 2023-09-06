@@ -1,0 +1,9 @@
+.categories_container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+.categories_container .category_card {
+  position: relative;
+  background-color: white;
+  box-shadow: 0 0 5px -3px black;
+}/*# sourceMappingURL=categories.css.map */
