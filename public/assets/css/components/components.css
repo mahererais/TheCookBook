@@ -1,6 +1,7 @@
 @import './form/form.css';
 @import './searchBar/searchBar.css';
 @import './sideBar/sideBar.css';
+@import './pagination/pagination.css';
 a.tcb_btn_arrow_top {
   width: 3rem;
   aspect-ratio: 1;
