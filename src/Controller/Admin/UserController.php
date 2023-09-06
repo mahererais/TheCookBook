@@ -6,7 +6,9 @@ use App\Entity\User;
 use App\Repository\RecipeRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -15,9 +17,15 @@ class UserController extends AbstractController
     /**
      * @Route("/admin/user", name="tcb_admin_user_getAll")
      */
-    public function getAll(UserRepository $userRepository): Response
-    {
+    public function getAll(UserRepository $userRepository, PaginatorInterface $paginator, Request $request): Response
+    { 
         $users = $userRepository->findAll();
+        
+        $users = $paginator->paginate(
+            $users, // = my datas
+            $request->query->getInt('page', 1), // = get page number in request url, and set page default to "1"
+            5 // = limit by page
+        );
 
         return $this->render('Admin/user/list.html.twig', [
             'users' => $users,
