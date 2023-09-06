@@ -60,6 +60,115 @@
 		var myWidget = cloudinary.createUploadWidget({
 			cloudName: 'dxl8cac89', 
 			uploadPreset: 'test_upload',
+			// add french message
+			language: 'fr',
+			text: {
+				"fr": {
+					"or": "ou",
+					"queue": {
+						"title": "Fichier téléchargé",
+						"title_uploading_with_counter": "Téléchargement d'un fichier",
+						"title_processing_with_counter": "Téléchargement en cours",
+						"title_uploading": "Téléchargement d'un fichier",
+						"mini_title": "Téléchargé",
+						"mini_title_uploading": "En cours de téléchargement",
+						"mini_title_processing": "Téléchargement en cours",
+						"show_completed": "Show completed",
+						"retry_failed": "Retry failed",
+						"abort_all": "Abort all",
+						"done": "Envoi",
+						"mini_upload_count": "Un fichier téléchargé",
+						"statuses": {
+							"uploading": "Uploading...",
+							"processing": "Téléchargement...",
+							"error": "Error",
+							"uploaded": "Terminé",
+							"aborted": "Aborted",
+						},
+					},
+					"crop": {
+						"title": "Recadrer",
+						"crop_btn": "Recadrer",
+						"skip_btn": "Valider sans recadrer",
+						"image_error": "Erreur de chargement de l'image",
+					},
+					"menu": {
+						"files": "Mes fichiers",
+						"web": "Adresse web",
+					},
+					"local": {
+						"browse": "Parcourir",
+						"dd_title_single": "Faites glisser et déposez ici",
+						"drop_title_single": "Déposez un fichier à télécharger"
+					},
+					"camera": {
+						"capture": "Capturer",
+						"cancel": "Annuler",
+						"take_pic": "Prends une photo et télécharge là",
+						"explanation": "Assurez-vous que votre caméra est connectée et que votre navigateur autorise la capture de la caméra. Lorsque vous êtes prêt, cliquez sur Capturer.",
+						"camera_error": "Échec de l'accès à la caméra",
+						"retry": "Réessayer la caméra"
+					},
+					"dropbox": {
+						"no_auth_title": "Téléchargez des fichiers depuis votre compte Dropbox.",
+						"no_auth_action": "Connectez-vous à Dropbox"
+					},
+					"google_drive": {
+						"no_auth_title": "Téléchargez des fichiers depuis votre Google Drive.",
+						"no_auth_action": "Se connecter à Google Drive",
+					},
+					"url": {
+						"inner_title": "URL publique du fichier à télécharger:",
+						"input_placeholder": "http://remote.site.example/images/remote-image.jpg"
+					},
+					"actions": {
+						"upload": "Télécharger"
+					},
+				},
+			},
+			// remove "add more" in the widget
+			multiple: false,
+			// upload image parameters
+			maxImageHeight: 288,
+			maxImageWidth: 512,
+			croppingValidateDimensions: true,
+			//validateMaxWidthHeight: true,
+			cropping: true,
+			croppingAspectRatio: 16/9,
+			resourceType: "image",
+			sources: [
+				"local",
+				"url",
+				"camera",
+				"google_drive",
+				"facebook",
+				"dropbox",
+				"instagram",
+			],
+			styles: {
+				palette: {
+					window: "#078975",
+					sourceBg: "#F9F9F9",
+					windowBorder: "#078975",
+					tabIcon: "#F9F9F9",
+					inactiveTabIcon: "#3F3735",
+					menuIcons: "#3F3735",
+					link: "#F55E51",
+					action: "#FFFFFF",
+					inProgress: "#FFAF08",
+					complete: "#F55E51",
+					error: "#130909",
+					textDark: "#078975",
+					textLight: "#fcfffd"
+				},
+				fonts: {
+					default: null,
+					"'Poppins', sans-serif": {
+						url: "https://fonts.googleapis.com/css?family=Poppins",
+						active: true
+					}
+				}
+			},
 			folder: 'Images'}, (error, result) => { 
 				if (!error && result && result.event === "success") { 
 				console.log('Done! Here is the image info: ', result.info); 
