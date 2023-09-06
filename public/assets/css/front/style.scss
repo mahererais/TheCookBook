@@ -50,13 +50,16 @@ body {
 @import './recipe_show/recipe_show.css';
 @import './homePage/homePage.css';
 @import './chefs/chefs.css';
+@import './categories/categories.css';
+
+
 @import '../header/header.css';
 @import '../footer/footer.css';
 @import '../components/components.css';
 //@import '../general/general.scss';
 
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
 
     html {
         font-size: 100% * calc(14/16);

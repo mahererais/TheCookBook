@@ -336,7 +336,7 @@ a.tcb_btn_caroussel_right {
     opacity: 1;
   }
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   html {
     font-size: 87.5%;
   }

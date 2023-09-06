@@ -5,6 +5,7 @@
 @import './recipe_show/recipe_show.css';
 @import './homePage/homePage.css';
 @import './chefs/chefs.css';
+@import './categories/categories.css';
 @import '../header/header.css';
 @import '../footer/footer.css';
 @import '../components/components.css';
@@ -40,7 +41,7 @@ body {
   min-height: 100vh;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   html {
     font-size: 87.5%;
   }
