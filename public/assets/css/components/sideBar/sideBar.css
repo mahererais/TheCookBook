@@ -2,6 +2,8 @@
   width: 240px !important;
   --aside-container-radius: 0.5rem;
   box-shadow: 0 0 12px -2px rgb(0, 0, 0);
+  height: -moz-fit-content;
+  height: fit-content;
 }
 .tcb_sideBar ul {
   display: flex;
@@ -10,6 +12,7 @@
   gap: 0;
   background-color: var(--main-color);
   text-align: center;
+  border: 2px solid var(--border-color);
 }
 .tcb_sideBar ul li {
   position: relative;
