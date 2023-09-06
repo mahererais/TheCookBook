@@ -4,9 +4,11 @@ namespace App\Controller\Front;
 
 use App\Entity\Category;
 use App\Entity\Recipe;
-use App\Repository\CategoryRepository;
+use App\Repository\RecipeRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -22,15 +24,12 @@ class CategoryController extends AbstractController
     /**
      * @Route("/categories", name="tcb_front_category_getAll")
      */
-    public function getAll(CategoryRepository $categoryRepository): Response
+    public function getAll(): Response
     {
         $categories = $this->entityManager->getRepository(Category::class)->findAll();
 
-        // dd($categories);
-
-        return $this->render('Front/category/index.html.twig', [
+        return $this->render('Front/category/list.html.twig', [
             'categories' => $categories,
-            'controller_name' => 'RecipeController',
         ]);
     }
 
@@ -39,13 +38,25 @@ class CategoryController extends AbstractController
      * 
      * display one category by id
      */
-    public function show(Category $category, $slug): Response
+    public function show(RecipeRepository $recipeRepository,
+                         Category $category,
+                         string $slug,
+                         PaginatorInterface $paginator, 
+                         Request $request): Response
     {
         
-        $category = $this->entityManager->getRepository(Category::class)->findOneBy(['slug' => $slug]);
-        // dd($slug);
-        $recipes = $this->entityManager->getRepository(Recipe::class)->findByCategory($category);
+        // $category = $this->entityManager->getRepository(Category::class)->findOneBy(['slug' => $slug]);
+        
+        // $recipes = $this->entityManager->getRepository(Recipe::class)->findByCategory($category);
        
+
+        $recipes = $recipeRepository->findByCategory($slug); 
+
+        $recipes = $paginator->paginate(
+            $recipes, // = my datas
+            $request->query->getInt('page', 1), // = get page number in request url, and set page default to "1"
+            5 // = limit by page
+        );
 
         return $this->render('Front/recipe/list.html.twig', [
             'recipes' => $recipes,

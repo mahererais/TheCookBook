@@ -5,9 +5,11 @@
 :root {
     --container-width: 100%;
     --main-color: #F55E51;
+    --main-color-header: #F55E51E0;
     --secondary-color: #f9f9f9;
     --main-text-color: #3F3735;
     --container-padding: 1rem 1.5rem;
+    --border-color: #FFFFFF;
 
     // ! variable global Boostrap
     //.btn-primary {
@@ -57,7 +59,7 @@ body {
     margin: 0 auto;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
 
     html {
         font-size: 100% * calc(14/16);

@@ -22,8 +22,6 @@ class CategoryController extends AbstractController
     {
         $categories = $manager->getRepository(Category::class)->findAll();
 
-        // dd($categories);
-
         return $this->render('Admin/category/index.html.twig', [
             'categories' => $categories,
         ]);

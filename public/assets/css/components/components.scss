@@ -70,7 +70,7 @@ h5 {font-size: 0.83em; font-weight: bold;}
 h6 {font-size: 0.67em; font-weight: bold;}
 
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
 
 
     a.tcb_btn_arrow_top {
@@ -152,4 +152,8 @@ a {
 @import './form/form.css';
 @import './searchBar/searchBar.css';
 @import './sideBar/sideBar.css';
+<<<<<<< HEAD
+>>>>>>> develop
+=======
+@import './pagination/pagination.css';
 >>>>>>> develop

@@ -203,8 +203,6 @@ a.tcb_btn_caroussel {
             color: var(--main-color);
         }
     }
-
-    z-index: 11;
 }
 
 a.tcb_btn_caroussel_left {
@@ -217,7 +215,7 @@ a.tcb_btn_caroussel_right {
     transform: translate(50%, -50%) rotate(90deg);
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
 
     a.tcb_btn_caroussel_left {
         transform: translate(0%, -50%) rotate(-90deg);

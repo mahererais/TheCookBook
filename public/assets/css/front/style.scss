@@ -6,10 +6,12 @@
 :root {
     --container-width: 1124px;
     --main-color: #078975;
+    --main-color-header: #078975E0;
     --secondary-color: #f9f9f9;
     --main-text-color: #3F3735;
     --corail-color: #F55E51;
     --container-padding: 1rem 1.5rem;
+    --border-color: #FFFFFF;
 
 
     // * Boostrap color
@@ -42,17 +44,22 @@ body {
     min-height: 100vh;
 }
 
+@import './about/about.css';
 @import './login/login.css';
 @import './recipes/recipes.css';
 @import './recipe_show/recipe_show.css';
 @import './homePage/homePage.css';
 @import './chefs/chefs.css';
+@import './categories/categories.css';
+
+
 @import '../header/header.css';
 @import '../footer/footer.css';
 @import '../components/components.css';
 //@import '../general/general.scss';
 
-@media screen and (max-width: 768px) {
+
+@media screen and (max-width: 767px) {
 
     html {
         font-size: 100% * calc(14/16);

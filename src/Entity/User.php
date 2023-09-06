@@ -46,13 +46,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $password;
 
     /**
-     * @ORM\Column(type="string", length=64)
-     * @Assert\NotBlank(message="Le prénom est obligatoire"))
+     * @ORM\Column(type="string", length=64, nullable=false)
+     * @Assert\NotBlank(message="Le prénom est obligatoire")
+     * @Assert\NotNull
      */
     private $firstname;
 
     /**
-     * @ORM\Column(type="string", length=64, nullable=true)
+     * @ORM\Column(type="string", length=64, nullable=false)
+     * @Assert\NotBlank(message="Le nom est obligatoire")
+     * @Assert\NotNull
      */
     private $lastname;
 

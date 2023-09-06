@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Recipe;
 use App\Repository\RecipeRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,12 +27,17 @@ class RecipeController extends AbstractController
      /**
      * @Route("/admin/recipes", name="tcb_admin_recipe_getAll")
      */
-    public function getAll(RecipeRepository $recipeRepository): Response
+    public function getAll(RecipeRepository $recipeRepository, PaginatorInterface $paginator, Request $request): Response
     {
-        $recipes = $recipeRepository->findAll();
-        // dd($recipes);
+        $recipes = $recipeRepository->findRecipes(); 
 
-        return $this->render('Admin/recipe/index.html.twig', [
+        $recipes = $paginator->paginate(
+            $recipes, // = my datas
+            $request->query->getInt('page', 1), // = get page number in request url, and set page default to "1"
+            20 // = limit by page
+        );
+
+        return $this->render('Admin/recipe/list.html.twig', [
             'recipes' => $recipes
         ]);
     }

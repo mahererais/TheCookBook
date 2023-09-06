@@ -4,6 +4,10 @@
 @import './form/form.css';
 @import './searchBar/searchBar.css';
 @import './sideBar/sideBar.css';
+<<<<<<< HEAD
+>>>>>>> develop
+=======
+@import './pagination/pagination.css';
 >>>>>>> develop
 a.tcb_btn_arrow_top {
   width: 3rem;
@@ -89,7 +93,7 @@ h6 {
   font-weight: bold;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   a.tcb_btn_arrow_top {
     padding: 0.8rem;
   }

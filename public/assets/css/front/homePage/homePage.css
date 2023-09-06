@@ -132,7 +132,6 @@ a.tcb_btn_caroussel {
   top: 50%;
   box-shadow: 0 -2px 2px rgba(0, 0, 0, 0.2);
   transition: 0.2s;
-  z-index: 11;
 }
 a.tcb_btn_caroussel i {
   font-size: 0.8rem;
@@ -156,7 +155,7 @@ a.tcb_btn_caroussel_right {
   transform: translate(50%, -50%) rotate(90deg);
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   a.tcb_btn_caroussel_left {
     transform: translate(0%, -50%) rotate(-90deg);
   }

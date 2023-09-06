@@ -24,16 +24,16 @@ class UserType extends AbstractType
                     "placeholder" => "Entrez votre email"
                 ]
             ])
-            ->add('firstname', TextType::class, [
-                "label" => "prénom",
-                "attr" => [
-                    "placeholder" => "Entrez votre prénom"
-                ]
-            ])
             ->add('lastname', TextType::class, [
                 "label" => "nom",
                 "attr" => [
                     "placeholder" => "Entrez votre nom"
+                ]
+            ])
+            ->add('firstname', TextType::class, [
+                "label" => "prénom",
+                "attr" => [
+                    "placeholder" => "Entrez votre prénom"
                 ]
             ])
             ->add('picture', HiddenType::class, [

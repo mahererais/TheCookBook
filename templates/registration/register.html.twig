@@ -18,6 +18,7 @@
                 <a href="{{path("tcb_front_security_register")}}">S'inscrire</a>
             </div>
             {{ form_row(registrationForm.firstname) }}
+            {{ form_row(registrationForm.lastname) }}
             {{ form_row(registrationForm.email) }}
             {{ form_row(registrationForm.password.first, {
                 label: 'Mot de passe'

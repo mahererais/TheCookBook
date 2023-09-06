@@ -9,6 +9,7 @@ use App\Entity\Category;
 use App\Repository\UserRepository;
 use App\Repository\RecipeRepository;
 use App\Repository\CategoryRepository;
+use App\Service\CssService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Security;
@@ -31,9 +32,10 @@ class MainController extends AbstractController
             $randomRecipes = $recipeRepository->findRandomRecipesByCategory($category, 4); // Replace with your method to fetch random recipes
             $categoryRecipes[$category->getTitle()] = $randomRecipes;
         }
-        //dd($categoryRecipes);
+        //dd($categories);
 
         return $this->render('Front/home/index.html.twig', [
+            "categories" => $categories,
             "categoryRecipes" => $categoryRecipes,
         ]);
 
@@ -77,9 +79,11 @@ class MainController extends AbstractController
      * @Route("/{slug}/ebook/", name="tcb_front_main_ebook")
      */
 
-    public function ebook(Pdf $knpSnappyPdf, Request $request, EntityManagerInterface $entityManager, User $user, Security $security, RecipeRepository $recipeRepository): Response
+    public function ebook(Pdf $knpSnappyPdf, Request $request, EntityManagerInterface $entityManager, User $user, Security $security, RecipeRepository $recipeRepository, CssService $cssService): Response
     {
         $this->denyAccessUnlessGranted('PROFILE_ACCESS', $user);
+        $cssService = $this->getParameter('CSSLINK');
+        //dd($cssService);
         $recipe = $this->entityManager->getRepository(Recipe::class)->getEbook($user);        
 
         $ebookRecipes = $recipeRepository->findBy([
@@ -127,5 +131,32 @@ class MainController extends AbstractController
         return $this->render('Front/home/about.html.twig');
      }
 
+
+     /**
+     * @Route("/404", name="tcb_front_404")
+     */
+
+     public function error404(){
+        
+        return $this->render('bundles/TwigBundle/Exception/error404.html.twig');
+     }
+
+    /**
+     * @Route("/500", name="tcb_front_500")
+     */
+
+     public function error500(){
+        
+        return $this->render('bundles/TwigBundle/Exception/error500.html.twig');
+     }
+
+     /**
+     * @Route("/error", name="tcb_front_error")
+     */
+
+     public function error(){
+        
+        return $this->render('bundles/TwigBundle/Exception/error.html.twig');
+     }
 
 }

@@ -6,7 +6,8 @@
     //border-radius: var(--aside-container-radius);
     //overflow: hidden;
 
-    box-shadow: 0 0 12px -2px rgba(0, 0, 0, 1);;
+    box-shadow: 0 0 12px -2px rgba(0, 0, 0, 1);
+    height: fit-content;
     
     ul {
         display: flex;
@@ -16,6 +17,8 @@
         
         background-color: var(--main-color);
         text-align: center;
+
+        border: 2px solid var(--border-color);
         
         
         li {
@@ -81,7 +84,7 @@
 
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
 
     .tcb_sideBar {
         width: 100%!important;
