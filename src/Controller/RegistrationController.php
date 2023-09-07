@@ -47,6 +47,8 @@ class RegistrationController extends AbstractController
                 )
             );
 
+            
+
             // ! l'envoie de mail de fonctionne plus (compte mailjet suspendu)
             // ! je valide le user inscrit directement sans passer par le mail pour le moment
             $user->setIsVerified(true);
