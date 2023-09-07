@@ -4,9 +4,9 @@
     <div class="profile-container">
         <div class="d-flex justify-content-between align-items-center">
             <h2>Ebook de {{ user.firstname }}</h2>
+            {% if ebookRecipes is not empty %}
             <a class="tcb_btn" href="{{ path ('tcb_front_main_ebook', {slug: user.slug}) }}">Générer le Ebook</a>
         </div>
-        {% if ebookRecipes is not empty %}
             <div class="row">
                 {% for recipe in ebookRecipes %}
                     <div class="col-md-4 mb-4">
@@ -17,17 +17,23 @@
                                 <h5 class="card-title">{{ recipe.title }}</h5>
                                 </a>
                                 <a onclick="return confirm('Voulez vous retirer cette recette de votre Ebook ?')"
-                                   href="{{ path ('tcb_front_user_removeFromEbook', {slug: user.slug,  'recipeSlug': recipe.slug }) }}">
+                                href="{{ path ('tcb_front_user_removeFromEbook', {slug: user.slug,  'recipeSlug': recipe.slug }) }}">
                                     <i class="bi bi-x-circle-fill text-dark"></i>
                                 </a>
                             </div>
                         </div>
                     </div>
                 {% endfor %}
-            </div>
         {% else %}
+<<<<<<< HEAD
             <p class="mx-auto fst-italic">L'utilisateur n'a pas encore ajouté de recettes à son ebook.</p>
+=======
+        <div class="text-center">
+            <p>Vous n'avez pas encore ajouté de recettes à votre ebook.</p>
+            </div>
+>>>>>>> front
         {% endif %}
-    </div>
+                    </div>
+
 {% endblock %}
 
