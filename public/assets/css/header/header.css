@@ -113,7 +113,7 @@ header .header_container .right_bar_container .fa-user {
     font-size: 1.5rem;
   }
   header .header_container nav ul li:last-child {
-    display: unset;
+    display: contents;
   }
   header .header_container a.logo {
     --size: 50px;

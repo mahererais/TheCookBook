@@ -66,8 +66,8 @@ class UserType extends AbstractType
                 "attr" => [
                     "placeholder" => "Entrez votre mot de passe",
                     'minlength' => 6,
-                    //'autocomplete' => 'current-password',
-                    'autocomplete' => 'new-password',
+                    'autocomplete' => 'current-password',
+                    //'autocomplete' => 'new-password',
                 ],
                 //'hash_property_path' => 'password', // ! The hash_property_path option was introduced in Symfony 6.2.
                 "mapped" => false, // unmapped means that this field is not associated to any entity property

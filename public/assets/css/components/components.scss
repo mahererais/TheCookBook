@@ -53,7 +53,42 @@ a {
     &:hover {
         background-color: white !important;
         color: var(--main-text-color) !important;
+        border-color: var(--main-color);
+        
+        &:hover.tcb_delete_color {
+            background-color: white!important;
+            color: var(--corail-color)!important
+            border-color: var(--corail-color)!important;
+        }
     }
+
+    &.tcb_delete_color {
+        background-color: var(--corail-color)!important;
+
+        
+    }
+}
+
+.tcb_fa_icon {
+    display: flex!important;
+    justify-content: center!important;
+    align-items: center!important;
+
+    border: 2px solid white;
+    width: 35px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+
+    margin-bottom: 0.4rem;
+    font-size: 0.8rem;
+    color: white!important;
+
+    padding: 0.3rem;
+
+    &:hover {
+        color: var(--corail-color);
+    }
+    
 }
 
 .heart_icon {
@@ -150,3 +185,4 @@ a {
 @import './searchBar/searchBar.css';
 @import './sideBar/sideBar.css';
 @import './pagination/pagination.css';
+@import './cards/cards.css';
