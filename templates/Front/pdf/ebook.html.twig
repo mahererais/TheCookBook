@@ -53,20 +53,95 @@
 			<div style="text-align: center" class="my-4">
 				<img src="{{recipe[0].user.picture}}" size="100" alt="{{recipe[0].user.firstname}} {{recipe[0].user.lastname}}">
 			</div>
+
+			{#################################################### SUMMARY ################################################################}
+
 			<div class="card-body mt-4">
 				<h2>
 					Sommaire des recettes:
 				</h2>
+
+			{#### APERITIF SUMMARY ####}
+				{% set categoryTitleDisplayed = false %}
 				{% for recipes in recipe %}
-					<ul>
-						<li>{{recipes.title}}({{recipes.category}})</li>
-					</ul>
+					{% if recipes.category.title == "Apéritifs" and not categoryTitleDisplayed %}
+						<h4>{{recipes.category.title}}</h4>
+
+						{# now the category has been displayed once, so I change the value of the variable #}
+						{% set categoryTitleDisplayed = true %}
+					{% endif %}
 				{% endfor %}
+
+				{% for recipes in recipe %}
+					{% if recipes.category.title == "Apéritifs" %}
+						<ul>
+							<li>{{recipes.title}}</li>
+						</ul>
+					{% endif %}
+				{% endfor %}
+
+			{#### ENTREES SUMMARY ####}
+			{% set categoryTitleDisplayed = false %}
+				{% for recipes in recipe %}
+					{% if recipes.category.title == "Entrées" and not categoryTitleDisplayed %}
+						<h4>{{recipes.category.title}}</h4>
+
+						{# now the category has been displayed once, so I change the value of the variable #}
+						{% set categoryTitleDisplayed = true %}
+					{% endif %}
+				{% endfor %}
+
+				{% for recipes in recipe %}
+					{% if recipes.category.title == "Entrées" %}
+						<ul>
+							<li>{{recipes.title}}</li>
+						</ul>
+					{% endif %}
+				{% endfor %}
+
+			{#### PLATS SUMMARY ####}
+			{% set categoryTitleDisplayed = false %}
+				{% for recipes in recipe %}
+					{% if recipes.category.title == "Plats" and not categoryTitleDisplayed %}
+						<h4>{{recipes.category.title}}</h4>
+
+						{# now the category has been displayed once, so I change the value of the variable #}
+						{% set categoryTitleDisplayed = true %}
+					{% endif %}
+				{% endfor %}
+
+				{% for recipes in recipe %}
+					{% if recipes.category.title == "Plats" %}
+						<ul>
+							<li>{{recipes.title}}</li>
+						</ul>
+					{% endif %}
+				{% endfor %}
+
+			{#### DESSERTS SUMMARY ####}
+			{% set categoryTitleDisplayed = false %}
+				{% for recipes in recipe %}
+					{% if recipes.category.title == "Desserts" and not categoryTitleDisplayed %}
+						<h4>{{recipes.category.title}}</h4>
+
+						{# now the category has been displayed once, so I change the value of the variable #}
+						{% set categoryTitleDisplayed = true %}
+					{% endif %}
+				{% endfor %}
+
+				{% for recipes in recipe %}
+					{% if recipes.category.title == "Desserts" %}
+						<ul>
+							<li>{{recipes.title}}</li>
+						</ul>
+					{% endif %}
+				{% endfor %}
+
 			</div>
 		</div>
 		<p class="new-page"></p>
 
-{#################################################### APERITIFS ################################################################}
+		{#################################################### APERITIFS ################################################################}
 		{# set of a variable to verify if the category has been already use #}
 		{% set categoryTitleDisplayed = false %}
 
@@ -143,13 +218,12 @@
 						</div>
 					</div>
 				</main>
-				
 
 
 			{% endif %}
 		{% endfor %}
-<p class="new-page"></p>
-{#################################################### ENTREES ################################################################}
+		<p class="new-page"></p>
+		{#################################################### ENTREES ################################################################}
 		{# set of a variable to verify if the category has been already use #}
 		{% set categoryTitleDisplayed = false %}
 
@@ -226,7 +300,6 @@
 						</div>
 					</div>
 				</main>
-				
 
 
 			{% endif %}
@@ -310,7 +383,6 @@
 						</div>
 					</div>
 				</main>
-				
 
 
 			{% endif %}
@@ -395,7 +467,6 @@
 						</div>
 					</div>
 				</main>
-				
 
 
 			{% endif %}
