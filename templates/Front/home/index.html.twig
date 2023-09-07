@@ -10,7 +10,7 @@
 	</h1>
 
 	{% for category, recipes in categoryRecipes %}
-	{# =if no recipes in a category#}
+		{# =if no recipes in a category#}
 		{% if recipes is not empty %}
 			<div class="cards">
 
@@ -54,18 +54,21 @@
 					</div>
 				</div>
 
-			<a class="tcb_btn_caroussel tcb_btn_caroussel_left">
-				<i class="fas fa-arrow-up"></i>
-			</a>
-			<a class="tcb_btn_caroussel tcb_btn_caroussel_right">
-				<i class="fas fa-arrow-up"></i>
-			</a>
-			<div class="card_title">
-				<a href="{{path('tcb_front_category_show', { 'slug' : recipes[0].category.slug}) }}">{{ category }} </a>
-				<p style="font-size:0.6em;"><a href="{{path('tcb_front_category_show', { 'slug' : recipes[0].category.slug}) }}">Voir tout >></a></p>
+				<a class="tcb_btn_caroussel tcb_btn_caroussel_left">
+					<i class="fas fa-arrow-up"></i>
+				</a>
+				<a class="tcb_btn_caroussel tcb_btn_caroussel_right">
+					<i class="fas fa-arrow-up"></i>
+				</a>
+				<div class="card_title">
+					<a href="{{path('tcb_front_category_show', { 'slug' : recipes[0].category.slug}) }}">{{ category }}
+					</a>
+					<p style="font-size:0.6em;">
+						<a href="{{path('tcb_front_category_show', { 'slug' : recipes[0].category.slug}) }}">Voir tout >></a>
+					</p>
+				</div>
 			</div>
-		{% endif %}
-	{% endfor %}
+			{% endif %}
+		{% endfor %}
 
-{% endblock %}
-
+	{% endblock %}
