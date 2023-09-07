@@ -59,7 +59,6 @@ class MainController extends AbstractController
     /**
      * @Route("/pdf/{id}", name="tcb_front_main_pdf", requirements={"id"="\d+"})
      */
-
     public function pdfAction(Pdf $knpSnappyPdf, Recipe $recipe, $id): Response
     {
         $recipe = $this->entityManager->getRepository(Recipe::class)->findOneBy(['id' => $id]);
@@ -76,22 +75,49 @@ class MainController extends AbstractController
     }
 
     /**
+     * download ebook on pdf format
+     * 
      * @Route("/{slug}/ebook/", name="tcb_front_main_ebook")
      */
-
-    public function ebook(Pdf $knpSnappyPdf, Request $request, EntityManagerInterface $entityManager, User $user, Security $security, RecipeRepository $recipeRepository): Response
+    public function ebook(Pdf $knpSnappyPdf, User $user, RecipeRepository $recipeRepository, CategoryRepository $categoryRepository): Response
     {
         $this->denyAccessUnlessGranted('PROFILE_ACCESS', $user);
-        //$cssService = $this->getParameter('CSSLINK');
-        $recipe = $this->entityManager->getRepository(Recipe::class)->getEbook($user);        
+
+        $recipes = [];
+        
+        // = get list of categories
+        $recipes = $recipeRepository->getEbook($user);
+
+        // = for each category of the array of categories
+        //foreach ($categories as $category) {
+            // = find all the recipes by categories
+        //    $recipesByCategory = $recipeRepository->findByCategory($category->getSlug()); 
+            // = $recipe = [
+            // =    'Plat' => [
+            // =           "ma recette 1", 
+            // =           "ma recette 2", 
+            // =           "ma recette 3", 
+            // =     ],
+            // =    'Entree' => [
+            // =           "ma recette 1", 
+            // =           "ma recette 2", 
+            // =           "ma recette 3", 
+            // =     ],
+            // =  ]
+            // = in the array $recipes[] I 
+        //    $recipes[$category->getTitle()] = $recipesByCategory;
+        //}
+
 
         $ebookRecipes = $recipeRepository->findBy([
             'user' => $user,
             'ebook' => true,
         ]);
 
+        // dd($recipes);
+
         $html = $this->renderView('Front/pdf/ebook.html.twig', [
-            "recipe" => $recipe,
+            "recipes" => $recipes,
             'ebookRecipes' => $ebookRecipes
          ]);
 
@@ -102,8 +128,6 @@ class MainController extends AbstractController
          // 'recipe' => $recipe,
          // 'ebookRecipes' => $ebookRecipes
         //]);
-
-        //dd($ebookRecipes);
 
 
         return new PdfResponse(

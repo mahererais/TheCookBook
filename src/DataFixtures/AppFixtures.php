@@ -136,7 +136,7 @@ class AppFixtures extends Fixture
             $recipe->setIngredients($faker->getIngregients());
 
             // randomize either true or false of the Ebook boolean
-            $randomEbook = (bool) mt_rand(0, 1);
+            $randomEbook = mt_rand(0, 1);
             $recipe->setEbook($randomEbook);
 
             // randomize either public or private status
