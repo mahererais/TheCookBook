@@ -40,11 +40,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $roles = [];
 
+    // = https://symfony.com/doc/5.4/reference/constraints/Regex.html
+    // = https://stackoverflow.com/questions/42467243/regex-strong-password-the-special-characters
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
-     * #[Assert\Regex(pattern: '/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).{8,}$/', message: "Le mot de passe doit contenir au moins 1 majuscule, 1 minuscule, 1 chiffre et 1 caractère spécial")]
-     * 
+     * @Assert\Regex("/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.* )(?=.*[^a-zA-Z0-9]).{8,16}$/")
      */
     private $password;
 
