@@ -61,7 +61,7 @@
 					Sommaire des recettes:
 				</h2>
 
-			{#### APERITIF SUMMARY ####}
+				{#### APERITIF SUMMARY ####}
 				{% set categoryTitleDisplayed = false %}
 				{% for recipes in recipe %}
 					{% if recipes.category.title == "Apéritifs" and not categoryTitleDisplayed %}
@@ -80,8 +80,8 @@
 					{% endif %}
 				{% endfor %}
 
-			{#### ENTREES SUMMARY ####}
-			{% set categoryTitleDisplayed = false %}
+				{#### ENTREES SUMMARY ####}
+				{% set categoryTitleDisplayed = false %}
 				{% for recipes in recipe %}
 					{% if recipes.category.title == "Entrées" and not categoryTitleDisplayed %}
 						<h4>{{recipes.category.title}}</h4>
@@ -99,8 +99,8 @@
 					{% endif %}
 				{% endfor %}
 
-			{#### PLATS SUMMARY ####}
-			{% set categoryTitleDisplayed = false %}
+				{#### PLATS SUMMARY ####}
+				{% set categoryTitleDisplayed = false %}
 				{% for recipes in recipe %}
 					{% if recipes.category.title == "Plats" and not categoryTitleDisplayed %}
 						<h4>{{recipes.category.title}}</h4>
@@ -118,8 +118,8 @@
 					{% endif %}
 				{% endfor %}
 
-			{#### DESSERTS SUMMARY ####}
-			{% set categoryTitleDisplayed = false %}
+				{#### DESSERTS SUMMARY ####}
+				{% set categoryTitleDisplayed = false %}
 				{% for recipes in recipe %}
 					{% if recipes.category.title == "Desserts" and not categoryTitleDisplayed %}
 						<h4>{{recipes.category.title}}</h4>
@@ -139,7 +139,7 @@
 
 			</div>
 		</div>
-		<p class="new-page"></p>
+
 
 		{#################################################### APERITIFS ################################################################}
 		{# set of a variable to verify if the category has been already use #}
@@ -147,7 +147,9 @@
 
 		{% for recipes in recipe %}
 			{% if recipes.category.title == "Apéritifs" and not categoryTitleDisplayed %}
-				<h2>{{recipes.category.title}}</h2>
+								
+				{# inclusion of the category title on a new page by itself #}
+				{% include "Front/fragments/_category_title_ebook.html.twig" %}
 
 				{# now the category has been displayed once, so I change the value of the variable #}
 				{% set categoryTitleDisplayed = true %}
@@ -157,79 +159,20 @@
 		{% for recipes in recipe %}
 			{% if recipes.category.title == "Apéritifs" %}
 
-				<p class="new-page"></p>
-
-				<nav class="container navbar navbar-expand-lg bg-primary my-4" data-bs-theme="dark">
-					<div class="container-fluid">
-						<a class="logo" href="#">
-							<img src="https://zupimages.net/up/23/36/bfmk.png" alt="logo cookbook" width="400">
-						</a>
-
-						<div>
-							<img src="{{recipes.user.picture}}" class="rounded-circle shadow-4-strong" width="100">
-							<p style="color: white">Les recette de
-								{{recipes.user.firstname}}
-								{{recipes.user.lastname}}</p>
-						</div>
-					</div>
-				</nav>
-
-				<main class="container">
-					<div class="row">
-						<div class="flex-row w-25">
-							<div>
-								<img src="{{asset(recipes.picture)}}" class="mw-100" alt="{{recipes.title}}">
-							</div>
-						</div>
-						<div class="flex-row w-75">
-							<h2 class="my-4 text-uppercase font-weight-bold">{{recipes.title}}</h2>
-							<div>
-								<div class="row my-4">
-									<div class="col">
-										<i class="bi bi-tag">
-											catégorie:
-											{{recipes.category}}</i>
-									</div>
-									<div class="col">
-										<i class="bi bi-alarm">
-											Temps de préparation:
-											{{recipes.duration}}</i>
-									</div>
-									<div class="col">
-										<i class="bi bi-calendar3">
-											Ajouté le :
-											{{recipes.createdAt|date("d/m/Y")}}</i>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="my-4">
-							<h3>Ingrédients</h3>
-							{% for ingredient in recipes.ingredients %}
-								<li>{{ ingredient }}</li>
-							{% endfor %}
-						</div>
-						<div>
-							<h3>Etapes de préparation</h3>
-							{% for step in recipes.steps %}
-								<li>{{ step }}
-								</li>
-							{% endfor %}
-						</div>
-					</div>
-				</main>
+				{# inclusion of the category title on a new page by itself #}
+				{% include "Front/fragments/_recipe_ebook.html.twig" %}
 
 
 			{% endif %}
 		{% endfor %}
-		<p class="new-page"></p>
+
 		{#################################################### ENTREES ################################################################}
 		{# set of a variable to verify if the category has been already use #}
 		{% set categoryTitleDisplayed = false %}
 
 		{% for recipes in recipe %}
 			{% if recipes.category.title == "Entrées" and not categoryTitleDisplayed %}
-				<h2>{{recipes.category.title}}</h2>
+				{% include "Front/fragments/_category_title_ebook.html.twig" %}
 
 				{# now the category has been displayed once, so I change the value of the variable #}
 				{% set categoryTitleDisplayed = true %}
@@ -239,72 +182,11 @@
 		{% for recipes in recipe %}
 			{% if recipes.category.title == "Entrées" %}
 
-				<p class="new-page"></p>
-
-				<nav class="container navbar navbar-expand-lg bg-primary my-4" data-bs-theme="dark">
-					<div class="container-fluid">
-						<a class="logo" href="#">
-							<img src="https://zupimages.net/up/23/36/bfmk.png" alt="logo cookbook" width="400">
-						</a>
-
-						<div>
-							<img src="{{recipes.user.picture}}" class="rounded-circle shadow-4-strong" width="100">
-							<p style="color: white">Les recette de
-								{{recipes.user.firstname}}
-								{{recipes.user.lastname}}</p>
-						</div>
-					</div>
-				</nav>
-
-				<main class="container">
-					<div class="row">
-						<div class="flex-row w-25">
-							<div>
-								<img src="{{asset(recipes.picture)}}" class="mw-100" alt="{{recipes.title}}">
-							</div>
-						</div>
-						<div class="flex-row w-75">
-							<h2 class="my-4 text-uppercase font-weight-bold">{{recipes.title}}</h2>
-							<div>
-								<div class="row my-4">
-									<div class="col">
-										<i class="bi bi-tag">
-											catégorie:
-											{{recipes.category}}</i>
-									</div>
-									<div class="col">
-										<i class="bi bi-alarm">
-											Temps de préparation:
-											{{recipes.duration}}</i>
-									</div>
-									<div class="col">
-										<i class="bi bi-calendar3">
-											Ajouté le :
-											{{recipes.createdAt|date("d/m/Y")}}</i>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="my-4">
-							<h3>Ingrédients</h3>
-							{% for ingredient in recipes.ingredients %}
-								<li>{{ ingredient }}</li>
-							{% endfor %}
-						</div>
-						<div>
-							<h3>Etapes de préparation</h3>
-							{% for step in recipes.steps %}
-								<li>{{ step }}
-								</li>
-							{% endfor %}
-						</div>
-					</div>
-				</main>
-
+				{# inclusion of the category title on a new page by itself #}
+				{% include "Front/fragments/_recipe_ebook.html.twig" %}
 
 			{% endif %}
 		{% endfor %}
-		<p class="new-page"></p>
 
 		{#################################################### PLATS ################################################################}
 		{# set of a variable to verify if the category has been already use #}
@@ -312,7 +194,7 @@
 
 		{% for recipes in recipe %}
 			{% if recipes.category.title == "Plats" and not categoryTitleDisplayed %}
-				<h2>{{recipes.category.title}}</h2>
+				{% include "Front/fragments/_category_title_ebook.html.twig" %}
 
 				{# now the category has been displayed once, so I change the value of the variable #}
 				{% set categoryTitleDisplayed = true %}
@@ -322,73 +204,11 @@
 		{% for recipes in recipe %}
 			{% if recipes.category.title == "Plats" %}
 
-				<p class="new-page"></p>
-
-				<nav class="container navbar navbar-expand-lg bg-primary my-4" data-bs-theme="dark">
-					<div class="container-fluid">
-						<a class="logo" href="#">
-							<img src="https://zupimages.net/up/23/36/bfmk.png" alt="logo cookbook" width="400">
-						</a>
-
-						<div>
-							<img src="{{recipes.user.picture}}" class="rounded-circle shadow-4-strong" width="100">
-							<p style="color: white">Les recette de
-								{{recipes.user.firstname}}
-								{{recipes.user.lastname}}</p>
-						</div>
-					</div>
-				</nav>
-
-				<main class="container">
-					<div class="row">
-						<div class="flex-row w-25">
-							<div>
-								<img src="{{asset(recipes.picture)}}" class="mw-100" alt="{{recipes.title}}">
-							</div>
-						</div>
-						<div class="flex-row w-75">
-							<h2 class="my-4 text-uppercase font-weight-bold">{{recipes.title}}</h2>
-							<div>
-								<div class="row my-4">
-									<div class="col">
-										<i class="bi bi-tag">
-											catégorie:
-											{{recipes.category}}</i>
-									</div>
-									<div class="col">
-										<i class="bi bi-alarm">
-											Temps de préparation:
-											{{recipes.duration}}</i>
-									</div>
-									<div class="col">
-										<i class="bi bi-calendar3">
-											Ajouté le :
-											{{recipes.createdAt|date("d/m/Y")}}</i>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="my-4">
-							<h3>Ingrédients</h3>
-							{% for ingredient in recipes.ingredients %}
-								<li>{{ ingredient }}</li>
-							{% endfor %}
-						</div>
-						<div>
-							<h3>Etapes de préparation</h3>
-							{% for step in recipes.steps %}
-								<li>{{ step }}
-								</li>
-							{% endfor %}
-						</div>
-					</div>
-				</main>
-
+				{# inclusion of the category title on a new page by itself #}
+				{% include "Front/fragments/_recipe_ebook.html.twig" %}
 
 			{% endif %}
 		{% endfor %}
-
-		<p class="new-page"></p>
 
 		{#################################################### DESSERTS ################################################################}
 		{# set of a variable to verify if the category has been already use #}
@@ -396,8 +216,7 @@
 
 		{% for recipes in recipe %}
 			{% if recipes.category.title == "Desserts" and not categoryTitleDisplayed %}
-				<h2>{{recipes.category.title}}</h2>
-
+				{% include "Front/fragments/_category_title_ebook.html.twig" %}
 				{# now the category has been displayed once, so I change the value of the variable #}
 				{% set categoryTitleDisplayed = true %}
 			{% endif %}
@@ -406,73 +225,13 @@
 		{% for recipes in recipe %}
 			{% if recipes.category.title == "Desserts" %}
 
-				<p class="new-page"></p>
-
-				<nav class="container navbar navbar-expand-lg bg-primary my-4" data-bs-theme="dark">
-					<div class="container-fluid">
-						<a class="logo" href="#">
-							<img src="https://zupimages.net/up/23/36/bfmk.png" alt="logo cookbook" width="400">
-						</a>
-
-						<div>
-							<img src="{{recipes.user.picture}}" class="rounded-circle shadow-4-strong" width="100">
-							<p style="color: white">Les recette de
-								{{recipes.user.firstname}}
-								{{recipes.user.lastname}}</p>
-						</div>
-					</div>
-				</nav>
-
-				<main class="container">
-					<div class="row">
-						<div class="flex-row w-25">
-							<div>
-								<img src="{{asset(recipes.picture)}}" class="mw-100" alt="{{recipes.title}}">
-							</div>
-						</div>
-						<div class="flex-row w-75">
-							<h2 class="my-4 text-uppercase font-weight-bold">{{recipes.title}}</h2>
-							<div>
-								<div class="row my-4">
-									<div class="col">
-										<i class="bi bi-tag">
-											catégorie:
-											{{recipes.category}}</i>
-									</div>
-									<div class="col">
-										<i class="bi bi-alarm">
-											Temps de préparation:
-											{{recipes.duration}}</i>
-									</div>
-									<div class="col">
-										<i class="bi bi-calendar3">
-											Ajouté le :
-											{{recipes.createdAt|date("d/m/Y")}}</i>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="my-4">
-							<h3>Ingrédients</h3>
-							{% for ingredient in recipes.ingredients %}
-								<li>{{ ingredient }}</li>
-							{% endfor %}
-						</div>
-						<div>
-							<h3>Etapes de préparation</h3>
-							{% for step in recipes.steps %}
-								<li>{{ step }}
-								</li>
-							{% endfor %}
-						</div>
-					</div>
-				</main>
-
+				{# inclusion of the category title on a new page by itself #}
+				{% include "Front/fragments/_recipe_ebook.html.twig" %}
 
 			{% endif %}
 		{% endfor %}
 
 
 	</body>
-</html></body></html>
+</html>
 
