@@ -90,6 +90,13 @@ class MainController extends AbstractController
             'ebook' => true,
         ]);
 
+        // Counting how many recipes selected in ebook
+        $ebookRecipesCount = count($ebookRecipes);
+        //dd($ebookRecipesCount);
+
+        // conditionning render
+        if ($ebookRecipesCount > 0) {
+
         $html = $this->renderView('Front/pdf/ebook.html.twig', [
             "recipe" => $recipe,
             'ebookRecipes' => $ebookRecipes
@@ -105,11 +112,13 @@ class MainController extends AbstractController
 
         //dd($ebookRecipes);
 
-
-        return new PdfResponse(
-            $knpSnappyPdf->getOutputFromHtml($html),
-            'ebook.pdf',
+            return new PdfResponse(
+                $knpSnappyPdf->getOutputFromHtml($html),
+                'ebook.pdf',
         );
+        }else {
+            return $this->render('Front/user/ebook_empty.html.twig');
+        }
     }
 
     /**
