@@ -105,8 +105,8 @@ class RecipeRepository extends ServiceEntityRepository
     }
 
     /**
-    * @return array[] Returns an array of user objects
-    * @param string|null $string to find in users
+    * @param string|null $string to find in users    
+    * @return array[] Returns an array of recipes objects
     */
     public function getEbook(User $user)
     {

@@ -41,17 +41,17 @@
 			<br>
 			<br>
 			<h1 class="text-center text-uppercase font-weight-bold my-4">Les recettes de
-				{{recipe[0].user.firstname}}
-				{{recipe[0].user.lastname}}
+				{{recipes[0].user.firstname}}
+				{{recipes[0].user.lastname}}
 			</h1>
 			<div class="card-body">
 				<h3 class="card-title text-center">chef
-					{{recipe[0].user.experience}}</h3>
+					{{recipes[0].user.experience}}</h3>
 				<h6 class="card-subtitle text-muted text-center">Ma spécialité:
-					{{recipe[0].user.speciality}}</h6>
+					{{recipes[0].user.speciality}}</h6>
 			</div>
 			<div style="text-align: center" class="my-4">
-				<img src="{{recipe[0].user.picture}}" size="100" alt="{{recipe[0].user.firstname}} {{recipe[0].user.lastname}}">
+				<img src="{{recipes[0].user.picture}}" size="100" alt="{{recipes[0].user.firstname}} {{recipes[0].user.lastname}}">
 			</div>
 
 			{#################################################### SUMMARY ################################################################}
@@ -63,76 +63,76 @@
 
 				{#### APERITIF SUMMARY ####}
 				{% set categoryTitleDisplayed = false %}
-				{% for recipes in recipe %}
-					{% if recipes.category.title == "Apéritifs" and not categoryTitleDisplayed %}
-						<h4>{{recipes.category.title}}</h4>
+				{% for recipe in recipes %}
+					{% if recipe.category.title == "Apéritifs" and not categoryTitleDisplayed %}
+						<h4>{{recipe.category.title}}</h4>
 
 						{# now the category has been displayed once, so I change the value of the variable #}
 						{% set categoryTitleDisplayed = true %}
 					{% endif %}
 				{% endfor %}
 
-				{% for recipes in recipe %}
-					{% if recipes.category.title == "Apéritifs" %}
+				{% for recipe in recipes %}
+					{% if recipe.category.title == "Apéritifs" %}
 						<ul>
-							<li>{{recipes.title}}</li>
+							<li>{{recipe.title}}</li>
 						</ul>
 					{% endif %}
 				{% endfor %}
 
 				{#### ENTREES SUMMARY ####}
 				{% set categoryTitleDisplayed = false %}
-				{% for recipes in recipe %}
-					{% if recipes.category.title == "Entrées" and not categoryTitleDisplayed %}
-						<h4>{{recipes.category.title}}</h4>
+				{% for recipe in recipes %}
+					{% if recipe.category.title == "Entrées" and not categoryTitleDisplayed %}
+						<h4>{{recipe.category.title}}</h4>
 
 						{# now the category has been displayed once, so I change the value of the variable #}
 						{% set categoryTitleDisplayed = true %}
 					{% endif %}
 				{% endfor %}
 
-				{% for recipes in recipe %}
-					{% if recipes.category.title == "Entrées" %}
+				{% for recipe in recipes %}
+					{% if recipe.category.title == "Entrées" %}
 						<ul>
-							<li>{{recipes.title}}</li>
+							<li>{{recipe.title}}</li>
 						</ul>
 					{% endif %}
 				{% endfor %}
 
 				{#### PLATS SUMMARY ####}
 				{% set categoryTitleDisplayed = false %}
-				{% for recipes in recipe %}
-					{% if recipes.category.title == "Plats" and not categoryTitleDisplayed %}
-						<h4>{{recipes.category.title}}</h4>
+				{% for recipe in recipes %}
+					{% if recipe.category.title == "Plats" and not categoryTitleDisplayed %}
+						<h4>{{recipe.category.title}}</h4>
 
 						{# now the category has been displayed once, so I change the value of the variable #}
 						{% set categoryTitleDisplayed = true %}
 					{% endif %}
 				{% endfor %}
 
-				{% for recipes in recipe %}
-					{% if recipes.category.title == "Plats" %}
+				{% for recipe in recipes %}
+					{% if recipe.category.title == "Plats" %}
 						<ul>
-							<li>{{recipes.title}}</li>
+							<li>{{recipe.title}}</li>
 						</ul>
 					{% endif %}
 				{% endfor %}
 
 				{#### DESSERTS SUMMARY ####}
 				{% set categoryTitleDisplayed = false %}
-				{% for recipes in recipe %}
-					{% if recipes.category.title == "Desserts" and not categoryTitleDisplayed %}
-						<h4>{{recipes.category.title}}</h4>
+				{% for recipe in recipes %}
+					{% if recipe.category.title == "Desserts" and not categoryTitleDisplayed %}
+						<h4>{{recipe.category.title}}</h4>
 
 						{# now the category has been displayed once, so I change the value of the variable #}
 						{% set categoryTitleDisplayed = true %}
 					{% endif %}
 				{% endfor %}
 
-				{% for recipes in recipe %}
-					{% if recipes.category.title == "Desserts" %}
+				{% for recipe in recipes %}
+					{% if recipe.category.title == "Desserts" %}
 						<ul>
-							<li>{{recipes.title}}</li>
+							<li>{{recipe.title}}</li>
 						</ul>
 					{% endif %}
 				{% endfor %}
@@ -145,8 +145,8 @@
 		{# set of a variable to verify if the category has been already use #}
 		{% set categoryTitleDisplayed = false %}
 
-		{% for recipes in recipe %}
-			{% if recipes.category.title == "Apéritifs" and not categoryTitleDisplayed %}
+		{% for recipe in recipes %}
+			{% if recipe.category.title == "Apéritifs" and not categoryTitleDisplayed %}
 								
 				{# inclusion of the category title on a new page by itself #}
 				{% include "Front/fragments/_category_title_ebook.html.twig" %}
@@ -156,8 +156,8 @@
 			{% endif %}
 		{% endfor %}
 
-		{% for recipes in recipe %}
-			{% if recipes.category.title == "Apéritifs" %}
+		{% for recipe in recipes %}
+			{% if recipe.category.title == "Apéritifs" %}
 
 				{# inclusion of the recipe #}
 				{% include "Front/fragments/_recipe_ebook.html.twig" %}
@@ -169,8 +169,8 @@
 		{# set of a variable to verify if the category has been already use #}
 		{% set categoryTitleDisplayed = false %}
 
-		{% for recipes in recipe %}
-			{% if recipes.category.title == "Entrées" and not categoryTitleDisplayed %}
+		{% for recipe in recipes %}
+			{% if recipe.category.title == "Entrées" and not categoryTitleDisplayed %}
 								
 				{# inclusion of the category title on a new page by itself #}
 				{% include "Front/fragments/_category_title_ebook.html.twig" %}
@@ -180,8 +180,8 @@
 			{% endif %}
 		{% endfor %}
 
-		{% for recipes in recipe %}
-			{% if recipes.category.title == "Entrées" %}
+		{% for recipe in recipes %}
+			{% if recipe.category.title == "Entrées" %}
 
 				{# inclusion of the recipe #}
 				{% include "Front/fragments/_recipe_ebook.html.twig" %}
@@ -193,8 +193,8 @@
 		{# set of a variable to verify if the category has been already use #}
 		{% set categoryTitleDisplayed = false %}
 
-		{% for recipes in recipe %}
-			{% if recipes.category.title == "Plats" and not categoryTitleDisplayed %}
+		{% for recipe in recipes %}
+			{% if recipe.category.title == "Plats" and not categoryTitleDisplayed %}
 								
 				{# inclusion of the category title on a new page by itself #}
 				{% include "Front/fragments/_category_title_ebook.html.twig" %}
@@ -204,8 +204,8 @@
 			{% endif %}
 		{% endfor %}
 
-		{% for recipes in recipe %}
-			{% if recipes.category.title == "Plats" %}
+		{% for recipe in recipes %}
+			{% if recipe.category.title == "Plats" %}
 
 				{# inclusion of the recipe #}
 				{% include "Front/fragments/_recipe_ebook.html.twig" %}
@@ -217,8 +217,8 @@
 		{# set of a variable to verify if the category has been already use #}
 		{% set categoryTitleDisplayed = false %}
 
-		{% for recipes in recipe %}
-			{% if recipes.category.title == "Desserts" and not categoryTitleDisplayed %}
+		{% for recipe in recipes %}
+			{% if recipe.category.title == "Desserts" and not categoryTitleDisplayed %}
 								
 				{# inclusion of the category title on a new page by itself #}
 				{% include "Front/fragments/_category_title_ebook.html.twig" %}
@@ -228,8 +228,8 @@
 			{% endif %}
 		{% endfor %}
 
-		{% for recipes in recipe %}
-			{% if recipes.category.title == "Desserts" %}
+		{% for recipe in recipes %}
+			{% if recipe.category.title == "Desserts" %}
 
 				{# inclusion of the recipe #}
 				{% include "Front/fragments/_recipe_ebook.html.twig" %}
