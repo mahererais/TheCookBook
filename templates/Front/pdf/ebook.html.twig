@@ -159,9 +159,8 @@
 		{% for recipes in recipe %}
 			{% if recipes.category.title == "Apéritifs" %}
 
-				{# inclusion of the category title on a new page by itself #}
+				{# inclusion of the recipe #}
 				{% include "Front/fragments/_recipe_ebook.html.twig" %}
-
 
 			{% endif %}
 		{% endfor %}
@@ -172,6 +171,8 @@
 
 		{% for recipes in recipe %}
 			{% if recipes.category.title == "Entrées" and not categoryTitleDisplayed %}
+								
+				{# inclusion of the category title on a new page by itself #}
 				{% include "Front/fragments/_category_title_ebook.html.twig" %}
 
 				{# now the category has been displayed once, so I change the value of the variable #}
@@ -182,7 +183,7 @@
 		{% for recipes in recipe %}
 			{% if recipes.category.title == "Entrées" %}
 
-				{# inclusion of the category title on a new page by itself #}
+				{# inclusion of the recipe #}
 				{% include "Front/fragments/_recipe_ebook.html.twig" %}
 
 			{% endif %}
@@ -194,6 +195,8 @@
 
 		{% for recipes in recipe %}
 			{% if recipes.category.title == "Plats" and not categoryTitleDisplayed %}
+								
+				{# inclusion of the category title on a new page by itself #}
 				{% include "Front/fragments/_category_title_ebook.html.twig" %}
 
 				{# now the category has been displayed once, so I change the value of the variable #}
@@ -204,7 +207,7 @@
 		{% for recipes in recipe %}
 			{% if recipes.category.title == "Plats" %}
 
-				{# inclusion of the category title on a new page by itself #}
+				{# inclusion of the recipe #}
 				{% include "Front/fragments/_recipe_ebook.html.twig" %}
 
 			{% endif %}
@@ -216,7 +219,10 @@
 
 		{% for recipes in recipe %}
 			{% if recipes.category.title == "Desserts" and not categoryTitleDisplayed %}
+								
+				{# inclusion of the category title on a new page by itself #}
 				{% include "Front/fragments/_category_title_ebook.html.twig" %}
+
 				{# now the category has been displayed once, so I change the value of the variable #}
 				{% set categoryTitleDisplayed = true %}
 			{% endif %}
@@ -225,7 +231,7 @@
 		{% for recipes in recipe %}
 			{% if recipes.category.title == "Desserts" %}
 
-				{# inclusion of the category title on a new page by itself #}
+				{# inclusion of the recipe #}
 				{% include "Front/fragments/_recipe_ebook.html.twig" %}
 
 			{% endif %}
