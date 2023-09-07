@@ -47,6 +47,13 @@ class RegistrationController extends AbstractController
                 )
             );
 
+            // dd($user->getEmail());
+            $email = $user->getEmail();
+            if ($email) {
+                // flash message to add
+                $this->addFlash("alert", "Identifiants invalides !");
+            }
+
             // ! l'envoie de mail de fonctionne plus (compte mailjet suspendu)
             // ! je valide le user inscrit directement sans passer par le mail pour le moment
             $user->setIsVerified(true);
