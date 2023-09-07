@@ -34,7 +34,7 @@
 			<label for="inputPassword">Password</label>
 			<input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required placeholder="Entrez votre mot de passe" minlength=6>
 
-			<a class="d-block w-100 text-end fs-6 mt-1" href="{{path('tcb_forgot_password_request')}}">Mot de passe oublié</a>
+			<a class="d-block w-100 text-end fs-6 mt-1" href="#">Mot de passe oublié</a>
 
 			<input
 			type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
