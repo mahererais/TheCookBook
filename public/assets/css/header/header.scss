@@ -4,9 +4,9 @@ header {
     //margin-bottom: auto !important;
     position: sticky;
     top: 0;
-    backdrop-filter: blur(5px);
+    backdrop-filter: var(--backdrop-filter-blur);
 
-    background-color: var(--main-color-header);
+    background-color: var(--main-color-transparent);
     border-bottom: 2px solid var(--border-color);
     box-shadow: 0 0 12px -2px rgba(0, 0, 0, 1);
     z-index: 10;
@@ -155,7 +155,7 @@ header {
                         }
 
                         &:last-child {
-                            display: unset;
+                            display: contents;
                         }
 
                     }

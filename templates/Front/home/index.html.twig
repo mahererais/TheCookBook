@@ -54,18 +54,15 @@
 					</div>
 				</div>
 
-				<a class="tcb_btn_caroussel tcb_btn_caroussel_left">
-					<i class="fas fa-arrow-up"></i>
-				</a>
-				<a class="tcb_btn_caroussel tcb_btn_caroussel_right">
-					<i class="fas fa-arrow-up"></i>
-				</a>
-				
-				<div class="card_title">
-					<a style="color:#000000" href="{{path('tcb_front_category_show', { 'slug' : recipes[0].category.slug}) }}">{{ category }} </a>
-					<p style="font-size:0.6em;"><a style="color:#000000;" href="{{path('tcb_front_category_show', { 'slug' : recipes[0].category.slug}) }}">Voir tout >></a></p>
-				</div>
-				
+			<a class="tcb_btn_caroussel tcb_btn_caroussel_left">
+				<i class="fas fa-arrow-up"></i>
+			</a>
+			<a class="tcb_btn_caroussel tcb_btn_caroussel_right">
+				<i class="fas fa-arrow-up"></i>
+			</a>
+			<div class="card_title">
+				<a href="{{path('tcb_front_category_show', { 'slug' : recipes[0].category.slug}) }}">{{ category }} </a>
+				<p style="font-size:0.6em;"><a href="{{path('tcb_front_category_show', { 'slug' : recipes[0].category.slug}) }}">Voir tout >></a></p>
 			</div>
 		{% endif %}
 	{% endfor %}

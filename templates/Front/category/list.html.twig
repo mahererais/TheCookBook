@@ -8,10 +8,10 @@
 	<h1 class="mx-auto">Liste des catégories</h1>
 
     <div class="categories_container">
-        
-            {% for category in categories %}
-                <a  href="{{ path('tcb_front_category_show', { 'slug' : category.slug})}}"
-                    class="category_card">
+ 
+        {% for category in categories %}
+            <a  href="{{ path('tcb_front_category_show', { 'slug' : category.slug})}}"
+                class="tcb_card">
 
                     <img src="{{category.picture}}">
 
@@ -22,12 +22,5 @@
             {% endfor %}
     
     </div>
-
-
-	{# 
-        <div class="r_card_btn">
-            <a class="tcb_btn" href="{{ path('tcb_front_category_show', { 'slug' : category.slug}) }}">Voir les recettes</a>
-        </div> 
-    #}
 
 {% endblock %}
