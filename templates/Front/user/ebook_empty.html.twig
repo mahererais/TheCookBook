@@ -1,9 +1,9 @@
 {% extends 'Front/user/profile.html.twig' %}
 
 {% block content %}
-    <div class="profile-container">
+    <div class="profile-container w-100">
         <div class="d-flex justify-content-between align-items-center">
-            <h2>Ebook de {{ user.firstname }}</h2>
+            <h1>Ebook de {{ user.firstname }}</h1>
         </div>
         <div class="text-center">
         <p>Vous n'avez pas recettes dans votre ebook ! Cliquez sur <a href="{{ path('tcb_front_user_getRecipesByUserLog', { 'slug' : user.slug}) }}">Mes recettes</a> pour en ajouter à votre ebook</p>

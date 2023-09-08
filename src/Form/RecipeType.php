@@ -10,10 +10,11 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 class RecipeType extends AbstractType
@@ -46,11 +47,12 @@ class RecipeType extends AbstractType
                 'allow_delete' => true,
                 'by_reference' => false,
                 'constraints' => [
-                    new NotBlank([
-                        'message' => 'Veuillez saisir un ingrédient',
-                    ]),
+                    new Length([
+                        'min' => 0,
+                        'minMessage' => 'Veuillez au moins saisir un ingrédient'
+                    ])
                 ],
-                "help" => "Saisir au moins un ingrédient"
+                "help" => "Saisir au moins un ingrédient",
             ])
            
             ->add('steps', CollectionType::class, [
@@ -61,9 +63,10 @@ class RecipeType extends AbstractType
                 'allow_delete' => true,
                 'by_reference' => false,
                 'constraints' => [
-                    new NotBlank([
-                        'message' => 'Veuillez saisir une étape',
-                    ]),
+                    new Length([
+                        'min' => 1,
+                        'minMessage' => 'Veuillez saisir une étape'
+                    ])
                 ],
                 "help" => "Saisir au moins une étape"
             ])
@@ -92,6 +95,12 @@ class RecipeType extends AbstractType
                 'expanded' => true,
                 'multiple' => false
             ])
+
+            ->add("Envoyer", SubmitType::class, [
+                'attr' => [
+                    'class' => 'tcb_btn'
+                ],
+            ]);
         ;
     }
 

@@ -47,7 +47,6 @@ class RegistrationController extends AbstractController
                 )
             );
 
-            // dd($user->getEmail());
             $email = $user->getEmail();
             if ($email) {
                 // flash message to add

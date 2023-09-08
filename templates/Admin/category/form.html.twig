@@ -171,7 +171,7 @@
 			},
 			folder: 'Images'}, (error, result) => { 
 				if (!error && result && result.event === "success") { 
-				console.log('Done! Here is the image info: ', result.info); 
+					// console.log('Done! Here is the image info: ', result.info); 
 					// get file name 
 					const file_name = `${result.info.original_filename}.${result.info.format}`;
 					// retrieve picture image name element on DOM
