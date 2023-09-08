@@ -165,4 +165,14 @@ class MainController extends AbstractController
 
         return $this->render('Front/home/about.html.twig');
     }
+
+    /**
+     * @Route("/cgu", name="tcb_front_main_cgu")
+     */
+
+     public function cgu()
+     {
+ 
+         return $this->render('Front/home/cgu.html.twig');
+     }
 }
