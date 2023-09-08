@@ -85,7 +85,6 @@ class Recipe
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="recipes")
      * @ORM\JoinColumn(nullable=false)
-     * 
      */
     private $user;
 

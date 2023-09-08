@@ -33,7 +33,7 @@ class MainController extends AbstractController
             $randomRecipes = $recipeRepository->findRandomRecipesByCategory($category, 4); // Replace with your method to fetch random recipes
             $categoryRecipes[$category->getTitle()] = $randomRecipes;
         }
-        //dd($categories);
+        // dd($categoryRecipes);
 
         return $this->render('Front/home/index.html.twig', [
             "categories" => $categories,
@@ -86,31 +86,7 @@ class MainController extends AbstractController
 
 
         // = get list of categories
-        $recipes = $recipeRepository->getEbook($user);
-
-        $recipesByCategories = [];
-        // = for each recipe of the array of categories
-        foreach ($recipes as $recipe) {
-        // = find all the recipes by categories
-        // = $recipe = [
-        // =    'Plat' => [
-        // =           "ma recette 1", 
-        // =           "ma recette 2", 
-        // =           "ma recette 3", 
-        // =     ],
-        // =    'Entree' => [
-        // =           "ma recette 1", 
-        // =           "ma recette 2", 
-        // =           "ma recette 3", 
-        // =     ],
-        // =  ]
-        // = in the array $recipes[] I 
-           $recipesByCategories[$recipe->getCategory()->getTitle()] = $recipe;
-        }
-
-        //dd($recipesByCategories);
-
-
+        // $recipes = $recipeRepository->getEbook($user);
         $ebookRecipes = $recipeRepository->findBy([
             'user' => $user,
             'ebook' => true,
@@ -124,7 +100,7 @@ class MainController extends AbstractController
         if ($ebookRecipesCount > 0) {
 
             $html = $this->renderView('Front/pdf/ebook.html.twig', [
-                "recipes" => $recipes,
+                "recipes" => $ebookRecipes,
                 'ebookRecipes' => $ebookRecipes
             ]);
 

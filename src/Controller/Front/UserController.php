@@ -161,11 +161,32 @@ class UserController extends AbstractController
         $ebookRecipes = $recipeRepository->findBy([
             'user' => $user,
             'ebook' => true,
-        ]);
+        ],  ['category' => 'ASC']);
+
+        $recipesByCategories = [];
+        // = for each recipe of the array of categories
+        foreach ($ebookRecipes as $recipe) {
+        // = find all the recipes by categories
+        // = $recipe = [
+        // =    'Plat' => [
+        // =           "ma recette 1", 
+        // =           "ma recette 2", 
+        // =           "ma recette 3", 
+        // =     ],
+        // =    'Entree' => [
+        // =           "ma recette 1", 
+        // =           "ma recette 2", 
+        // =           "ma recette 3", 
+        // =     ],
+        // =  ]
+        // = in the array $recipes[] I 
+           $recipesByCategories[$recipe->getCategory()->getTitle()][] = $recipe;
+        }
 
         return $this->render('Front/user/ebook.html.twig', [
             'user' => $user,
-            'ebookRecipes' => $ebookRecipes
+            'ebookRecipes' => $recipesByCategories,
+        
         ]);
     }
 
