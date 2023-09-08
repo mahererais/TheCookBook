@@ -57,7 +57,7 @@ a {
         
         &:hover.tcb_delete_color {
             background-color: white!important;
-            color: var(--corail-color)!important
+            color: var(--corail-color)!important;
             border-color: var(--corail-color)!important;
         }
     }
@@ -74,16 +74,14 @@ a {
     justify-content: center!important;
     align-items: center!important;
 
-    border: 2px solid white;
-    width: 35px;
-    aspect-ratio: 1;
-    border-radius: 50%;
+    border: none;
+    width: 100%;
+    border-radius: 0;
 
-    margin-bottom: 0.4rem;
-    font-size: 0.8rem;
+    padding-block: 0.35rem;
+    font-size: 1rem;
     color: white!important;
-
-    padding: 0.3rem;
+    background-color: #00000080!important;
 
     &:hover {
         color: var(--corail-color);

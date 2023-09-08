@@ -51,29 +51,29 @@ a {
   color: var(--main-text-color) !important;
   border-color: var(--main-color);
 }
+.tcb_btn:hover:hover.tcb_delete_color {
+  background-color: white !important;
+  color: var(--corail-color) !important;
+  border-color: var(--corail-color) !important;
+}
 .tcb_btn.tcb_delete_color {
   background-color: var(--corail-color) !important;
-}
-.tcb_btn.tcb_delete_color:hover {
-  background-color: white !important;
-  border-color: var(--corail-color) !important;
 }
 
 .tcb_fa_icon {
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;
-  border: 2px solid white;
-  width: 35px;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  margin-bottom: 0.4rem;
-  font-size: 0.8rem;
+  border: none;
+  width: 100%;
+  border-radius: 0;
+  padding-block: 0.35rem;
+  font-size: 1rem;
   color: white !important;
-  padding: 0.3rem;
+  background-color: rgba(0, 0, 0, 0.5019607843) !important;
 }
 .tcb_fa_icon:hover {
-  color: var(--main-color) !important;
+  color: var(--corail-color);
 }
 
 .heart_icon {

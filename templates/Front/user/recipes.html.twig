@@ -10,10 +10,11 @@
 		<div class="profile_recipes_container">
 			{% for recipe in user.recipes|sort((a, b) => b.createdAt <=> a.createdAt) %}
 				<div class="tcb_card">
+					<a href="{{ path('tcb_front_recipe_show', { 'slug' : recipe.slug}) }}">
+						<img src="{{recipe.picture}}">
+					</a>
 
-					<img src="{{recipe.picture}}">
-
-					<h4>{{ recipe.title }}</h4>
+					<h5>{{ recipe.title }}</h5>
 
 					<div class="card_icons">
 						{# = icons récupérés  https://fontawesome.com/v5/search?m=free #}
