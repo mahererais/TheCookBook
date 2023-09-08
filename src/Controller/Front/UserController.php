@@ -67,7 +67,6 @@ class UserController extends AbstractController
     {
         $recipe = $this->entityManager->getRepository(User::class)->findOneBy(['slug' => $slug]);
 
-        // dd($recipe);
         return $this->render('Front/user/show.html.twig', [
             'user' => $user,
         ]);
@@ -141,14 +140,23 @@ class UserController extends AbstractController
         ]);
     }
 
-    /**
+    /** Get the recipes of a logged user
      * @Route("/profile/{slug}/recipes", name="tcb_front_user_getRecipesByUserLog")
      */
-    public function getRecipesByUserLog(Request $request, EntityManagerInterface $entityManager, User $user, Security $security): Response
+    public function getRecipesByUserLog(Request $request, RecipeRepository $recipeRepository, User $user, Security $security): Response
     {
         $this->denyAccessUnlessGranted('PROFILE_ACCESS', $user);
+        $recipes = $this->getUser()->getRecipes();
+
+        $userRecipesByCategory = [];
+        foreach ($recipes as $recipe) {
+            $categoryTitle = $recipe->getCategory()->getTitle();
+            $userRecipesByCategory[$categoryTitle][] = $recipe;
+        }
+        ksort($userRecipesByCategory);
+
         return $this->render('Front/user/recipes.html.twig', [
-            'user' => $user,
+            'userRecipesByCategory' => $userRecipesByCategory,
         ]);
     }
 
@@ -164,22 +172,10 @@ class UserController extends AbstractController
         ],  ['category' => 'ASC']);
 
         $recipesByCategories = [];
+
         // = for each recipe of the array of categories
         foreach ($ebookRecipes as $recipe) {
-        // = find all the recipes by categories
-        // = $recipe = [
-        // =    'Plat' => [
-        // =           "ma recette 1", 
-        // =           "ma recette 2", 
-        // =           "ma recette 3", 
-        // =     ],
-        // =    'Entree' => [
-        // =           "ma recette 1", 
-        // =           "ma recette 2", 
-        // =           "ma recette 3", 
-        // =     ],
-        // =  ]
-        // = in the array $recipes[] I 
+      
            $recipesByCategories[$recipe->getCategory()->getTitle()][] = $recipe;
         }
 

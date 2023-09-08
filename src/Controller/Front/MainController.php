@@ -33,7 +33,6 @@ class MainController extends AbstractController
             $randomRecipes = $recipeRepository->findRandomRecipesByCategory($category, 4); // Replace with your method to fetch random recipes
             $categoryRecipes[$category->getTitle()] = $randomRecipes;
         }
-        // dd($categoryRecipes);
 
         return $this->render('Front/home/index.html.twig', [
             "categories" => $categories,
@@ -63,7 +62,7 @@ class MainController extends AbstractController
     public function pdfAction(Pdf $knpSnappyPdf, Recipe $recipe, $id): Response
     {
         $recipe = $this->entityManager->getRepository(Recipe::class)->findOneBy(['id' => $id]);
-        //dd($recipe);
+
         $html = $this->renderView('Front/pdf/recipe.html.twig', [
             "recipe" => $recipe
         ]);
@@ -94,7 +93,6 @@ class MainController extends AbstractController
 
         // Counting how many recipes selected in ebook
         $ebookRecipesCount = count($ebookRecipes);
-        //dd($ebookRecipesCount);
 
         // conditionning render
         if ($ebookRecipesCount > 0) {

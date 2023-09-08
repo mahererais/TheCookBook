@@ -1,19 +1,63 @@
 {% extends 'Front/user/profile.html.twig' %}
 
-{% block title %}Favoris de {{app.user.firstname}}{% endblock %}
+{% block title %}Favoris de
+	{{app.user.firstname}}
+{% endblock %}
 
 {% block content %}
-    <div class="profile-container mt-5">
-        <div class="d-flex justify-content-between align-items-center">
-            <h2>Mes recettes favorites</h2>
-            <a onclick="return confirm('Voulez vous vider toutes vos recettes favorites enregistrées ?')" class="tcb_btn" href="{{ path ('tcb_front_favorite_empty')}}">Vider tous mes favoris</a>
-        </div>
-        {% if favorites is empty %}
-            <p>Vous n'avez pas de favoris</p>
-        {% else %}
-            <div class="row">
-                {% for recipe in favorites %}
-                    <div class="col-md-4 mb-4">
+	<div class="profile-container w-100">
+		<div class="d-flex justify-content-between align-items-center">
+			<h1>Mes recettes favorites</h1>
+			<a onclick="return confirm('Voulez vous vider toutes vos recettes favorites enregistrées ?')" class="tcb_btn" href="{{ path ('tcb_front_favorite_empty')}}">Vider tous mes favoris</a>
+		</div>
+
+		{% if favorites is empty %}
+			<p class="mt-5">Vous n'avez pas de favoris</p>
+		{% else %}
+
+			{% for category, recipes in favorites %}
+				<h4 class="my-4">{{recipes[0].category.title}}</h4>
+
+
+				<div class="profile_recipes_container">
+					{% for recipe in recipes %}
+						<div
+							class="tcb_card">
+							{# <a href="{{ path('tcb_front_recipe_show', { 'slug' : recipe.slug}) }}"> #}
+							<img
+							src="{{recipe.picture}}">
+							{# </a> #}
+
+							<h5>{{ recipe.title }}</h5>
+
+							<div
+								class="card_icons">
+								{# = icons récupérés  https://fontawesome.com/v5/search?m=free #}
+								<a class="tcb_btn tcb_fa_icon" href="{{ path('tcb_front_recipe_show', { 'slug' : recipe.slug}) }}">
+									<i class="fas fa-eye"></i>
+								</a>
+
+								<a class="tcb_btn tcb_fa_icon" href="{{path('tcb_front_main_pdf', { 'id' : recipe.id}) }}">
+									<i class="fas fa-file-pdf"></i>
+								</a>
+
+								<a class="tcb_btn tcb_fa_icon tcb_delete_color" onclick="return confirm('Voulez vous retirer cette recette de vos favoris ?')" href="{{ path ('tcb_front_favorite_remove', {'slug': recipe.slug} ) }}">
+									<i class="fas fa-trash-alt"></i>
+								</a>
+
+							</div>
+
+
+						</div>
+
+					{% endfor %}
+				</div>
+			{% endfor %}
+		{% endif %}
+	</div>
+{% endblock %}
+
+{# <div class="col-md-4 mb-4">
                         <div class="card">
                         {{ recipe.title }}
                             <img src="{{ recipe.picture }}" alt="{{ recipe.title }}" class="card-img-top">
@@ -27,9 +71,5 @@
                                 </a>
                             </div>
                         </div>
-                    </div>
-                {% endfor %}
-            </div>
-        {% endif %}
-    </div>
-{% endblock %}
+                    </div> #}
+

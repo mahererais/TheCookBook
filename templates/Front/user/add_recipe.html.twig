@@ -6,9 +6,9 @@
 <div class="w-100">
 
 	{% if app.request.attributes.get("_route") is same as "tcb_front_recipe_add" %}
-		<h2>Ajouter une recette</h2>
+		<h1>Ajouter une recette</h1>
 	{% else %}
-		<h2>Modifier la recette</h2>
+		<h1>Modifier la recette</h1>
 	{% endif %}
 
 	{{form_start(form, {attr: {novalidate: 'novalidate'}})}}
@@ -31,10 +31,10 @@
 			{{form_help(form.picture)}}
 			{{form_errors(form.picture)}}
 		</div>
-		<div class="col-12 mb-3">
+		<div class="col-12 mb-3 d-flex align-items-center gap-4">
 			<a id="upload_widget" class="cloudinary-button tcb_btn">Choisir un fichier</a>
 			{% if recipe.picture %}
-				<a >
+				<a class="w-100 inline-block">
 					<img src="{{recipe.picture}}" alt="recipe image" id="cloudinary_image" class="img-thumbnail col-3">
 				</a>
 			{% endif %}
