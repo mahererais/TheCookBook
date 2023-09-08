@@ -86,8 +86,8 @@ class AppFixtures extends Fixture
             $user->setRoles([$userRole]);
             $user->setFirstname($userName);
             $user->setLastname($faker->lastName);
-            $user->setPicture(("https://loremflickr.com/450/300/cat?lock=" . mt_rand(1, 120) . ""));
-            //$user->setPicture($faker->getRandomAvatar());
+            // $user->setPicture(("https://loremflickr.com/450/300/cat?lock=" . mt_rand(1, 120) . ""));
+            $user->setPicture($faker->getRandomAvatar());
             $user->setSpeciality($faker->sentence(3));
             $user->setSlug($this->slugger->slug($user->getFirstname()));
             $user->setIsVerified(true);
