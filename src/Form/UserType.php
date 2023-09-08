@@ -64,15 +64,14 @@ class UserType extends AbstractType
             ->add('password', PasswordType::class, [
                 "label" => "Mot de passe",
                 "attr" => [
-                    "placeholder" => "Entrez votre mot de passe",
-                    'minlength' => 6,
-                    //'autocomplete' => 'current-password',
-                    'autocomplete' => 'new-password',
+                    "placeholder" => "Modifiez votre mot de passe",
+                    'autocomplete' => 'current-password',
+                    // 'autocomplete' => 'new-password',
                 ],
                 //'hash_property_path' => 'password', // ! The hash_property_path option was introduced in Symfony 6.2.
-                "mapped" => false, // unmapped means that this field is not associated to any entity property
+                "mapped" => true, // unmapped means that this field is not associated to any entity property
                 "required" => true, // make it optional so you don't have to re-upload the PDF file every time you edit user profile
-                "help" => "le mot de passe doit contenir au moins 6 caractéres",
+                "help" => "Le mot de passe doit contenir au moins 8 caractéres",
                 ])
             ->add('status', ChoiceType::class, [
                 "label" => "Status",

@@ -7,11 +7,12 @@
 :root {
   --container-width: 100%;
   --main-color: #F55E51;
-  --main-color-header: #F55E51E0;
+  --main-color-transparent: #F55E51E0;
   --secondary-color: #f9f9f9;
   --main-text-color: #3F3735;
   --container-padding: 1rem 1.5rem;
   --border-color: #FFFFFF;
+  --backdrop-filter-blur: blur(3px);
   --bs-btn-bg: #F55E51;
   --bs-btn-border-color: #F55E51;
   --bs-btn-hover-bg: white;
@@ -33,6 +34,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  color: var(--main-text-color);
 }
 
 /* Réduction de la largeur totale du tableau de la liste de recettes dans admin */

@@ -6,11 +6,13 @@
 
 {% block body %}
 
-	<h1 class="page_title">Liste des recettes
-	</h1>
+	<h1 class="page_title">Liste des recettes</h1>
 
-	{% for recipe in recipes %}
-		
+	{% if recipes is not empty %}
+
+		{% for recipe in recipes %}
+
+
 			<div class="cards">
 
 				<div class="r_cards_container">
@@ -37,13 +39,19 @@
 
 						<div class="r_card_btn">
 							<a class="tcb_btn" href="{{ path('tcb_front_recipe_show', { 'slug' : recipe.slug}) }}">Voir la recette</a>
-								{# inclusion of the toogle button to switch to favorite recipe  #}
-								{% include "Front/fragments/_toggle_favorite_button.html.twig" %}
+							{# inclusion of the toogle button to switch to favorite recipe  #}
+							{% include "Front/fragments/_toggle_favorite_button.html.twig" %}
 						</div>
 					</div>
 				</div>
 			</div>
-	{% endfor %}
+
+
+		{% endfor %}
+
+	{% else %}
+		<p class="mx-auto fst-italic">Il n'y a pas encore de recettes dans cette catégorie.</p>
+	{% endif %}
 
 	{# display navigation #}
 	<div class="tcb_pagnination mx-auto">

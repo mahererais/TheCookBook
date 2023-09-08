@@ -64,7 +64,7 @@ class MainController extends AbstractController
         $recipe = $this->entityManager->getRepository(Recipe::class)->findOneBy(['id' => $id]);
         //dd($recipe);
         $html = $this->renderView('Front/pdf/recipe.html.twig', [
-           "recipe" => $recipe
+            "recipe" => $recipe
         ]);
         $knpSnappyPdf->setOption('enable-local-file-access', true);
 
@@ -84,27 +84,27 @@ class MainController extends AbstractController
         $this->denyAccessUnlessGranted('PROFILE_ACCESS', $user);
 
         $recipes = [];
-        
+
         // = get list of categories
         $recipes = $recipeRepository->getEbook($user);
 
         // = for each category of the array of categories
         //foreach ($categories as $category) {
-            // = find all the recipes by categories
+        // = find all the recipes by categories
         //    $recipesByCategory = $recipeRepository->findByCategory($category->getSlug()); 
-            // = $recipe = [
-            // =    'Plat' => [
-            // =           "ma recette 1", 
-            // =           "ma recette 2", 
-            // =           "ma recette 3", 
-            // =     ],
-            // =    'Entree' => [
-            // =           "ma recette 1", 
-            // =           "ma recette 2", 
-            // =           "ma recette 3", 
-            // =     ],
-            // =  ]
-            // = in the array $recipes[] I 
+        // = $recipe = [
+        // =    'Plat' => [
+        // =           "ma recette 1", 
+        // =           "ma recette 2", 
+        // =           "ma recette 3", 
+        // =     ],
+        // =    'Entree' => [
+        // =           "ma recette 1", 
+        // =           "ma recette 2", 
+        // =           "ma recette 3", 
+        // =     ],
+        // =  ]
+        // = in the array $recipes[] I 
         //    $recipes[$category->getTitle()] = $recipesByCategory;
         //}
 
@@ -116,42 +116,53 @@ class MainController extends AbstractController
 
         // dd($recipes);
 
-        $html = $this->renderView('Front/pdf/ebook.html.twig', [
-            "recipes" => $recipes,
-            'ebookRecipes' => $ebookRecipes
-         ]);
+        // Counting how many recipes selected in ebook
+        $ebookRecipesCount = count($ebookRecipes);
+        //dd($ebookRecipesCount);
 
-        $knpSnappyPdf->setOption('enable-local-file-access', true);
+        // conditionning render
+        if ($ebookRecipesCount > 0) {
 
-         //       return $this->render('Front/TestsWK/ebook.html.twig', [
-         // 'controller_name' => 'MainController',
-         // 'recipe' => $recipe,
-         // 'ebookRecipes' => $ebookRecipes
-        //]);
+            $html = $this->renderView('Front/pdf/ebook.html.twig', [
+                "recipes" => $recipes,
+                'ebookRecipes' => $ebookRecipes
+            ]);
+
+            $knpSnappyPdf->setOption('enable-local-file-access', true);
+
+            //       return $this->render('Front/TestsWK/ebook.html.twig', [
+            // 'controller_name' => 'MainController',
+            // 'recipe' => $recipe,
+            // 'ebookRecipes' => $ebookRecipes
+            //]);
 
 
-        return new PdfResponse(
-            $knpSnappyPdf->getOutputFromHtml($html),
-            'ebook.pdf',
-        );
+            return new PdfResponse(
+                $knpSnappyPdf->getOutputFromHtml($html),
+                'ebook.pdf',
+            );
+        } else {
+            return $this->render('Front/user/ebook_empty.html.twig');
+        }
     }
 
     /**
      * @Route("/legal-mentions", name="tcb_front_main_legalMentions")
      */
 
-     public function legalMentions(){ 
+    public function legalMentions()
+    {
 
         return $this->render('Front/home/legal_mentions.html.twig');
-     }
+    }
 
-     /**
+    /**
      * @Route("/about", name="tcb_front_main_about")
      */
 
-     public function about(){
-        
-        return $this->render('Front/home/about.html.twig');
-     }
+    public function about()
+    {
 
+        return $this->render('Front/home/about.html.twig');
+    }
 }

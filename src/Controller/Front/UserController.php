@@ -93,11 +93,21 @@ class UserController extends AbstractController
                     )
                 );
             }
-            // I get the url of the image if it exists
-            $picture = $request->attributes->get('user')->getPicture(); 
-            // if the url of the image doesn't exist, I add the upload
+            //= I get the url of the image
+            $picture = $request->attributes->get('user')->getPicture();
+            // = I get the url of the coudinary image
+            $imageCloudUrl =  $request->get("cloudinaryUrl"); 
+            //= if the url of the image doesn't exist
             if(!$picture) {
-                $imageCloudUrl =  $request->get("cloudinaryUrl");
+                // = I add the upload
+                $user->setPicture($imageCloudUrl);
+            // = if the url of the image exist and the url of cloudinary image doesn't exist
+            }elseif ($picture && !$imageCloudUrl) {
+                // = I leave the url of the existing image
+                $user->setPicture($picture);
+            // = if the url of the image and the url of the cloudinary image exist 
+            }else {
+                // = I add the upload
                 $user->setPicture($imageCloudUrl);
             }
 

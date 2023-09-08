@@ -2,6 +2,7 @@
 @import './searchBar/searchBar.css';
 @import './sideBar/sideBar.css';
 @import './pagination/pagination.css';
+@import './cards/cards.css';
 a.tcb_btn_arrow_top {
   width: 3rem;
   aspect-ratio: 1;
@@ -48,6 +49,31 @@ a {
 .tcb_btn:hover {
   background-color: white !important;
   color: var(--main-text-color) !important;
+  border-color: var(--main-color);
+}
+.tcb_btn.tcb_delete_color {
+  background-color: var(--corail-color) !important;
+}
+.tcb_btn.tcb_delete_color:hover {
+  background-color: white !important;
+  border-color: var(--corail-color) !important;
+}
+
+.tcb_fa_icon {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  border: 2px solid white;
+  width: 35px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  margin-bottom: 0.4rem;
+  font-size: 0.8rem;
+  color: white !important;
+  padding: 0.3rem;
+}
+.tcb_fa_icon:hover {
+  color: var(--main-color) !important;
 }
 
 .heart_icon {
