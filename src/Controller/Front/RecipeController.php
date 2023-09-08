@@ -53,8 +53,6 @@ class RecipeController extends AbstractController
     {
         $recipes = $recipeRepository->searchRecipe($request->get("search"));
 
-        // dd($recipes);
-
         return $this->render('Front/recipe/search.html.twig', [
             'recipes' => $recipes,
         ]);
@@ -108,8 +106,6 @@ class RecipeController extends AbstractController
         $form = $this->createForm(RecipeType::class, $recipe);
         $form->handleRequest($request);
 
-        // dd($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             
             //= I get the url of the image
@@ -135,8 +131,6 @@ class RecipeController extends AbstractController
 
             $this->addFlash("success", "La recette a été modifiée.");
 
-            //dd($slug);
-            
             return $this->redirectToRoute('tcb_front_recipe_show', ['slug' => $recipe->getSlug()]);
         }
 
@@ -184,7 +178,6 @@ class RecipeController extends AbstractController
         $recipe = $this->entityManager->getRepository(Recipe::class)->findOneBy(['slug' => $slug]);
         $user = $userRepository->findAll();
 
-        // dd($recipe);
         return $this->render('Front/recipe/show.html.twig', [
             'recipe' => $recipe,
             'user' => $user

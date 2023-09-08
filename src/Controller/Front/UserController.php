@@ -67,7 +67,6 @@ class UserController extends AbstractController
     {
         $recipe = $this->entityManager->getRepository(User::class)->findOneBy(['slug' => $slug]);
 
-        // dd($recipe);
         return $this->render('Front/user/show.html.twig', [
             'user' => $user,
         ]);
@@ -141,14 +140,23 @@ class UserController extends AbstractController
         ]);
     }
 
-    /**
+    /** Get the recipes of a logged user
      * @Route("/profile/{slug}/recipes", name="tcb_front_user_getRecipesByUserLog")
      */
-    public function getRecipesByUserLog(Request $request, EntityManagerInterface $entityManager, User $user, Security $security): Response
+    public function getRecipesByUserLog(Request $request, RecipeRepository $recipeRepository, User $user, Security $security): Response
     {
         $this->denyAccessUnlessGranted('PROFILE_ACCESS', $user);
+        $recipes = $this->getUser()->getRecipes();
+
+        $userRecipesByCategory = [];
+        foreach ($recipes as $recipe) {
+            $categoryTitle = $recipe->getCategory()->getTitle();
+            $userRecipesByCategory[$categoryTitle][] = $recipe;
+        }
+        ksort($userRecipesByCategory);
+
         return $this->render('Front/user/recipes.html.twig', [
-            'user' => $user,
+            'userRecipesByCategory' => $userRecipesByCategory,
         ]);
     }
 
@@ -161,11 +169,20 @@ class UserController extends AbstractController
         $ebookRecipes = $recipeRepository->findBy([
             'user' => $user,
             'ebook' => true,
-        ]);
+        ],  ['category' => 'ASC']);
+
+        $recipesByCategories = [];
+
+        // = for each recipe of the array of categories
+        foreach ($ebookRecipes as $recipe) {
+      
+           $recipesByCategories[$recipe->getCategory()->getTitle()][] = $recipe;
+        }
 
         return $this->render('Front/user/ebook.html.twig', [
             'user' => $user,
-            'ebookRecipes' => $ebookRecipes
+            'ebookRecipes' => $recipesByCategories,
+        
         ]);
     }
 

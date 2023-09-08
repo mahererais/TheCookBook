@@ -27,6 +27,12 @@ footer .footer_container > ul li {
 footer .footer_container > ul li:nth-of-type(2) {
   color: white;
 }
+footer .footer_container > ul li:nth-of-type(1) {
+  text-align: left;
+}
+footer .footer_container > ul li:nth-of-type(3) {
+  text-align: right;
+}
 footer .footer_container > ul li a {
   display: block;
   padding-block: 0.3em;

@@ -54,11 +54,11 @@ body {
 // @import url("./header/header.css");
 // @import url("./footer/footer.css");
 
-@import '../header/header.css';
-@import '../footer/footer.css';
-@import '../components/components.css';
+@import '../header/header.scss';
+@import '../footer/footer.scss';
+@import '../components/components.scss';
 
-@import '../front/recipe_show/recipe_show.css';
+@import '../front/recipe_show/recipe_show.scss';
 
 /* Réduction de la largeur totale du tableau de la liste de recettes dans admin */
 .table {
