@@ -51,9 +51,15 @@ class UserController extends AbstractController
     /**
      * @Route("/user/query", name="tcb_front_user_search")
      */
-    public function search(UserRepository $userRepository, Request $request): Response
+    public function search(PaginatorInterface $paginator, UserRepository $userRepository, Request $request): Response
     {
         $users = $userRepository->searchUser($request->get("search"));
+
+        $users = $paginator->paginate(
+            $users, // = my datas
+            $request->query->getInt('page', 1), // = get page number in request url, and set page default to "1"
+            2 // = limit by page
+        );
 
         return $this->render('Front/user/search.html.twig', [
             'users' => $users,

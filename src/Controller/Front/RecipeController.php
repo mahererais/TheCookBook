@@ -49,14 +49,22 @@ class RecipeController extends AbstractController
     /**
      * @Route("/recipe/query", name="tcb_front_recipe_search")
      */
-    public function search(RecipeRepository $recipeRepository, Request $request): Response
+    public function search(PaginatorInterface $paginator, RecipeRepository $recipeRepository, UserRepository $userRepository, Request $request): Response
     {
         $recipes = $recipeRepository->searchRecipe($request->get("search"));
+        $users = $userRepository->searchUser($request->get("search"));
 
-        // dd($recipes);
+        $recipesUsers = $paginator->paginate(
+            array_merge($recipes, $users), // = my datas
+            $request->query->getInt('page', 1), // = get page number in request url, and set page default to "1"
+            5 // = limit by page
+        );
+         // dd($users);
 
         return $this->render('Front/recipe/search.html.twig', [
-            'recipes' => $recipes,
+            'recipesUsers' => $recipesUsers,
+            // 'recipes' => $recipes,
+            // 'users' => $users,
         ]);
     }
 

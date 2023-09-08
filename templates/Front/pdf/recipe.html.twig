@@ -18,6 +18,17 @@
 		<!-- https://fonts.google.com/ -->
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<style>
+			h1 {
+				font-size: 4rem !important;
+			}
+			h2 {
+				font-size: 3rem !important;
+			}
+			h3 {
+				font-size: 2rem !important;
+			}
+		</style>
 
 	</head>
 
@@ -26,12 +37,14 @@
 		<nav class="container navbar navbar-expand-lg bg-primary my-4" data-bs-theme="dark">
 			<div class="container-fluid">
 				<a class="logo" href="#">
-					<img src="https://zupimages.net/up/23/34/jt5z.png" alt="logo cookbook" width="400">
+					<img src="https://zupimages.net/up/23/36/bfmk.png" alt="logo cookbook" width="400">
 				</a>
 
 				<div>
-						<img src="https://images.unsplash.com/photo-1593085512500-5d55148d6f0d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80" class="rounded-circle shadow-4-strong" width="100">
-						Les recette de Prénom Nom
+					<img src="{{recipe.user.picture}}" class="rounded-circle shadow-4-strong" width="100">
+					<p style="color: white">Les recette de
+						{{recipe.user.firstname}}
+						{{recipe.user.lastname}}</p>
 				</div>
 			</div>
 		</nav>
@@ -46,17 +59,21 @@
 				<div class="flex-row w-75">
 					<h1 class="my-4">{{recipe.title}}</h1>
 					<div>
-						<div class="row my-4">
+						<div class="row my-2">
 							<div class="col">
 								<i class="bi bi-tag">
+									catégorie:
 									{{recipe.category}}</i>
 							</div>
 							<div class="col">
 								<i class="bi bi-alarm">
-									{{recipe.duration}}</i>
+									Temps de préparation:
+									{{recipe.duration}} minutes</i>
 							</div>
 							<div class="col">
-								<i class="bi bi-calendar3">{{recipe.createdAt|date("d/m/Y")}}</i>
+								<i class="bi bi-calendar3">
+									Ajouté le :
+									{{recipe.createdAt|date("d/m/Y")}}</i>
 							</div>
 						</div>
 					</div>
@@ -70,18 +87,18 @@
 				<div>
 					<h3>Etapes de préparation</h3>
 					{% for step in recipe.steps %}
-						<li>{{ step }} </li>
-                    {% endfor %}
+						<li class="my-2">{{ step }}
+						</li>
+					{% endfor %}
 				</div>
 			</div>
 		</main>
 
-		<footer class="container my-4">
+		<footer class="container my-4 flex">
 			<div class="alert alert-dismissible alert-success">
 				Toutes mes recettes sont disponibles sur
 				<a href="{{path('tcb_front_main_home')}}" class=" alert-link">The Cook Book</a>.
 			</div>
-
 		</footer>
 
 	</body>
