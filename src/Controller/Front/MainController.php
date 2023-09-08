@@ -27,6 +27,7 @@ class MainController extends AbstractController
     {
         $categories = $categoryRepository->findAll();
 
+
         $categoryRecipes = [];
         foreach ($categories as $category) {
             $randomRecipes = $recipeRepository->findRandomRecipesByCategory($category, 4); // Replace with your method to fetch random recipes
@@ -79,19 +80,18 @@ class MainController extends AbstractController
      * 
      * @Route("/{slug}/ebook/", name="tcb_front_main_ebook")
      */
-    public function ebook(Pdf $knpSnappyPdf, User $user, RecipeRepository $recipeRepository, CategoryRepository $categoryRepository): Response
+    public function ebook(Pdf $knpSnappyPdf, User $user, RecipeRepository $recipeRepository): Response
     {
         $this->denyAccessUnlessGranted('PROFILE_ACCESS', $user);
 
-        $recipes = [];
 
         // = get list of categories
         $recipes = $recipeRepository->getEbook($user);
 
-        // = for each category of the array of categories
-        //foreach ($categories as $category) {
+        $recipesByCategories = [];
+        // = for each recipe of the array of categories
+        foreach ($recipes as $recipe) {
         // = find all the recipes by categories
-        //    $recipesByCategory = $recipeRepository->findByCategory($category->getSlug()); 
         // = $recipe = [
         // =    'Plat' => [
         // =           "ma recette 1", 
@@ -105,16 +105,16 @@ class MainController extends AbstractController
         // =     ],
         // =  ]
         // = in the array $recipes[] I 
-        //    $recipes[$category->getTitle()] = $recipesByCategory;
-        //}
+           $recipesByCategories[$recipe->getCategory()->getTitle()] = $recipe;
+        }
+
+        //dd($recipesByCategories);
 
 
         $ebookRecipes = $recipeRepository->findBy([
             'user' => $user,
             'ebook' => true,
         ]);
-
-        // dd($recipes);
 
         // Counting how many recipes selected in ebook
         $ebookRecipesCount = count($ebookRecipes);
