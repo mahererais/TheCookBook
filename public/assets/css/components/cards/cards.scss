@@ -9,9 +9,8 @@
     --border-width: 2px;
     --duration-transition: 0.2s;
     --function-transition: ease-in;
-    --function-exit-transition: ease-out;
 
-    --image-scale: 1.1; 
+    --image-scale: 1.05; 
     --translate-y: -3px;
     
     .tcb_card {
@@ -69,13 +68,13 @@
 
         &:hover {
             
-            transition: var(--duration-transition) var(--function-exit-transition);
+            transition: var(--duration-transition) var(--function-transition);
             box-shadow: 0 4px 7px 2px rgba($color: #000000, $alpha: 0.3);
             transform: translateY(var(--translate-y));
 
             
             img {
-                transition: var(--duration-transition) var(--function-exit-transition);
+                transition: var(--duration-transition) var(--function-transition);
                 transform: scale(1);
             }
         }
