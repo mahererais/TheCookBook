@@ -8,7 +8,6 @@
 
 	<h1 class="page_title">
 		Résultats de votre recherche</h1>
-	{# ! Dynamiser le titre de la recherche avec le(s) terme(s) de recherche #}
 
 	{% for recipe in recipes %}
 
@@ -46,6 +45,28 @@
 		</div>
 
 	{% endfor %}
+
+	{% for user in users %}
+
+		<div class="cards">
+
+			<div class="r_cards_container">
+
+				<img src="{{user.picture}}" alt="{{user.firstname}} {{user.lastname}}">
+
+				<div class="r_cards_content">
+					<h2>{{user.firstname}} {{user.lastname}}</h2>
+					<h3>chef {{user.experience}}</h3>
+					<div class="r_card_btn">
+						<a class="tcb_btn" href="{{ path('tcb_front_user_show', { 'slug' : user.slug}) }}">Voir le chef</a>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+	{% endfor %}
+
 
 	<button type="button" class="tcb_btn">Voir plus</button>
 
