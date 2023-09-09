@@ -47,9 +47,8 @@ class RecipeType extends AbstractType
                 'allow_delete' => true,
                 'by_reference' => false,
                 'constraints' => [
-                    new Length([
-                        'min' => 0,
-                        'minMessage' => 'Veuillez au moins saisir un ingrédient'
+                    new NotBlank([
+                        'message' => 'Veuillez au moins saisir un ingrédient'
                     ])
                 ],
                 "help" => "Saisir au moins un ingrédient",
@@ -63,9 +62,8 @@ class RecipeType extends AbstractType
                 'allow_delete' => true,
                 'by_reference' => false,
                 'constraints' => [
-                    new Length([
-                        'min' => 1,
-                        'minMessage' => 'Veuillez saisir une étape'
+                    new NotBlank([
+                        'message' => 'Veuillez saisir une étape'
                     ])
                 ],
                 "help" => "Saisir au moins une étape"

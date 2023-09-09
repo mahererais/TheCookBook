@@ -57,7 +57,6 @@ class RegistrationFormType extends AbstractType
                     'attr' => [
                          'autocomplete' => 'new-password',
                          "placeholder" => "Entrez votre mot de passe",
-                         'minlength' => 6,
                          "tabindex" => 0,
                      ],
                     'constraints' => [

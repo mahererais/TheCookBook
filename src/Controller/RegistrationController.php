@@ -55,7 +55,7 @@ class RegistrationController extends AbstractController
 
             // ! l'envoie de mail de fonctionne plus (compte mailjet suspendu)
             // ! je valide le user inscrit directement sans passer par le mail pour le moment
-            $user->setIsVerified(true);
+            // ! $user->setIsVerified(true);
             $entityManager->persist($user);
             $entityManager->flush();
 
@@ -64,18 +64,18 @@ class RegistrationController extends AbstractController
 
             // do anything else you need here, like send an email
             // generate a signed url and email it to the user
-            // $this->emailVerifier->sendEmailConfirmation(
-            //     'tcb_verify_email',
-            //     $user,
-            //     (new TemplatedEmail())
-            //         ->from(new Address('thecookbook.no.reply@gmail.com', 'The Cook Book (Bot-No-Reply)'))
-            //         ->to($user->getEmail())
-            //         ->subject('Veuillez confirmer votre Email')
-            //         ->htmlTemplate('registration/confirmation_email.html.twig')
-            //         ->context([
-            //             "firstname" => $user->getFirstname(),
-            //         ])
-            // );
+            $this->emailVerifier->sendEmailConfirmation(
+                'tcb_verify_email',
+                $user,
+                (new TemplatedEmail())
+                    ->from(new Address('thecookbook.no.reply@gmail.com', 'The Cook Book (Bot-No-Reply)'))
+                    ->to($user->getEmail())
+                    ->subject('Veuillez confirmer votre Email')
+                    ->htmlTemplate('registration/confirmation_email.html.twig')
+                    ->context([
+                        "firstname" => $user->getFirstname(),
+                    ])
+            );
 
             return $this->redirectToRoute('tcb_front_security_login');
         }
