@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Regex;
 
 class UserType extends AbstractType
 {
@@ -61,15 +62,22 @@ class UserType extends AbstractType
                     "rows" => 5,
                 ]
             ])
-            ->add('password', PasswordType::class, [
+            ->add('plainPassword', PasswordType::class, [
                 "label" => "Mot de passe",
                 "attr" => [
                     "placeholder" => "Modifiez votre mot de passe",
-                    'autocomplete' => 'current-password',
+                    // 'autocomplete' => 'current-password',
                     // 'autocomplete' => 'new-password',
                 ],
+                'constraints' => [
+                    // = https://symfony.com/doc/5.4/reference/constraints/Regex.html
+                    new Regex([
+                        'pattern' => '/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.* )(?=.*[^a-zA-Z0-9]).{8,16}$/',
+                        'message' => 'Votre mot de passe "{{ value }}" n\'est pas sécurisé',
+                    ])
+                ],
                 //'hash_property_path' => 'password', // ! The hash_property_path option was introduced in Symfony 6.2.
-                "mapped" => true, // unmapped means that this field is not associated to any entity property
+                "mapped" => false, // unmapped means that this field is not associated to any entity property
                 "required" => true, // make it optional so you don't have to re-upload the PDF file every time you edit user profile
                 "help" => "Le mot de passe doit contenir entre 8 et 16 caractères, avec une majuscule, une minuscule et caractère spécial",
                 ])
