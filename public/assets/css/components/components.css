@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 @import './form.css';
 =======
 @import './form/form.css';
@@ -8,6 +9,8 @@
 >>>>>>> develop
 =======
 @import './pagination/pagination.css';
+>>>>>>> develop
+=======
 >>>>>>> develop
 a.tcb_btn_arrow_top {
   width: 3rem;
@@ -55,6 +58,31 @@ a {
 .tcb_btn:hover {
   background-color: white !important;
   color: var(--main-text-color) !important;
+  border-color: var(--main-color);
+}
+.tcb_btn:hover:hover.tcb_delete_color {
+  background-color: white !important;
+  color: var(--corail-color) !important;
+  border-color: var(--corail-color) !important;
+}
+.tcb_btn.tcb_delete_color {
+  background-color: var(--corail-color) !important;
+}
+
+.tcb_fa_icon {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  border: none;
+  width: 100%;
+  border-radius: 0;
+  padding-block: 0.35rem;
+  font-size: 1rem;
+  color: white !important;
+  background-color: rgba(0, 0, 0, 0.5019607843) !important;
+}
+.tcb_fa_icon:hover {
+  color: var(--corail-color);
 }
 
 .heart_icon {
@@ -139,6 +167,7 @@ a.login_btn::after {
   border: 2px solid white;
   border-radius: 999px;
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 
 a > img {
@@ -147,5 +176,307 @@ a > img {
   width: 100%;
   height: 100%;
 =======
+>>>>>>> develop
+=======
+}
+
+form .invalid-feedback {
+  font-style: italic;
+  font-weight: 500;
+  font-size: 0.6em;
+  color: var(--corail-color);
+  margin-left: 0.8em;
+}
+form .help-text {
+  font-size: 0.5em;
+  opacity: 0.8;
+  font-weight: 500;
+  margin-left: 1em;
+  font-style: italic;
+}
+form input:invalid {
+  border-color: var(--corail-color);
+}
+form input:valid {
+  border-color: var(--main-color);
+}
+form button[type=submit] {
+  background-color: var(--main-color);
+  color: white;
+  padding: 0.5em;
+  border: 2px solid var(--main-color);
+  font-size: 1.1em;
+  width: 100%;
+  margin-top: 1.5em;
+  border-radius: 0.5em;
+  cursor: pointer;
+  transition: 0.2s;
+}
+form button[type=submit]:hover {
+  background-color: var(--secondary-color);
+  color: var(--main-color);
+  border-color: var(--main-color) !important;
+}
+form button[type=submit]:focus {
+  border-color: var(--main-color) !important;
+  color: var(--main-color) !important;
+  background-color: white;
+  box-shadow: 0 0 0 0.25rem rgba(7, 137, 117, 0.5) !important;
+}
+form input[type=checkbox] {
+  accent-color: red !important;
+  transform: translateY(3px);
+}
+form label[for=registration_form_agreeTerms] {
+  display: inline;
+  font-size: 0.6em;
+}
+form label,
+form input {
+  display: block;
+}
+form label,
+form .page_title_container {
+  width: 100%;
+  margin-top: 1.5em;
+}
+form label, form legend {
+  font-size: 0.9em;
+  font-weight: bold;
+}
+form input {
+  border: none;
+  border-bottom: 1px solid #ddd;
+  padding: 0.3em 0;
+  font-size: 0.9em;
+  margin-top: 0.8em;
+  padding-inline: 0.5em;
+  width: 100%;
+  background-color: var(--secondary-color);
+}
+form input:focus,
+form select:focus,
+form textarea:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.25rem rgba(7, 137, 117, 0.5) !important;
+}
+
+.search_container {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border-radius: 999px;
+  padding: 8px 10px;
+  border: 2px solid white;
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.8);
+}
+.search_container input[type=text] {
+  margin-left: 5px;
+  margin-block: 0;
+  background-color: transparent;
+  border: none;
+  font-family: "Poppins", sans-serif;
+  padding: 0;
+  max-width: 200px;
+}
+.search_container input[type=text]:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+.search_container:has(input:focus) {
+  border-color: --main-color;
+}
+.search_container i {
+  color: var(--main-text-color);
+}
+
+.tcb_sideBar {
+  width: 240px !important;
+  --aside-container-radius: 0.5rem;
+  box-shadow: 0 0 12px -2px rgb(0, 0, 0);
+  height: -moz-fit-content;
+  height: fit-content;
+}
+.tcb_sideBar ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  gap: 0;
+  background-color: var(--main-color);
+  text-align: center;
+  border: 2px solid var(--border-color);
+}
+.tcb_sideBar ul li {
+  position: relative;
+  width: 100%;
+  padding: 0.5em;
+  border: 2px solid var(--main-color);
+  cursor: pointer;
+  display: flex;
+}
+.tcb_sideBar ul li a {
+  width: 100%;
+}
+.tcb_sideBar ul li:hover {
+  background-color: white;
+}
+.tcb_sideBar ul li:hover a {
+  color: var(--main-text-color);
+}
+.tcb_sideBar ul li:last-child {
+  background-color: var(--corail-color);
+  border-color: var(--corail-color);
+}
+.tcb_sideBar ul li:last-child:hover {
+  background-color: white;
+}
+.tcb_sideBar ul li:last-child:hover a {
+  color: var(--corail-color);
+}
+.tcb_sideBar ul li:last-child:before {
+  content: unset;
+}
+.tcb_sideBar ul li:before {
+  content: "";
+  display: block;
+  --size: 12px;
+  width: var(--size);
+  height: var(--size);
+  background-color: white;
+  border-radius: 50%;
+  align-self: center;
+  box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.7);
+}
+
+@media screen and (max-width: 767px) {
+  .tcb_sideBar {
+    width: 100% !important;
+  }
+}
+.tcb_pagnination {
+  --bs-pagination-border-radius: 0.375rem !important;
+  width: -moz-fit-content;
+  width: fit-content;
+  border-radius: var(--bs-pagination-border-radius);
+  box-shadow: 0 0 10px -3px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+.tcb_pagnination .pagination {
+  gap: 0em;
+  --bs-pagination-color: var(--main-color) !important;
+  --bs-pagination-bg: white !important;
+  --bs-pagination-border-color: white !important;
+  --bs-pagination-hover-border-color: var(--main-color) !important;
+  --bs-pagination-active-bg: var(--main-color) !important;
+  --bs-pagination-active-color: var(--secondary-color) !important;
+  --bs-pagination-hover-color: var(--main-color) !important;
+  --bs-pagination-active-border-color: transparent;
+  --bs-pagination-disabled-color: var(--main-color) !important;
+  --bs-pagination-disabled-bg: var(--secondaty-color) !important;
+  --bs-pagination-disabled-border-color: var(--main-color) !important;
+  --bs-pagination-border-width: 2px;
+}
+.tcb_pagnination .pagination .page-item:not(:first-child) .page-link {
+  margin-left: 0;
+}
+.tcb_pagnination .pagination .page-item:first-child .page-link,
+.tcb_pagnination .pagination .page-item:last-child .page-link {
+  transform: scale(1.8);
+  z-index: 0;
+}
+
+.categories_container,
+.profile_recipes_container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  --border-width: 2px;
+  --duration-transition: .2s;
+  --function-transition: ease-in;
+  --function-exit-transition: ease-out;
+  --image-scale: 1.1;
+  --translate-y: -3px;
+}
+.categories_container .tcb_card,
+.profile_recipes_container .tcb_card {
+  position: relative;
+  overflow: hidden;
+  background-color: white;
+  border: var(--border-width) solid white;
+  border-radius: 0.75rem;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  transition: var(--duration-transition) var(--function-transition);
+}
+.categories_container .tcb_card img,
+.profile_recipes_container .tcb_card img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  transition: var(--duration-transition) var(--function-transition);
+  transform: scale(var(--image-scale));
+}
+.categories_container .tcb_card h2, .categories_container .tcb_card h3, .categories_container .tcb_card h4, .categories_container .tcb_card h5,
+.profile_recipes_container .tcb_card h2,
+.profile_recipes_container .tcb_card h3,
+.profile_recipes_container .tcb_card h4,
+.profile_recipes_container .tcb_card h5 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5019607843);
+  --color: white;
+  border-top: calc(var(--border-width) / 2) solid var(--color);
+  color: var(--color);
+  padding-block: 1rem;
+  text-align: center;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.5);
+  -webkit-backdrop-filter: var(--backdrop-filter-blur);
+          backdrop-filter: var(--backdrop-filter-blur);
+}
+.categories_container .tcb_card .card_icons,
+.profile_recipes_container .tcb_card .card_icons {
+  position: absolute;
+  top: -30px;
+  left: 0;
+  right: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  transition: var(--duration-transition) var(--function-transition);
+}
+.categories_container .tcb_card:hover,
+.profile_recipes_container .tcb_card:hover {
+  transition: var(--duration-transition) var(--function-exit-transition);
+  box-shadow: 0 4px 7px 2px rgba(0, 0, 0, 0.3);
+  transform: translateY(var(--translate-y));
+}
+.categories_container .tcb_card:hover img,
+.profile_recipes_container .tcb_card:hover img {
+  transition: var(--duration-transition) var(--function-exit-transition);
+  transform: scale(1);
+}
+.categories_container .tcb_card:hover .card_icons,
+.profile_recipes_container .tcb_card:hover .card_icons {
+  top: 0;
+}
+
+.profile_recipes_container .tcb_card img {
+  aspect-ratio: 16/12;
+}
+.profile_recipes_container .tcb_card h4, .profile_recipes_container .tcb_card h5 {
+  padding-block: 0.75rem;
+}
+
+@media screen and (min-width: 768px) {
+  .categories_container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (min-width: 576px) {
+  .profile_recipes_container {
+    grid-template-columns: repeat(2, 1fr);
+  }
 >>>>>>> develop
 }/*# sourceMappingURL=components.css.map */

@@ -89,8 +89,23 @@ class CategoryController extends AbstractController
         
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $imageCloudUrl =  $request->get("cloudinaryUrl");
-            $category->setPicture($imageCloudUrl);
+            //= I get the url of the image
+            $picture = $request->attributes->get('category')->getPicture();
+            // = I get the url of the coudinary image
+            $imageCloudUrl =  $request->get("cloudinaryUrl"); 
+            //= if the url of the image doesn't exist
+            if(!$picture) {
+                // = I add the upload
+                $category->setPicture($imageCloudUrl);
+            // = if the url of the image exist and the url of cloudinary image doesn't exist
+            }elseif ($picture && !$imageCloudUrl) {
+                // = I leave the url of the existing image
+                $category->setPicture($picture);
+            // = if the url of the image and the url of the cloudinary image exist 
+            }else {
+                // = I add the upload
+                $category->setPicture($imageCloudUrl);
+            }
 
             $entityManager->persist($category);
             $entityManager->flush();

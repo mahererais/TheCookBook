@@ -49,14 +49,22 @@ class RecipeController extends AbstractController
     /**
      * @Route("/recipe/query", name="tcb_front_recipe_search")
      */
-    public function search(RecipeRepository $recipeRepository, Request $request): Response
+    public function search(PaginatorInterface $paginator, RecipeRepository $recipeRepository, UserRepository $userRepository, Request $request): Response
     {
         $recipes = $recipeRepository->searchRecipe($request->get("search"));
+        $users = $userRepository->searchUser($request->get("search"));
 
-        // dd($recipes);
+        $recipesUsers = $paginator->paginate(
+            array_merge($recipes, $users), // = my datas
+            $request->query->getInt('page', 1), // = get page number in request url, and set page default to "1"
+            5 // = limit by page
+        );
+         // dd($users);
 
         return $this->render('Front/recipe/search.html.twig', [
-            'recipes' => $recipes,
+            'recipesUsers' => $recipesUsers,
+            // 'recipes' => $recipes,
+            // 'users' => $users,
         ]);
     }
 
@@ -108,21 +116,31 @@ class RecipeController extends AbstractController
         $form = $this->createForm(RecipeType::class, $recipe);
         $form->handleRequest($request);
 
-        // dd($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
-
-            $imageCloudUrl =  $request->get("cloudinaryUrl");
-            $recipe->setPicture($imageCloudUrl);
             
+            //= I get the url of the image
+            $picture = $request->attributes->get('recipe')->getPicture();
+            // = I get the url of the coudinary image
+            $imageCloudUrl =  $request->get("cloudinaryUrl"); 
+            //= if the url of the image doesn't exist
+            if(!$picture) {
+                // = I add the upload
+                $recipe->setPicture($imageCloudUrl);
+            // = if the url of the image exist and the url of cloudinary image doesn't exist
+            }elseif ($picture && !$imageCloudUrl) {
+                // = I leave the url of the existing image
+                $recipe->setPicture($picture);
+            // = if the url of the image and the url of the cloudinary image exist 
+            }else {
+                // = I add the upload
+                $recipe->setPicture($imageCloudUrl);
+            }
+
             $entityManager->persist($recipe);
             $entityManager->flush();
 
-            // ! flash message to add
             $this->addFlash("success", "La recette a été modifiée.");
 
-            //dd($slug);
-            
             return $this->redirectToRoute('tcb_front_recipe_show', ['slug' => $recipe->getSlug()]);
         }
 
@@ -170,7 +188,6 @@ class RecipeController extends AbstractController
         $recipe = $this->entityManager->getRepository(Recipe::class)->findOneBy(['slug' => $slug]);
         $user = $userRepository->findAll();
 
-        // dd($recipe);
         return $this->render('Front/recipe/show.html.twig', [
             'recipe' => $recipe,
             'user' => $user

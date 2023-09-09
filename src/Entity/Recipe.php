@@ -6,6 +6,7 @@ use App\Repository\RecipeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -84,7 +85,6 @@ class Recipe
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="recipes")
      * @ORM\JoinColumn(nullable=false)
-     * 
      */
     private $user;
 
@@ -98,6 +98,8 @@ class Recipe
      * @ORM\ManyToMany(targetEntity=User::class, mappedBy="favorites")
      */
     private $favorites;
+
+    private $request;
 
     public function __construct()
     {
@@ -123,10 +125,13 @@ class Recipe
 
     public function getPicture(): ?string
     {
+        if (empty($this->picture))
+            return "https://zupimages.net/up/23/36/58jq.png";
+
         return $this->picture;
     }
 
-    public function setPicture(string $picture): self
+    public function setPicture(string $picture = "https://zupimages.net/up/23/36/58jq.png"): self
     {
         $this->picture = $picture;
 

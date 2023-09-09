@@ -56,10 +56,10 @@
 		{% endblock %}
 
 		{% block content %}
-			<div class="profile-container mt-5">
+			<div class="profile-container w-100">
 				<div class="row">
-					<h2>Profil de
-						{{ user.firstname }}</h2>
+					<h1>Profil de {{ user.firstname }}</h1>
+					
 					<div class="col-md-4">
 					{% if user.picture %}
 						<img src="{{user.picture}}" alt="{{user.firstname}} {{user.lastname}}">

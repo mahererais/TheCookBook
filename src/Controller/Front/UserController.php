@@ -51,9 +51,15 @@ class UserController extends AbstractController
     /**
      * @Route("/user/query", name="tcb_front_user_search")
      */
-    public function search(UserRepository $userRepository, Request $request): Response
+    public function search(PaginatorInterface $paginator, UserRepository $userRepository, Request $request): Response
     {
         $users = $userRepository->searchUser($request->get("search"));
+
+        $users = $paginator->paginate(
+            $users, // = my datas
+            $request->query->getInt('page', 1), // = get page number in request url, and set page default to "1"
+            2 // = limit by page
+        );
 
         return $this->render('Front/user/search.html.twig', [
             'users' => $users,
@@ -67,7 +73,6 @@ class UserController extends AbstractController
     {
         $recipe = $this->entityManager->getRepository(User::class)->findOneBy(['slug' => $slug]);
 
-        // dd($recipe);
         return $this->render('Front/user/show.html.twig', [
             'user' => $user,
         ]);
@@ -93,11 +98,21 @@ class UserController extends AbstractController
                     )
                 );
             }
-            // I get the url of the image if it exists
-            $picture = $request->attributes->get('user')->getPicture(); 
-            // if the url of the image doesn't exist, I add the upload
+            //= I get the url of the image
+            $picture = $request->attributes->get('user')->getPicture();
+            // = I get the url of the coudinary image
+            $imageCloudUrl =  $request->get("cloudinaryUrl"); 
+            //= if the url of the image doesn't exist
             if(!$picture) {
-                $imageCloudUrl =  $request->get("cloudinaryUrl");
+                // = I add the upload
+                $user->setPicture($imageCloudUrl);
+            // = if the url of the image exist and the url of cloudinary image doesn't exist
+            }elseif ($picture && !$imageCloudUrl) {
+                // = I leave the url of the existing image
+                $user->setPicture($picture);
+            // = if the url of the image and the url of the cloudinary image exist 
+            }else {
+                // = I add the upload
                 $user->setPicture($imageCloudUrl);
             }
 
@@ -131,14 +146,23 @@ class UserController extends AbstractController
         ]);
     }
 
-    /**
+    /** Get the recipes of a logged user
      * @Route("/profile/{slug}/recipes", name="tcb_front_user_getRecipesByUserLog")
      */
-    public function getRecipesByUserLog(Request $request, EntityManagerInterface $entityManager, User $user, Security $security): Response
+    public function getRecipesByUserLog(Request $request, RecipeRepository $recipeRepository, User $user, Security $security): Response
     {
         $this->denyAccessUnlessGranted('PROFILE_ACCESS', $user);
+        $recipes = $this->getUser()->getRecipes();
+
+        $userRecipesByCategory = [];
+        foreach ($recipes as $recipe) {
+            $categoryTitle = $recipe->getCategory()->getTitle();
+            $userRecipesByCategory[$categoryTitle][] = $recipe;
+        }
+        ksort($userRecipesByCategory);
+
         return $this->render('Front/user/recipes.html.twig', [
-            'user' => $user,
+            'userRecipesByCategory' => $userRecipesByCategory,
         ]);
     }
 
@@ -151,11 +175,20 @@ class UserController extends AbstractController
         $ebookRecipes = $recipeRepository->findBy([
             'user' => $user,
             'ebook' => true,
-        ]);
+        ],  ['category' => 'ASC']);
+
+        $recipesByCategories = [];
+
+        // = for each recipe of the array of categories
+        foreach ($ebookRecipes as $recipe) {
+      
+           $recipesByCategories[$recipe->getCategory()->getTitle()][] = $recipe;
+        }
 
         return $this->render('Front/user/ebook.html.twig', [
             'user' => $user,
-            'ebookRecipes' => $ebookRecipes
+            'ebookRecipes' => $recipesByCategories,
+        
         ]);
     }
 

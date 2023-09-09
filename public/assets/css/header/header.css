@@ -1,9 +1,9 @@
 header {
   position: sticky;
   top: 0;
-  -webkit-backdrop-filter: blur(5px);
-          backdrop-filter: blur(5px);
-  background-color: var(--main-color-header);
+  -webkit-backdrop-filter: var(--backdrop-filter-blur);
+          backdrop-filter: var(--backdrop-filter-blur);
+  background-color: var(--main-color-transparent);
   border-bottom: 2px solid var(--border-color);
   box-shadow: 0 0 12px -2px rgb(0, 0, 0);
   z-index: 10;
@@ -113,7 +113,7 @@ header .header_container .right_bar_container .fa-user {
     font-size: 1.5rem;
   }
   header .header_container nav ul li:last-child {
-    display: unset;
+    display: contents;
   }
   header .header_container a.logo {
     --size: 50px;
@@ -159,7 +159,6 @@ ul li {
   list-style: none;
   position: relative;
   overflow: hidden;
-  transition: 0.2s;
 }
 ul li > a {
   text-decoration: none;

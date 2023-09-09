@@ -5,11 +5,13 @@
 :root {
     --container-width: 100%;
     --main-color: #F55E51;
-    --main-color-header: #F55E51E0;
+    --main-color-transparent: #F55E51E0;
     --secondary-color: #f9f9f9;
     --main-text-color: #3F3735;
     --container-padding: 1rem 1.5rem;
     --border-color: #FFFFFF;
+
+    --backdrop-filter-blur: blur(3px);
 
     // ! variable global Boostrap
     //.btn-primary {
@@ -24,7 +26,11 @@
         --bs-btn-active-color: white;
         --bs-btn-active-border-color: rgb(124, 32, 32);
 
+        --bs-btn-hover-border-color: var(--main-color)!important;
+        
         --bs-link-color-rgb: #F55E51;
+        --bs-link-color-rgb: var(--main-text-color)!important;
+        --bs-link-hover-color-rgb: var(--main-text-color)!important
     //}
 }
 
@@ -40,6 +46,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    color: var(--main-text-color);
 }
 
 
@@ -47,11 +54,11 @@ body {
 // @import url("./header/header.css");
 // @import url("./footer/footer.css");
 
-@import '../header/header.css';
-@import '../footer/footer.css';
-@import '../components/components.css';
+@import '../header/header.scss';
+@import '../footer/footer.scss';
+@import '../components/components.scss';
 
-@import '../front/recipe_show/recipe_show.css';
+@import '../front/recipe_show/recipe_show.scss';
 
 /* Réduction de la largeur totale du tableau de la liste de recettes dans admin */
 .table {

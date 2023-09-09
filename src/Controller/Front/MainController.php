@@ -27,12 +27,12 @@ class MainController extends AbstractController
     {
         $categories = $categoryRepository->findAll();
 
+
         $categoryRecipes = [];
         foreach ($categories as $category) {
             $randomRecipes = $recipeRepository->findRandomRecipesByCategory($category, 4); // Replace with your method to fetch random recipes
             $categoryRecipes[$category->getTitle()] = $randomRecipes;
         }
-        //dd($categories);
 
         return $this->render('Front/home/index.html.twig', [
             "categories" => $categories,
@@ -59,13 +59,12 @@ class MainController extends AbstractController
     /**
      * @Route("/pdf/{id}", name="tcb_front_main_pdf", requirements={"id"="\d+"})
      */
-
     public function pdfAction(Pdf $knpSnappyPdf, Recipe $recipe, $id): Response
     {
         $recipe = $this->entityManager->getRepository(Recipe::class)->findOneBy(['id' => $id]);
-        //dd($recipe);
+
         $html = $this->renderView('Front/pdf/recipe.html.twig', [
-           "recipe" => $recipe
+            "recipe" => $recipe
         ]);
         $knpSnappyPdf->setOption('enable-local-file-access', true);
 
@@ -76,58 +75,78 @@ class MainController extends AbstractController
     }
 
     /**
+     * download ebook on pdf format
+     * 
      * @Route("/{slug}/ebook/", name="tcb_front_main_ebook")
      */
-
-    public function ebook(Pdf $knpSnappyPdf, Request $request, EntityManagerInterface $entityManager, User $user, Security $security, RecipeRepository $recipeRepository): Response
+    public function ebook(Pdf $knpSnappyPdf, User $user, RecipeRepository $recipeRepository): Response
     {
         $this->denyAccessUnlessGranted('PROFILE_ACCESS', $user);
-        //$cssService = $this->getParameter('CSSLINK');
-        $recipe = $this->entityManager->getRepository(Recipe::class)->getEbook($user);        
 
+
+        // = get list of categories
+        // $recipes = $recipeRepository->getEbook($user);
         $ebookRecipes = $recipeRepository->findBy([
             'user' => $user,
             'ebook' => true,
         ]);
 
-        $html = $this->renderView('Front/pdf/ebook.html.twig', [
-            "recipe" => $recipe,
-            'ebookRecipes' => $ebookRecipes
-         ]);
+        // Counting how many recipes selected in ebook
+        $ebookRecipesCount = count($ebookRecipes);
 
-        $knpSnappyPdf->setOption('enable-local-file-access', true);
+        // conditionning render
+        if ($ebookRecipesCount > 0) {
 
-         //       return $this->render('Front/TestsWK/ebook.html.twig', [
-         // 'controller_name' => 'MainController',
-         // 'recipe' => $recipe,
-         // 'ebookRecipes' => $ebookRecipes
-        //]);
+            $html = $this->renderView('Front/pdf/ebook.html.twig', [
+                "recipes" => $ebookRecipes,
+                'ebookRecipes' => $ebookRecipes
+            ]);
 
-        //dd($ebookRecipes);
+            $knpSnappyPdf->setOption('enable-local-file-access', true);
+
+            //       return $this->render('Front/TestsWK/ebook.html.twig', [
+            // 'controller_name' => 'MainController',
+            // 'recipe' => $recipe,
+            // 'ebookRecipes' => $ebookRecipes
+            //]);
 
 
-        return new PdfResponse(
-            $knpSnappyPdf->getOutputFromHtml($html),
-            'ebook.pdf',
-        );
+            return new PdfResponse(
+                $knpSnappyPdf->getOutputFromHtml($html),
+                'ebook.pdf',
+            );
+        } else {
+            return $this->render('Front/user/ebook_empty.html.twig');
+        }
     }
 
     /**
      * @Route("/legal-mentions", name="tcb_front_main_legalMentions")
      */
 
-     public function legalMentions(){ 
+    public function legalMentions()
+    {
 
         return $this->render('Front/home/legal_mentions.html.twig');
-     }
+    }
 
-     /**
+    /**
      * @Route("/about", name="tcb_front_main_about")
      */
 
-     public function about(){
-        
-        return $this->render('Front/home/about.html.twig');
-     }
+    public function about()
+    {
 
+        return $this->render('Front/home/about.html.twig');
+    }
+
+    /**
+     * @Route("/cgu", name="tcb_front_main_cgu")
+     */
+
+     public function cgu()
+     {
+ 
+         return $this->render('Front/home/cgu.html.twig');
+     }
 }

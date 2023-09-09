@@ -105,20 +105,20 @@ class RecipeRepository extends ServiceEntityRepository
     }
 
     /**
-    * @return array[] Returns an array of user objects
-    * @param string|null $string to find in users
+    * @param string|null $string to find in users    
+    * @return array[] Returns an array of recipes objects
     */
-    public function getEbook(User $user)
-    {
-        return $this->createQueryBuilder('e')
-        ->join('e.user', 'u')
-        ->andWhere('e.ebook = :ebook') 
-        ->setParameter('ebook', '1')
-        ->andWhere('u.id = :user') 
-        ->setParameter('user', $user)
-        ->getQuery()
-        ->getResult();
-    }
+    // public function getEbook(User $user)
+    // {
+    //     return $this->createQueryBuilder('e')
+    //     ->join('e.user', 'u')
+    //     ->andWhere('e.ebook = :ebook') 
+    //     ->setParameter('ebook', '1')
+    //     ->andWhere('u.id = :user') 
+    //     ->setParameter('user', $user)
+    //     ->getQuery()
+    //     ->getResult();
+    // }
 
     /**
      * find public recipes from user (not admin)  

@@ -86,8 +86,8 @@ class AppFixtures extends Fixture
             $user->setRoles([$userRole]);
             $user->setFirstname($userName);
             $user->setLastname($faker->lastName);
-            $user->setPicture(("https://loremflickr.com/450/300/cat?lock=" . mt_rand(1, 120) . ""));
-            //$user->setPicture($faker->getRandomAvatar());
+            // $user->setPicture(("https://loremflickr.com/450/300/cat?lock=" . mt_rand(1, 120) . ""));
+            $user->setPicture($faker->getRandomAvatar());
             $user->setSpeciality($faker->sentence(3));
             $user->setSlug($this->slugger->slug($user->getFirstname()));
             $user->setIsVerified(true);
@@ -136,7 +136,7 @@ class AppFixtures extends Fixture
             $recipe->setIngredients($faker->getIngregients());
 
             // randomize either true or false of the Ebook boolean
-            $randomEbook = (bool) mt_rand(0, 1);
+            $randomEbook = mt_rand(0, 1);
             $recipe->setEbook($randomEbook);
 
             // randomize either public or private status

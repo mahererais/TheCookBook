@@ -11,9 +11,10 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
+
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
- * @UniqueEntity(fields={"email"}, message="Cet email est déjà utilisé")
+ *@UniqueEntity(fields={"email"}, message="")
  * 
  */
 class User implements UserInterface, PasswordAuthenticatedUserInterface
@@ -39,9 +40,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $roles = [];
 
+    // = https://symfony.com/doc/5.4/reference/constraints/Regex.html
+    // = https://stackoverflow.com/questions/42467243/regex-strong-password-the-special-characters
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+     * @Assert\Regex("/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.* )(?=.*[^a-zA-Z0-9]).{8,16}$/")
      */
     private $password;
 
@@ -208,7 +212,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->firstname;
     }
 
-    public function setFirstname(string $firstname): self
+    public function setFirstname(?string $firstname): self
     {
         $this->firstname = $firstname;
 

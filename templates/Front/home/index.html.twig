@@ -10,61 +10,65 @@
 	</h1>
 
 	{% for category, recipes in categoryRecipes %}
+		{# =if no recipes in a category#}
+		{% if recipes is not empty %}
+			<div class="cards">
 
-		<div class="cards">
-
-			<div class="cards_carrousel_container">
-				<div class="cards_carrousel">
-					{% for recipe in recipes %}
-						<div class="cards_container">
-							<img src="{{ recipe.getPicture() }}" alt="{{ recipe.title() }}">
-							<div class="cards_content">
-								<h2>{{ recipe.title() }}</h2>
-								<p>proposée par
-									<a href="{{ path('tcb_front_user_show', { 'slug' : recipe.user.slug}) }}">{{recipe.user.firstname}}
-										{{recipe.user.lastname}}</a>
-								</p>
-								<h3>Ingrédients :</h3>
-								<ul>
-									{% for ingredient in recipe.ingredients|slice(0, 2) %}
-										<li>{{ ingredient }}</li>
-									{% endfor %}
-								</ul>
+				<div class="cards_carrousel_container">
+					<div class="cards_carrousel">
+						{% for recipe in recipes %}
+							<div class="cards_container">
+								<img src="{{ recipe.getPicture() }}" alt="{{ recipe.title() }}">
+								<div class="cards_content">
+									<h2>{{ recipe.title() }}</h2>
+									<p>proposée par
+										<a href="{{ path('tcb_front_user_show', { 'slug' : recipe.user.slug}) }}">{{recipe.user.firstname}}
+											{{recipe.user.lastname}}</a>
+									</p>
+									<h3>Ingrédients :</h3>
+									<ul>
+										{% for ingredient in recipe.ingredients|slice(0, 2) %}
+											<li>{{ ingredient }}</li>
+										{% endfor %}
+									</ul>
 
 
-								<h3>Préparation:</h3>
-								<p class="card_presentation">
+									<h3>Préparation:</h3>
+									<p class="card_presentation">
 
-									<li>{{ recipe.steps|first|slice(0, 50) }}</li>
+										<li>{{ recipe.steps|first|slice(0, 50) }}</li>
 
-								</p>
+									</p>
 
-								<div
-									class="card_btn">
+									<div
+										class="card_btn">
 
-									{# inclusion of the toogle button to switch to favorite recipe  #}
-									{% include "Front/fragments/_toggle_favorite_button.html.twig" %}
+										{# inclusion of the toogle button to switch to favorite recipe  #}
+										{% include "Front/fragments/_toggle_favorite_button.html.twig" %}
 
-									<a class="tcb_btn" href="{{ path('tcb_front_recipe_show', { 'slug' : recipe.slug}) }}">Voir la recette</a>
+										<a class="tcb_btn" href="{{ path('tcb_front_recipe_show', { 'slug' : recipe.slug}) }}">Voir la recette</a>
+									</div>
 								</div>
 							</div>
-						</div>
-					{% endfor %}
+						{% endfor %}
+					</div>
+				</div>
+
+				<a class="tcb_btn_caroussel tcb_btn_caroussel_left">
+					<i class="fas fa-arrow-up"></i>
+				</a>
+				<a class="tcb_btn_caroussel tcb_btn_caroussel_right">
+					<i class="fas fa-arrow-up"></i>
+				</a>
+				<div class="card_title">
+					<a href="{{path('tcb_front_category_show', { 'slug' : recipes[0].category.slug}) }}">{{ category }}
+					</a>
+					<p style="font-size:0.6em;">
+						<a href="{{path('tcb_front_category_show', { 'slug' : recipes[0].category.slug}) }}" style="color: var(--main-color)">Voir tout >></a>
+					</p>
 				</div>
 			</div>
+			{% endif %}
+		{% endfor %}
 
-			<a class="tcb_btn_caroussel tcb_btn_caroussel_left">
-				<i class="fas fa-arrow-up"></i>
-			</a>
-			<a class="tcb_btn_caroussel tcb_btn_caroussel_right">
-				<i class="fas fa-arrow-up"></i>
-			</a>
-			<div class="card_title">
-				<a style="color:#000000" href="{{path('tcb_front_category_show', { 'slug' : recipes[0].category.slug}) }}">{{ category }} </a>
-				<p style="font-size:0.6em;"><a style="color:#000000;" href="{{path('tcb_front_category_show', { 'slug' : recipes[0].category.slug}) }}">Voir tout >></a></p>
-			</div>
-		</div>
-	{% endfor %}
-
-{% endblock %}
-
+	{% endblock %}

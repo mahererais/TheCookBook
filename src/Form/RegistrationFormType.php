@@ -65,19 +65,19 @@ class RegistrationFormType extends AbstractType
                             'message' => 'Veuillez entrer un mot de passe',
                         ]),
                         new Length([
-                            'min' => 6,
+                            'min' => 8,
                             //'minMessage' => 'Your password should be at least {{ limit }} characters',
                             // max length allowed by Symfony for security reasons
                             'max' => 4096,
                         ]),
                     ],
-                    "help" => "le mot de passe doit contenir au moins 6 caractéres"
+                    "help" => "Le mot de passe doit contenir entre 8 et 16 caractères, avec une majuscule, une minuscule et caractère spécial"
                 ], 
                 'second_options' => [
                     'attr' => [
                         'autocomplete' => 'new-password',
                         "placeholder" => "Entrez à nouveau votre mot de passe",
-                        'minlength' => 6,
+                        'minlength' => 8,
                         "tabindex" => 0,
                     ],
                     'label' => 'Répéter',

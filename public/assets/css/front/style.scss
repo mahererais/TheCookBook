@@ -6,12 +6,14 @@
 :root {
     --container-width: 1124px;
     --main-color: #078975;
-    --main-color-header: #078975E0;
+    --main-color-transparent: #078975E0;
     --secondary-color: #f9f9f9;
     --main-text-color: #3F3735;
+    --main-text-hover-color: #3f3735E0;
     --corail-color: #F55E51;
     --container-padding: 1rem 1.5rem;
     --border-color: #FFFFFF;
+    --backdrop-filter-blur: blur(3px);
 
 
     // * Boostrap color
@@ -26,8 +28,10 @@
     --bs-btn-active-color: white!important;
     --bs-btn-active-border-color: #077565!important;
 
-    --bs-btn-hover-border-color: var(--main-color)!important
+    --bs-btn-hover-border-color: var(--main-color)!important;
 
+    --bs-link-color-rgb: var(--main-text-color)!important;
+    --bs-link-hover-color-rgb: var(--main-text-color)!important
 }
      
 
@@ -42,20 +46,20 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    color: var(--main-text-color)!important;
 }
 
-@import './about/about.css';
-@import './login/login.css';
-@import './recipes/recipes.css';
-@import './recipe_show/recipe_show.css';
-@import './homePage/homePage.css';
-@import './chefs/chefs.css';
-@import './categories/categories.css';
+@import './about/about.scss';
+@import './login/login.scss';
+@import './recipes/recipes.scss';
+@import './recipe_show/recipe_show.scss';
+@import './homePage/homePage.scss';
+@import './chefs/chefs.scss';
 
 
-@import '../header/header.css';
-@import '../footer/footer.css';
-@import '../components/components.css';
+@import '../header/header.scss';
+@import '../footer/footer.scss';
+@import '../components/components.scss';
 //@import '../general/general.scss';
 
 
