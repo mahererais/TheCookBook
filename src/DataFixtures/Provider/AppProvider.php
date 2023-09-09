@@ -30,7 +30,7 @@ class AppProvider
         ],
         [
             "title" => "Canapés au saumon",
-            "picture" => " https://cdn.pixabay.com/photo/2010/12/13/10/25/canape-2802_640.jpg",
+            "picture" => "https://cdn.pixabay.com/photo/2010/12/13/10/25/canape-2802_640.jpg",
         ],
         [
             "title" => "Poké bowl",
@@ -46,11 +46,11 @@ class AppProvider
         ],
         [
             "title" => "Pain perdu",
-            "picture" => " https://images.unsplash.com/photo-1484723091739-30a097e8f929?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTJ8fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=500&q=60",
+            "picture" => "https://images.unsplash.com/photo-1484723091739-30a097e8f929?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTJ8fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=500&q=60",
         ],
         [
             "title" => "Saumon et ses petits légumes",
-            "picture" => " https://images.unsplash.com/photo-1467003909585-2f8a72700288?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTF8fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=500&q=60",
+            "picture" => "https://images.unsplash.com/photo-1467003909585-2f8a72700288?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTF8fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=500&q=60",
         ],
 
         [

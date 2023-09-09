@@ -116,6 +116,8 @@ class RecipeController extends AbstractController
         $form = $this->createForm(RecipeType::class, $recipe);
         $form->handleRequest($request);
 
+        //dd($form);
+
         if ($form->isSubmitted() && $form->isValid()) {
             
             //= I get the url of the image

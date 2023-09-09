@@ -157,7 +157,7 @@ class UserController extends AbstractController
     public function getRecipesByUserLog(Request $request, RecipeRepository $recipeRepository, User $user, Security $security): Response
     {
         $this->denyAccessUnlessGranted('PROFILE_ACCESS', $user);
-        $recipes = $this->getUser()->getRecipes();
+        $recipes = $user->getRecipes();
 
         $userRecipesByCategory = [];
         foreach ($recipes as $recipe) {
