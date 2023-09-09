@@ -7,7 +7,7 @@ const App = {
     // Méthode d'initialisation de l'application
     init: function() {
 
-        console.log('App module initalisation => ok');
+        // ('App module initalisation => ok');
 
         // On va initialiser tous les modules qui doivent être lancés au chargement de la page
         

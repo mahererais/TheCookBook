@@ -49,14 +49,22 @@ class RecipeController extends AbstractController
     /**
      * @Route("/recipe/query", name="tcb_front_recipe_search")
      */
-    public function search(RecipeRepository $recipeRepository, Request $request): Response
+    public function search(PaginatorInterface $paginator, RecipeRepository $recipeRepository, UserRepository $userRepository, Request $request): Response
     {
         $recipes = $recipeRepository->searchRecipe($request->get("search"));
+        $users = $userRepository->searchUser($request->get("search"));
 
-        // dd($recipes);
+        $recipesUsers = $paginator->paginate(
+            array_merge($recipes, $users), // = my datas
+            $request->query->getInt('page', 1), // = get page number in request url, and set page default to "1"
+            5 // = limit by page
+        );
+         // dd($users);
 
         return $this->render('Front/recipe/search.html.twig', [
-            'recipes' => $recipes,
+            'recipesUsers' => $recipesUsers,
+            // 'recipes' => $recipes,
+            // 'users' => $users,
         ]);
     }
 
@@ -108,8 +116,6 @@ class RecipeController extends AbstractController
         $form = $this->createForm(RecipeType::class, $recipe);
         $form->handleRequest($request);
 
-        // dd($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             
             //= I get the url of the image
@@ -135,8 +141,6 @@ class RecipeController extends AbstractController
 
             $this->addFlash("success", "La recette a été modifiée.");
 
-            //dd($slug);
-            
             return $this->redirectToRoute('tcb_front_recipe_show', ['slug' => $recipe->getSlug()]);
         }
 
@@ -184,7 +188,6 @@ class RecipeController extends AbstractController
         $recipe = $this->entityManager->getRepository(Recipe::class)->findOneBy(['slug' => $slug]);
         $user = $userRepository->findAll();
 
-        // dd($recipe);
         return $this->render('Front/recipe/show.html.twig', [
             'recipe' => $recipe,
             'user' => $user

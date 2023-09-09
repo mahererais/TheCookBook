@@ -6,9 +6,9 @@
 <div class="w-100">
 
 	{% if app.request.attributes.get("_route") is same as "tcb_front_recipe_add" %}
-		<h2>Ajouter une recette</h2>
+		<h1>Ajouter une recette</h1>
 	{% else %}
-		<h2>Modifier la recette</h2>
+		<h1>Modifier la recette</h1>
 	{% endif %}
 
 	{{form_start(form, {attr: {novalidate: 'novalidate'}})}}
@@ -31,10 +31,10 @@
 			{{form_help(form.picture)}}
 			{{form_errors(form.picture)}}
 		</div>
-		<div class="col-12 mb-3">
+		<div class="col-12 mb-3 d-flex align-items-center gap-4">
 			<a id="upload_widget" class="cloudinary-button tcb_btn">Choisir un fichier</a>
 			{% if recipe.picture %}
-				<a >
+				<a class="w-100 inline-block">
 					<img src="{{recipe.picture}}" alt="recipe image" id="cloudinary_image" class="img-thumbnail col-3">
 				</a>
 			{% endif %}
@@ -42,6 +42,7 @@
 			<small class="cloudinary-small"></small>
 			<input type="hidden" id="cloudinaryUrl" name="cloudinaryUrl">
 		</div>
+
 		<div class="col-12 mb-3">
 			{{ form_label(form.ingredients) }}
 			{{ form_errors(form.ingredients) }}
@@ -83,6 +84,7 @@
 					Ajouter une étape
 			</button>
 		</div>
+
 		<div class="col-12 mb-3">
 			{{form_label(form.duration)}}
 			{{form_widget(form.duration)}}
@@ -103,7 +105,7 @@
 		</div>
 		
 
-		<button class="tcb_btn" type="submit">Envoyer</button>
+		{# <button class="tcb_btn" type="submit">Envoyer</button> #}
 
 	{{form_end(form)}}
 </div>
@@ -228,22 +230,22 @@
 
 			folder: 'Images'}, (error, result) => { 
 				if (!error && result && result.event === "success") { 
-					console.log('Done! Here is the image info: ', result.info); 
-					// get file name 
+					//{# =  console.log('Done! Here is the image info: ', result.info); #}
+					//{# =  get file name #}
 					const file_name = `${result.info.original_filename}.${result.info.format}`;
-					// retrieve picture image name element on DOM
+					//{# =  retrieve picture image name element on DOM #}
 					const imageNameElement = document.querySelector(".cloudinary-small");
-					// set file_name to value of picture input   
+					//{# =  set file_name to value of picture input #}   
 					imageNameElement.textContent = file_name;
 
-					// retrieve cloudinary input hidden element on DOM
+					//{# =  retrieve cloudinary input hidden element on DOM #}
 					const cloudinary_input = document.getElementById("cloudinaryUrl");
-					// set file_name to value of picture input   
+					//{# =  set file_name to value of picture input #}   
 					cloudinary_input.value = result.info.url;
 
-					// retrieve cloudinary cloudinary_image element on DOM
+					//{# =  retrieve cloudinary cloudinary_image element on DOM #}
 					const cloudinary_image = document.getElementById("cloudinary_image");
-					// set file_name to value of picture scr image   
+					//{# =  set file_name to value of picture scr image #}  
 					cloudinary_image.src = result.info.url;
 
 				}
@@ -265,7 +267,7 @@
 			const removeFormButton = document.createElement('button');
 			removeFormButton.style = `
 				position: absolute;
-				top: 50%; right: -1rem;
+				top: 65%; right: -1rem;
 				transform: translateY(-50%);
 				color: var(--corail-color);
 				background-color: transparent;
@@ -279,7 +281,7 @@
 
 			removeFormButton.addEventListener('click', (e) => {
 				e.preventDefault();
-				// remove the li for the tag form
+				// {# =  remove the li for the tag form #}
 				item.remove();
 			});
 		}
@@ -298,7 +300,8 @@
 
 				item.innerHTML = collectionHolder.dataset.prototype.replace(/__name__/g, collectionHolder.dataset.index);
 
-				item.querySelector("input").attributes.required = "required";
+				item.querySelector("input").setAttribute("required","required");
+				// {# = item.querySelector("input").setAttribute("placeHolder", "..."); #}
 				
 				collectionHolder.appendChild(item);
 
@@ -311,14 +314,14 @@
 		
 		
 		
-		// ============== steps handler ============
+		// {# =============== steps handler ============
 
-		// for each "add step button", we add a event click listener
+		// {# = for each "add step button", we add a event click listener #} #}
 		document.querySelectorAll('.add_step_link').forEach(btn => {
 			btn.addEventListener("click", addFormToCollection("decimal"));
 		});
 
-		// for each "ingredient", we add a event click listener
+		// = for each "ingredient", we add a event click listener #}
 		document.querySelectorAll('ol.add_steps li').forEach((li) => {
 			li.style.position = "relative";
 			li.style.width = "90%";
@@ -327,17 +330,24 @@
 
 		// ============== ingredient handler ============
 		
-		// for each "add ingredient button", we add a event click listener
+		// = for each "add ingredient button", we add a event click listener 
 		document.querySelectorAll('.add_ingredient_link').forEach(btn => {
 			btn.addEventListener("click", addFormToCollection("disc"));
 		});
 
-		// for each "ingredient", we add a event click listener
+		// = for each "ingredient", we add a event click listener
 		document.querySelectorAll('ol.add_ingredients li').forEach((li) => {
 			li.style.position = "relative";
 			li.style.width = "90%";
         	addIngredientFormDeleteLink(li)
     	})
+
+		// = C'EST DERNIER JOUR DE L'APO ET JE NE TROUVE PAS LA SOLUTION POUR NE PAS 
+		// = AFFICHER LE LABEL "Ingredients" / "etape" A LA FIN DU FORMULAIRE D'AJOUT D'UNE RECETTE 
+		// = JE VAIS DONC CACHER POUR LE MOMENT CES DEUX ELEMENTS DU "dom"
+		document.querySelectorAll("fieldset").forEach(fieldset => {
+			fieldset.remove();
+		});
 
 	</script>
 {% endblock %}

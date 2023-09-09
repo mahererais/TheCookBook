@@ -27,12 +27,12 @@ class MainController extends AbstractController
     {
         $categories = $categoryRepository->findAll();
 
+
         $categoryRecipes = [];
         foreach ($categories as $category) {
             $randomRecipes = $recipeRepository->findRandomRecipesByCategory($category, 4); // Replace with your method to fetch random recipes
             $categoryRecipes[$category->getTitle()] = $randomRecipes;
         }
-        //dd($categories);
 
         return $this->render('Front/home/index.html.twig', [
             "categories" => $categories,
@@ -62,7 +62,7 @@ class MainController extends AbstractController
     public function pdfAction(Pdf $knpSnappyPdf, Recipe $recipe, $id): Response
     {
         $recipe = $this->entityManager->getRepository(Recipe::class)->findOneBy(['id' => $id]);
-        //dd($recipe);
+
         $html = $this->renderView('Front/pdf/recipe.html.twig', [
             "recipe" => $recipe
         ]);
@@ -79,52 +79,26 @@ class MainController extends AbstractController
      * 
      * @Route("/{slug}/ebook/", name="tcb_front_main_ebook")
      */
-    public function ebook(Pdf $knpSnappyPdf, User $user, RecipeRepository $recipeRepository, CategoryRepository $categoryRepository): Response
+    public function ebook(Pdf $knpSnappyPdf, User $user, RecipeRepository $recipeRepository): Response
     {
         $this->denyAccessUnlessGranted('PROFILE_ACCESS', $user);
 
-        $recipes = [];
 
         // = get list of categories
-        $recipes = $recipeRepository->getEbook($user);
-
-        // = for each category of the array of categories
-        //foreach ($categories as $category) {
-        // = find all the recipes by categories
-        //    $recipesByCategory = $recipeRepository->findByCategory($category->getSlug()); 
-        // = $recipe = [
-        // =    'Plat' => [
-        // =           "ma recette 1", 
-        // =           "ma recette 2", 
-        // =           "ma recette 3", 
-        // =     ],
-        // =    'Entree' => [
-        // =           "ma recette 1", 
-        // =           "ma recette 2", 
-        // =           "ma recette 3", 
-        // =     ],
-        // =  ]
-        // = in the array $recipes[] I 
-        //    $recipes[$category->getTitle()] = $recipesByCategory;
-        //}
-
-
+        // $recipes = $recipeRepository->getEbook($user);
         $ebookRecipes = $recipeRepository->findBy([
             'user' => $user,
             'ebook' => true,
         ]);
 
-        // dd($recipes);
-
         // Counting how many recipes selected in ebook
         $ebookRecipesCount = count($ebookRecipes);
-        //dd($ebookRecipesCount);
 
         // conditionning render
         if ($ebookRecipesCount > 0) {
 
             $html = $this->renderView('Front/pdf/ebook.html.twig', [
-                "recipes" => $recipes,
+                "recipes" => $ebookRecipes,
                 'ebookRecipes' => $ebookRecipes
             ]);
 
@@ -165,4 +139,14 @@ class MainController extends AbstractController
 
         return $this->render('Front/home/about.html.twig');
     }
+
+    /**
+     * @Route("/cgu", name="tcb_front_main_cgu")
+     */
+
+     public function cgu()
+     {
+ 
+         return $this->render('Front/home/cgu.html.twig');
+     }
 }

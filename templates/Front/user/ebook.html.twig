@@ -1,35 +1,89 @@
 {% extends 'Front/user/profile.html.twig' %}
 
 {% block content %}
-    <div class="profile-container">
-        <div class="d-flex justify-content-between align-items-center">
-            <h2>Ebook de {{ user.firstname }}</h2>
-            {% if ebookRecipes is not empty %}
-            <a class="tcb_btn" href="{{ path ('tcb_front_main_ebook', {slug: user.slug}) }}">Générer le Ebook</a>
-        </div>
-            <div class="row">
-                {% for recipe in ebookRecipes %}
-                    <div class="col-md-4 mb-4">
-                        <div class="card">
-                            <img src="{{ recipe.picture }}" alt="{{ recipe.title }}" class="card-img-top">
-                            <div class="card-body d-flex justify-content-between align-items-center">
-                                <a href="{{ path('tcb_front_recipe_show', { 'slug' : recipe.slug}) }}">
-                                <h5 class="card-title">{{ recipe.title }}</h5>
-                                </a>
-                                <a onclick="return confirm('Voulez vous retirer cette recette de votre Ebook ?')"
-                                href="{{ path ('tcb_front_user_removeFromEbook', {slug: user.slug,  'recipeSlug': recipe.slug }) }}">
-                                    <i class="bi bi-x-circle-fill text-dark"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                {% endfor %}
-        {% else %}
-        <div class="text-center">
-            <p>Vous n'avez pas encore ajouté de recettes à votre ebook.</p>
-            </div>
-        {% endif %}
-                    </div>
+	<div class="profile-container w-100">
+		<div class="d-flex justify-content-between align-items-center">
+			<h1>Ebook de
+				{{ user.firstname }}</h1>
+			<a class="tcb_btn" href="{{ path ('tcb_front_main_ebook', {slug: user.slug}) }}">Générer le Ebook</a>
+		</div>
+
+
+		{% if ebookRecipes is empty %}
+			<p class="mt-5">Vous n'avez pas encore ajouté de recettes à votre ebook.</p>
+		{% else %}
+
+
+			{% for category,recipes in ebookRecipes %}
+
+				<h4 class="my-4">{{recipes[0].category.title}}</h4>
+
+				<div class="profile_recipes_container">
+
+					{% for recipe in recipes %}
+						<div
+							class="tcb_card">
+							{# <a href="{{ path('tcb_front_recipe_show', { 'slug' : recipe.slug}) }}"> #}
+							<img
+							src="{{recipe.picture}}">
+							{# </a> #}
+
+							<h5>{{ recipe.title }}</h5>
+
+							<div class="card_icons">
+								<a class="tcb_btn tcb_fa_icon" href="{{ path('tcb_front_recipe_show', { 'slug' : recipe.slug}) }}">
+									<i class="fas fa-eye"></i>
+								</a>
+								<a class="tcb_btn tcb_fa_icon" href="{{path('tcb_front_main_pdf', { 'id' : recipe.id}) }}">
+									<i class="fas fa-file-pdf"></i>
+								</a>
+								<a class="tcb_btn tcb_fa_icon tcb_delete_color" onclick="return confirm('Voulez vous retirer cette recette de votre Ebook ?')" href="{{ path ('tcb_front_user_removeFromEbook', {slug: user.slug, 'recipeSlug': recipe.slug }) }}">
+									<i class="fas fa-trash-alt"></i>
+								</a>
+
+							</div>
+
+
+						</div>
+					{% endfor %}
+
+				</div>
+			{% endfor %}
+
+		{% endif %}
+	</div>
 
 {% endblock %}
+
+{#{% if ebookRecipes is not empty %}
+												
+															<div class="row">
+												
+																{% for category,recipes in ebookRecipes %}
+												
+																	<h4>{{recipes[0].category.title}}</h4>
+												
+																	{% for recipe in recipes %}
+																		<div class="col-md-4 mb-4">
+																			<div class="card">
+																				<img src="{{ recipe.picture }}" alt="{{ recipe.title }}" class="card-img-top">
+																				<div class="card-body d-flex justify-content-between align-items-center">
+																					<a href="{{ path('tcb_front_recipe_show', { 'slug' : recipe.slug}) }}">
+																						<h5 class="card-title">{{ recipe.title }}</h5>
+																					</a>
+																					<a onclick="return confirm('Voulez vous retirer cette recette de votre Ebook ?')" href="{{ path ('tcb_front_user_removeFromEbook', {slug: user.slug, 'recipeSlug': recipe.slug }) }}">
+																						<i class="bi bi-x-circle-fill text-dark"></i>
+																					</a>
+																				</div>
+																			</div>
+																		</div>
+																	{% endfor %}
+												
+												
+																{% endfor %}
+															</div>
+												
+														{% else %}
+															<p>L'utilisateur n'a pas encore ajouté de recettes à son ebook.</p>
+														{% endif %}#}
 

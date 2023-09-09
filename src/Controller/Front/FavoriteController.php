@@ -2,6 +2,7 @@
 
 namespace App\Controller\Front;
 
+use App\Repository\CategoryRepository;
 use App\Repository\RecipeRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -18,11 +19,18 @@ class FavoriteController extends AbstractController
      */
     public function getAll(): Response
     {
-
         $favorites = $this->getUser()->getFavorites();
 
+        $favoritesByCategories = [];
+        // = for each recipe of the array of categories
+        foreach ($favorites as $recipe) {
+            $categoryTitle = $recipe->getCategory()->getTitle();
+           $favoritesByCategories[$categoryTitle][] = $recipe;
+        }
+        ksort($favoritesByCategories);
+   
         return $this->render('Front/user/favorites.html.twig', [
-            'favorites' => $favorites
+            'favorites' => $favoritesByCategories,
         ]);
     }
 
@@ -49,7 +57,7 @@ class FavoriteController extends AbstractController
             $entityManager->flush();
             $this->addFlash("success", "La recette a été retirée de votre liste de favoris.");
 
-            return $this->redirectToRoute('tcb_front_recipe_getAll');
+            return $this->redirectToRoute('tcb_front_favorite_getAll');
         }
     }
 

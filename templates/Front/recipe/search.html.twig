@@ -8,46 +8,80 @@
 
 	<h1 class="page_title">
 		Résultats de votre recherche</h1>
-	{# ! Dynamiser le titre de la recherche avec le(s) terme(s) de recherche #}
 
-	{% for recipe in recipes %}
+	{% for recipesUser in recipesUsers %}
 
-		<div class="cards">
+		{% if recipesUser.email is not defined %}
+			{#= if data has no email adrress, it is a recipe #}
+			{% set recipe = recipesUser %}
+			{# <pre>
+				{{ dump(recipe) }}
+			</pre> #}
+			<div class="cards">
 
-			<div class="r_cards_container">
+				<div class="r_cards_container">
 
-				<img src="{{recipe.picture}}" alt="{{recipe.title}}">
+					<img src="{{recipe.picture}}" alt="{{recipe.title}}">
 
-				<div class="r_cards_content">
-					<h2>{{recipe.title}}</h2>
-					<h3>{{recipe.category.title}}</h3>
-					<p>Proposée par
-						<a href="{{ path('tcb_front_user_show', { 'slug' : recipe.user.slug}) }}">{{recipe.user.firstname}}
-							{{recipe.user.lastname}}</a>
-					</p>
-					<h3>Préparation:</h3>
-					{% for step in recipe.steps %}
-						<ul>
-							<li>{{step}}</li>
-						</ul>
-					{% endfor %}
-					<p class="r_card_presentation">{{recipe.title}}</p>
+					<div class="r_cards_content">
+						<h2>{{recipe.title}}</h2>
+						<h3>{{recipe.category.title}}</h3>
+						<p>Proposée par
+							<a href="{{ path('tcb_front_user_show', { 'slug' : recipe.user.slug}) }}">{{recipe.user.firstname}}
+								{{recipe.user.lastname}}</a>
+						</p>
+						<h3>Préparation:</h3>
+						{% for step in recipe.steps %}
+							<ul>
+								<li>{{step}}</li>
+							</ul>
+						{% endfor %}
+						<p class="r_card_presentation">{{recipe.title}}</p>
 
-					<div class="r_card_btn">
-						<a class="tcb_btn" href="{{ path('tcb_front_recipe_show', { 'slug' : recipe.slug}) }}">Voir la recette</a>
+						<div class="r_card_btn">
+							<a class="tcb_btn" href="{{ path('tcb_front_recipe_show', { 'slug' : recipe.slug}) }}">Voir la recette</a>
 
-						{# inclusion of the toogle button to switch to favorite recipe  #}
-						{% include "Front/fragments/_toggle_favorite_button.html.twig" %}
+							{% include "Front/fragments/_toggle_favorite_button.html.twig" %}
 
+						</div>
 					</div>
+
 				</div>
-
 			</div>
-		</div>
 
+		{% else %}
+			{#= else it is a user #}
+			{% set user = recipesUser %}
+
+			<div class="cards">
+
+				<div class="r_cards_container">
+
+					<img src="{{user.picture}}" alt="{{user.firstname}} {{user.lastname}}">
+
+					<div class="r_cards_content">
+						<h2>{{user.firstname}}
+							{{user.lastname}}</h2>
+						<h3>chef
+							{{user.experience}}</h3>
+						<div class="r_card_btn">
+							<a class="tcb_btn" href="{{ path('tcb_front_user_show', { 'slug' : user.slug}) }}">Voir le chef</a>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+		{% endif %}
 	{% endfor %}
 
-	<button type="button" class="tcb_btn">Voir plus</button>
+
+	{# display navigation #}
+	<div class="tcb_pagnination mx-auto">
+		{{ knp_pagination_render(recipesUsers, 'Front/fragments/_paginator.html.twig') }}
+	</div>
+	{# <button type="button" class="tcb_btn">Voir plus</button> #}
+
 
 {% endblock %}
 
