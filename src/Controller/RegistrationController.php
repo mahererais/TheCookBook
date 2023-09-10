@@ -47,11 +47,12 @@ class RegistrationController extends AbstractController
                 )
             );
 
-            $email = $user->getEmail();
-            if ($email) {
-                // flash message to add
-                $this->addFlash("alert", "Identifiants invalides !");
-            }
+            // = message problem to be resolved
+            // $email = $user->getEmail();
+            // if ($email) {
+            //     // flash message to add
+            //     $this->addFlash("alert", "Identifiants invalides !");
+            // }
 
             // ! l'envoie de mail de fonctionne plus (compte mailjet suspendu)
             // ! je valide le user inscrit directement sans passer par le mail pour le moment
@@ -59,8 +60,7 @@ class RegistrationController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            $this->addFlash("success", "Votre compte a bien été créé. Connectez-vous maintenant.");
-            //$this->addFlash("success", "Un email vous a été envoyé pour l'activation de votre compte");
+            $this->addFlash("success", "Un email vous a été envoyé pour l'activation de votre compte");
 
             // do anything else you need here, like send an email
             // generate a signed url and email it to the user
