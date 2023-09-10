@@ -42,7 +42,18 @@ class RecipeType extends AbstractType
             ->add('ingredients', CollectionType::class, [
                 'entry_type' => TextType::class,
                 "label" => "Ingrédients de la recette",
-                'entry_options' => ['label' => false],
+                'entry_options' => [
+                    'label' => false, 
+                    'attr' => [
+                        'placeholder' => "Saisissez votre ingrédient"
+                    ],
+                    'constraints' => [
+                        new NotBlank([
+                            'message' => 'Ce champs ne doit pas être vide'
+                        ])
+                    ],
+                ],
+                "error_bubbling" => false,
                 'allow_add' => true,
                 'allow_delete' => true,
                 'by_reference' => false,
@@ -57,7 +68,18 @@ class RecipeType extends AbstractType
             ->add('steps', CollectionType::class, [
                 'entry_type' => TextType::class,
                 "label" => "Etapes de préparation de votre recette",
-                'entry_options' => ['label' => false],
+                'entry_options' => [
+                    'label' => false,
+                    'attr' => [
+                        'placeholder' => "Saisissez votre étape"
+                    ],
+                    'constraints' => [
+                        new NotBlank([
+                            'message' => 'Ce champs ne doit pas être vide'
+                        ])
+                    ],
+                ],
+                "error_bubbling" => false,
                 'allow_add' => true,
                 'allow_delete' => true,
                 'by_reference' => false,
