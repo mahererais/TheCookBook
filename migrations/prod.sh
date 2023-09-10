@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# sh migrations/dev.sh
+# sh migrations/prod.sh
 # ! ATTENTION: il faut avoir la ligne APP_ENV=prod avant de lancer cette commande
 
 RED='\033[0;31m'; # red color
