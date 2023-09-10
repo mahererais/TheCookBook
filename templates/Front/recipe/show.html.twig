@@ -9,11 +9,11 @@
 	<div class="page-title text-center">
 		<h1 style="text-transform:uppercase">{{recipe.title}} {% include "Front/fragments/_toggle_favorite_button.html.twig" %} </h1>
 		
-		<i class="bi bi-tag">catégorie: {{recipe.category.title}}</i>
+		<i class="bi bi-tag"> catégorie: {{recipe.category.title}}</i>
 		<p>	proposé par
-			<a href="#user_profile">{{recipe.user.firstname}}{{recipe.user.lastname}}</a>
+			<a href="#user_profile">{{recipe.user.firstname}} {{recipe.user.lastname}}</a>
 		</p>
-			<i class="bi bi-calendar3">Publiée le
+			<i class="bi bi-calendar3"> publiée le
 				{{recipe.createdAt|date("d/m/Y")}}</i>
 	</div>
 
