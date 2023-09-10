@@ -58,10 +58,10 @@
 			{{form_errors(form.presentation)}}
 		</div>
 		<div class="col-12 mb-3">
-			{{form_label(form.password)}}
-			{{form_widget(form.password)}}
-			{{form_help(form.password)}}
-			{{form_errors(form.password)}}
+			{{form_label(form.plainPassword)}}
+			{{form_widget(form.plainPassword)}}
+			{{form_help(form.plainPassword)}}
+			{{form_errors(form.plainPassword)}}
 		</div>
 		<div class="col-12 mb-3">
 			{{form_label(form.status)}}
@@ -156,12 +156,12 @@
 			// remove "add more" in the widget
 			multiple: false,
 			// upload image parameters
-			maxImageHeight: 288,
-			maxImageWidth: 512,
+			maxImageHeight: 720,
+			maxImageWidth: 720,
 			croppingValidateDimensions: true,
 			//validateMaxWidthHeight: true,
 			cropping: true,
-			croppingAspectRatio: 16/9,
+			croppingAspectRatio: 1,
 			resourceType: "image",
 			sources: [
 				"local",

@@ -24,7 +24,7 @@ class UserController extends AbstractController
         $users = $paginator->paginate(
             $users, // = my datas
             $request->query->getInt('page', 1), // = get page number in request url, and set page default to "1"
-            5 // = limit by page
+            20 // = limit by page
         );
 
         return $this->render('Admin/user/list.html.twig', [

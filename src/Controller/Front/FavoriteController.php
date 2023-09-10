@@ -19,7 +19,9 @@ class FavoriteController extends AbstractController
      */
     public function getAll(): Response
     {
-        $favorites = $this->getUser()->getFavorites();
+        /** @var \App\Entity\User */
+        $user = $this->getUser();
+        $favorites = $user->getFavorites();
 
         $favoritesByCategories = [];
         // = for each recipe of the array of categories
@@ -41,6 +43,7 @@ class FavoriteController extends AbstractController
     public function remove(RecipeRepository $recipeRepository, $slug, EntityManagerInterface $entityManager): Response
     {
         // pull the connected user
+        /** @var \App\Entity\User */
         $user = $this->getUser();
 
         // find the recipe to delete from the favorite list
@@ -68,6 +71,7 @@ class FavoriteController extends AbstractController
      */
     public function empty(EntityManagerInterface $entityManager): Response
     {
+        /** @var \App\Entity\User */
         $user = $this->getUser();
 
         $user->getFavorites()->clear();

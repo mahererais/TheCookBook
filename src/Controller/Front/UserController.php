@@ -90,14 +90,19 @@ class UserController extends AbstractController
        
         if ($form->isSubmitted() && $form->isValid()) {
 
-            if (strlen($form->get('password')->getData()) >= 6) {
+            // = je ne trouve pas d'autre solution mais il faut a nouveau checker si le mot de passe est valide
+            // = parce que même quand l'utilisateur ne renseigne pas de mot de passe (champs vide), le "formulaire" est valide 
+            // = $form->isValid() retourne true 
+            // TODO : notre regex, on le repete pas mal de fois, faudrait essayer de l'avoir en parametre de class (static)
+            if(preg_match("/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.* )(?=.*[^a-zA-Z0-9]).{8,16}$/", $form->get('plainPassword')->getData()) ) {
                 $user->setPassword(
                     $userPasswordHasher->hashPassword(
                         $user,
-                        $form->get('password')->getData()
+                        $form->get('plainPassword')->getData()
                     )
                 );
             }
+               
             //= I get the url of the image
             $picture = $request->attributes->get('user')->getPicture();
             // = I get the url of the coudinary image
@@ -152,7 +157,7 @@ class UserController extends AbstractController
     public function getRecipesByUserLog(Request $request, RecipeRepository $recipeRepository, User $user, Security $security): Response
     {
         $this->denyAccessUnlessGranted('PROFILE_ACCESS', $user);
-        $recipes = $this->getUser()->getRecipes();
+        $recipes = $user->getRecipes();
 
         $userRecipesByCategory = [];
         foreach ($recipes as $recipe) {
