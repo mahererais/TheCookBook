@@ -116,11 +116,6 @@ class RecipeType extends AbstractType
                 'multiple' => false
             ])
 
-            ->add("Envoyer", SubmitType::class, [
-                'attr' => [
-                    'class' => 'tcb_btn'
-                ],
-            ]);
         ;
     }
 

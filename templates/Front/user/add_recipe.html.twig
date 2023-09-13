@@ -50,10 +50,15 @@
 			<ol class="add_ingredients d-flex flex-column" 
 				data-index="{{ form.ingredients|length > 0 ? form.ingredients|last.vars.name + 1 : 0 }}"
 				data-prototype="{{ form_widget(form.ingredients.vars.prototype)|e('html_attr') }}">
+				
+				{% if form.ingredients is empty %}
+					{{ form_widget(form.ingredients) }}
+				{% endif %}
+				
 				{% for ingredient in form.ingredients %}
 					<li class="m-2 ms-4" style="list-style: disc">
-						{{ form_errors(ingredient) }}
 						{{ form_widget(ingredient, {attr : {required: 'required'}}) }}
+						{{ form_errors(ingredient) }}
 					</li>
 				{% endfor %}
 			</ol>
@@ -71,10 +76,15 @@
 			<ol class="add_steps d-flex flex-column" 
 				data-index="{{ form.steps|length > 0 ? form.steps|last.vars.name + 1 : 0 }}"
 				data-prototype="{{ form_widget(form.steps.vars.prototype)|e('html_attr') }}">
+				
+				{% if form.steps is empty %}
+					{{ form_widget(form.steps) }}
+				{% endif %}
+
 				{% for step in form.steps %}
 					<li class="m-2 ms-4" style="list-style: decimal">
-						{{ form_errors(step) }}
 						{{ form_widget(step, {attr : {required: 'required'}}) }}
+						{{ form_errors(step) }}
 					</li>
 				{% endfor %}
 			</ol>
@@ -105,7 +115,7 @@
 		</div>
 		
 
-		{# <button class="tcb_btn" type="submit">Envoyer</button> #}
+		<button class="tcb_btn" type="submit">Envoyer</button>
 
 	{{form_end(form)}}
 </div>
@@ -349,9 +359,9 @@
 		// = C'EST LE DERNIER JOUR DE L'APO ET JE NE TROUVE PAS LA SOLUTION POUR NE PAS 
 		// = AFFICHER LE LABEL "Ingredients" / "etape" A LA FIN DU FORMULAIRE D'AJOUT D'UNE RECETTE 
 		// = JE VAIS DONC CACHER POUR LE MOMENT CES DEUX ELEMENTS DU "dom"
-		document.querySelectorAll("fieldset").forEach(fieldset => {
+		{# document.querySelectorAll("fieldset").forEach(fieldset => {
 			fieldset.remove();
-		});
+		}); #}
 
 	</script>
 {% endblock %}
