@@ -100,7 +100,7 @@ class RecipeRepository extends ServiceEntityRepository
             ->andWhere('c.slug = :slug')            //= FROM recipe
             ->setParameter('slug', $categorySlug)   //= INNER JOIN category
             ->getQuery()                            //= ON category.id = recipe.category_id
-            ->getResult();                          //= where category.slug = "Apéritifs"   
+            ->getResult();                          //= where category.slug = "aperitifs"   
     }
 
     /**
