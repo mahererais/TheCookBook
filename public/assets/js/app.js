@@ -12,7 +12,6 @@ const App = {
     
         if (document.title === "Page d'accueil") {
             // = modules lancés sur la page home
-            console.log("coucou");
             Carrousel.init();
             Fetch.init();
         }
