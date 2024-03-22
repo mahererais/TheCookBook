@@ -29,11 +29,11 @@
 								{{recipe.user.lastname}}</a>
 						</p>
 						<h3>Préparation:</h3>
-						{% for step in recipe.steps %}
-							<ul>
+						<ul>
+							{% for step in recipe.steps %}
 								<li>{{step}}</li>
-							</ul>
-						{% endfor %}
+							{% endfor %}
+						</ul>
 						<p class="r_card_presentation">{{recipe.title}}</p>
 
 
@@ -60,4 +60,3 @@
 	{# <button type="button" class="tcb_btn">Voir plus</button> #}
 
 {% endblock %}
-

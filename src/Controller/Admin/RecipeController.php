@@ -29,7 +29,7 @@ class RecipeController extends AbstractController
      */
     public function getAll(RecipeRepository $recipeRepository, PaginatorInterface $paginator, Request $request): Response
     {
-        $recipes = $recipeRepository->findRecipes(); 
+        $recipes = $recipeRepository->findAll(); 
 
         $recipes = $paginator->paginate(
             $recipes, // = my datas

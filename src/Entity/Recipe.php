@@ -165,6 +165,15 @@ class Recipe
         return $this;
     }
 
+    /**
+     * update field updated_at when user update recipe information
+     * @ORM\PreUpdate
+     */
+    public function onPreUpdate()
+    {
+        $this->setUpdatedAt(new \DateTimeImmutable());
+    }
+
     public function getUpdatedAt(): ?\DateTimeImmutable
     {
         return $this->updated_at;

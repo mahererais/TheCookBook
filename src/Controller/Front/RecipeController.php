@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class RecipeController extends AbstractController
@@ -29,11 +30,12 @@ class RecipeController extends AbstractController
      * @Route("/recipes", name="tcb_front_recipe_getAll")
      */
     // = besoin de PaginatorInterface et de la requete 
-    public function getAll( RecipeRepository $recipeRepository,
-                            PaginatorInterface $paginator, 
-                            Request $request): Response
-    {
-        $recipes = $recipeRepository->findRecipes(); 
+    public function getAll(
+        RecipeRepository $recipeRepository,
+        PaginatorInterface $paginator,
+        Request $request
+    ): Response {
+        $recipes = $recipeRepository->findRecipes();
 
         $recipes = $paginator->paginate(
             $recipes, // = my datas
@@ -59,7 +61,7 @@ class RecipeController extends AbstractController
             $request->query->getInt('page', 1), // = get page number in request url, and set page default to "1"
             5 // = limit by page
         );
-         // dd($users);
+        // dd($users);
 
         return $this->render('Front/recipe/search.html.twig', [
             'recipesUsers' => $recipesUsers,
@@ -98,7 +100,7 @@ class RecipeController extends AbstractController
 
         return $this->renderForm("Front/user/add_recipe.html.twig", [
             "form" => $form,
-            "recipe"=> $recipe
+            "recipe" => $recipe
         ]);
     }
 
@@ -107,7 +109,7 @@ class RecipeController extends AbstractController
      * @Route("/recipe/update/{slug}", name="tcb_front_recipe_update")
      *
      */
-    public function update(Request $request, EntityManagerInterface $entityManager, string $slug, Recipe $recipe, RecipeRepository $recipeRepository ): Response
+    public function update(Request $request, EntityManagerInterface $entityManager, string $slug, Recipe $recipe, RecipeRepository $recipeRepository): Response
     {
         $this->denyAccessUnlessGranted('RECIPE_MODIF', $recipe);
 
@@ -119,21 +121,21 @@ class RecipeController extends AbstractController
         //dd($form);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            
+
             //= I get the url of the image
             $picture = $request->attributes->get('recipe')->getPicture();
             // = I get the url of the coudinary image
-            $imageCloudUrl =  $request->get("cloudinaryUrl"); 
+            $imageCloudUrl =  $request->get("cloudinaryUrl");
             //= if the url of the image doesn't exist
-            if(!$picture) {
+            if (!$picture) {
                 // = I add the upload
                 $recipe->setPicture($imageCloudUrl);
-            // = if the url of the image exist and the url of cloudinary image doesn't exist
-            }elseif ($picture && !$imageCloudUrl) {
+                // = if the url of the image exist and the url of cloudinary image doesn't exist
+            } elseif ($picture && !$imageCloudUrl) {
                 // = I leave the url of the existing image
                 $recipe->setPicture($picture);
-            // = if the url of the image and the url of the cloudinary image exist 
-            }else {
+                // = if the url of the image and the url of the cloudinary image exist 
+            } else {
                 // = I add the upload
                 $recipe->setPicture($imageCloudUrl);
             }
@@ -178,7 +180,7 @@ class RecipeController extends AbstractController
         /** @var \App\Entity\User */
         $user = $security->getUser();
         $referer = $request->headers->get("referer") ?: $this->generateUrl('tcb_front_user_getRecipesByUserLog', ['slug' => $user->getSlug()]);
-        
+
         return $this->redirect($referer);
     }
 
@@ -194,5 +196,23 @@ class RecipeController extends AbstractController
             'recipe' => $recipe,
             'user' => $user
         ]);
+    }
+
+    /**
+     * get random recipe from bdd
+     * @Route("/api/recipe/random", name="app_api_movies_getRandom", methods={"GET"})
+     */
+    public function getMoviesRandom(RecipeRepository $recipeRepository): JsonResponse
+    {
+        // = retrieve random recipe from bdd
+        $recipe = $recipeRepository->findRandomMovie();
+
+        // = check if recipe was found
+        if (!$recipe) {
+            return $this->json(["error" => "recipe not found"], Response::HTTP_NOT_FOUND);
+        }
+
+        // = send json response 
+        return $this->json($recipe, Response::HTTP_OK, []);
     }
 }

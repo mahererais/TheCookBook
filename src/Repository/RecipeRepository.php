@@ -62,23 +62,22 @@ class RecipeRepository extends ServiceEntityRepository
     }
 
     /**
-    * @return array[] Returns an array of recipe objects
-    * @param string|null $string to find in recipes
-    */
-   public function searchRecipe(?string $search = null): ?array
-   {
+     * @return array[] Returns an array of recipe objects
+     * @param string|null $string to find in recipes
+     */
+    public function searchRecipe(?string $search = null): ?array
+    {
         return $this->createQueryBuilder('m')
             ->join('m.user', 'u')
-            ->orderBy("m.title","ASC")
+            ->orderBy("m.title", "ASC")
             ->where("m.title LIKE :search")
             ->setParameter("search", "%$search%")
-            ->andWhere('m.status = :status') 
+            ->andWhere('m.status = :status')
             ->setParameter('status', 'public')
             ->andWhere('u.roles = :roles') // Add this line to filter by recipe status
             ->setParameter('roles', '["ROLE_USER"]') // Set the status to 'public'
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
     }
 
     public function findByUser(User $user)
@@ -93,7 +92,7 @@ class RecipeRepository extends ServiceEntityRepository
     /**
      * 
      * @return Recipes find by one Category
-     * */ 
+     * */
     public function findByCategory(string $categorySlug)
     {
         return $this->createQueryBuilder('r')       //= SQL command on adminer/phpMyAdmin 
@@ -101,13 +100,13 @@ class RecipeRepository extends ServiceEntityRepository
             ->andWhere('c.slug = :slug')            //= FROM recipe
             ->setParameter('slug', $categorySlug)   //= INNER JOIN category
             ->getQuery()                            //= ON category.id = recipe.category_id
-            ->getResult();                          //= where category.slug = "Apéritifs"   
+            ->getResult();                          //= where category.slug = "aperitifs"   
     }
 
     /**
-    * @param string|null $string to find in users    
-    * @return array[] Returns an array of recipes objects
-    */
+     * @param string|null $string to find in users    
+     * @return array[] Returns an array of recipes objects
+     */
     // public function getEbook(User $user)
     // {
     //     return $this->createQueryBuilder('e')
@@ -124,7 +123,7 @@ class RecipeRepository extends ServiceEntityRepository
      * find public recipes from user (not admin)  
      *
      * @param string $userRole : role of user (user by default)
-     * @param string $userRole : role of user (user by default)
+     * @param string $status : recipe status (public by default)
      * @return void
      */
     public function findRecipes(string $userRole = "user", string $status = "public")
@@ -134,7 +133,7 @@ class RecipeRepository extends ServiceEntityRepository
 
         return $this->createQueryBuilder('r')
             // = join user table and attached a u (alias)
-            ->innerJoin('r.user', 'u') 
+            ->innerJoin('r.user', 'u')
             // = condition user.roles = :role
             ->andWhere('u.roles = :role')
             // = set ":role" to '["ROLE_$user"]'  (i.e: for $role = "USER", we get '["ROLE_USER"]')
@@ -147,6 +146,25 @@ class RecipeRepository extends ServiceEntityRepository
             ->orderBy('r.created_at', 'DESC')
             ->getQuery()
             ->getResult();
+    }
+
+    /**
+     * Get a random movie 
+     */
+    public function findRandomMovie()
+    {
+        // = get sql connection
+        $conn = $this->getEntityManager()->getConnection();
+        // = sql request
+        $sql = "SELECT recipe.*, category.title as category, user.firstname, user.lastname
+                FROM recipe 
+                INNER JOIN category ON recipe.category_id = category.id 
+                INNER JOIN user ON recipe.user_id = user.id 
+                ORDER BY RAND() LIMIT 1";
+        // = request execution
+        $resultSet = $conn->executeQuery($sql);
+
+        return $resultSet->fetchAssociative();
     }
 
     //    /**

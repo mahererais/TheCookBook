@@ -48,12 +48,12 @@ class TcbFixtureCommand extends Command
         $purger = new ORMPurger($this->entityManager);
         $purger->purge();
 
-        $em = $this->entityManager;
-        $metaData = $em->getMetadataFactory()->getAllMetadata();
+        // $em = $this->entityManager;
+        // $metaData = $em->getMetadataFactory()->getAllMetadata();
 
-        $tool = new SchemaTool($em);
-        $tool->dropSchema($metaData);
-        $tool->createSchema($metaData);
+        // $tool = new SchemaTool($em);
+        // $tool->dropSchema($metaData);
+        // $tool->createSchema($metaData);
 
         // Load your production fixtures
         $executor = new ORMExecutor($this->entityManager, $purger);
