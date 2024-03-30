@@ -12,24 +12,23 @@ if [ "$REPLY" != "yes" ]; then
    exit
 fi
 
-rm -f vendor/;
+rm -fr vendor/;
+
+composer require symfony/apache-pack;
 
 composer install --no-dev --optimize-autoloader;
 
 composer dump-env prod;
 
-composer update --no-dev --optimize-autoloader;
-
 APP_ENV=prod APP_DEBUG=0 php bin/console cache:clear;
+
+APP_ENV=prod php bin/console cache:warmup
 
 echo  "${RED}is it the first time you switch to prod ? [yes/no] (default no)\n${NC}";
 read REPLY;
 if [ "$REPLY" != "yes" ]; then
    exit
 fi
-
-composer require symfony/apache-pack;
-
 
 sudo apt-get install -y acl;
 
