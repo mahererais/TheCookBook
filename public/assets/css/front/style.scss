@@ -1,8 +1,6 @@
 @import '../reset.css';
-
 // ! source : Mieux organiser ses fichiers CSS avec SASS
 // ! https://front-back.com/mieux-organiser-ses-fichiers-css-avec-sass/
-
 :root {
     --container-width: 1124px;
     --main-color: #078975;
@@ -14,33 +12,25 @@
     --container-padding: 1rem 1.5rem;
     --border-color: #FFFFFF;
     --backdrop-filter-blur: blur(3px);
-
-
     // * Boostrap color
-    --bs-btn-bg : var(--main-color)!important;
+    --bs-btn-bg: var(--main-color)!important;
     --bs-btn-border-color: var(--main-color)!important;
-
     --bs-btn-hover-bg: white!important;
     --bs-btn-hover-color: var(--main-color)!important;
     --bs-btn-hover-border-color: var(--main-color)!important;
-    
     --bs-btn-active-bg: #077565!important;
     --bs-btn-active-color: white!important;
     --bs-btn-active-border-color: #077565!important;
-
     --bs-btn-hover-border-color: var(--main-color)!important;
-
     --bs-link-color-rgb: var(--main-text-color)!important;
     --bs-link-hover-color-rgb: var(--main-text-color)!important
 }
-     
 
 html {
     scroll-behavior: smooth;
     color: var(--main-text-color);
     font-family: 'Poppins', sans-serif;
 }
-
 
 body {
     display: flex;
@@ -55,27 +45,18 @@ body {
 @import './recipe_show/recipe_show.scss';
 @import './homePage/homePage.scss';
 @import './chefs/chefs.scss';
-
-
 @import '../header/header.scss';
 @import '../footer/footer.scss';
 @import '../components/components.scss';
 //@import '../general/general.scss';
-
-
 @media screen and (max-width: 767px) {
-
     html {
         font-size: 100% * calc(14/16);
     }
-
     html:has(#checkbox:checked) {
         overflow: hidden;
-
     }
-
-    :root {
+     :root {
         --container-padding: 1rem 1rem;
     }
-
 }
