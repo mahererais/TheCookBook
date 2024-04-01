@@ -60,9 +60,11 @@
 				<div class="row">
 					<h1>Profil de {{ user.firstname }}</h1>
 					
-					<div class="col-md-4">
+					<div class="col-md-4 ">
 					{% if user.picture %}
-						<img src="{{user.picture}}" alt="{{user.firstname}} {{user.lastname}}">
+						<img class="rounded-circle overflow-hidden border-white border border-3"
+							 style="box-shadow: 0 0 5px #00000080; border"
+							 src="{{user.picture}}" alt="{{user.firstname}} {{user.lastname}}">
 					{% endif %}	
 					
 					</div>
