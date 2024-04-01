@@ -578,7 +578,7 @@ header .header_container .right_bar_container .fa-user {
     --size: 50px;
     width: var(--size) !important;
     aspect-ratio: 1;
-    background-image: url("/images/logo_marmite_cookbook.png");
+    background-image: url("/thecoolbook/images/logo_marmite_cookbook.png");
     background-position: center;
     background-size: var(--size) var(--size);
   }

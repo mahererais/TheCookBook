@@ -1,50 +1,37 @@
 header {
-
-
     //margin-bottom: auto !important;
     position: sticky;
     top: 0;
     backdrop-filter: var(--backdrop-filter-blur);
-
     background-color: var(--main-color-transparent);
     border-bottom: 2px solid var(--border-color);
     box-shadow: 0 0 12px -2px rgba(0, 0, 0, 1);
     z-index: 10;
-
     display: flex;
     justify-content: center;
-
     .header_container {
-
         padding: var(--container-padding);
         padding-block: 0;
         width: var(--container-width);
-
         display: flex;
         flex-direction: row-reverse;
         justify-content: space-between;
         align-items: center;
         gap: 1rem;
-
         &>.logo {
             width: 200px;
             flex-shrink: 0;
             margin-right: 1rem;
-
             img {
                 max-width: 100%;
             }
         }
-
         nav {
-
             display: flex;
             margin: 0 0 0 auto;
             height: 100px;
-
             ul {
                 height: 100%;
-
                 li {
                     display: flex;
                     flex-wrap: wrap;
@@ -55,27 +42,21 @@ header {
                     height: 100%;
                     font-size: min(20px, calc(0.4em + 1.1 * 1vw));
                     transition: font-size 0s;
-
                     // &:not(:last-child):hover {
                     &:hover {
                         //font-size: 1em;
-
-                        & > a {
+                        &>a {
                             display: block;
                             transform: translateY(-5px);
-                            
                             &:after {
-                                   width: 100%;
-                                   left: 0;
+                                width: 100%;
+                                left: 0;
                             }
                         }
-
                     }
-
                     &>a {
                         color: white;
                         padding-block: 0.3em;
-
                         &:after {
                             content: "";
                             position: absolute;
@@ -87,86 +68,63 @@ header {
                             background: var(--main-text-color);
                             background: white;
                             transition: 0.2s;
-
                             &:hover {
                                 width: 100%;
                                 left: 0;
                             }
                         }
-
                     }
-
                     &:last-child {
                         display: none;
                     }
-
                 }
             }
-
-
         }
-
         .right_bar_container {
-
             display: flex;
             align-items: center;
             gap: 1rem;
             //margin-left: auto;
-
             .fa-user {
                 color: white;
                 font-size: 2rem;
             }
-
-            
         }
-
     }
-
 }
 
-
 @media screen and (max-width: 767px) {
-
     header {
         z-index: 15;
-        
         .header_container {
             gap: unset;
-
             nav {
                 width: 0px;
                 overflow: hidden;
             }
-
             .search_container {
                 width: 100%;
             }
-
             nav {
                 height: 80px;
                 ul {
                     li {
                         height: unset;
                         font-size: 1.5rem;
-                        
                         &:hover {
                             font-size: 1.5rem;
                         }
-
                         &:last-child {
                             display: contents;
                         }
-
                     }
                 }
             }
-
             a.logo {
-                --size : 50px;
+                --size: 50px;
                 width: var(--size)!important;
                 aspect-ratio: 1;
-                background-image: url("/images/logo_marmite_cookbook.png");
+                background-image: url("/thecoolbook/images/logo_marmite_cookbook.png");
                 background-position: center;
                 background-size: var(--size) var(--size);
                 img {
@@ -174,20 +132,14 @@ header {
                     opacity: 0;
                 }
             }
-
-
         }
     }
-
     #menuToggle {
         display: block !important;
         margin-left: 15px;
     }
-
     #menuToggle:has(#checkbox:checked)~nav {
-
         display: flex;
-
         &>ul {
             background-color: var(--main-color);
             position: fixed;
@@ -202,8 +154,6 @@ header {
             animation: nav-opacity 0.2s ease-in-out forwards;
             animation-delay: 0.7s;
         }
-
-
     }
 }
 
@@ -212,26 +162,21 @@ ul {
     align-items: center;
     justify-content: center;
     gap: 1rem;
-
     & li {
         list-style: none;
         position: relative;
         overflow: hidden;
-
         //transition: 0.2s;
-
         &>a {
             text-decoration: none;
             transition: 0.2s;
             font-weight: bold;
             color: white;
             cursor: pointer;
-
             &:hover {
                 color: var(--main-text-color);
             }
         }
-
     }
 }
 
@@ -239,14 +184,12 @@ ul {
     from {
         opacity: 0;
     }
-
     to {
         opacity: 1;
     }
 }
 
 // externe code : https://uiverse.io/vk-uiux/lucky-owl-16
-
 #menuToggle {
     font-size: 1.5em;
     display: none;
@@ -277,6 +220,7 @@ ul {
     opacity: 1;
     transition: none 0.35s cubic-bezier(.5, -0.35, .35, 1.5) 0s;
 }
+
 
 /***** Collapse Animation *****/
 
