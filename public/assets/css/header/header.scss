@@ -121,12 +121,12 @@ header {
                 }
             }
             a.logo {
-                --size: 50px;
-                width: var(--size)!important;
+                --width: 50px;
+                width: var(--width)!important;
                 aspect-ratio: 1;
                 background-image: url("/thecookbook/images/logo_marmite_cookbook.png");
                 background-position: center;
-                background-size: var(--size) var(--size);
+                background-size: var(--width) var(--width);
                 img {
                     display: none;
                     opacity: 0;

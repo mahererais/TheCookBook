@@ -116,12 +116,12 @@ header .header_container .right_bar_container .fa-user {
     display: contents;
   }
   header .header_container a.logo {
-    --size: 50px;
-    width: var(--size) !important;
+    --width: 50px;
+    width: var(--width) !important;
     aspect-ratio: 1;
     background-image: url("/thecookbook/images/logo_marmite_cookbook.png");
     background-position: center;
-    background-size: var(--size) var(--size);
+    background-size: var(--width) var(--width);
   }
   header .header_container a.logo img {
     display: none;
