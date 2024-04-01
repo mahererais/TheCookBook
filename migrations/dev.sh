@@ -12,10 +12,8 @@ if [ "$REPLY" != "yes" ]; then
    exit
 fi
 
-rm -f .env.local.php
+rm -fr .env.local.php
 
-rm -f vendor/;
+rm -fr vendor/;
 
 composer install;
-
-composer update ;

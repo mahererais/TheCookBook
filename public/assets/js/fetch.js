@@ -10,7 +10,7 @@ export const Fetch = {
     },
 
     fetchRecipe: function () {
-        const url = window.location.origin + "/api/recipe/random";
+        const url = window.location.href + "api/recipe/random";
         fetch(url)
             .then(response => response.json())
             .then(data => {
