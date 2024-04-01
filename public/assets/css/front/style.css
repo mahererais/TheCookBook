@@ -217,6 +217,18 @@ main .user_container > .user_descriptions label {
 main .user_container > .user_descriptions p {
   margin-bottom: 0.5rem;
 }
+main .recipe-image--border {
+  border: 2px solid white !important;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+  outline: 2px solid white;
+  outline-offset: -9px;
+  border-radius: 10px;
+  transition: 0.2s ease-out;
+}
+main .recipe-image--border:hover {
+  outline-color: transparent;
+  outline-offset: 0px;
+}
 
 main .main_container {
   display: flex;
@@ -292,7 +304,6 @@ main .main_container .cards .cards_carrousel_container .cards_carrousel .cards_c
   -o-object-fit: cover;
      object-fit: cover;
   filter: brightness(0.9);
-  transition: filter 0.3s ease-out;
 }
 main .main_container .cards .cards_carrousel_container .cards_carrousel .cards_container img:hover {
   filter: initial;
