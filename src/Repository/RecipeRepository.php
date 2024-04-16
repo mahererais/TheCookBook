@@ -74,8 +74,8 @@ class RecipeRepository extends ServiceEntityRepository
             ->setParameter("search", "%$search%")
             ->andWhere('m.status = :status')
             ->setParameter('status', 'public')
-            ->andWhere('u.roles = :roles') // Add this line to filter by recipe status
-            ->setParameter('roles', '["ROLE_USER"]') // Set the status to 'public'
+            // ->andWhere('u.roles = :roles') // Add this line to filter by recipe status
+            // ->setParameter('roles', '["ROLE_USER"]') // Set the status to 'public'
             ->getQuery()
             ->getResult();
     }
