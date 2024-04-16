@@ -39,7 +39,6 @@ class CategoryController extends AbstractController
      * display one category by id
      */
     public function show(RecipeRepository $recipeRepository,
-                         Category $category,
                          string $slug,
                          PaginatorInterface $paginator, 
                          Request $request): Response

@@ -96,8 +96,10 @@ class RecipeRepository extends ServiceEntityRepository
     public function findByCategory(string $categorySlug)
     {
         return $this->createQueryBuilder('r')       //= SQL command on adminer/phpMyAdmin 
+            ->addSelect('u')
             ->innerJoin('r.category', 'c')          //= SELECT recipe.* 
-            ->andWhere('c.slug = :slug')            //= FROM recipe
+            ->innerJoin('r.user', 'u')              //= FROM recipe 
+            ->andWhere('c.slug = :slug')            //= INNER JOIN user ON recipe.user_id = user.id
             ->setParameter('slug', $categorySlug)   //= INNER JOIN category
             ->getQuery()                            //= ON category.id = recipe.category_id
             ->getResult();                          //= where category.slug = "aperitifs"   
@@ -126,7 +128,7 @@ class RecipeRepository extends ServiceEntityRepository
      * @param string $status : recipe status (public by default)
      * @return void
      */
-    public function findRecipes(string $userRole = "user", string $status = "public")
+    public function findRecipes(string $userRole = "", string $status = "public")
     {
         // = upercase $userRole (i.e : "user" => "USER")
         $role = mb_strtoupper($userRole);
@@ -134,10 +136,12 @@ class RecipeRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('r')
             // = join user table and attached a u (alias)
             ->innerJoin('r.user', 'u')
+            ->innerJoin('r.category', 'c')
+            ->addSelect('u', 'c')
             // = condition user.roles = :role
-            ->andWhere('u.roles = :role')
+            ->andWhere('u.roles LIKE :role')
             // = set ":role" to '["ROLE_$user"]'  (i.e: for $role = "USER", we get '["ROLE_USER"]')
-            ->setParameter('role', '["ROLE_' . $role . '"]')
+            ->setParameter('role', '["ROLE_%' . $role . '%"]')
             // = condition recipe.status = :status
             ->andWhere('r.status = :status')
             // = set ":status" to $status  (i.e: by default $status = "publib")
