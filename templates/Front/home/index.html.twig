@@ -18,7 +18,7 @@
 					<div class="cards_carrousel">
 						{% for recipe in recipes %}
 							<div class="cards_container">
-								<img class="lazyload recipe-image--border shadow-none" src="{{ recipe.getPicture() }}" alt="{{ recipe.title() }}">
+								<img class="lazyload recipe-image--border shadow-none" data-src="{{ recipe.getPicture() }}" alt="{{ recipe.title() }}">
 								<div class="cards_content">
 									<h2>{{ recipe.title() }}</h2>
 									<p>proposée par
@@ -79,7 +79,7 @@
 	<div class="r_cards_container">
 
 		<h2>Une de nos recettes :</h2>
-		<img class="lazyload recipe-image--border" src="{{asset('assets/images/logoTCB.png')}}" alt="">
+		<img class="lazyload recipe-image--border" data-src="{{asset('assets/images/logoTCB.png')}}" alt="">
 
 		<div class="r_cards_content">
 			<h2></h2>
