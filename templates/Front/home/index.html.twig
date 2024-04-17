@@ -58,17 +58,17 @@
 					</div>
 				</div>
 
-				<a class="tcb_btn_caroussel tcb_btn_caroussel_left" aria-label="recette suivante">
+				<a class="tcb_btn_caroussel tcb_btn_caroussel_left" aria-label="recette suivante" href="#">
 					<i class="fas fa-arrow-up"></i>
 				</a>
-				<a class="tcb_btn_caroussel tcb_btn_caroussel_right" aria-label="recette précédente">
+				<a class="tcb_btn_caroussel tcb_btn_caroussel_right" aria-label="recette précédente" href="#">
 					<i class="fas fa-arrow-up"></i>
 				</a>
 				<div class="card_title">
-					<a href="{{path('tcb_front_category_show', { 'slug' : recipes[0].category.slug}) }}">{{ category }}
+					<a href="{{path('tcb_front_category_show', { 'slug' : recipes[0].category.slug}) }}" aria-label="voir la catégorie {{ category }}">{{ category }}
 					</a>
 					<p style="font-size:0.6em;">
-						<a href="{{path('tcb_front_category_show', { 'slug' : recipes[0].category.slug}) }}" style="color: var(--main-color)">Voir tout >></a>
+						<a href="{{path('tcb_front_category_show', { 'slug' : recipes[0].category.slug}) }}" style="color: var(--main-color)" aria-label="voir la catégorie {{ category }}">Voir tout >></a>
 					</p>
 				</div>
 			</div>
