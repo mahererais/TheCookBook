@@ -57,7 +57,7 @@
 
 							{% if is_granted('IS_AUTHENTICATED_FULLY') %}
 								<a class="login_btn" href="{{path('tcb_front_user_profile', {slug: app.user.slug})}}" aria-label="profil utilisateur">
-									<img src="{{app.user.picture}}" alt="avatar du profil utilisateur">
+									<img class="lazyload" src="{{app.user.picture}}" alt="avatar du profil utilisateur">
 								</a>
 							{% else %}
 								<a href="{{path('tcb_front_security_login')}}" aria-label="connexion">
@@ -85,7 +85,7 @@
 					</nav>
 
 
-					<a class="logo" href="{{path('tcb_front_main_home')}}" aria-label="logo cookbook">
+					<a class="lazyload logo" href="{{path('tcb_front_main_home')}}" aria-label="logo cookbook">
 						<img src="{{ asset('images/logo_the_cookbook.png')}}" class="logo" alt="logo cookbook">
 					</a>
 

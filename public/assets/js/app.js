@@ -10,7 +10,7 @@ const App = {
 
         // = On va initialiser tous les modules qui doivent être lancés au chargement de la page
     
-        if (document.title === "Page d'accueil") {
+        if (document.title === "TheCookBook") {
             // = modules lancés sur la page home
             Carrousel.init();
             Fetch.init();
