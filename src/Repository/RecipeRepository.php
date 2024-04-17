@@ -160,7 +160,7 @@ class RecipeRepository extends ServiceEntityRepository
         // = get sql connection
         $conn = $this->getEntityManager()->getConnection();
         // = sql request
-        $sql = "SELECT recipe.*, category.title as category, user.firstname, user.lastname
+        $sql = "SELECT recipe.*, category.title as category, user.firstname, user.lastname, user.slug as userSlug
                 FROM recipe 
                 INNER JOIN category ON recipe.category_id = category.id 
                 INNER JOIN user ON recipe.user_id = user.id 
