@@ -38,3 +38,7 @@ Attention tout de même à quelques points :
 - Il faudrait aussi penser à prévoir un back-office pour modérer les recettes
 
 Toutes les fonctionnalités ne seront peut être pas faisable dans le laps de temps donc il faudra bien faire des priorités avant de trop vous éparpiller.
+
+# installation
+
+[installation](install.md)
