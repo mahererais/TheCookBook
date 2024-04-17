@@ -28,7 +28,7 @@ export const Fetch = {
         document.querySelector(".r_cards_container div h2").alt = data.title;
         document.querySelector(".r_cards_container div h3").textContent = "categorie: " + data.category;
         document.querySelector(".r_cards_container div a").textContent =  `${data.firstname} ${data.lastname}`;
-        document.querySelector(".r_cards_container div a").href = `\\user\\${data.lastname}`;
+        document.querySelector(".r_cards_container div a").href = window.location.href + `user/${data.lastname}`;
     }
 
 }
