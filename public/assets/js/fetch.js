@@ -23,7 +23,7 @@ export const Fetch = {
      * @param {String[]} data 
      */
     updateRandomRecipeWithData: function (data) {
-        document.querySelector(".r_cards_container img").src = data.picture;
+        document.querySelector(".r_cards_container img").dataset.src = data.picture;
         document.querySelector(".r_cards_container div h2").textContent = data.title;
         document.querySelector(".r_cards_container div h3").textContent = "categorie: " + data.category;
         document.querySelector(".r_cards_container div a").textContent =  `${data.firstname} ${data.lastname}`;

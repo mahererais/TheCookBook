@@ -3,17 +3,11 @@ export const Carrousel = {
 
     // Méthode d'initialisation de l'application
     init: function () {
-
         for (const cards of Carrousel.cardsContainer) {
             new Cards(cards);
         }
-
-
     },
-
-
 }
-
 
 /**
  * Cards class handle carrousel of a liste recipe  
@@ -67,6 +61,7 @@ class Cards {
      * @param {Event} e 
      */
     leftButtonHandler(e) {
+        e.preventDefault()
         this.currentSelectedCardIndex--;
 
         // check if current recipe displayed on screen is first, 
@@ -84,6 +79,7 @@ class Cards {
      * @param {Event} e 
      */
     rightButtonHandler(e) {
+        e.preventDefault()
         this.currentSelectedCardIndex++;
 
         if (this.currentSelectedCardIndex >= this.numberOfCard)

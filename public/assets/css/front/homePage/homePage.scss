@@ -79,6 +79,7 @@ main {
                             object-fit: cover;
                             //box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
                             filter: brightness(0.9);
+                            transition: 0.2s ease-out;
                             &:hover {
                                 filter: initial;
                             }
