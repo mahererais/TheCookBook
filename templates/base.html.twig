@@ -3,6 +3,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="thecookbook, découvrez les ingrédients, ustensiles et étapes de préparation de vos recettes.">
 		<title>
 			{% block title %}Welcome!
 			{% endblock %}
@@ -55,11 +56,11 @@
 							</div>
 
 							{% if is_granted('IS_AUTHENTICATED_FULLY') %}
-								<a class="login_btn" href="{{path('tcb_front_user_profile', {slug: app.user.slug})}}">
-									<img src="{{app.user.picture}}" alt="avatar du profile utilisateur">
+								<a class="login_btn" href="{{path('tcb_front_user_profile', {slug: app.user.slug})}}" aria-label="profil utilisateur">
+									<img src="{{app.user.picture}}" alt="avatar du profil utilisateur">
 								</a>
 							{% else %}
-								<a href="{{path('tcb_front_security_login')}}">
+								<a href="{{path('tcb_front_security_login')}}" aria-label="connexion">
 									<i class="fas fa-user"></i>
 								</a>
 							{% endif %}
@@ -70,21 +71,21 @@
 
 					<nav>
 						<ul>
-							<li><a href="{{ path('tcb_front_main_home') }}">Accueil</a></li>
-							<li><a href="{{ path('tcb_front_recipe_getAll') }}">Recettes</a></li>
-							<li><a href="{{ path('tcb_front_user_getAll') }}">Chefs</a></li>
-							<li><a href="{{ path('tcb_front_category_getAll') }}">Catégories</a></li>
+							<li><a href="{{ path('tcb_front_main_home') }}" aria-label="page d'accueil">Accueil</a></li>
+							<li><a href="{{ path('tcb_front_recipe_getAll') }}" aria-label="liste des recettes">Recettes</a></li>
+							<li><a href="{{ path('tcb_front_user_getAll') }}" aria-label="liste des chefs">Chefs</a></li>
+							<li><a href="{{ path('tcb_front_category_getAll') }}" aria-label="liste des categories">Catégories</a></li>
 							{% if is_granted('IS_AUTHENTICATED_FULLY') %}
-								<li><a href="{{path('tcb_front_user_profile', {slug: app.user.slug})}}">Profil</a></li>
+								<li><a href="{{path('tcb_front_user_profile', {slug: app.user.slug})}}" aria-label="profil utilisateur">Profil</a></li>
 							{% else %}
-								<li><a href="{{path('tcb_front_security_login')}}">Connexion</a></li>
+								<li><a href="{{path('tcb_front_security_login')}}" aria-label="connexion">Connexion</a></li>
 							{% endif %}
 						</ul>
 
 					</nav>
 
 
-					<a class="logo" href="{{path('tcb_front_main_home')}}">
+					<a class="logo" href="{{path('tcb_front_main_home')}}" aria-label="logo cookbook">
 						<img src="{{ asset('images/logo_the_cookbook.png')}}" class="logo" alt="logo cookbook">
 					</a>
 
@@ -110,7 +111,7 @@
 			<footer>
 
 				<div class="footer_container">
-					<a class="tcb_btn_arrow_top" href="#top">
+					<a class="tcb_btn_arrow_top" href="#top" aria-label="revenir en haut de page">
 						<i class="fas fa-arrow-up"></i>
 					</a>
 
